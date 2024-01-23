@@ -1,0 +1,3315 @@
+[
+    {
+        "threat": "Encrypt patient records",
+        "threat_description": "Refers to ransomware attacks where cybercriminals encrypt medical records, making them inaccessible to healthcare providers. They demand ransom for the decryption key, disrupting patient care and risking lives while potentially breaching patient confidentiality.",
+        "motives": [
+            {
+                "motive": "Demand a ransom",
+                "motive_description": "Cybercriminals using ransomware to lock healthcare providers out of their patient databases. The attackers encrypt these sensitive records and demand payment for the decryption key. This action puts patient care at risk, as access to critical health information is blocked until the ransom is paid, causing a direct threat to patient safety and healthcare operations.",
+                "components": [
+                    {
+                        "name": "Electronic Health Record (EHR) Systems",
+                        "description": "Digital platforms for storing and managing patient health records.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-506: Embedded Malicious Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-509: Replicating Malicious Code (Virus or Worm)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-507: Trojan Horse",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_app_packaging",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_app_packaging",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-506: Embedded Malicious Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-509: Replicating Malicious Code (Virus or Worm)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-507: Trojan Horse",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Radiation therapy machines",
+                        "description": "Precision devices for targeted cancer treatment using radiation.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-506: Embedded Malicious Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-509: Replicating Malicious Code (Virus or Worm)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-507: Trojan Horse",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1277: Firmware Not Updateable",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1310: Missing Ability to Patch ROM Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Sell Counterfeit Medications",
+        "threat_description": "Illegal acquisition and distribution of fake drugs, which may contain incorrect ingredients or dosages. This poses significant health risks to patients and undermines the integrity of healthcare systems, while also leading to financial losses and reduced trust in medical providers.",
+        "motives": [
+            {
+                "motive": "Infiltrate supply chains",
+                "motive_description": "Primary motive is to infiltrate pharmaceutical supply chains. This involves inserting fake medications into the market, often indistinguishable from genuine products. The goal is to profit from the sale of these counterfeits, which can be produced at a fraction of the cost, compromising patient safety and undermining trust in healthcare providers.",
+                "components": [
+                    {
+                        "name": "Online Pharmacy platform",
+                        "description": "Web-based service for medication ordering and delivery.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-73: External Control of File Name or Path",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-611: Improper Restriction of XML External Entity Reference",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Gain Unauthorized Access to Research Data",
+        "threat_description": "Illicitly obtaining confidential information about medical studies, such as drug trial results or new treatment methods. This breach can lead to intellectual property theft, competitive harm, and potentially compromise patient safety or research integrity.",
+        "motives": [
+            {
+                "motive": "Gain competitive advantage",
+                "motive_description": "The intent of gaining a competitive advantage involves illicitly obtaining confidential information about new medical treatments, drug formulas, or innovative healthcare technologies. Perpetrators aim to use this stolen intellectual property to advance their own research, products, or market position, effectively leapfrogging over competitors without incurring the costs and time of original research.",
+                "components": [
+                    {
+                        "name": "Medical research and education platforms",
+                        "description": "Digital resources for healthcare studies and training.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor:",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Employee phone",
+                        "description": "Corporate device for communication and work tasks.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Manipulate Drug Trials Data",
+        "threat_description": "Altering or fabricating research data from pharmaceutical trials. This unethical practice can lead to misleading results, potentially resulting in the approval of ineffective or harmful medications, thereby endangering patient safety and undermining public trust in healthcare.",
+        "motives": [
+            {
+                "motive": "Promote a harmful drug",
+                "motive_description": "Promoting a harmful drug involves altering or fabricating research results to falsely represent a drug's safety and efficacy. This deceitful act aims to secure regulatory approval, boost sales, and increase profits, despite potential health risks to patients. It's a dangerous practice that prioritizes financial gain over public health and medical ethics.",
+                "components": [
+                    {
+                        "name": "Network Attached Storage devices",
+                        "description": "Data storage units connected to a network.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1357: Reliance on Insufficiently Trustworthy Component",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1329: Reliance on Component That is Not Updateable",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1277: Firmware Not Updateable",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1391: Use of Weak Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CAPEC-36: Using Unpublished Interfaces or Functionality",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Steal from Pharmacies",
+        "threat_description": "Illegal entry into pharmacies to steal medications, often targeting controlled substances. This criminal activity poses risks to public health, disrupts pharmacy operations, and can contribute to the broader issue of prescription drug abuse.",
+        "motives": [
+            {
+                "motive": "Personal reasons or resale",
+                "motive_description": "Primary motive often revolves around obtaining medications for personal use or for resale on the black market. Perpetrators break into pharmacies to steal prescription drugs, particularly those that are controlled substances or have high abuse potential. The aim is to either satisfy a personal addiction or to profit from selling these drugs illegally.",
+                "components": [
+                    {
+                        "name": "Surveillance camera",
+                        "description": "Security device for monitoring pharmacy activities.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1393: Use of Default Password",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Forge Death Certificates",
+        "threat_description": "Illicit creation or alteration of these official documents. It's often done for fraudulent purposes, such as insurance claims, identity theft, or covering up crimes, and can have serious legal and financial implications.",
+        "motives": [
+            {
+                "motive": "Hide murders",
+                "motive_description": "Hiding murders involves illicitly creating or altering official death documentation. This act is typically aimed at concealing a homicide, making it appear as a natural or accidental death. It's a deceptive tactic used to evade legal investigation and responsibility, manipulating records to cover up criminal activities.",
+                "components": [
+                    {
+                        "name": "Electronic Death Record System (EDRS) Online forms",
+                        "description": "Digital platform for recording and managing death data.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption ('Resource Exhaustion')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Tampering with Medical Devices",
+        "threat_description": "Unauthorized access to data from devices like fitness trackers or smartwatches. Attackers can track personal health information, location, and daily routines, potentially using this data for stalking, identity theft, or targeted advertising. Such breaches also raise concerns about the security and privacy of increasingly popular health monitoring technologies.",
+        "motives": [
+            {
+                "motive": "Stalk or do targeted harm",
+                "motive_description": "Stalking or targeted harm involves unauthorized access to personal health monitoring devices like fitness trackers or smartwatches. Attackers seek to track an individual's location, activities, and health status, potentially using this sensitive information for malicious purposes like stalking, harassment, or planning targeted physical or psychological harm.",
+                "components": [
+                    {
+                        "name": "Pacemakers",
+                        "description": "Medical devices regulating heart rhythm.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1219: Inadequate Health Monitoring",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1261: Improper Handling of Single Event Upsets",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Wireless Syringe Infusion Pump",
+                        "description": "Device for automated, controlled medication delivery.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CAPEC-148: Content Spoofing",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-120: Buffer Overflow",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-129: Improper Validation of Array Index",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-751: Improper Check or Handling of Exceptional Conditions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-821: Incorrect Synchronization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Wireless Vital Monitors",
+                        "description": "Devices tracking patients' essential health parameters wirelessly.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-205: Observable Behavioral Discrepancy",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-941: Incorrectly Specified Destination in a Communication Channel",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-88: Improper Neutralization of Argument Delimiters in a Command ('Argument Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Glucometers",
+                        "description": "Devices measuring blood glucose levels.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-835: Loop with Unreachable Exit Condition ('Infinite Loop')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Ultrasound Machines",
+                        "description": "",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-20: Improper Input Validation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-287: Improper Authentication",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-120: Buffer Copy without Checking Size of Input ('Classic Buffer Overflow'):",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Disrupt Emergency Services",
+        "threat_description": "Entails attacking the communication systems used for emergency response, such as ambulance dispatch or ER coordination. This can lead to delayed or incorrect medical responses, endangering patient lives and disrupting critical healthcare services during emergencies.\n\n\n\n\n\n\n",
+        "motives": [
+            {
+                "motive": "Delay or misdirect response in critical situations",
+                "motive_description": "Causing delayed or misdirected responses, involves targeting communication systems used for critical medical emergencies. The intention is to disrupt the timely and accurate dispatch of emergency medical services, like ambulances or emergency room coordination. This can result in life-threatening delays or incorrect deployment of emergency personnel, severely impacting patient outcomes in urgent situations.",
+                "components": [
+                    {
+                        "name": "Thermometers and Temperature Sensors",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1314: Missing Write Protection for Parametric Data Values",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1247: Improper Protection Against Voltage and Clock Glitches",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1338: Improper Protections Against Hardware Overheating",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1351: Improper Handling of Hardware Behavior in Exceptionally Cold Environments",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1384: Improper Handling of Physical or Environmental Conditions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-15: External Control of System or Configuration Setting",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1320: Improper Protection for Outbound Error Messages and Alert Signals",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-96: Improper Neutralization of Directives in Statically Saved Code ('Static Code Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Remote cardiac defibrillators",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-120: Buffer Overflow",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ECG/EEG monitors",
+                        "description": "Electroencephalography (EEG) and electrocardiography (ECG) are powerful and widely used techniques for assessing in vivo brain and cardiac function",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-201: Insertion of Sensitive Information Into Sent Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-532: Insertion of Sensitive Information into Log File",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption ('Resource Exhaustion'):",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Surgical Robots",
+                        "description": "Automated systems aiding in precision surgery.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-78: OS Command Injection",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-821: Incorrect Synchronization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-17: Code Injection",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Alter Allergy Information",
+        "threat_description": "Unauthorized modification of patients' allergy records in healthcare databases. This malicious act can lead to incorrect treatment decisions, potentially resulting in severe allergic reactions or other medical emergencies, and undermines the reliability of patient care systems.",
+        "motives": [
+            {
+                "motive": "Cause dangerous or life-threatening situations",
+                "motive_description": "Deliberate modification of patients' allergy records in healthcare databases. This malicious act can lead to incorrect medical treatments, such as prescribing medication that the patient is allergic to, thereby causing severe allergic reactions, potential harm, or even life-threatening medical emergencies.",
+                "components": [
+                    {
+                        "name": "Electronic medical records (EMRs) databases",
+                        "description": "Databases storing digital patient medical histories.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information:",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-209: Information Exposure Through an Error Message",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Create False Epidemic Alerts",
+        "threat_description": "Fabricating data or reports to falsely indicate an outbreak of infectious disease. This can cause unnecessary public panic, misallocation of healthcare resources, and erosion of trust in health authorities, significantly impacting public health response and policy.",
+        "motives": [
+            {
+                "motive": "Redirect resources from actual health concerns",
+                "motive_description": "Cause unwarranted panic and confusion by falsely indicating an outbreak of a contagious disease. This deceitful act aims to manipulate public perception and potentially redirect healthcare resources and attention away from actual health concerns, which could be part of a larger strategy to undermine public health systems or for personal gain.\n\n",
+                "components": [
+                    {
+                        "name": "Laboratory information systems (LIS)",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption ('Resource Exhaustion')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-501: Trust Boundary Violation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Steal Personal Health Information (PHI)",
+        "threat_description": "Unauthorized access and extraction of sensitive patient data, such as medical histories, treatments, and insurance details. This theft can lead to identity fraud, financial loss, and a significant breach of patient privacy and trust in healthcare institutions.",
+        "motives": [
+            {
+                "motive": "Gain leverage for blackmail",
+                "motive_description": "Perpetrators use this confidential information, such as medical conditions or treatment histories, to threaten victims with public exposure unless their demands, typically for money, are met, exploiting the victims' need for privacy.",
+                "components": [
+                    {
+                        "name": "Vulnerable OS",
+                        "description": "",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-284: Improper Access Control",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-321: Use of Hard-coded Cryptographic Key",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-862: Missing Authorization",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Impersonate Medical Personnel",
+        "threat_description": "Individuals falsely presenting themselves as doctors, nurses, or other healthcare providers. This deception can lead to unauthorized access to sensitive patient information, misdiagnosis, incorrect treatment, and breaches in patient trust and safety.",
+        "motives": [
+            {
+                "motive": "Access restricted areas",
+                "motive_description": "Involves posing as doctors, nurses, or other healthcare staff with the motive of gaining unauthorized access to restricted areas within medical facilities. This deceptive act allows individuals to bypass security protocols, potentially to access sensitive information, steal pharmaceuticals, tamper with medical equipment, or commit other malicious activities under the guise of legitimacy.",
+                "components": [
+                    {
+                        "name": "IAM",
+                        "description": "Identity and Access Management (IAM), System managing user identities, access rights, and authentication securely.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Information Exposure",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-258: Empty Password in Configuration File",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-260: Password in Configuration File",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Exploit Telemedicine Services",
+        "threat_description": "Unauthorized access or disruption of remote healthcare services. This can involve intercepting private consultations, stealing personal health data, or providing false medical advice, ultimately compromising patient privacy, safety, and the integrity of telehealthcare services.",
+        "motives": [
+            {
+                "motive": "Steal sensitive information",
+                "motive_description": "Attackers aim to intercept private consultations, gain unauthorized access to patient data, or compromise communication channels. The goal is to illicitly acquire personal health information, which can be used for identity theft, financial fraud, or sold on illegal markets.",
+                "components": [
+                    {
+                        "name": "Radiologist/Physician Workstation",
+                        "description": "",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-287: Improper Authentication",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-78: OS Command Injection",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-501: Trust Boundary Violation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-384: Session Fixation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Webcam",
+                        "description": "",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-267: Privilege Defined With Unsafe Actions",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Create Fake Insurance Claims",
+        "threat_description": "Submitting fraudulent healthcare claims for treatments or services not actually provided. This deceit leads to unlawful financial gain at the expense of insurance companies and policyholders, and can also strain healthcare resources and increase premiums for legitimate users.",
+        "motives": [
+            {
+                "motive": "Provide fake services",
+                "motive_description": "Fraudulently submitting claims to insurance companies for medical treatments or services that were never actually rendered. This deceit is aimed at extracting money from insurance providers under false pretenses, exploiting the healthcare reimbursement system for financial gain without providing any real medical service to patients.",
+                "components": [
+                    {
+                        "name": "Third-party platforms",
+                        "description": "Platforms for secure user authentication and directory services.",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-284: Improper Access Control",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-287: Improper Authentication",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-295: Improper Certificate Validation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-501: Trust Boundary Violation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-830: Inclusion of Web Functionality from an Untrusted Source",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-1103: Use of Platform-Dependent Third Party Components",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-1104: Use of Unmaintained Third Party Components",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-1395: Dependency on Vulnerable Third-Party Component",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Create Fake Prescriptions",
+        "threat_description": "Unauthorized generation of prescription orders, often for controlled substances or medications. This can lead to drug misuse, contribute to the opioid crisis, and potentially endanger patient health, while also implicating healthcare professionals and pharmacies in illegal activities.",
+        "motives": [
+            {
+                "motive": "Obtain controlled substances",
+                "motive_description": "Unauthorized generation or modification of prescription orders. This activity is typically driven by the desire to access restricted medications, either for personal misuse, illegal distribution, or sale on the black market. It undermines the integrity of medical prescribing and poses significant public health risks.",
+                "components": [
+                    {
+                        "name": "Backend systems or data servers",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Information Exposure",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-652: Improper Neutralization of Data within XQuery Expressions ('XQuery Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-564: SQL Injection: Hibernate",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_app_packaging",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_app_packaging",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-505: Unprotected Window of Time",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Barcoding Systems",
+                        "description": "Technology for tracking items using encoded labels.",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-501: Trust Boundary Violation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Disrupt Hospital Utilities and Services",
+        "threat_description": "Intentional sabotage of critical hospital infrastructure, such as power, water, or heating systems. This disruption can compromise patient care, endanger lives, especially in intensive care units, and create chaotic conditions in healthcare facilities, severely impacting their ability to provide",
+        "motives": [
+            {
+                "motive": "Distract from other malicious activities",
+                "motive_description": "Intentionally sabotaging essential hospital infrastructure. This can include cutting power, disrupting water supply, or tampering with heating systems. The resulting chaos and diversion of attention and resources create an opportune environment for conducting additional nefarious acts unnoticed.",
+                "components": [
+                    {
+                        "name": "Appointment scheduling and patient portals",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-598: Use of GET Request Method With Sensitive Query Strings",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-501: Trust Boundary Violation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Sabotage Clinical Equipment",
+        "threat_description": "Deliberately damaging or tampering with medical devices like diagnostic machines, treatment apparatus, or monitoring systems. This can lead to incorrect diagnoses, treatment failures, and potentially life-threatening situations, undermining the reliability and safety of healthcare services.",
+        "motives": [
+            {
+                "motive": "Endanger patients' lives",
+                "motive_description": "Endanger patients' lives involves deliberately damaging or tampering with essential medical devices, such as life-support machines, diagnostic equipment, or surgical tools. This malicious act can lead to incorrect diagnoses, treatment failures, or direct harm to patients, posing serious risks to their health and safety.",
+                "components": [
+                    {
+                        "name": "Life-support machines",
+                        "description": "",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-78: OS Command Injection",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "MRI systems",
+                        "description": "Magnetic Resonance Imaging\u00a0(MRI)",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-287: Improper Authentication",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-501: Trust Boundary Violation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-78: OS Command Injection",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-1392: Use of Default Credentials",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Radiation Therapy Systems",
+                        "description": "",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-287: Improper Authentication",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-501: Trust Boundary Violation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-78: OS Command Injection",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-1392: Use of Default Credentials",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mammography Machines",
+                        "description": "Specialized equipment for breast imaging and cancer screening.",
+                        "sub_components": [],
+                        "cwes": [
+                            {
+                                "cwe_id": "CWE-1392: Use of Default Credentials",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-78: OS Command Injection",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-501: Trust Boundary Violation",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            },
+                            {
+                                "cwe_id": "CWE-287: Improper Authentication",
+                                "cwe_description": "",
+                                "capecs": [],
+                                "attacks": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Introduce Malware into Medical Imaging Devices",
+        "threat_description": "Malicious act where attackers implant software designed to disrupt or alter the functioning of devices like MRI or CT scanners. This can lead to misdiagnoses, incorrect treatments, and risks to patient safety, while also undermining the trust in medical diagnostics.",
+        "motives": [
+            {
+                "motive": "Cause misdiagnoses",
+                "motive_description": "Infecting these devices with software designed to alter or corrupt their functioning. This can result in inaccurate imaging results, leading to incorrect medical diagnoses, inappropriate treatments, and potentially severe health consequences for patients.",
+                "components": [
+                    {
+                        "name": "CT scanners and ultrasound machines",
+                        "description": "Imaging devices for internal body structure visualization.",
+                        "sub_components": [
+                            {
+                                "name": "Picture Archiving and Communication System (PACS)",
+                                "dynamic": false,
+                                "tags": "Picture Archiving and Communication System (PACS)",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Access and Publicize Sensitive Health Conditions",
+        "threat_description": "Illicitly obtaining and revealing private medical information about individuals. This breach can lead to stigma, discrimination, and psychological distress for the affected patients, while eroding trust in the confidentiality of healthcare services.",
+        "motives": [
+            {
+                "motive": "Cause public shaming",
+                "motive_description": "Illicitly obtaining and revealing private medical information about individuals. This act aims to expose sensitive health issues to the public, causing embarrassment or stigma for the targeted individuals. It's a form of malicious activity that exploits the sensitive nature of health information for humiliation or revenge.",
+                "components": [
+                    {
+                        "name": "Electronic Health Record (EHR) Systems",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-263: Password Aging with Long Expiration",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-365: Race Condition in Switch Statement",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-540: Inclusion of Sensitive Information in Source Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-209: Generation of Error Message Containing Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-428: Unquoted Search Path or Element",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-611: Improper Restriction of XML External Entity Reference",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Remote Patient Monitoring (RPM) Systems",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-120: Buffer Copy without Checking Size of Input ('Classic Buffer Overflow')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-602: Client-Side Enforcement of Server-Side Security",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Conduct Unauthorized Genetic Tests",
+        "threat_description": "Performing genetic analysis without consent, often using stolen biological samples. This unethical practice can lead to privacy breaches, potential misuse of genetic data, and significant emotional and social implications for individuals whose genetic information is tested and possibly disclosed without authorization.",
+        "motives": [
+            {
+                "motive": "Plant partial matches to crime scene DNA",
+                "motive_description": "The intent is to manipulate genetic testing results to falsely associate someone with a crime scene. This malicious act involves altering or fabricating DNA test outcomes to create misleading evidence, potentially framing innocent individuals or diverting attention from the actual perpetrator.",
+                "components": [
+                    {
+                        "name": "Vulnerable Third-party services",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-78: OS Command Injection",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-643: Improper Neutralization of Data within XPath Expressions ('XPath Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-472: External Control of Assumed-Immutable Web Parameter",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Steal Biological Materials",
+        "threat_description": "Illegal acquisition of biological specimens like blood, tissue, or organs. This act not only violates individual rights and privacy but can also disrupt medical research, lead to unethical use of biological materials, and impact the integrity of scientific studies.",
+        "motives": [
+            {
+                "motive": "Conduct unapproved research",
+                "motive_description": "Illegal acquisition of biological specimens, such as blood, tissue, or DNA, from healthcare facilities. The motive is to use these materials in unauthorized scientific studies or experiments, often conducted without ethical approval or oversight, potentially leading to unregulated and unethical research practices.",
+                "components": [
+                    {
+                        "name": "Internet facing servers",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-78: OS Command Injection",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption ('Resource Exhaustion')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-749: Exposed Dangerous Method or Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-515: Covert Storage Channel",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Steal Medical Identities",
+        "threat_description": "Stealing someone's personal information to fraudulently receive medical services, prescription drugs, or file false insurance claims. This crime can leave victims with incorrect medical records, financial liabilities, and potentially life-threatening situations if their health information is altered.",
+        "motives": [
+            {
+                "motive": "Submit false claims to insurance providers",
+                "motive_description": "Stealing an individual's personal and health insurance information to fraudulently receive medical services or drugs, or to lodge false claims with insurance providers. This form of identity theft aims at financial gain by exploiting the victim's insurance benefits, leading to erroneous medical records and financial liabilities for the victims.\n\n",
+                "components": [
+                    {
+                        "name": "Data store with employee information",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-256: Plaintext Storage of a Password",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-209: Generation of Error Message Containing Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Manipulate Mental Health Records",
+        "threat_description": "Unauthorized alteration of psychiatric evaluations, therapy notes, or diagnoses in medical records. This can have profound consequences, including inappropriate treatments, misdiagnosis, and stigmatization, severely impacting the patient's life and the integrity of mental healthcare.\n\n\n\n\n\n\n",
+        "motives": [
+            {
+                "motive": "Affect patient treatment, legal status, or personal and professional relationships",
+                "motive_description": "Unauthorized alterations of psychiatric records, including diagnoses and treatment notes. This can be motivated by intentions to adversely affect an individual's treatment, distort their legal status in judicial matters, or damage personal and professional relationships. Such manipulations can lead to inappropriate mental health care and significant personal consequences for the victim.",
+                "components": [
+                    {
+                        "name": "Unprotected patient data store",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-276: Incorrect Default Permissions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts -",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Falsify DNA or Medical Test Results",
+        "threat_description": "Involving the deliberate manipulation of lab outcomes. This can lead to misdiagnoses, incorrect treatments, and major legal repercussions, such as impacting custody cases. It highlights the need for strict integrity and security in medical testing.\"",
+        "motives": [
+            {
+                "motive": "Commit insurance fraud",
+                "motive_description": "Altering or creating fake laboratory tests, including DNA tests. The purpose is to deceive insurance companies, either to receive unentitled payouts for false medical conditions or to inflate the severity of existing conditions. This fraudulent act not only leads to financial gain for the perpetrator but also increases insurance costs for others.",
+                "components": [
+                    {
+                        "name": "Laboratory Information Management Systems (LIMS)",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-276: Incorrect Default Permissions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-209: Generation of Error Message Containing Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
