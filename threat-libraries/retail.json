@@ -1,0 +1,3117 @@
+[
+    {
+        "threat": "Theft of Retail Goods",
+        "threat_description": "Theft of goods encompasses unauthorized removal or appropriation of merchandise by individuals seeking personal gain. This can occur through shoplifting, organized retail crime, or internal theft by employees. Such activities not only result in direct financial losses but also disrupt inventory accuracy, impact store operations, and erode customer trust. Retailers must implement robust security measures, including surveillance systems, employee training, and inventory management practices, to mitigate this pervasive threat.",
+        "motives": [
+            {
+                "motive": "Financial gain",
+                "motive_description": "Motivated by financial gain, malicious actors may exploit vulnerabilities in supply chains, point-of-sale systems, or corporate operations to pilfer valuable merchandise or embezzle funds. This threat not only results in immediate financial losses for retailers but can also harm their reputation and disrupt operations, making it crucial to implement robust security measures to safeguard against such illicit activities.",
+                "components": [
+                    {
+                        "name": "Cargo/Trailers",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "Physical Componentss",
+                                "dynamic": false,
+                                "tags": "Physical Componentss",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1278: Missing Protection Against Hardware Reverse Engineering Using Integrated Circuit (IC) Imaging Techniques",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1384: Improper Handling of Physical or Environmental Conditions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Introduce goods to the black market",
+                "motive_description": "This activity poses significant financial losses to the retail industry, impacting both merchandise and monetary assets. The motive behind such theft is to exploit the underground market for profit, potentially funding illicit activities and posing a threat to the economic stability of the affected retail entity.",
+                "components": [
+                    {
+                        "name": "Suppliers",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-209: Generation of Error Message Containing Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-497: Exposure of Sensitive System Information to an Unauthorized Control Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1125: Excessive Attack Surface",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-117: Improper Output Neutralization for Logs",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Point-of-Sale",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1300: Improper Protection of Physical Side Channels",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-710: Improper Adherence to Coding Standards",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Security Cameras",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1256: Improper Restriction of Software Interfaces to Hardware Features",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1384: Improper Handling of Physical or Environmental Conditions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_privileged_accounts",
+                                "dynamic": true,
+                                "tags": "match: authorization_privileged_accounts",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1393: Use of Default Password",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1392: Use of Default Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1391: Use of Weak Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Electronic Article Surveillance (EAS)",
+                        "description": "Retail theft prevention system",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-303: Incorrect Implementation of Authentication Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Radio Channels (Multichannel Sales)",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1300: Improper Protection of Physical Side Channels",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1384: Improper Handling of Physical or Environmental Conditions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1039: Automated Recognition Mechanism with Inadequate Detection or Handling of Adversarial Input Perturbations",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Inventory Control Devices",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-863: Incorrect Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1039: Automated Recognition Mechanism with Inadequate Detection or Handling of Adversarial Input Perturbations",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1048: Invokable Control Element with Large Number of Outward Calls",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1241: Use of Predictable Algorithm in Random Number Generator",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1294: Insecure Security Identifier Mechanism",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_privileged_accounts",
+                                "dynamic": true,
+                                "tags": "match: authorization_privileged_accounts",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Open-Source eCommerce Framework",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1021: Improper Restriction of Rendered UI Layers or Frames",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1275: Sensitive Cookie with Improper SameSite Attribute",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1037: Processor Optimization Removal or Modification of Security-critical Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1041: Use of Redundant Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1236: Improper Neutralization of Formula Elements in a CSV File",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-256: Plaintext Storage of a Password",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-620: Unverified Password Change",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "RFID Inventory Tracking",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-799: Improper Control of Interaction Frequency",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-922: Insecure Storage of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-925: Improper Verification of Intent by Broadcast Receiver",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Unauthorized Acquisition of Sensitive Retail Data",
+        "threat_description": "Illicit access and collection of confidential information from retail businesses. This can include customer personal details, credit card numbers, employee records, or proprietary company data. Such breaches can be executed via hacking, insider threats, or social engineering tactics, leading to significant financial and reputational damage, potential identity theft for customers, and competitive disadvantage in the market. This threat necessitates robust cybersecurity measures and vigilant data governance policies.",
+        "motives": [
+            {
+                "motive": "Counterfeit products",
+                "motive_description": "Motivated by the desire to create copycat products, attackers leverage stolen information to replicate successful retail offerings, undermining the original business's competitive edge and potentially causing financial losses and reputational damage.",
+                "components": [
+                    {
+                        "name": "Customer Loyalty/Reward Data",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-927: Use of Implicit Intent for Sensitive Communication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-771: Missing Reference to Active Allocated Resource",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-922: Insecure Storage of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-759: Use of a One-Way Hash without a Salt",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-620: Unverified Password Change",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-598: Use of GET Request Method With Sensitive Query Strings",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "eCommerce PCI Data",
+                        "description": "Payment Card Industry Data",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-444: Inconsistent Interpretation of HTTP Requests (HTTP Request/Response Smuggling)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-614: Sensitive Cookie in HTTPS Session Without Secure Attribute",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-925: Improper Verification of Intent by Broadcast Receiver",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1021: Improper Restriction of Rendered UI Layers or Frames",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-272: Least Privilege Violation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_hosting",
+                                "dynamic": true,
+                                "tags": "match: frontend_hosting",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-523: Unprotected Transport of Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-540: Inclusion of Sensitive Information in Source Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-642: External Control of Critical State Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-922: Insecure Storage of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-941: Incorrectly Specified Destination in a Communication Channel",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "eCommerce Customer Accounts",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-799: Improper Control of Interaction Frequency",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-444: Inconsistent Interpretation of HTTP Requests (HTTP Request/Response Smuggling)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_app_packaging",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_app_packaging",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-489: Active Debug Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Gain market insights",
+                "motive_description": "Individuals or entities aim to acquire strategic information about a company's market positioning, trends, and consumer behavior. This unauthorized access to sensitive data allows perpetrators to analyze market dynamics, potentially leading to unfair advantages or competition. To counter this threat, organizations should implement stringent cybersecurity measures, regularly audit access controls, and foster a culture of data protection to safeguard against unauthorized attempts to gain market insights.",
+                "components": [
+                    {
+                        "name": "Retail Analytics",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-922: Insecure Storage of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-653: Improper Isolation or Compartmentalization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "POS Systems",
+                        "description": "Point of Sale Systems",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1173: Improper Use of Validation Framework",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_privileged_accounts",
+                                "dynamic": true,
+                                "tags": "match: authorization_privileged_accounts",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Retail Outlet Wireless (Non-802.11X)",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Sabotage Business Operations",
+        "threat_description": "Incidents that interrupt the normal flow of activities within a company. These can range from cyberattacks, such as ransomware or DDoS attacks, to natural disasters or infrastructure failures. The impact can be severe, causing financial losses, damage to reputation, and loss of customer trust. Companies must implement robust disaster recovery and business continuity plans to mitigate these risks and ensure rapid response and restoration of normal operations.",
+        "motives": [
+            {
+                "motive": "Harm the company's reputation",
+                "motive_description": "Malicious motive involving actions intended to tarnish a business's image and credibility. Bad actors may engage in activities like spreading false information, initiating cyberattacks, or conducting publicized breaches. Such attacks aim to erode customer trust, diminish brand value, and impact the company's relationships with stakeholders. Safeguarding against reputation-based threats requires vigilant cybersecurity measures, crisis management strategies, and transparent communication to mitigate potential damages.",
+                "components": [
+                    {
+                        "name": "Corporate Operations",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Retail Outlets",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-501: Trust Boundary Violation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-754: Improper Check for Unusual or Exceptional Conditions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1041: Use of Redundant Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1260: Improper Handling of Overlap Between Protected Memory Ranges",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "EV Charging Stations",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-799: Improper Control of Interaction Frequency",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1321: Improperly Controlled Modification of Object Prototype Attributes (Prototype Pollution)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1294: Insecure Security Identifier Mechanism",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1039: Automated Recognition Mechanism with Inadequate Detection or Handling of Adversarial Input Perturbations",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1300: Improper Protection of Physical Side Channels",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command (OS Command Injection)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Supply-Chain Operations",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1390: Weak Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_languages",
+                                "dynamic": true,
+                                "tags": "match: backend_languages",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-120: Buffer Copy without Checking Size of Input (Classic Buffer Overflow)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1164: Irrelevant Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Exposure of sensitive data stored on mobile devices or transmitted by them",
+        "threat_description": "These devices, lacking robust security measures, become vulnerable entry points for cybercriminals. Exploiting security weaknesses, attackers can compromise personal privacy, launch distributed denial-of-service attacks, or gain unauthorized access to networks. The risk amplifies as insecure IoT devices proliferate, emphasizing the urgent need for stringent security standards and practices to safeguard interconnected systems and user data from potential breaches.",
+        "motives": [
+            {
+                "motive": "Thrill or to satisfy curiosity",
+                "motive_description": "Intruders driven by curiosity may probe networks, infiltrate databases, or conduct activities without specific motives beyond personal interest. While the intent may not be malicious, these actions pose significant security risks, potentially leading to data breaches, disruptions, and compromise of sensitive information. Organizations must bolster security measures to deter unauthorized access and mitigate potential harm stemming from curious or thrill-seeking individuals.",
+                "components": [
+                    {
+                        "name": "Mobile Devices, Cloud POS, Kiosks",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1037: Processor Optimization Removal or Modification of Security-critical Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1041: Use of Redundant Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1039: Automated Recognition Mechanism with Inadequate Detection or Handling of Adversarial Input Perturbations",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1241: Use of Predictable Algorithm in Random Number Generator",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1294: Insecure Security Identifier Mechanism",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1293: Missing Source Correlation of Multiple Independent Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1252: CPU Hardware Not Configured to Support Exclusivity of Write and Execute Operations",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1260: Improper Handling of Overlap Between Protected Memory Ranges",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1303: Non-Transparent Sharing of Microarchitectural Resources",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1274: Improper Access Control for Volatile Memory Containing Boot Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1257: Improper Access Control Applied to Mirrored or Aliased Memory Regions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1275: Sensitive Cookie with Improper SameSite Attribute",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "RFID Inventory Tracking",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-602: Client-Side Enforcement of Server-Side Security",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-436: Interpretation Conflict",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-771: Missing Reference to Active Allocated Resource",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1240: Use of a Cryptographic Primitive with a Risky Implementation",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Beacon Technology",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-602: Client-Side Enforcement of Server-Side Security",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1332: Improper Handling of Faults that Lead to Instruction Skips",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Autonomous Robots/Drones",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_mfa",
+                                "dynamic": true,
+                                "tags": "match: authentication_mfa",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1189: Improper Isolation of Shared Resources on System-on-a-Chip (SoC)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1256: Improper Restriction of Software Interfaces to Hardware Features",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1233: Security-Sensitive Hardware Controls with Missing Lock Bit Protection",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1244: Internal Asset Exposed to Unsafe Debug Access Level or State",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-602: Client-Side Enforcement of Server-Side Security",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-771: Missing Reference to Active Allocated Resource",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Develop Insider Threat",
+        "threat_description": "Risk posed by individuals within an organization who misuse their access and privileges to compromise security. This could involve employees, contractors, or partners who intentionally or unintentionally cause harm, such as stealing sensitive data, sharing confidential information, or sabotaging systems. Effective mitigation strategies involve a combination of technology, policies, and employee education to detect and prevent insider threats.",
+        "motives": [
+            {
+                "motive": "Steal trade secrets, customer data, or strategic plans",
+                "motive_description": "Malicious motive characterized by covert actions aimed at unauthorized acquisition of valuable intellectual property. Bad actors engage in sophisticated cyberattacks or insider threats to pilfer critical business information, potentially causing severe financial losses, reputational damage, and competitive disadvantages. Organizations must prioritize robust cybersecurity measures, employee training, and vigilant monitoring to safeguard against such threats and protect their proprietary assets.",
+                "components": [
+                    {
+                        "name": "Customers/Vistors",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-303: Incorrect Implementation of Authentication Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-749: Exposed Dangerous Method or Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_file_servers",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory (Path Traversal)",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-116: Improper Encoding or Escaping of Output",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Employees",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1262: Improper Access Control for Register Interface",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-602: Client-Side Enforcement of Server-Side Security",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-668: Exposure of Resource to Wrong Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-754: Improper Check for Unusual or Exceptional Conditions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-863: Incorrect Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Suppliers, Contractors, and Vendors",
+                        "description": "",
+                        "sub_components": [
+                            {
+                                "name": "Physical Components",
+                                "dynamic": false,
+                                "tags": "Physical Components",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: middleware_servers",
+                                "dynamic": true,
+                                "tags": "match: middleware_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1262: Improper Access Control for Register Interface",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-602: Client-Side Enforcement of Server-Side Security",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-668: Exposure of Resource to Wrong Sphere",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-754: Improper Check for Unusual or Exceptional Conditions",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-863: Incorrect Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
