@@ -12,12 +12,24 @@
                         "description": "",
                         "sub_components": [
                             {
-                                "name": "Physical Componentss",
+                                "name": "Physical Components",
                                 "dynamic": false,
-                                "tags": "Physical Componentss",
+                                "tags": "Physical Components",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-1263: Improper Physical Access Control",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1278: Missing Protection Against Hardware Reverse Engineering Using Integrated Circuit (IC) Imaging Techniques",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1384: Improper Handling of Physical or Environmental Conditions",
                                         "cwe_description": "",
                                         "capecs": [],
                                         "attacks": []
@@ -44,25 +56,6 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_description": "",
-                                        "capecs": [],
-                                        "attacks": []
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "Physical Components",
-                                "dynamic": false,
-                                "tags": "Physical Components",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-1278: Missing Protection Against Hardware Reverse Engineering Using Integrated Circuit (IC) Imaging Techniques",
-                                        "cwe_description": "",
-                                        "capecs": [],
-                                        "attacks": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-1384: Improper Handling of Physical or Environmental Conditions",
                                         "cwe_description": "",
                                         "capecs": [],
                                         "attacks": []
@@ -242,9 +235,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
@@ -306,9 +299,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authorization_privileged_accounts",
+                                "name": "match: Privileged Accounts",
                                 "dynamic": true,
-                                "tags": "match: authorization_privileged_accounts",
+                                "tags": "match: Privileged Accounts",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
@@ -402,9 +395,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
@@ -642,9 +635,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authorization_privileged_accounts",
+                                "name": "match: Privileged Accounts",
                                 "dynamic": true,
-                                "tags": "match: authorization_privileged_accounts",
+                                "tags": "match: Privileged Accounts",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-269: Improper Privilege Management",
@@ -812,9 +805,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
@@ -913,9 +906,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-330: Use of Insufficiently Random Values",
@@ -1240,9 +1233,9 @@
                         "description": "",
                         "sub_components": [
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-308: Use of Single-factor Authentication",
@@ -1505,9 +1498,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-330: Use of Insufficiently Random Values",
@@ -1563,9 +1556,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authorization_privileged_accounts",
+                                "name": "match: Privileged Accounts",
                                 "dynamic": true,
-                                "tags": "match: authorization_privileged_accounts",
+                                "tags": "match: Privileged Accounts",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
@@ -1602,9 +1595,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
@@ -1673,9 +1666,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
@@ -1742,9 +1735,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-308: Use of Single-factor Authentication",
@@ -1888,9 +1881,9 @@
                         "description": "",
                         "sub_components": [
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
@@ -2139,30 +2132,12 @@
                                 ]
                             },
                             {
-                                "name": "match: infrastructure_os",
-                                "dynamic": true,
-                                "tags": "match: infrastructure_os",
+                                "name": "Hardware Components",
+                                "dynamic": false,
+                                "tags": "Hardware Components",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-1252: CPU Hardware Not Configured to Support Exclusivity of Write and Execute Operations",
-                                        "cwe_description": "",
-                                        "capecs": [],
-                                        "attacks": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-1260: Improper Handling of Overlap Between Protected Memory Ranges",
-                                        "cwe_description": "",
-                                        "capecs": [],
-                                        "attacks": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-1303: Non-Transparent Sharing of Microarchitectural Resources",
-                                        "cwe_description": "",
-                                        "capecs": [],
-                                        "attacks": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-1274: Improper Access Control for Volatile Memory Containing Boot Code",
                                         "cwe_description": "",
                                         "capecs": [],
                                         "attacks": []
@@ -2189,6 +2164,31 @@
                                 ]
                             },
                             {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1260: Improper Handling of Overlap Between Protected Memory Ranges",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1303: Non-Transparent Sharing of Microarchitectural Resources",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1274: Improper Access Control for Volatile Memory Containing Boot Code",
+                                        "cwe_description": "",
+                                        "capecs": [],
+                                        "attacks": []
+                                    }
+                                ]
+                            },
+                            {
                                 "name": "match: frontend_technologies",
                                 "dynamic": true,
                                 "tags": "match: frontend_technologies",
@@ -2202,9 +2202,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-330: Use of Insufficiently Random Values",
@@ -2259,9 +2259,9 @@
                         "description": "",
                         "sub_components": [
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
@@ -2551,9 +2551,9 @@
                                 ]
                             },
                             {
-                                "name": "match: authentication_mfa",
-                                "dynamic": true,
-                                "tags": "match: authentication_mfa",
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
