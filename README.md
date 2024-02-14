@@ -1,4 +1,4 @@
-# Fork Community - A free online SaaS tool to build risk centric threat models using the P.A.S.T.A threat modeling methodology as well as a repo for free, curated and researched threat libraries by industry.  
+# Fork Community - Free SaaS tool to build risk centric threat models using the P.A.S.T.A threat modeling methodology. Also repo for curated & researched threat libraries by industry.  
 
 ## Introduction
 Welcome to the repository for the [Fork](https://forktm.com) Community Edition, an implementation of the [PASTA](https://versprite.com/blog/what-is-pasta-threat-modeling/) (Process for Attack Simulation and Threat Analysis) threat modeling framework. This repository aims to provide a collaborative space for enhancing and expanding the capabilities of Fork through community contributions.  This repo consolidates the prior repo where attack trees were shared by VerSprite here (https://github.com/VerSprite/threat-modeling.github.io) but have now been consolidated into the threat libraries folder, here: https://github.com/VerSprite/forkTM/tree/main/threat-libraries.    
