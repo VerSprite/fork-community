@@ -5,11 +5,10 @@
         "motives": [
             {
                 "motive": "Seeking monetary profit",
-                "motive_description": "Motivated by financial gain, malicious actors may exploit vulnerabilities in supply chains, point-of-sale systems, or corporate operations to pilfer valuable merchandise or embezzle funds. This threat not only results in immediate financial losses for retailers but can also harm their reputation and disrupt operations, making it crucial to implement robust security measures to safeguard against such illicit activities.",
                 "components": [
                     {
                         "name": "Cargo/Trailers",
-                        "description": "",
+                        "description": "Transporting goods securely over long distances.",
                         "sub_components": [
                             {
                                 "name": "Hardware Components",
@@ -58,11 +57,10 @@
             },
             {
                 "motive": "Introduce goods to the black market",
-                "motive_description": "This activity poses significant financial losses to the retail industry, impacting both merchandise and monetary assets. The motive behind such theft is to exploit the underground market for profit, potentially funding illicit activities and posing a threat to the economic stability of the affected retail entity.",
                 "components": [
                     {
                         "name": "Suppliers",
-                        "description": "",
+                        "description": "Verified vendors providing essential goods and services.",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -127,7 +125,7 @@
                     },
                     {
                         "name": "Point-of-Sale",
-                        "description": "",
+                        "description": "Retail terminal for processing customer transactions and payments.",
                         "sub_components": [
                             {
                                 "name": "Hardware Components",
@@ -173,7 +171,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
-                                        "cwe_mapping_reason": "The unconfirmed legitimacy of data at the Point-of-Sale could potentially result in retail goods being illicitly acquired and subsequently funneled into the black market.\n"
+                                        "cwe_mapping_reason": "The unconfirmed legitimacy of data at the Point-of-Sale could potentially result in retail goods being illicitly acquired and subsequently funneled into the black market."
                                     },
                                     {
                                         "cwe_id": "CWE-613: Insufficient Session Expiration",
@@ -211,7 +209,7 @@
                     },
                     {
                         "name": "Security Cameras",
-                        "description": "",
+                        "description": "Continuous monitoring and recording of specified areas.",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -250,7 +248,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-1393: Use of Default Password",
-                                        "cwe_mapping_reason": "The default password usage on security cameras creates a vulnerability that could be exploited by individuals aiming to pilfer merchandise for illicit sales on the black market.\n"
+                                        "cwe_mapping_reason": "The default password usage on security cameras creates a vulnerability that could be exploited by individuals aiming to pilfer merchandise for illicit sales on the black market."
                                     }
                                 ]
                             },
@@ -272,7 +270,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-284: Improper Access Control",
-                                        "cwe_mapping_reason": "\"The weakness in implementing proper access control mechanisms can potentially allow illicit individuals to manipulate security cameras, facilitating the theft of retail goods for unlawful resale on the black market.\""
+                                        "cwe_mapping_reason": "The weakness in implementing proper access control mechanisms can potentially allow illicit individuals to manipulate security cameras, facilitating the theft of retail goods for unlawful resale on the black market."
                                     }
                                 ]
                             },
@@ -283,7 +281,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "Because security cameras lack proper data encryption, they could potentially be exploited, allowing unauthorized individuals to bypass the system, steal retail goods and subsequently introduce them into the black market.\n"
+                                        "cwe_mapping_reason": "Because security cameras lack proper data encryption, they could potentially be exploited, allowing unauthorized individuals to bypass the system, steal retail goods and subsequently introduce them into the black market."
                                     }
                                 ]
                             },
@@ -311,7 +309,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "Due to the lack of encrypting sensitive data within the Electronic Article Surveillance system, it could be exploited to illicitly obtain retail goods and potentially introduce them into the black market.\n"
+                                        "cwe_mapping_reason": "Due to the lack of encrypting sensitive data within the Electronic Article Surveillance system, it could be exploited to illicitly obtain retail goods and potentially introduce them into the black market."
                                     }
                                 ]
                             },
@@ -363,7 +361,7 @@
                     },
                     {
                         "name": "Radio Channels (Multichannel Sales)",
-                        "description": "",
+                        "description": "Multichannel radio sales for diverse listener engagement",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -398,7 +396,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-284: Improper Access Control",
-                                        "cwe_mapping_reason": "\"The multichannel radio sales system's susceptibility to unauthorized access exposes the retail goods to potential theft and subsequent illicit distribution in the black market.\""
+                                        "cwe_mapping_reason": "The multichannel radio sales system's susceptibility to unauthorized access exposes the retail goods to potential theft and subsequent illicit distribution in the black market."
                                     },
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
@@ -436,7 +434,7 @@
                     },
                     {
                         "name": "Inventory Control Devices",
-                        "description": "",
+                        "description": "Real-time tracking and management of inventory assets.",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -543,7 +541,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
-                                        "cwe_mapping_reason": "An unauthorized entity may exploit untrusted functionalities within inventory control devices to illicitly acquire retail goods for distribution on the black market.\n"
+                                        "cwe_mapping_reason": "An unauthorized entity may exploit untrusted functionalities within inventory control devices to illicitly acquire retail goods for distribution on the black market."
                                     }
                                 ]
                             }
@@ -551,7 +549,7 @@
                     },
                     {
                         "name": "Open-Source eCommerce Framework",
-                        "description": "",
+                        "description": "Open-source eCommerce platform for customizable online stores.",
                         "sub_components": [
                             {
                                 "name": "match: frontend_technologies",
@@ -564,7 +562,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-1275: Sensitive Cookie with Improper SameSite Attribute",
-                                        "cwe_mapping_reason": "A failure to properly set the SameSite attribute in the cookies of the open-source eCommerce framework could potentially allow unauthorized individuals to intercept sensitive data, making theft of retail goods possible for illicit distribution in the black market.\n"
+                                        "cwe_mapping_reason": "A failure to properly set the SameSite attribute in the cookies of the open-source eCommerce framework could potentially allow unauthorized individuals to intercept sensitive data, making theft of retail goods possible for illicit distribution in the black market."
                                     },
                                     {
                                         "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
@@ -602,7 +600,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "Given the motive to illicitly profit by introducing stolen retail products into the black market, the vulnerability of the open-source eCommerce framework can allow unauthorized access to sensitive information, facilitating theft and subsequent illegal resale.\n"
+                                        "cwe_mapping_reason": "Given the motive to illicitly profit by introducing stolen retail products into the black market, the vulnerability of the open-source eCommerce framework can allow unauthorized access to sensitive information, facilitating theft and subsequent illegal resale."
                                     },
                                     {
                                         "cwe_id": "CWE-256: Plaintext Storage of a Password",
@@ -659,7 +657,7 @@
                     },
                     {
                         "name": "RFID Inventory Tracking",
-                        "description": "",
+                        "description": "Real-time RFID inventory management and tracking system",
                         "sub_components": [
                             {
                                 "name": "Hardware Components",
@@ -725,11 +723,10 @@
         "motives": [
             {
                 "motive": "Counterfeit products",
-                "motive_description": "Motivated by the desire to create copycat products, attackers leverage stolen information to replicate successful retail offerings, undermining the original business's competitive edge and potentially causing financial losses and reputational damage.",
                 "components": [
                     {
                         "name": "Customer Loyalty/Reward Data",
-                        "description": "",
+                        "description": "Customer loyalty rewards program data management and analysis",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1012,7 +1009,7 @@
                     },
                     {
                         "name": "eCommerce Customer Accounts",
-                        "description": "",
+                        "description": "Secure customer account management for eCommerce platforms.",
                         "sub_components": [
                             {
                                 "name": "match: validation_type",
@@ -1021,7 +1018,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-20: Improper Input Validation",
-                                        "cwe_mapping_reason": "The potential for unauthorized access to sensitive retail data due to inadequate control mechanisms on eCommerce customer accounts may provide an avenue for the production of counterfeit products.\n"
+                                        "cwe_mapping_reason": "The potential for unauthorized access to sensitive retail data due to inadequate control mechanisms on eCommerce customer accounts may provide an avenue for the production of counterfeit products."
                                     }
                                 ]
                             },
@@ -1087,11 +1084,10 @@
             },
             {
                 "motive": "Gain market insights",
-                "motive_description": "Individuals or entities aim to acquire strategic information about a company's market positioning, trends, and consumer behavior. This unauthorized access to sensitive data allows perpetrators to analyze market dynamics, potentially leading to unfair advantages or competition. To counter this threat, organizations should implement stringent cybersecurity measures, regularly audit access controls, and foster a culture of data protection to safeguard against unauthorized attempts to gain market insights.",
                 "components": [
                     {
                         "name": "Retail Analytics",
-                        "description": "",
+                        "description": "Enhanced sales insights for retail performance optimization.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1331,7 +1327,7 @@
                     },
                     {
                         "name": "Retail Outlet Wireless (Non-802.11X)",
-                        "description": "",
+                        "description": "Retail store Wi-Fi network, non-802.11X configuration.",
                         "sub_components": [
                             {
                                 "name": "2FA/MFA",
@@ -1389,11 +1385,10 @@
         "motives": [
             {
                 "motive": "Harm the company's reputation",
-                "motive_description": "Malicious motive involving actions intended to tarnish a business's image and credibility. Bad actors may engage in activities like spreading false information, initiating cyberattacks, or conducting publicized breaches. Such attacks aim to erode customer trust, diminish brand value, and impact the company's relationships with stakeholders. Safeguarding against reputation-based threats requires vigilant cybersecurity measures, crisis management strategies, and transparent communication to mitigate potential damages.",
                 "components": [
                     {
                         "name": "Corporate Operations",
-                        "description": "",
+                        "description": "Corporate operations managing logistics and financial workflows efficiently",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1429,7 +1424,7 @@
                     },
                     {
                         "name": "Retail Outlets",
-                        "description": "",
+                        "description": "Physical stores selling products to walk-in customers",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -1438,7 +1433,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-1041: Use of Redundant Code",
-                                        "cwe_mapping_reason": "\"Malicious individuals, intent on damaging the company's reputation, could exploit redundant code present in the retail outlets' systems, leading to operational disruptions.\""
+                                        "cwe_mapping_reason": "Malicious individuals, intent on damaging the company's reputation, could exploit redundant code present in the retail outlets' systems, leading to operational disruptions."
                                     },
                                     {
                                         "cwe_id": "CWE-501: Trust Boundary Violation",
@@ -1498,7 +1493,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "The absence of data encryption in retail outlets could allow ill-intentioned individuals to disrupt business operations and tarnish the company's reputation by accessing sensitive information.\n"
+                                        "cwe_mapping_reason": "The absence of data encryption in retail outlets could allow ill-intentioned individuals to disrupt business operations and tarnish the company's reputation by accessing sensitive information."
                                     },
                                     {
                                         "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
@@ -1532,7 +1527,7 @@
                     },
                     {
                         "name": "EV Charging Stations",
-                        "description": "",
+                        "description": "Efficient EV charging stations for modern vehicles",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -1606,7 +1601,7 @@
                     },
                     {
                         "name": "Supply-Chain Operations",
-                        "description": "",
+                        "description": "Coordinating supply chain logistics and inventory management efficiently",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -1698,11 +1693,10 @@
         "motives": [
             {
                 "motive": "Engage for the thrill or to satisfy curiosity",
-                "motive_description": "Intruders driven by curiosity may probe networks, infiltrate databases, or conduct activities without specific motives beyond personal interest. While the intent may not be malicious, these actions pose significant security risks, potentially leading to data breaches, disruptions, and compromise of sensitive information. Organizations must bolster security measures to deter unauthorized access and mitigate potential harm stemming from curious or thrill-seeking individuals.",
                 "components": [
                     {
                         "name": "Mobile Devices, Cloud POS, Kiosks",
-                        "description": "",
+                        "description": "Portable, personal communication and computing devices.",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -1829,7 +1823,7 @@
                     },
                     {
                         "name": "RFID Inventory Tracking",
-                        "description": "",
+                        "description": "Automated inventory management using RFID technology.",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -1943,7 +1937,7 @@
                     },
                     {
                         "name": "Beacon Technology",
-                        "description": "",
+                        "description": "Proximity-based location tracking using Bluetooth signals.",
                         "sub_components": [
                             {
                                 "name": "Hardware Components",
@@ -1982,7 +1976,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
-                                        "cwe_mapping_reason": "Curiosity-driven threat actors may exploit the beacon technology's potential vulnerability to identity spoofing, leading to an unauthorized access and potential exposure of sensitive data transmitted through mobile devices.\n"
+                                        "cwe_mapping_reason": "Curiosity-driven threat actors may exploit the beacon technology's potential vulnerability to identity spoofing, leading to an unauthorized access and potential exposure of sensitive data transmitted through mobile devices."
                                     },
                                     {
                                         "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
@@ -2046,7 +2040,7 @@
                     },
                     {
                         "name": "Autonomous Robots/Drones",
-                        "description": "",
+                        "description": "Autonomous robots and drones for diverse mission tasks.",
                         "sub_components": [
                             {
                                 "name": "match: infrastructure_os",
@@ -2067,7 +2061,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
-                                        "cwe_mapping_reason": "An end user might be drawn to explore or exploit the thrill of manipulating unencrypted sensitive data transmitted by autonomous robots or drones without considering the potential danger of exposure.\n"
+                                        "cwe_mapping_reason": "An end user might be drawn to explore or exploit the thrill of manipulating unencrypted sensitive data transmitted by autonomous robots or drones without considering the potential danger of exposure."
                                     },
                                     {
                                         "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
@@ -2154,11 +2148,10 @@
         "motives": [
             {
                 "motive": "Steal trade secrets, customer data, or strategic plans",
-                "motive_description": "Malicious motive characterized by covert actions aimed at unauthorized acquisition of valuable intellectual property. Bad actors engage in sophisticated cyberattacks or insider threats to pilfer critical business information, potentially causing severe financial losses, reputational damage, and competitive disadvantages. Organizations must prioritize robust cybersecurity measures, employee training, and vigilant monitoring to safeguard against such threats and protect their proprietary assets.",
                 "components": [
                     {
                         "name": "Customers/Vistors",
-                        "description": "",
+                        "description": "Website users seeking products or information.",
                         "sub_components": [
                             {
                                 "name": "match: validation_sanitization",
@@ -2245,7 +2238,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
-                                        "cwe_mapping_reason": "An unauthorized internal entity could exploit web application vulnerabilities to illicitly gain access to customer data or strategic information, fulfilling their motive for economic gain or business advantage.\n"
+                                        "cwe_mapping_reason": "An unauthorized internal entity could exploit web application vulnerabilities to illicitly gain access to customer data or strategic information, fulfilling their motive for economic gain or business advantage."
                                     },
                                     {
                                         "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
@@ -2283,7 +2276,7 @@
                     },
                     {
                         "name": "Employees",
-                        "description": "",
+                        "description": "Internal staff responsible for company operations and security measures.",
                         "sub_components": [
                             {
                                 "name": "match: infrastructure_os",
@@ -2296,7 +2289,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
-                                        "cwe_mapping_reason": "The misuse of sensitive information by employees, like trade secrets or customer data, can be facilitated through improper data handling practices such as transmitting data in cleartext, increasing the risk of insider threats.\n"
+                                        "cwe_mapping_reason": "The misuse of sensitive information by employees, like trade secrets or customer data, can be facilitated through improper data handling practices such as transmitting data in cleartext, increasing the risk of insider threats."
                                     }
                                 ]
                             },
@@ -2390,7 +2383,7 @@
                     },
                     {
                         "name": "Suppliers, Contractors, and Vendors",
-                        "description": "",
+                        "description": "External entities providing goods, services, or expertise.",
                         "sub_components": [
                             {
                                 "name": "match: infrastructure_os",
