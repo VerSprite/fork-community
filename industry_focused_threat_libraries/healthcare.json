@@ -5,7 +5,6 @@
         "motives": [
             {
                 "motive": "Demand a ransom",
-                "motive_description": "Cybercriminals using ransomware to lock healthcare providers out of their patient databases. The attackers encrypt these sensitive records and demand payment for the decryption key. This action puts patient care at risk, as access to critical health information is blocked until the ransom is paid, causing a direct threat to patient safety and healthcare operations.",
                 "components": [
                     {
                         "name": "Electronic Health Record (EHR) Systems",
@@ -111,7 +110,6 @@
         "motives": [
             {
                 "motive": "Infiltrate supply chains",
-                "motive_description": "Primary motive is to infiltrate pharmaceutical supply chains. This involves inserting fake medications into the market, often indistinguishable from genuine products. The goal is to profit from the sale of these counterfeits, which can be produced at a fraction of the cost, compromising patient safety and undermining trust in healthcare providers.",
                 "components": [
                     {
                         "name": "Online Pharmacy platform",
@@ -188,7 +186,6 @@
         "motives": [
             {
                 "motive": "Gain competitive advantage",
-                "motive_description": "The intent of gaining a competitive advantage involves illicitly obtaining confidential information about new medical treatments, drug formulas, or innovative healthcare technologies. Perpetrators aim to use this stolen intellectual property to advance their own research, products, or market position, effectively leapfrogging over competitors without incurring the costs and time of original research.",
                 "components": [
                     {
                         "name": "Medical research and education platforms",
@@ -301,7 +298,6 @@
         "motives": [
             {
                 "motive": "Promote a harmful drug",
-                "motive_description": "Promoting a harmful drug involves altering or fabricating research results to falsely represent a drug's safety and efficacy. This deceitful act aims to secure regulatory approval, boost sales, and increase profits, despite potential health risks to patients. It's a dangerous practice that prioritizes financial gain over public health and medical ethics.",
                 "components": [
                     {
                         "name": "Network Attached Storage devices",
@@ -360,7 +356,6 @@
         "motives": [
             {
                 "motive": "Use for personal reasons or resale",
-                "motive_description": "Primary motive often revolves around obtaining medications for personal use or for resale on the black market. Perpetrators break into pharmacies to steal prescription drugs, particularly those that are controlled substances or have high abuse potential. The aim is to either satisfy a personal addiction or to profit from selling these drugs illegally.",
                 "components": [
                     {
                         "name": "Surveillance camera",
@@ -442,7 +437,6 @@
         "motives": [
             {
                 "motive": "Hide murders",
-                "motive_description": "Hiding murders involves illicitly creating or altering official death documentation. This act is typically aimed at concealing a homicide, making it appear as a natural or accidental death. It's a deceptive tactic used to evade legal investigation and responsibility, manipulating records to cover up criminal activities.",
                 "components": [
                     {
                         "name": "Electronic Death Record System (EDRS) Online forms",
@@ -496,7 +490,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
-                                        "cwe_mapping_reason": "Unprotected sensitive data in the Electronic Death Record System (EDRS) online forms may be exploited by individuals seeking to conceal unlawful activities, such as orchestrating a murder and then obscuring it by falsifying death certificates.\n"
+                                        "cwe_mapping_reason": "Unprotected sensitive data in the Electronic Death Record System (EDRS) online forms may be exploited by individuals seeking to conceal unlawful activities, such as orchestrating a murder and then obscuring it by falsifying death certificates."
                                     },
                                     {
                                         "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
@@ -546,7 +540,6 @@
         "motives": [
             {
                 "motive": "Stalk or do targeted harm",
-                "motive_description": "Stalking or targeted harm involves unauthorized access to personal health monitoring devices like fitness trackers or smartwatches. Attackers seek to track an individual's location, activities, and health status, potentially using this sensitive information for malicious purposes like stalking, harassment, or planning targeted physical or psychological harm.",
                 "components": [
                     {
                         "name": "Pacemakers",
@@ -825,7 +818,7 @@
                     },
                     {
                         "name": "Ultrasound Machines",
-                        "description": "",
+                        "description": "Diagnostic imaging device using sound waves for scans.",
                         "sub_components": [
                             {
                                 "name": "match: backend_languages",
@@ -913,11 +906,10 @@
         "motives": [
             {
                 "motive": "Delay or misdirect response in critical situations",
-                "motive_description": "Causing delayed or misdirected responses, involves targeting communication systems used for critical medical emergencies. The intention is to disrupt the timely and accurate dispatch of emergency medical services, like ambulances or emergency room coordination. This can result in life-threatening delays or incorrect deployment of emergency personnel, severely impacting patient outcomes in urgent situations.",
                 "components": [
                     {
                         "name": "Thermometers and Temperature Sensors",
-                        "description": "",
+                        "description": "Monitors and reports temperature changes accurately and efficiently.",
                         "sub_components": [
                             {
                                 "name": "match: infrastructure_os",
@@ -1005,7 +997,7 @@
                     },
                     {
                         "name": "Remote cardiac defibrillators",
-                        "description": "",
+                        "description": "Wireless devices for heart rhythm monitoring and intervention.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1224,7 +1216,6 @@
         "motives": [
             {
                 "motive": "Cause dangerous or life-threatening situations",
-                "motive_description": "Deliberate modification of patients' allergy records in healthcare databases. This malicious act can lead to incorrect medical treatments, such as prescribing medication that the patient is allergic to, thereby causing severe allergic reactions, potential harm, or even life-threatening medical emergencies.",
                 "components": [
                     {
                         "name": "Electronic medical records (EMRs) databases",
@@ -1298,11 +1289,10 @@
         "motives": [
             {
                 "motive": "Redirect resources from actual health concerns",
-                "motive_description": "Cause unwarranted panic and confusion by falsely indicating an outbreak of a contagious disease. This deceitful act aims to manipulate public perception and potentially redirect healthcare resources and attention away from actual health concerns, which could be part of a larger strategy to undermine public health systems or for personal gain.\n\n",
                 "components": [
                     {
                         "name": "Laboratory information systems (LIS)",
-                        "description": "",
+                        "description": "Manages and tracks laboratory data and workflows efficiently.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1315,7 +1305,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-287: Improper Authentication",
-                                        "cwe_mapping_reason": "The improper validation of a user's identity within the laboratory information systems could facilitate an unauthorized individual to create false epidemic alerts, which would strategically divert resources away from genuine health issues.\n"
+                                        "cwe_mapping_reason": "The improper validation of a user's identity within the laboratory information systems could facilitate an unauthorized individual to create false epidemic alerts, which would strategically divert resources away from genuine health issues."
                                     }
                                 ]
                             },
@@ -1356,7 +1346,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
-                                        "cwe_mapping_reason": "An adversary could exploit the laboratory information system's vulnerability to excessive resource use, with the intent to create false public health alarms that divert attention and resources away from genuine health issues.\n"
+                                        "cwe_mapping_reason": "An adversary could exploit the laboratory information system's vulnerability to excessive resource use, with the intent to create false public health alarms that divert attention and resources away from genuine health issues."
                                     }
                                 ]
                             },
@@ -1375,7 +1365,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
-                                        "cwe_mapping_reason": "The vulnerability in the Laboratory Information Systems due to the potential of unauthorized file uploads can be exploited to trigger false epidemic alerts with the aim to misdirect resources from actual health concerns.\n"
+                                        "cwe_mapping_reason": "The vulnerability in the Laboratory Information Systems due to the potential of unauthorized file uploads can be exploited to trigger false epidemic alerts with the aim to misdirect resources from actual health concerns."
                                     }
                                 ]
                             },
@@ -1413,11 +1403,10 @@
         "motives": [
             {
                 "motive": "Gain leverage for blackmail",
-                "motive_description": "Perpetrators use this confidential information, such as medical conditions or treatment histories, to threaten victims with public exposure unless their demands, typically for money, are met, exploiting the victims' need for privacy.",
                 "components": [
                     {
                         "name": "Vulnerable OS",
-                        "description": "",
+                        "description": "Unpatched operating system with multiple security vulnerabilities",
                         "sub_components": [
                             {
                                 "name": "Privileged Accounts",
@@ -1426,7 +1415,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
-                                        "cwe_mapping_reason": "An end-user's personal health information may be at risk due to the continuation of operations on an insecure operating system, which can be manipulated by bad Actors intending to misuse the information as a pressure mechanism.\n"
+                                        "cwe_mapping_reason": "An end-user's personal health information may be at risk due to the continuation of operations on an insecure operating system, which can be manipulated by bad Actors intending to misuse the information as a pressure mechanism."
                                     }
                                 ]
                             },
@@ -1509,7 +1498,6 @@
         "motives": [
             {
                 "motive": "Access restricted areas",
-                "motive_description": "Involves posing as doctors, nurses, or other healthcare staff with the motive of gaining unauthorized access to restricted areas within medical facilities. This deceptive act allows individuals to bypass security protocols, potentially to access sensitive information, steal pharmaceuticals, tamper with medical equipment, or commit other malicious activities under the guise of legitimacy.",
                 "components": [
                     {
                         "name": "IAM",
@@ -1595,11 +1583,10 @@
         "motives": [
             {
                 "motive": "Steal sensitive information",
-                "motive_description": "Attackers aim to intercept private consultations, gain unauthorized access to patient data, or compromise communication channels. The goal is to illicitly acquire personal health information, which can be used for identity theft, financial fraud, or sold on illegal markets.",
                 "components": [
                     {
                         "name": "Radiologist/Physician Workstation",
-                        "description": "",
+                        "description": "High-performance workstation for radiologists and physicians diagnostic tasks",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1634,7 +1621,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "An unencrypted communication channel in a radiologist or physician's workstation could present a potential vulnerability for malicious actors aiming to pilfer sensitive data during telemedicine services.\n"
+                                        "cwe_mapping_reason": "An unencrypted communication channel in a radiologist or physician's workstation could present a potential vulnerability for malicious actors aiming to pilfer sensitive data during telemedicine services."
                                     }
                                 ]
                             },
@@ -1698,7 +1685,7 @@
                     },
                     {
                         "name": "Webcam",
-                        "description": "",
+                        "description": "Remote video capture and streaming device for surveillance.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1734,7 +1721,6 @@
         "motives": [
             {
                 "motive": "Provide fake services",
-                "motive_description": "Fraudulently submitting claims to insurance companies for medical treatments or services that were never actually rendered. This deceit is aimed at extracting money from insurance providers under false pretenses, exploiting the healthcare reimbursement system for financial gain without providing any real medical service to patients.",
                 "components": [
                     {
                         "name": "Third-party platforms",
@@ -1872,11 +1858,10 @@
         "motives": [
             {
                 "motive": "Potentially obtain controlled substances",
-                "motive_description": "Unauthorized generation or modification of prescription orders. This activity is typically driven by the desire to access restricted medications, either for personal misuse, illegal distribution, or sale on the black market. It undermines the integrity of medical prescribing and poses significant public health risks.",
                 "components": [
                     {
                         "name": "Backend systems or data servers",
-                        "description": "",
+                        "description": "Backend systems handle server requests and manage data operations.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2019,11 +2004,10 @@
         "motives": [
             {
                 "motive": "Distract from other malicious activities",
-                "motive_description": "Intentionally sabotaging essential hospital infrastructure. This can include cutting power, disrupting water supply, or tampering with heating systems. The resulting chaos and diversion of attention and resources create an opportune environment for conducting additional nefarious acts unnoticed.",
                 "components": [
                     {
                         "name": "Appointment scheduling and patient portals",
-                        "description": "",
+                        "description": "Secure platform for scheduling medical appointments and managing records.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2134,11 +2118,10 @@
         "motives": [
             {
                 "motive": "Endanger patients lives",
-                "motive_description": "Endanger patients' lives involves deliberately damaging or tampering with essential medical devices, such as life-support machines, diagnostic equipment, or surgical tools. This malicious act can lead to incorrect diagnoses, treatment failures, or direct harm to patients, posing serious risks to their health and safety.",
                 "components": [
                     {
                         "name": "Life-support machines",
-                        "description": "",
+                        "description": "Critical systems ensuring patient survival and vital functions.",
                         "sub_components": [
                             {
                                 "name": "match: infrastructure_os",
@@ -2228,7 +2211,7 @@
                     },
                     {
                         "name": "Radiation Therapy Systems",
-                        "description": "",
+                        "description": "Advanced system delivering precise radiation treatment for cancer.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2352,7 +2335,6 @@
         "motives": [
             {
                 "motive": "Cause misdiagnoses",
-                "motive_description": "Infecting these devices with software designed to alter or corrupt their functioning. This can result in inaccurate imaging results, leading to incorrect medical diagnoses, inappropriate treatments, and potentially severe health consequences for patients.",
                 "components": [
                     {
                         "name": "CT scanners and ultrasound machines",
@@ -2397,11 +2379,10 @@
         "motives": [
             {
                 "motive": "Cause public shaming",
-                "motive_description": "Illicitly obtaining and revealing private medical information about individuals. This act aims to expose sensitive health issues to the public, causing embarrassment or stigma for the targeted individuals. It's a form of malicious activity that exploits the sensitive nature of health information for humiliation or revenge.",
                 "components": [
                     {
                         "name": "Electronic Health Record (EHR) Systems",
-                        "description": "",
+                        "description": "Centralized digital system for patient medical records.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2470,7 +2451,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-611: Improper Restriction of XML External Entity Reference",
-                                        "cwe_mapping_reason": "The potential for unauthorized access and public humiliation is heightened in EHR systems due to flawed security controls, which could allow for the disclosure of restricted external references, leading to inadvertent exposure of sensitive health conditions.\n"
+                                        "cwe_mapping_reason": "The potential for unauthorized access and public humiliation is heightened in EHR systems due to flawed security controls, which could allow for the disclosure of restricted external references, leading to inadvertent exposure of sensitive health conditions."
                                     }
                                 ]
                             },
@@ -2493,7 +2474,7 @@
                     },
                     {
                         "name": "Remote Patient Monitoring (RPM) Systems",
-                        "description": "",
+                        "description": "Continuous patient health data monitoring via remote sensors",
                         "sub_components": [
                             {
                                 "name": "match: backend_languages",
@@ -2574,11 +2555,10 @@
         "motives": [
             {
                 "motive": "Plant partial matches to crime scene DNA",
-                "motive_description": "The intent is to manipulate genetic testing results to falsely associate someone with a crime scene. This malicious act involves altering or fabricating DNA test outcomes to create misleading evidence, potentially framing innocent individuals or diverting attention from the actual perpetrator.",
                 "components": [
                     {
                         "name": "Vulnerable Third-party services",
-                        "description": "",
+                        "description": "Insecure third-party services prone to exploitation.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2613,7 +2593,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "The lack of sufficient data protection measures in third-party services could be exploited by malicious actors to perform illegitimate genetic tests and manipulate DNA evidence, thereby misrepresenting crime scene investigations.\n"
+                                        "cwe_mapping_reason": "The lack of sufficient data protection measures in third-party services could be exploited by malicious actors to perform illegitimate genetic tests and manipulate DNA evidence, thereby misrepresenting crime scene investigations."
                                     },
                                     {
                                         "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
@@ -2704,11 +2684,10 @@
         "motives": [
             {
                 "motive": "Conduct unapproved research",
-                "motive_description": "Illegal acquisition of biological specimens, such as blood, tissue, or DNA, from healthcare facilities. The motive is to use these materials in unauthorized scientific studies or experiments, often conducted without ethical approval or oversight, potentially leading to unregulated and unethical research practices.",
                 "components": [
                     {
                         "name": "Internet facing servers",
-                        "description": "",
+                        "description": "Publicly accessible servers exposed to the internet.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2811,11 +2790,10 @@
         "motives": [
             {
                 "motive": "Submit false claims to insurance providers",
-                "motive_description": "Stealing an individual's personal and health insurance information to fraudulently receive medical services or drugs, or to lodge false claims with insurance providers. This form of identity theft aims at financial gain by exploiting the victim's insurance benefits, leading to erroneous medical records and financial liabilities for the victims.\n\n",
                 "components": [
                     {
                         "name": "Data store with employee information",
-                        "description": "",
+                        "description": "Centralized database storing sensitive employee personal information.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2919,11 +2897,10 @@
         "motives": [
             {
                 "motive": "Affect patient treatment, legal status, or personal and professional relationships",
-                "motive_description": "Unauthorized alterations of psychiatric records, including diagnoses and treatment notes. This can be motivated by intentions to adversely affect an individual's treatment, distort their legal status in judicial matters, or damage personal and professional relationships. Such manipulations can lead to inappropriate mental health care and significant personal consequences for the victim.",
                 "components": [
                     {
                         "name": "Unprotected patient data store",
-                        "description": "",
+                        "description": "Exposed patient records lacking security measures",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -3027,11 +3004,10 @@
         "motives": [
             {
                 "motive": "Commit insurance fraud",
-                "motive_description": "Altering or creating fake laboratory tests, including DNA tests. The purpose is to deceive insurance companies, either to receive unentitled payouts for false medical conditions or to inflate the severity of existing conditions. This fraudulent act not only leads to financial gain for the perpetrator but also increases insurance costs for others.",
                 "components": [
                     {
                         "name": "Laboratory Information Management Systems (LIMS)",
-                        "description": "",
+                        "description": "Centralized platform for managing and tracking laboratory data.",
                         "sub_components": [
                             {
                                 "name": "match: frontend_technologies",
@@ -3044,7 +3020,7 @@
                                     },
                                     {
                                         "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
-                                        "cwe_mapping_reason": "An end user could exploit unrestricted file upload vulnerabilities in the Laboratory Information Management Systems to manipulate DNA or medical test results, thereby facilitating potential insurance fraud activities.\n"
+                                        "cwe_mapping_reason": "An end user could exploit unrestricted file upload vulnerabilities in the Laboratory Information Management Systems to manipulate DNA or medical test results, thereby facilitating potential insurance fraud activities."
                                     }
                                 ]
                             },

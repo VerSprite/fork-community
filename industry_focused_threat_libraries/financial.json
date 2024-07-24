@@ -5,11 +5,10 @@
         "motives": [
             {
                 "motive": "Engage in financial fraud using stolen account information for illicit financial benefits",
-                "motive_description": "Engage in financial fraud by exploiting the compromised data. Adversaries aim to leverage the stolen credentials and financial details to conduct unauthorized transactions, initiate fraudulent activities, or gain access to sensitive financial assets. This threat poses a significant risk to both customers and the financial institution, as it can lead to monetary losses, reputational damage, and legal consequences. Preventing and mitigating this threat requires robust security measures, including advanced authentication mechanisms, encryption of sensitive data, and continuous monitoring for suspicious activities.",
                 "components": [
                     {
                         "name": "Hash store/credential database",
-                        "description": "",
+                        "description": "Secure repository for storing hashed credentials and passwords.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -225,7 +224,7 @@
                     },
                     {
                         "name": "Authentication token",
-                        "description": "",
+                        "description": "Secure token for user authentication and session management",
                         "sub_components": [
                             {
                                 "name": "match: frontend_technologies",
@@ -338,11 +337,10 @@
             },
             {
                 "motive": "Create a case for class action lawsuits on stolen information",
-                "motive_description": "A strategic and malicious intent to use the stolen customer account information as evidence in legal proceedings. Threat actors aim to exploit the compromised data to build a case against the app or its operators, alleging negligence or inadequate security measures. This motive is characterized by an attempt to escalate the consequences of the data breach by orchestrating legal actions on behalf of affected individuals. It may involve collaboration with legal entities or attempting to incite legal challenges against the app owners, potentially resulting in significant financial and reputational damage.",
                 "components": [
                     {
                         "name": "IAM Cloud Database",
-                        "description": "",
+                        "description": "Cloud-based Identity and Access Management for databases",
                         "sub_components": [
                             {
                                 "name": "match: authorization_type",
@@ -396,7 +394,7 @@
                     },
                     {
                         "name": "Public Access Control Service",
-                        "description": "",
+                        "description": "Centralized system managing public access and permissions.",
                         "sub_components": [
                             {
                                 "name": "match: authorization_type",
@@ -461,7 +459,7 @@
                     },
                     {
                         "name": "Unprotected customer data store",
-                        "description": "",
+                        "description": "Unsecured database leaking sensitive customer information.",
                         "sub_components": [
                             {
                                 "name": "match: infrastructure_os",
@@ -546,11 +544,10 @@
         "motives": [
             {
                 "motive": "Change terms of loan",
-                "motive_description": "A specific, malicious intent to manipulate financial data within an application to modify the conditions or details of existing loans. Threat actors with this motive seek to alter interest rates, repayment schedules, or loan amounts to their advantage. This could lead to financial losses for the affected individuals or organizations, as well as potential legal ramifications. The motive is typically driven by a desire for financial gain or to create chaos within the financial system by disrupting loan agreements and causing harm to borrowers or financial institutions.",
                 "components": [
                     {
                         "name": "Application Database",
-                        "description": "",
+                        "description": "Central repository for application data management and storage.",
                         "sub_components": [
                             {
                                 "name": "match: infrastructure_os",
@@ -654,7 +651,6 @@
         "motives": [
             {
                 "motive": "Create economic instability",
-                "motive_description": "To use the disruptions caused by the threat to sow chaos within the economy. Threat actors with this motive aim to generate uncertainty, fear, and a lack of confidence in financial systems. By creating economic instability, they may seek to manipulate markets, influence stock prices, or damage the reputation of financial institutions. This motive often aligns with broader agendas that may include financial terrorism, political motivations, or attempts to exploit market vulnerabilities for personal or ideological gain. The consequences can range from financial losses for investors to systemic risks affecting the broader economy. Addressing this motive requires robust cybersecurity measures, monitoring systems, and collaboration between financial institutions and regulatory bodies to mitigate the impact of potential disruptions.",
                 "components": [
                     {
                         "name": "Upstream financial information providers",
@@ -718,7 +714,6 @@
             },
             {
                 "motive": "Influence market outcomes to self-interest or private interest groups",
-                "motive_description": "Exploit disruptions for personal gain or the benefit of specific interest groups. Threat actors with this motive seek to manipulate market conditions, stock prices, or financial instruments in a way that favors their own financial interests or those of a particular group. This may include insider trading, spreading false information to manipulate perceptions, or engaging in activities that result in favorable outcomes for specific investments.",
                 "components": [
                     {
                         "name": "Network gateways transmitting transactions",
@@ -830,7 +825,6 @@
             },
             {
                 "motive": "Trigger regulatory inquiry based upon compromised system/ app",
-                "motive_description": "Create circumstances that would attract the attention of regulatory bodies. Threat actors with this motive aim to exploit vulnerabilities in the financial system or application in a way that raises concerns about compliance, security, or integrity. By doing so, they seek to prompt regulatory investigations or inquiries into the affected financial entity.",
                 "components": [
                     {
                         "name": "Backend systems or data servers",
@@ -904,7 +898,6 @@
         "motives": [
             {
                 "motive": "Spy on banking/financial infrastructure",
-                "motive_description": "Characterized by the intent to gather sensitive information, monitor transactions, and gain insights into the operations of financial systems. Threat actors with this motive seek to collect data related to financial transactions, user activities, or sensitive business operations for espionage purposes. This information could be used for financial gain, competitive advantage, or more malicious purposes such as conducting fraud or insider trading.",
                 "components": [
                     {
                         "name": "Vulnerable OS",
@@ -994,11 +987,10 @@
             },
             {
                 "motive": "Steal credentials on financial networks",
-                "motive_description": "A specific and malicious intent to capture and compromise login credentials associated with financial systems. Threat actors with this motive aim to collect usernames, passwords, and other authentication details from users or administrators accessing financial networks. Stolen credentials can be used for unauthorized access, identity theft, or conducting fraudulent financial transactions.",
                 "components": [
                     {
                         "name": "Client browser",
-                        "description": "",
+                        "description": "Web browser accessing online applications and services securely.",
                         "sub_components": [
                             {
                                 "name": "match: backend_servers",
@@ -1230,7 +1222,7 @@
                     },
                     {
                         "name": "Token store",
-                        "description": "",
+                        "description": "Secure repository for storing authentication and authorization tokens.",
                         "sub_components": [
                             {
                                 "name": "Privileged Accounts",
@@ -1338,10 +1330,9 @@
             },
             {
                 "motive": "Sell persistence within financial networks ",
-                "motive_description": "The motive to persistently sell persistence within financial networks involves threat actors intending to monetize their ability to maintain unauthorized access to financial systems. In this scenario, malicious actors seek to market and sell their expertise or tools for maintaining persistent access points to other cybercriminals or interested parties within the criminal underground.\nThis motive is driven by financial gain, as threat actors aim to profit from the illicit trade of tools, techniques, or access credentials that enable others to infiltrate and compromise financial networks. The consequences of this threat include an increased risk of secondary attacks, data breaches, and financial fraud conducted by buyers of the persistent access.",
                 "components": [
                     {
-                        "name": "3rd party library",
+                        "name": "Third-party library",
                         "description": "COTS component in banking/ financial or embedded third party library ingested from untrusted software sources, extraneous to the bank or financial institution.",
                         "sub_components": [
                             {
@@ -1356,6 +1347,10 @@
                                     {
                                         "cwe_id": "CWE-494: Download of Code Without Integrity Check",
                                         "cwe_mapping_reason": "The use of an unchecked third-party library can lead to the introduction of malicious code, creating a gateway for potential attackers to infiltrate and sustain unauthorized presence within your financial system's infrastructure with the intention of monetizing their access."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "An unauthorized individual could exploit the third-party library to establish an enduring presence in the financial system's infrastructure, enabling them to profit from illicit sales of this unauthorized access."
                                     }
                                 ]
                             },
@@ -1380,13 +1375,7 @@
                                         "cwe_mapping_reason": "The motive is to monetize unauthorized access within financial networks by exploiting a third-party library's susceptibility to excessive resource usage to maintain such intrusion undetected."
                                     }
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "5th party library",
-                        "description": "COTS component in banking/ financial or embedded third party library ingested from untrusted software sources, extraneous to the bank or financial institution.",
-                        "sub_components": [
+                            },
                             {
                                 "name": "match: backend_technologies",
                                 "dynamic": true,
@@ -1395,15 +1384,13 @@
                                     {
                                         "cwe_id": "CWE-502: Deserialization of Untrusted Data",
                                         "cwe_mapping_reason": "The unvalidated integration of third-party libraries in your system could be exploited by cybercriminals to maintain unauthorized access and facilitate illicit transactions within financial networks."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-676: Use of Potentially Dangerous Function",
+                                        "cwe_mapping_reason": "The utilization of a potentially unsafe function within a third-party library could enable an attacker to establish a tenacious presence in the system or app infrastructure, thereby paving the way for illicit transactions within financial networks."
                                     }
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "7th party library",
-                        "description": "COTS component in banking/ financial or embedded third party library ingested from untrusted software sources, extraneous to the bank or financial institution.",
-                        "sub_components": [
+                            },
                             {
                                 "name": "match: infrastructure_file_servers",
                                 "dynamic": true,
@@ -1411,16 +1398,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-506: Embedded Malicious Code",
-                                        "cwe_mapping_reason": "The inclusion of a potentially compromised 7th party library in your system's architecture may enable bad actors to maintain undetected access within the financial network for unethical profit generation through resale."
+                                        "cwe_mapping_reason": "The inclusion of a potentially compromised third-party library in your system's architecture may enable bad actors to maintain undetected access within the financial network for unethical profit generation through resale."
                                     }
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "8th party library",
-                        "description": "COTS component in banking/ financial or embedded third party library ingested from untrusted software sources, extraneous to the bank or financial institution.",
-                        "sub_components": [
+                            },
                             {
                                 "name": "match: authentication_type",
                                 "dynamic": true,
@@ -1428,41 +1409,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-522: Insufficiently Protected Credentials",
-                                        "cwe_mapping_reason": "The risk of unauthorized access and persistence within the financial network infrastructure is high due to weak protection of credentials within an 8th party library, enabling bad actors to potentially take advantage of this vulnerability for their financial gain."
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "9th party library",
-                        "description": "COTS component in banking/ financial or embedded third party library ingested from untrusted software sources, extraneous to the bank or financial institution.",
-                        "sub_components": [
-                            {
-                                "name": "match: backend_technologies",
-                                "dynamic": true,
-                                "tags": "match: backend_technologies",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-676: Use of Potentially Dangerous Function",
-                                        "cwe_mapping_reason": "The utilization of a potentially unsafe function within a third-party library could enable an attacker to establish a tenacious presence in the system or app infrastructure, thereby paving the way for illicit transactions within financial networks."
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "name": "10th party library",
-                        "description": "COTS component in banking/ financial or embedded third party library ingested from untrusted software sources, extraneous to the bank or financial institution.",
-                        "sub_components": [
-                            {
-                                "name": "match: backend_servers",
-                                "dynamic": true,
-                                "tags": "match: backend_servers",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
-                                        "cwe_mapping_reason": "An unauthorized individual could exploit the 10th party library to establish an enduring presence in the financial system's infrastructure, enabling them to profit from illicit sales of this unauthorized access."
+                                        "cwe_mapping_reason": "The risk of unauthorized access and persistence within the financial network infrastructure is high due to weak protection of credentials within a third-party library, enabling bad actors to potentially take advantage of this vulnerability for their financial gain."
                                     }
                                 ]
                             }
@@ -1478,7 +1425,6 @@
         "motives": [
             {
                 "motive": "Launder money",
-                "motive_description": "Money laundering through cryptocurrency mining involves converting illicitly obtained funds into mined cryptocurrency to disguise their origin. This process generally involves three stages: placement (introducing illegal funds into the mining process), layering (conducting complex financial transactions to confuse the trail), and integration (reintroducing the laundered money back into the economy as legitimate cryptocurrency earnings).",
                 "components": [
                     {
                         "name": "Payment gateway",
@@ -1604,8 +1550,8 @@
                         ]
                     },
                     {
-                        "name": "Internet facing servers that are non-web",
-                        "description": "",
+                        "name": "Internet facing servers",
+                        "description": "Publicly accessible servers providing non-web-based services.",
                         "sub_components": [
                             {
                                 "name": "Privileged Accounts",
@@ -1708,11 +1654,10 @@
         "motives": [
             {
                 "motive": "Gather market intel ",
-                "motive_description": "The primary motive behind espionage of financial trades is to gather market intelligence. Attackers aim to gain unauthorized access to confidential trading information to derive insights about market trends, investment strategies, and future financial moves of competitors or the market at large. This intelligence is used to gain a competitive edge in financial markets, predict market movements, or engage in insider trading.",
                 "components": [
                     {
                         "name": "Large financial transaction systems, clearinghouses",
-                        "description": "",
+                        "description": "Securely processes high-value transactions for financial institutions.",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -1807,7 +1752,6 @@
             },
             {
                 "motive": "Gain strategic advantages",
-                "motive_description": "Economic espionage refers to the act of illegally and covertly obtaining confidential financial or trade information for economic advantage. In the context of financial trade espionage, the motive is to acquire secret information about financial strategies, market movements, and trading tactics of corporations or individuals. This intelligence is used to gain an economic advantage in the market, whether by a competing business, a foreign government, or other entities seeking to benefit financially. The acquired information can be used to make strategic financial decisions, gain a competitive edge, manipulate markets, or engage in insider trading, all for economic gain.",
                 "components": [
                     {
                         "name": "Data storage assets and databases",
@@ -1933,11 +1877,10 @@
         "motives": [
             {
                 "motive": "Circumvent industry financial rules/sanctions",
-                "motive_description": "The primary motive behind making fraudulent financial transfers in this context is to circumvent industry financial rules or international sanctions. Attackers engage in these activities to bypass regulations or sanctions that restrict certain financial transactions or international money movements. This could involve transferring funds to or from embargoed nations, dealing with blacklisted entities, or moving money in a manner that violates financial regulations. The intent is to exploit financial systems to achieve objectives that are otherwise restricted by regulatory frameworks, using fraudulent transfers as a means to subvert legal and financial oversight.",
                 "components": [
                     {
                         "name": "Web applications with money transfer use cases",
-                        "description": "",
+                        "description": "Secure web application facilitating money transfer transactions online",
                         "sub_components": [
                             {
                                 "name": "match: backend_servers",
@@ -2052,11 +1995,10 @@
             },
             {
                 "motive": "Circumvent Anti-Money Laundering requirements",
-                "motive_description": "AML regulations are designed to prevent the illegal generation of income and its integration into the financial system. By conducting fraudulent transfers, attackers aim to move illicit funds in a way that evades AML detection and reporting mechanisms. This could involve breaking down large transactions into smaller ones (smurfing), using complex financial networks, or exploiting vulnerabilities in financial systems. The ultimate goal is to legitimize illegal funds, obscure their origins, and integrate them into the legitimate financial system without arousing the suspicion of regulatory bodies or law enforcement.",
                 "components": [
                     {
                         "name": "Software imposed requirements to fund transfers",
-                        "description": "",
+                        "description": "Secure protocols for authorizing and processing fund transfers",
                         "sub_components": [
                             {
                                 "name": "match: authorization_type",
@@ -2142,11 +2084,10 @@
             },
             {
                 "motive": "Hide illicit financial fund transfers",
-                "motive_description": "Attackers engaging in this activity aim to discreetly transfer money derived from illegal activities (such as drug trafficking, corruption, or other criminal enterprises) in a manner that evades detection by financial institutions and law enforcement agencies. The strategy often involves masking the origin and destination of the funds, using complex financial networks, shell companies, or third-party intermediaries. The ultimate goal is to obscure the trail of the illegal funds, making it difficult to trace them back to their criminal origins, thereby allowing the integration of these funds into the legitimate financial system without raising alarms.",
                 "components": [
                     {
                         "name": "Any data source that records fund transfers for the purposes of altering log",
-                        "description": "",
+                        "description": "System logging financial transactions for tampering records.",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -2253,11 +2194,10 @@
         "motives": [
             {
                 "motive": "Perpetrate/impersonate financial employee ",
-                "motive_description": "Attackers use the harvested information to pose as legitimate employees, often those in key financial roles, to gain access to sensitive financial data, systems, or to authorize fraudulent transactions. This impersonation can be used to deceive other employees, financial institutions, or clients into executing transactions, sharing confidential information, or performing actions that would otherwise be secure. The ultimate goal is to exploit the trust and authority vested in financial roles to facilitate unauthorized access or financial fraud.",
                 "components": [
                     {
                         "name": "SaaS services using OAuth storing user profiles ",
-                        "description": "e.g. - Ping, Okta, other 3rd party SaaS",
+                        "description": "e.g. - Ping, Okta, other third-party SaaS",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2336,11 +2276,10 @@
             },
             {
                 "motive": "Gain unauthorized access to financial systems",
-                "motive_description": "By collecting detailed information about individuals who have legitimate access to these systems, attackers can bypass security measures designed to protect financial data and transactions. This unauthorized access can be used for a range of malicious activities, including financial theft, data breaches, or further infiltration into the company's network. The goal is to exploit the access privileges of legitimate users to conduct unauthorized activities within financial systems without detection.",
                 "components": [
                     {
                         "name": "Oauth/ Authorization server",
-                        "description": "",
+                        "description": "Central server for secure authentication and authorization processes.",
                         "sub_components": [
                             {
                                 "name": "match: authorization_type",
@@ -2402,7 +2341,7 @@
                     },
                     {
                         "name": "AD, LDAP server, Azure AD",
-                        "description": "",
+                        "description": "Active Directory Server: Centralized authentication and authorization management system.\nLDAP Server: Directory service for managing user and resource information\nAzure AD: Cloud-based identity and access management service.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2484,11 +2423,10 @@
         "motives": [
             {
                 "motive": "Pursue financial gain by holding financial system(s) hostage for a ransom",
-                "motive_description": "Extorting financial institutions or app users is to achieve financial gain by exploiting their dependency on critical financial systems and data. Attackers recognize the high value and sensitivity of financial services and data, understanding that institutions or users are more likely to pay a ransom to avoid substantial financial losses, reputational damage, or regulatory penalties. This form of cyber extortion is driven by the expectation that the high stakes involved in financial operations make stakeholders more likely to comply with ransom demands quickly, providing a lucrative and often rapid financial return for the attackers.",
                 "components": [
                     {
                         "name": "Unique, financial application platform or system",
-                        "description": "",
+                        "description": "Secure, integrated platform for managing financial transactions efficiently.",
                         "sub_components": [
                             {
                                 "name": "match: authorization_type",
@@ -2551,11 +2489,10 @@
             },
             {
                 "motive": "Pursue financial gain by holding account holders hostage for a ransom",
-                "motive_description": "Financial gain achieved by extorting money from financial institutions or individual account holders. Attackers aim to capitalize on the vulnerability and urgency experienced by customers who are denied access to their financial assets or are at risk of having their sensitive financial data exposed. This form of cyber extortion is driven by the understanding that the personal and immediate impact on account holders increases the likelihood of the ransom being paid, as individuals or institutions seek to quickly restore access to funds or protect personal information. The attackers exploit the high-value nature of financial assets and the critical need for privacy in financial matters to pressure victims into complying with their ransom demands.",
                 "components": [
                     {
                         "name": "Application server responsible for financial application processing",
-                        "description": "",
+                        "description": "High-performance server handling financial transactions and data processing.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2602,7 +2539,7 @@
                     },
                     {
                         "name": "Data store with banking/ financial transaction information",
-                        "description": "",
+                        "description": "Centralized database holding sensitive financial transaction records.",
                         "sub_components": [
                             {
                                 "name": "match: database_technologies",
@@ -2662,11 +2599,10 @@
             },
             {
                 "motive": "Financial gain by holding account holders hostage for a ransom",
-                "motive_description": "Financial gain achieved by extorting money from financial institutions or individual account holders. Attackers aim to capitalize on the vulnerability and urgency experienced by customers who are denied access to their financial assets or are at risk of having their sensitive financial data exposed. This form of cyber extortion is driven by the understanding that the personal and immediate impact on account holders increases the likelihood of the ransom being paid, as individuals or institutions seek to quickly restore access to funds or protect personal information. The attackers exploit the high-value nature of financial assets and the critical need for privacy in financial matters to pressure victims into complying with their ransom demands.",
                 "components": [
                     {
                         "name": "Data store with banking/ financial transaction information",
-                        "description": "",
+                        "description": "Centralized database holding sensitive financial transaction records.",
                         "sub_components": [
                             {
                                 "name": "match: backend_technologies",
@@ -2691,11 +2627,10 @@
         "motives": [
             {
                 "motive": "Reduce confidence in application solution",
-                "motive_description": "Sabotaging a system or application in this context is driven by group or personal ideologies that are in opposition to the objectives or operations of the application. This form of attack is ideologically motivated, with attackers seeking to disrupt, damage, or destroy the application as a form of protest or to make a statement against what the application represents or supports. These ideologies can range from political, social, environmental, to personal beliefs, and the sabotage serves as a means to hinder or halt operations that the attackers find objectionable or contrary to their values or goals. The attack is a direct expression of dissent, aiming to impact the application's ability to function as intended or to draw attention to the attackers' cause.",
                 "components": [
                     {
-                        "name": "web APIs that handle financial data",
-                        "description": "",
+                        "name": "Web APIs that handle financial data",
+                        "description": "Secure web APIs managing sensitive financial transactions data",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2768,7 +2703,7 @@
                     },
                     {
                         "name": "Financial News or Data Feeds",
-                        "description": "",
+                        "description": "Real-time financial news and data feed service.",
                         "sub_components": [
                             {
                                 "name": "match: database_technologies",
@@ -2839,11 +2774,10 @@
             },
             {
                 "motive": "Take revenge-driven actions",
-                "motive_description": "The attacker, likely a disgruntled employee, former employee, or someone who feels wronged by the company or the application, aims to exact retribution. This revengeful act is a form of personal or emotional retaliation against the organization or individuals perceived to be responsible for the perceived injustice or grievance. The intent is to cause significant damage or disruption as a means of settling scores or expressing anger and dissatisfaction. This type of attack is often deeply personal and can be disproportionately destructive, reflecting the intensity of the attacker's resentment or desire for vengeance.",
                 "components": [
                     {
                         "name": "Crowdfunding Platforms",
-                        "description": "",
+                        "description": "Platform enabling collective funding for creative projects.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -2935,11 +2869,10 @@
         "motives": [
             {
                 "motive": "Reduce confidence in solution",
-                "motive_description": "The primary motive behind orchestrating a Denial of Service attack in this context is to erode public or user confidence in the stability, reliability, or performance of the targeted application or system. By causing frequent downtimes, slow response times, or complete unavailability, the attackers aim to create a perception of unreliability and incompetence surrounding the solution. This can lead to a loss of user trust, a decrease in customer satisfaction, and potentially a decline in the user base. The ultimate goal is to damage the reputation and credibility of the application or system, influencing the market or public opinion against it. This type of attack can be particularly damaging if the solution is critical in nature or if there is strong competition in the market.",
                 "components": [
                     {
                         "name": "Software Update Mechanisms",
-                        "description": "",
+                        "description": "Automates software updates to ensure system security integrity.",
                         "sub_components": [
                             {
                                 "name": "match: infrastructure_os",
@@ -2972,21 +2905,14 @@
                                 ]
                             },
                             {
-                                "name": "2FA/MFA",
-                                "dynamic": false,
-                                "tags": "2FA/MFA",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
-                                        "cwe_mapping_reason": "The software update mechanisms may be exploited to induce a system-wide denial of service, ultimately undermining the users' trust in the solution, due to an inherent weakness in the verification of the cryptographic signatures involved."
-                                    }
-                                ]
-                            },
-                            {
                                 "name": "match: backend_technologies",
                                 "dynamic": true,
                                 "tags": "match: backend_technologies",
                                 "cwes": [
+                                    {
+                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                                        "cwe_mapping_reason": "Exploiting weaknesses in software update mechanisms by bypassing cryptographic signature verification can lead to a denial of service that undermines confidence in the solution"
+                                    },
                                     {
                                         "cwe_id": "CWE-407: Inefficient Algorithmic Complexity",
                                         "cwe_mapping_reason": "An adversary might exploit the software update mechanisms, leveraging its suboptimal computational complexity, to launch a crippling denial of service attack that undermines user trust in the system's reliability."
