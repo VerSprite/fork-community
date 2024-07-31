@@ -1,6 +1,6 @@
 [
     {
-        "threat": "Extract/ Exfiltrate Personal Data",
+        "threat": "Extract/ Exfil Personal Data",
         "threat_description": "Gaining access to telecommunication data and extracting or exfiltrating the data to an unauthorized application/ system resource. ",
         "motives": [
             {
@@ -110,7 +110,7 @@
                         ]
                     },
                     {
-                        "name": "Application Programming Interface (API)",
+                        "name": "APIs (Application Programming Interfaces)",
                         "description": "Secure endpoints for application communication and data exchange.",
                         "sub_components": [
                             {
@@ -325,10 +325,10 @@
         "threat_description": "Spying on telecommunication corporate entities by infiltrating and persisting via telecommunication corporate solutions within the company's infrastrucure or target application environment.  ",
         "motives": [
             {
-                "motive": "Gain illicit insight to intellectual property or customer/ client data managed by the telecommunication provider",
+                "motive": "Gain illicit insight to intellectual property or customer/ client data managed by the telecommunication provider.",
                 "components": [
                     {
-                        "name": "Private Branch Exchange (PBX)",
+                        "name": "PBX (Private Branch Exchange)",
                         "description": "A private telephone network used within a company",
                         "sub_components": [
                             {
@@ -494,7 +494,7 @@
                         ]
                     },
                     {
-                        "name": "Voice over IP (VoIP)",
+                        "name": "VoIP (Voice over IP)",
                         "description": "Technology that allows voice communication over the internet",
                         "sub_components": [
                             {
@@ -630,7 +630,7 @@
                         ]
                     },
                     {
-                        "name": "Customer Relationship Management (CRM)",
+                        "name": "CRM (Customer Relationship Management)",
                         "description": "Software to manage a company's interactions with current and potential customers",
                         "sub_components": [
                             {
@@ -776,7 +776,7 @@
                         ]
                     },
                     {
-                        "name": "Interactive Voice Response (IVR)/ Voice Response Unit (VRU)",
+                        "name": "IVR (Interactive Voice Response)/ VRUs",
                         "description": "An automated telephony system that interacts with callers",
                         "sub_components": [
                             {
@@ -906,7 +906,7 @@
                         ]
                     },
                     {
-                        "name": "Session Initiation Protocol (SIP) Solutions",
+                        "name": "SIP (Session Initiation Protocol) Solutions",
                         "description": "A protocol used for signaling and controlling multimedia communication sessions",
                         "sub_components": [
                             {
@@ -1182,7 +1182,7 @@
                         ]
                     },
                     {
-                        "name": "Multi-Protocol Label Switching (MPLS)",
+                        "name": "MPLS (Multi-Protocol Label Switching)",
                         "description": "A technique to manage traffic flow within a network",
                         "sub_components": [
                             {
@@ -1808,7 +1808,7 @@
                 "motive": "Create a competitive advantage",
                 "components": [
                     {
-                        "name": "Customer Relationship Management (CRM)",
+                        "name": "CRM (Customer Relationship Management)",
                         "description": "Software to manage a company's interactions with current and potential customers",
                         "sub_components": [
                             {
@@ -1954,7 +1954,7 @@
                         ]
                     },
                     {
-                        "name": "Session Initiation Protocol (SIP) Solutions",
+                        "name": "SIP (Session Initiation Protocol) Solutions",
                         "description": "A protocol used for signaling and controlling multimedia communication sessions",
                         "sub_components": [
                             {
@@ -2502,7 +2502,7 @@
                 "motive": "Pursue objectives driven by political beliefs",
                 "components": [
                     {
-                        "name": "Session Initiation Protocol (SIP) Solutions",
+                        "name": "SIP (Session Initiation Protocol) Solutions",
                         "description": "A protocol used for signaling and controlling multimedia communication sessions",
                         "sub_components": [
                             {
@@ -2636,7 +2636,7 @@
                         ]
                     },
                     {
-                        "name": "5G Mobile Networks",
+                        "name": "5G mobile network",
                         "description": "Advanced 5G network for high-speed mobile connectivity.",
                         "sub_components": [
                             {
@@ -2694,7 +2694,7 @@
                         ]
                     },
                     {
-                        "name": "Voice over IP (VoIP)",
+                        "name": "VoIP (Voice over IP)",
                         "description": "Technology that allows voice communication over the internet",
                         "sub_components": [
                             {
@@ -2830,7 +2830,7 @@
                         ]
                     },
                     {
-                        "name": "Call Session Control Function (CSCF)",
+                        "name": "CSCF (Call Session Control Function)",
                         "description": "Centralized management system for VoIP call sessions.",
                         "sub_components": [
                             {
@@ -3177,7 +3177,7 @@
                         ]
                     },
                     {
-                        "name": "Voice over IP (VoIP) Solutions",
+                        "name": "VoIP (Voice over IP) Solutions",
                         "description": "Technology that allows voice communication over the internet",
                         "sub_components": [
                             {
@@ -3317,7 +3317,7 @@
         ]
     },
     {
-        "threat": "Payment/ Charge Fraud",
+        "threat": "Payment / Charge Fraud",
         "threat_description": "Unauthorized or deceitful actions aimed at financial transactions. Fraudulent activities are executed to manipulate billing systems or exploit payment processes. Customers and service providers may suffer financial losses, and the integrity of the billing system can be compromised. Complex schemes, often involving stolen payment information or social engineering tactics, are typically employed to evade detection.",
         "motives": [
             {
@@ -3441,7 +3441,7 @@
                 "motive": "Leak information to the public",
                 "components": [
                     {
-                        "name": "Private Branch Exchange (PBX)",
+                        "name": "PBX (Private Branch Exchange)",
                         "description": "A private telephone network used within a company",
                         "sub_components": [
                             {
@@ -3607,7 +3607,7 @@
                         ]
                     },
                     {
-                        "name": "Multi-Protocol Label Switching (MPLS)",
+                        "name": "MPLS (Multi-Protocol Label Switching)",
                         "description": "A technique to manage traffic flow within a network",
                         "sub_components": [
                             {
@@ -4080,7 +4080,7 @@
         ]
     },
     {
-        "threat": "Establish Persistence",
+        "threat": "Establish persistence",
         "threat_description": "Undetected access within the ISP's infrastructure in the telecommunication industry poses significant risks, including data breaches, unauthorized data manipulation, and service disruptions. These vulnerabilities may allow malicious actors to intercept sensitive communications, exploit customer data, and compromise service integrity. The threat underscores the need for robust monitoring, increased security measures, and comprehensive incident response plans to safeguard against unauthorized intrusions and protect critical infrastructure.",
         "motives": [
             {
@@ -4462,7 +4462,7 @@
                 "motive": "Cause public shaming",
                 "components": [
                     {
-                        "name": "GPS data",
+                        "name": "GPS data ",
                         "description": "Real-time location and movement tracking data.",
                         "sub_components": [
                             {
@@ -4516,7 +4516,7 @@
                         ]
                     },
                     {
-                        "name": "Signaling System No. 7 (SS7) and Diameter Protocols",
+                        "name": "SS7 and Diameter Protocols",
                         "description": "Signaling System No. 7 (SS7) and Diameter (used in 4G and 5G networks)",
                         "sub_components": [
                             {
@@ -4585,7 +4585,7 @@
                         ]
                     },
                     {
-                        "name": "Home Location Register (HLR)/ Home Subscriber Server (HSS)",
+                        "name": "Home Location Register (HLR)/Home Subscriber Server (HSS)",
                         "description": "Central database managing subscriber information and authentication.",
                         "sub_components": [
                             {
@@ -4751,7 +4751,7 @@
         "threat_description": "Threat actors in the telecommunications industry may create fraudulent billing or payment portals to deceive customers into providing sensitive information such as credit card details, personal identification, and login credentials. These malicious portals can mimic legitimate company websites, leading to financial losses, identity theft, and compromised customer trust. Ensuring robust security measures and educating consumers about spotting such frauds are critical in mitigating this threat.",
         "motives": [
             {
-                "motive": "Illegally obtain money",
+                "motive": "illegally obtain money",
                 "components": [
                     {
                         "name": "Providers website",
@@ -4932,11 +4932,11 @@
         ]
     },
     {
-        "threat": "Distribute Malware",
+        "threat": "Distribute malware",
         "threat_description": "Malware can disrupt services, intercept sensitive data, or grant unauthorized access to cybercriminals. By exploiting vulnerabilities in telecom systems, the threat actors aim to compromise network integrity, affect millions of users, and potentially cause severe financial and operational damage to organizations within the industry.",
         "motives": [
             {
-                "motive": "Seek monetary profit",
+                "motive": "Seek monetary profit ",
                 "components": [
                     {
                         "name": "Office network",
@@ -5027,7 +5027,7 @@
                         ]
                     },
                     {
-                        "name": "Customer Relationship Management (CRM)",
+                        "name": "CRM (Customer Relationship Management)",
                         "description": "Software to manage a company's interactions with current and potential customers",
                         "sub_components": [
                             {
