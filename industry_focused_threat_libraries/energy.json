@@ -957,11 +957,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "Smart Meters can expose consumption data if communication channels are not properly encrypted."
+                                        "cwe_mapping_reason": "Smart meters often transmit data wirelessly, making them susceptible to unauthorized interception of sensitive information."
                                     },
                                     {
                                         "cwe_id": "CWE-287: Improper Authentication",
-                                        "cwe_mapping_reason": "Smart meters often lack robust authentication mechanisms, allowing unauthorized access to energy consumption data."
+                                        "cwe_mapping_reason": "Smart meters often rely on remote access, and improper authentication risks unauthorized data access and control manipulation."
                                     }
                                 ]
                             },
@@ -972,11 +972,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
-                                        "cwe_mapping_reason": "Smart Meters' communication can be intercepted, allowing service manipulation through unauthorized replayed commands."
+                                        "cwe_mapping_reason": "Smart meters can be compromised by replaying captured authentication to gain unauthorized access to energy usage data."
                                     },
                                     {
                                         "cwe_id": "CWE-330: Use of Insufficiently Random Values",
-                                        "cwe_mapping_reason": "Smart meters using predictable random values can be exploited to manipulate energy usage data or bypass billing systems."
+                                        "cwe_mapping_reason": "Smart meters often use cryptographic keys; insufficiently random values can lead to predictable and insecure keys."
                                     }
                                 ]
                             },
@@ -987,11 +987,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
-                                        "cwe_mapping_reason": "Smart meters transmit billing data that can be intercepted if not encrypted during communication."
+                                        "cwe_mapping_reason": "Smart meters transmit energy usage data that can be intercepted, exposing sensitive information to unauthorized parties."
                                     },
                                     {
                                         "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
-                                        "cwe_mapping_reason": "Smart Meters can be overloaded by excessive data requests, leading to potential service disruptions and resource exhaustion."
+                                        "cwe_mapping_reason": "Smart meters can be overwhelmed by excessive requests, depleting resources and disrupting energy monitoring."
                                     }
                                 ]
                             },
@@ -1002,7 +1002,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-502: Deserialization of Untrusted Data",
-                                        "cwe_mapping_reason": "Smart meters can be compromised by deserializing untrusted data, leading to unauthorized remote control or data tampering."
+                                        "cwe_mapping_reason": "Smart meters often process incoming data packets which, if improperly handled, may lead to arbitrary code execution."
                                     }
                                 ]
                             },
@@ -1013,7 +1013,7 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-636: Not Failing Securely (Failing Open)",
-                                        "cwe_mapping_reason": "Smart Meters may expose user data if they revert to an insecure state during failures or disruptions."
+                                        "cwe_mapping_reason": "Smart meters can be manipulated if fail-open configurations allow unauthorized access during system failures."
                                     }
                                 ]
                             }
