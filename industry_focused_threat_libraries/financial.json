@@ -37,7 +37,10 @@
                                     },
                                     {
                                         "cwe_id": "CWE-286: Incorrect User Management",
-                                        "cwe_mapping_reason": "The potential for unauthorized access to the hash store, which contains sensitive customer account data, is significantly increased due to improper user management, thus creating an opportunity for cybercriminals to obtain and misuse this data for illicit financial gain."
+                                        "cwe_mapping_reason": "The potential for unauthorized access to the hash store, which contains sensitive customer account data, is significantly increased due to improper user management, thus creating an opportunity for cybercriminals to obtain and misuse this data for illicit financial gain.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-287: Improper Authentication",
@@ -88,7 +91,12 @@
                                     },
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "The susceptibility of the hash store/credential database to unauthorized access can facilitate the illicit acquisition of customer account data, providing a platform for engendering fraudulent financial activities."
+                                        "cwe_mapping_reason": "The susceptibility of the hash store/credential database to unauthorized access can facilitate the illicit acquisition of customer account data, providing a platform for engendering fraudulent financial activities.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
@@ -96,7 +104,10 @@
                                     },
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "The insufficient securing of the authorization process in the hash store could potentially lead to unauthorized individuals gaining access and stealing sensitive customer account information for fraudulent financial activities."
+                                        "cwe_mapping_reason": "The insufficient securing of the authorization process in the hash store could potentially lead to unauthorized individuals gaining access and stealing sensitive customer account information for fraudulent financial activities.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-863: Incorrect Authorization",
@@ -149,7 +160,10 @@
                                     },
                                     {
                                         "cwe_id": "CWE-923: Improper Restriction of Communication Channel to Intended Endpoints",
-                                        "cwe_mapping_reason": "The inadequate secure channel provision for communication with the hash store or credential database creates a potential pathway for unauthorized access and misappropriation of customer account details, paving the way for fraudulent financial activities."
+                                        "cwe_mapping_reason": "The inadequate secure channel provision for communication with the hash store or credential database creates a potential pathway for unauthorized access and misappropriation of customer account details, paving the way for fraudulent financial activities.",
+                                        "capecs_to_exclude": [
+                                            "501"
+                                        ]
                                     }
                                 ]
                             },
@@ -171,7 +185,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-425: Direct Request (Forced Browsing)",
-                                        "cwe_mapping_reason": "A potential intruder may attempt to bypass authorization by directly accessing the hash store or credential database, with a motive to illicitly gain financial benefits via unauthorized use of customer account information."
+                                        "cwe_mapping_reason": "A potential intruder may attempt to bypass authorization by directly accessing the hash store or credential database, with a motive to illicitly gain financial benefits via unauthorized use of customer account information.",
+                                        "capecs_to_exclude": [
+                                            "668"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-549: Missing Password Field Masking",
@@ -252,11 +269,41 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "The potential for unauthorized actors to exploit authentication tokens emphasizes the critical need to prevent the illicit acquisition of customer account information, which could promote fraud and unauthorized financial gain."
+                                        "cwe_mapping_reason": "The potential for unauthorized actors to exploit authentication tokens emphasizes the critical need to prevent the illicit acquisition of customer account information, which could promote fraud and unauthorized financial gain.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
-                                        "cwe_mapping_reason": "The potential for unauthorized access to authentication tokens could facilitate the illegal acquisition of customer account data, thereby enabling fraudulent financial transactions."
+                                        "cwe_mapping_reason": "The potential for unauthorized access to authentication tokens could facilitate the illegal acquisition of customer account data, thereby enabling fraudulent financial transactions.",
+                                        "capecs_to_exclude": [
+                                            "667"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-488: Exposure of Data Element to Wrong Session",
@@ -403,7 +450,12 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "In the context of unauthorized access to a public control service, it's critical to address security vulnerabilities due to the potential for malicious entities to exploit them, in order to pilfer customer account details, paving way for potential litigation stemming from data theft."
+                                        "cwe_mapping_reason": "In the context of unauthorized access to a public control service, it's critical to address security vulnerabilities due to the potential for malicious entities to exploit them, in order to pilfer customer account details, paving way for potential litigation stemming from data theft.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-863: Incorrect Authorization",
@@ -479,7 +531,34 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "In the context of potential class action lawsuits arising from stolen customer account data, the system's practice of operating with excessive privileges unnecessarily exposes our unprotected data store, thereby heightening the risk of unauthorized access and information theft."
+                                        "cwe_mapping_reason": "In the context of potential class action lawsuits arising from stolen customer account data, the system's practice of operating with excessive privileges unnecessarily exposes our unprotected data store, thereby heightening the risk of unauthorized access and information theft.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-322: Key Exchange without Entity Authentication",
@@ -567,7 +646,34 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "An elevated access in the application database could potentially enable an unauthorized user to manipulate loan terms by modifying the financial data within the application."
+                                        "cwe_mapping_reason": "An elevated access in the application database could potentially enable an unauthorized user to manipulate loan terms by modifying the financial data within the application.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-522: Insufficiently Protected Credentials",
@@ -612,11 +718,18 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "An end user might be motivated to manipulate the application database, altering the terms of a loan, by exploiting the weakness in the employed cryptographic algorithm that could make financial data vulnerable to unauthorized changes."
+                                        "cwe_mapping_reason": "An end user might be motivated to manipulate the application database, altering the terms of a loan, by exploiting the weakness in the employed cryptographic algorithm that could make financial data vulnerable to unauthorized changes.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
-                                        "cwe_mapping_reason": "To manipulate the loan terms favorably, an end user may exploit the application database's insufficient protection of credentials, which allows the alteration of financial data."
+                                        "cwe_mapping_reason": "To manipulate the loan terms favorably, an end user may exploit the application database's insufficient protection of credentials, which allows the alteration of financial data.",
+                                        "capecs_to_exclude": [
+                                            "608",
+                                            "614"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
@@ -700,11 +813,18 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-295: Improper Certificate Validation",
-                                        "cwe_mapping_reason": "Inconsistent validation of security certificates within upstream financial information providers could be exploited by adversaries aiming to introduce economic instability by meddling with the integrity of financial markets."
+                                        "cwe_mapping_reason": "Inconsistent validation of security certificates within upstream financial information providers could be exploited by adversaries aiming to introduce economic instability by meddling with the integrity of financial markets.",
+                                        "capecs_to_exclude": [
+                                            "459",
+                                            "475"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-346: Origin Validation Error",
-                                        "cwe_mapping_reason": "To create economic instability by disrupting financial markets, an attacker could exploit inadequate origin verification procedures in upstream financial information providers, potentially manipulating data flow and compromising the financial system."
+                                        "cwe_mapping_reason": "To create economic instability by disrupting financial markets, an attacker could exploit inadequate origin verification procedures in upstream financial information providers, potentially manipulating data flow and compromising the financial system.",
+                                        "capecs_to_exclude": [
+                                            "89"
+                                        ]
                                     }
                                 ]
                             }
@@ -737,7 +857,12 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "Unverified network gateways transmitting transactions could allow unauthorized access, potentially facilitating market manipulation by those seeking to skew financial outcomes for personal or group gain."
+                                        "cwe_mapping_reason": "Unverified network gateways transmitting transactions could allow unauthorized access, potentially facilitating market manipulation by those seeking to skew financial outcomes for personal or group gain.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     }
                                 ]
                             },
@@ -759,7 +884,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "An adversary who desires to manipulate financial markets for personal gain could exploit the lack of encryption in transmitted transactions, making network gateways vulnerable, allowing them to disrupt financial systems and applications for their benefit."
+                                        "cwe_mapping_reason": "An adversary who desires to manipulate financial markets for personal gain could exploit the lack of encryption in transmitted transactions, making network gateways vulnerable, allowing them to disrupt financial systems and applications for their benefit.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-326: Inadequate Encryption Strength",
@@ -837,7 +965,34 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "Unauthorized access to sensitive information from backend systems or data servers can potentially compromise the financial system or app, instigating a regulatory inquiry."
+                                        "cwe_mapping_reason": "Unauthorized access to sensitive information from backend systems or data servers can potentially compromise the financial system or app, instigating a regulatory inquiry.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-306: Missing Authentication for Critical Function",
@@ -856,11 +1011,19 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "Improper access controls on backend systems or data servers can lead to system compromise, potentially disrupting financial markets and prompting regulatory inquiries."
+                                        "cwe_mapping_reason": "Improper access controls on backend systems or data servers can lead to system compromise, potentially disrupting financial markets and prompting regulatory inquiries.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "Insufficient access controls within backend systems or data servers may expose financial systems or apps to malicious exploitation, potentially causing market disruptions and triggering regulatory investigations."
+                                        "cwe_mapping_reason": "Insufficient access controls within backend systems or data servers may expose financial systems or apps to malicious exploitation, potentially causing market disruptions and triggering regulatory investigations.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     }
                                 ]
                             },
@@ -871,7 +1034,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
-                                        "cwe_mapping_reason": "Failure to use a robust cryptographic algorithm on backend systems or data servers can make the financial system or application vulnerable to attacks, potentially leading to market disruption and triggering regulatory inquiries due to compromised systems."
+                                        "cwe_mapping_reason": "Failure to use a robust cryptographic algorithm on backend systems or data servers can make the financial system or application vulnerable to attacks, potentially leading to market disruption and triggering regulatory inquiries due to compromised systems.",
+                                        "capecs_to_exclude": [
+                                            "608",
+                                            "614"
+                                        ]
                                     }
                                 ]
                             },
@@ -882,7 +1049,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
-                                        "cwe_mapping_reason": "Exploitation of the backend systems or data servers by incorporating functions from an untrusted source could potentially lead to the disruption of financial markets, stimulating a regulatory investigation due to system or app compromise."
+                                        "cwe_mapping_reason": "Exploitation of the backend systems or data servers by incorporating functions from an untrusted source could potentially lead to the disruption of financial markets, stimulating a regulatory investigation due to system or app compromise.",
+                                        "capecs_to_exclude": [
+                                            "252",
+                                            "660"
+                                        ]
                                     }
                                 ]
                             }
@@ -925,7 +1096,10 @@
                                     },
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "A potential actor, aiming to gain unauthorized access to financial infrastructure, could exploit vulnerabilities in the system's OS to maintain their access and conduct illicit surveillance activities."
+                                        "cwe_mapping_reason": "A potential actor, aiming to gain unauthorized access to financial infrastructure, could exploit vulnerabilities in the system's OS to maintain their access and conduct illicit surveillance activities.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     }
                                 ]
                             },
@@ -977,7 +1151,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
-                                        "cwe_mapping_reason": "The exploitation of an insecure cryptographic algorithm within a susceptible operating system can allow a malicious actor to persist within the system's infrastructure, enabling them to covertly monitor and compromise financial or banking information."
+                                        "cwe_mapping_reason": "The exploitation of an insecure cryptographic algorithm within a susceptible operating system can allow a malicious actor to persist within the system's infrastructure, enabling them to covertly monitor and compromise financial or banking information.",
+                                        "capecs_to_exclude": [
+                                            "608",
+                                            "614"
+                                        ]
                                     }
                                 ]
                             }
@@ -1010,7 +1188,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "The absence of data encryption can allow cybercriminals to persist within application or system infrastructures, such as a client browser, with the intention of stealing credentials from financial networks."
+                                        "cwe_mapping_reason": "The absence of data encryption can allow cybercriminals to persist within application or system infrastructures, such as a client browser, with the intention of stealing credentials from financial networks.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     }
                                 ]
                             },
@@ -1098,7 +1279,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-209: Generation of Error Message Containing Sensitive Information",
-                                        "cwe_mapping_reason": "To maintain the integrity of the Identity Access Management (IAM) systems, the potential for sensitive information to be revealed via error messages must be mitigated, as such exposure could enable malicious individuals to persist within the system's infrastructure and potentially gain access to financial network credentials."
+                                        "cwe_mapping_reason": "To maintain the integrity of the Identity Access Management (IAM) systems, the potential for sensitive information to be revealed via error messages must be mitigated, as such exposure could enable malicious individuals to persist within the system's infrastructure and potentially gain access to financial network credentials.",
+                                        "capecs_to_exclude": [
+                                            "463"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
@@ -1147,7 +1331,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "An intruder's intention to steal sensitive data, such as financial credentials, within the IAM component is significantly facilitated by the absence of encryption measures, enabling persistent unauthorized access to system resources."
+                                        "cwe_mapping_reason": "An intruder's intention to steal sensitive data, such as financial credentials, within the IAM component is significantly facilitated by the absence of encryption measures, enabling persistent unauthorized access to system resources.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     }
                                 ]
                             },
@@ -1214,7 +1401,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "An unauthorized access to the Identity and Access Management (IAM) component could potentially enable persistent presence within the system infrastructure, leading to theft of financial network credentials."
+                                        "cwe_mapping_reason": "An unauthorized access to the Identity and Access Management (IAM) component could potentially enable persistent presence within the system infrastructure, leading to theft of financial network credentials.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     }
                                 ]
                             }
@@ -1272,7 +1462,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "To protect your financial credentials, it's critical to secure the token store component because a lack of encryption poses a risk for unauthorized persistence within the system infrastructure, ultimately leading to a potential data breach."
+                                        "cwe_mapping_reason": "To protect your financial credentials, it's critical to secure the token store component because a lack of encryption poses a risk for unauthorized persistence within the system infrastructure, ultimately leading to a potential data breach.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     }
                                 ]
                             },
@@ -1320,7 +1513,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "In order to protect sensitive financial credentials, ensuring complete authorization for all actions within the token store is crucial due to the inherent risk of unauthorized persistence within the system infrastructure."
+                                        "cwe_mapping_reason": "In order to protect sensitive financial credentials, ensuring complete authorization for all actions within the token store is crucial due to the inherent risk of unauthorized persistence within the system infrastructure.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     }
                                 ]
                             }
@@ -1350,7 +1546,11 @@
                                     },
                                     {
                                         "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
-                                        "cwe_mapping_reason": "An unauthorized individual could exploit the third-party library to establish an enduring presence in the financial system's infrastructure, enabling them to profit from illicit sales of this unauthorized access."
+                                        "cwe_mapping_reason": "An unauthorized individual could exploit the third-party library to establish an enduring presence in the financial system's infrastructure, enabling them to profit from illicit sales of this unauthorized access.",
+                                        "capecs_to_exclude": [
+                                            "252",
+                                            "660"
+                                        ]
                                     }
                                 ]
                             },
@@ -1464,7 +1664,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "The absence of secure data handling in the payment gateway may expose opportunities for illicit actors to usurp computational resources for cryptocurrency mining, a technique often employed for money laundering purposes."
+                                        "cwe_mapping_reason": "The absence of secure data handling in the payment gateway may expose opportunities for illicit actors to usurp computational resources for cryptocurrency mining, a technique often employed for money laundering purposes.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
@@ -1543,7 +1746,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "An unauthorized access to the payment gateway could allow a threat actor to manipulate transactions for illicit money laundering through cryptocurrency mining."
+                                        "cwe_mapping_reason": "An unauthorized access to the payment gateway could allow a threat actor to manipulate transactions for illicit money laundering through cryptocurrency mining.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     }
                                 ]
                             }
@@ -1571,11 +1777,19 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "Insufficient access controls on non-web, internet-facing servers could allow malicious parties to exploit these systems for unauthorized cryptocurrency mining activities, which are often used as a method for money laundering."
+                                        "cwe_mapping_reason": "Insufficient access controls on non-web, internet-facing servers could allow malicious parties to exploit these systems for unauthorized cryptocurrency mining activities, which are often used as a method for money laundering.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "The unauthorized access to internet-facing servers that are non-web based could be an avenue for malicious actors to illegally mine cryptocurrency as a means to launder money."
+                                        "cwe_mapping_reason": "The unauthorized access to internet-facing servers that are non-web based could be an avenue for malicious actors to illegally mine cryptocurrency as a means to launder money.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     }
                                 ]
                             },
@@ -1685,7 +1899,34 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "Unauthorized actors seeking to gather market intelligence have potential access to large financial transaction systems or clearinghouses, posing significant risks as these entities might expose sensitive trading information."
+                                        "cwe_mapping_reason": "Unauthorized actors seeking to gather market intelligence have potential access to large financial transaction systems or clearinghouses, posing significant risks as these entities might expose sensitive trading information.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-287: Improper Authentication",
@@ -1708,7 +1949,10 @@
                                     },
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "The sensitive data within large financial transaction systems and clearinghouses, if unencrypted, can be surreptitiously accessed and exploited to gather critical market intel, posing a risk of espionage of financial trades."
+                                        "cwe_mapping_reason": "The sensitive data within large financial transaction systems and clearinghouses, if unencrypted, can be surreptitiously accessed and exploited to gather critical market intel, posing a risk of espionage of financial trades.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
@@ -1731,7 +1975,12 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "Unauthorized access to large financial transaction systems and clearinghouses may provide potential perpetrators with sensitive market intelligence from financial trades."
+                                        "cwe_mapping_reason": "Unauthorized access to large financial transaction systems and clearinghouses may provide potential perpetrators with sensitive market intelligence from financial trades.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     }
                                 ]
                             },
@@ -1775,7 +2024,34 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "In order to gain strategic advantages, the unauthorized exposure of confidential financial trades within data storage systems and databases showcases a significant risk, highlighting the critical need for enhanced protection measures."
+                                        "cwe_mapping_reason": "In order to gain strategic advantages, the unauthorized exposure of confidential financial trades within data storage systems and databases showcases a significant risk, highlighting the critical need for enhanced protection measures.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-305: Authentication Bypass by Primary Weakness",
@@ -1794,7 +2070,12 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "Improper control over access to sensitive trading data can serve as an enabler for adversaries seeking strategic advantages through espionage, potentially compromising the integrity of financial transactions stored within the system's databases."
+                                        "cwe_mapping_reason": "Improper control over access to sensitive trading data can serve as an enabler for adversaries seeking strategic advantages through espionage, potentially compromising the integrity of financial transactions stored within the system's databases.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     }
                                 ]
                             },
@@ -1805,7 +2086,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "A failure to implement encryption on sensitive data in storage assets and databases may provide an opportunity for unauthorized individuals to gain strategic advantages by covertly accessing and analyzing financial trades information."
+                                        "cwe_mapping_reason": "A failure to implement encryption on sensitive data in storage assets and databases may provide an opportunity for unauthorized individuals to gain strategic advantages by covertly accessing and analyzing financial trades information.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
@@ -1861,7 +2145,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
-                                        "cwe_mapping_reason": "In order to gain strategic advantages, perpetrators may exploit vulnerabilities in the data storage assets and databases that could allow unauthorized inclusion of malicious functionality, thus facilitating the potential espionage of financial trades."
+                                        "cwe_mapping_reason": "In order to gain strategic advantages, perpetrators may exploit vulnerabilities in the data storage assets and databases that could allow unauthorized inclusion of malicious functionality, thus facilitating the potential espionage of financial trades.",
+                                        "capecs_to_exclude": [
+                                            "252",
+                                            "660"
+                                        ]
                                     }
                                 ]
                             }
@@ -1900,7 +2188,12 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "An unauthorized user could potentially exploit weak authorization controls in web applications handling money transfers, with the intention to bypass financial regulations or sanctions and enact fraudulent transactions."
+                                        "cwe_mapping_reason": "An unauthorized user could potentially exploit weak authorization controls in web applications handling money transfers, with the intention to bypass financial regulations or sanctions and enact fraudulent transactions.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     }
                                 ]
                             },
@@ -2011,7 +2304,12 @@
                                     },
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "An end-user may seek to exploit weak authorization protocols within the software governing fund transfers, thereby enabling unauthorized and potentially fraudulent transactions, to bypass stringent anti-money laundering checks."
+                                        "cwe_mapping_reason": "An end-user may seek to exploit weak authorization protocols within the software governing fund transfers, thereby enabling unauthorized and potentially fraudulent transactions, to bypass stringent anti-money laundering checks.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     }
                                 ]
                             },
@@ -2033,7 +2331,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "The lack of proper security measures in the system's fund transfer requirements could allow unauthorized individuals to execute illicit transactions, seeking to evade Anti-Money Laundering standards."
+                                        "cwe_mapping_reason": "The lack of proper security measures in the system's fund transfer requirements could allow unauthorized individuals to execute illicit transactions, seeking to evade Anti-Money Laundering standards.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     }
                                 ]
                             },
@@ -2148,11 +2449,18 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "Due to the sensitive nature of data processed through the payment gateway, lack of robust encryption can potentially enable malicious actors to perform deceptive fund transfers, ultimately facilitating the camouflage of illicit financial activities."
+                                        "cwe_mapping_reason": "Due to the sensitive nature of data processed through the payment gateway, lack of robust encryption can potentially enable malicious actors to perform deceptive fund transfers, ultimately facilitating the camouflage of illicit financial activities.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
-                                        "cwe_mapping_reason": "A weak or flawed encryption algorithm used in the payment gateway could be exploited to mask unauthorized financial transfers, thereby providing an avenue for the concealment of illegal fund movements."
+                                        "cwe_mapping_reason": "A weak or flawed encryption algorithm used in the payment gateway could be exploited to mask unauthorized financial transfers, thereby providing an avenue for the concealment of illegal fund movements.",
+                                        "capecs_to_exclude": [
+                                            "608",
+                                            "614"
+                                        ]
                                     }
                                 ]
                             },
@@ -2206,11 +2514,41 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "The unauthorized exposure of sensitive user profile data, stored on SaaS services using OAuth, can enable malicious actors to steal application owner or employee identities, leading to fraudulent financial activities."
+                                        "cwe_mapping_reason": "The unauthorized exposure of sensitive user profile data, stored on SaaS services using OAuth, can enable malicious actors to steal application owner or employee identities, leading to fraudulent financial activities.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
-                                        "cwe_mapping_reason": "An unauthorized individual could exploit inadequate authentication protocols in SaaS services using OAuth, to access and steal app owner or employee data, potentially impersonating a financial employee for malicious intents."
+                                        "cwe_mapping_reason": "An unauthorized individual could exploit inadequate authentication protocols in SaaS services using OAuth, to access and steal app owner or employee data, potentially impersonating a financial employee for malicious intents.",
+                                        "capecs_to_exclude": [
+                                            "667"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-301: Reflection Attack in an Authentication Protocol",
@@ -2229,7 +2567,12 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "The potential for unauthorized access in SaaS applications using OAuth for user profile storage underscores the risk of malicious actors obtaining and misusing employee data to impersonate staff members in financial roles."
+                                        "cwe_mapping_reason": "The potential for unauthorized access in SaaS applications using OAuth for user profile storage underscores the risk of malicious actors obtaining and misusing employee data to impersonate staff members in financial roles.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     }
                                 ]
                             },
@@ -2292,11 +2635,19 @@
                                     },
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "The possibility of internal actors exploiting improper controls on the authorization server can lead to unauthorized access to financial systems, thereby compromising the sensitive information of app owners and employees."
+                                        "cwe_mapping_reason": "The possibility of internal actors exploiting improper controls on the authorization server can lead to unauthorized access to financial systems, thereby compromising the sensitive information of app owners and employees.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "An unauthorized party could exploit inadequate protections on the Oauth/Authorization server to access sensitive employee data, seeking to manipulate financial systems illicitly."
+                                        "cwe_mapping_reason": "An unauthorized party could exploit inadequate protections on the Oauth/Authorization server to access sensitive employee data, seeking to manipulate financial systems illicitly.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     }
                                 ]
                             },
@@ -2350,7 +2701,34 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "The unauthorized access to the financial systems could be potentially accomplished by leveraging vulnerabilities in the Active Directory (AD), LDAP server, and Azure AD to extract sensitive app owner or employee information."
+                                        "cwe_mapping_reason": "The unauthorized access to the financial systems could be potentially accomplished by leveraging vulnerabilities in the Active Directory (AD), LDAP server, and Azure AD to extract sensitive app owner or employee information.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-258: Empty Password in Configuration File",
@@ -2381,11 +2759,19 @@
                                     },
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "To maintain unauthorized access to financial systems, an app owner or employee requires a flaw in the authorization process of Active Directory (AD), LDAP server, or Azure AD."
+                                        "cwe_mapping_reason": "To maintain unauthorized access to financial systems, an app owner or employee requires a flaw in the authorization process of Active Directory (AD), LDAP server, or Azure AD.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-862: Missing Authorization",
-                                        "cwe_mapping_reason": "In order to gain unauthorized access to financial systems, potential threat actors may exploit vulnerabilities in the Active Directory, LDAP server, or Azure AD, which lack proper user authorizations, allowing them to harvest app owner or employee information."
+                                        "cwe_mapping_reason": "In order to gain unauthorized access to financial systems, potential threat actors may exploit vulnerabilities in the Active Directory, LDAP server, or Azure AD, which lack proper user authorizations, allowing them to harvest app owner or employee information.",
+                                        "capecs_to_exclude": [
+                                            "665"
+                                        ]
                                     }
                                 ]
                             },
@@ -2435,7 +2821,12 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "The motive encompasses exploiting insufficient authorization protocols within a unique financial application to illicitly gain control and proceed to threaten its users or the institution itself with financial disruption, seeking ransom as the ultimate objective."
+                                        "cwe_mapping_reason": "The motive encompasses exploiting insufficient authorization protocols within a unique financial application to illicitly gain control and proceed to threaten its users or the institution itself with financial disruption, seeking ransom as the ultimate objective.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "668",
+                                            "402"
+                                        ]
                                     }
                                 ]
                             },
@@ -2446,7 +2837,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
-                                        "cwe_mapping_reason": "Exploiting the susceptibility of the unique financial application to resource exhaustion can provide a malicious actor with the opportunity to paralyze its systems, enabling them to demand a ransom from the institution or its users, with the motive of achieving financial gain."
+                                        "cwe_mapping_reason": "Exploiting the susceptibility of the unique financial application to resource exhaustion can provide a malicious actor with the opportunity to paralyze its systems, enabling them to demand a ransom from the institution or its users, with the motive of achieving financial gain.",
+                                        "capecs_to_exclude": [
+                                            "147",
+                                            "492"
+                                        ]
                                     }
                                 ]
                             },
@@ -2552,11 +2947,18 @@
                                     },
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "The lack of protective measures over sensitive financial data can potentially enable cybercriminals to exploit and extort the financial institution or its users by demanding ransom payments, thereby achieving their motive of financial gain."
+                                        "cwe_mapping_reason": "The lack of protective measures over sensitive financial data can potentially enable cybercriminals to exploit and extort the financial institution or its users by demanding ransom payments, thereby achieving their motive of financial gain.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
-                                        "cwe_mapping_reason": "The possibility of a malicious actor exploiting the vulnerable cryptographic algorithm used in the data store for financial transactions can lead to potential hostage scenarios with account holders, aimed at achieving illegitimate financial gains."
+                                        "cwe_mapping_reason": "The possibility of a malicious actor exploiting the vulnerable cryptographic algorithm used in the data store for financial transactions can lead to potential hostage scenarios with account holders, aimed at achieving illegitimate financial gains.",
+                                        "capecs_to_exclude": [
+                                            "608",
+                                            "614"
+                                        ]
                                     }
                                 ]
                             },
@@ -2567,7 +2969,34 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "The exploitation of unprotected data storage containing sensitive banking information can provide cybercriminals with a lucrative opportunity for financial gain via extortion of the institution or its users."
+                                        "cwe_mapping_reason": "The exploitation of unprotected data storage containing sensitive banking information can provide cybercriminals with a lucrative opportunity for financial gain via extortion of the institution or its users.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     }
                                 ]
                             },
@@ -2578,7 +3007,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-209: Generation of Error Message Containing Sensitive Information",
-                                        "cwe_mapping_reason": "The potential for sensitive financial transaction data to be leaked through incorrect error messages could enable malicious actors to extort the banking institution or its users for financial gain."
+                                        "cwe_mapping_reason": "The potential for sensitive financial transaction data to be leaked through incorrect error messages could enable malicious actors to extort the banking institution or its users for financial gain.",
+                                        "capecs_to_exclude": [
+                                            "463"
+                                        ]
                                     }
                                 ]
                             },
@@ -2669,7 +3101,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "An adversary may exploit the lack of data encryption in the financial web APIs to sabotage the system, thereby undermining trust in the application's capabilities and solutions."
+                                        "cwe_mapping_reason": "An adversary may exploit the lack of data encryption in the financial web APIs to sabotage the system, thereby undermining trust in the application's capabilities and solutions.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
@@ -2712,7 +3147,10 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
-                                        "cwe_mapping_reason": "An unscrupulous person may seek to undermine trust in the financial news or data feeds by exploiting unencrypted sensitive data, thus enabling sabotage of the system or application to decrease overall confidence in the application solution."
+                                        "cwe_mapping_reason": "An unscrupulous person may seek to undermine trust in the financial news or data feeds by exploiting unencrypted sensitive data, thus enabling sabotage of the system or application to decrease overall confidence in the application solution.",
+                                        "capecs_to_exclude": [
+                                            "609"
+                                        ]
                                     }
                                 ]
                             },
@@ -2790,7 +3228,34 @@
                                     },
                                     {
                                         "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
-                                        "cwe_mapping_reason": "A disgruntled individual looking for retribution could exploit the vulnerabilities of crowdfunding platforms, potentially exposing sensitive data to unauthorized parties."
+                                        "cwe_mapping_reason": "A disgruntled individual looking for retribution could exploit the vulnerabilities of crowdfunding platforms, potentially exposing sensitive data to unauthorized parties.",
+                                        "capecs_to_exclude": [
+                                            "330",
+                                            "329",
+                                            "328",
+                                            "327",
+                                            "326",
+                                            "325",
+                                            "324",
+                                            "323",
+                                            "322",
+                                            "321",
+                                            "320",
+                                            "319",
+                                            "318",
+                                            "317",
+                                            "305",
+                                            "304",
+                                            "303",
+                                            "302",
+                                            "301",
+                                            "299",
+                                            "298",
+                                            "297",
+                                            "295",
+                                            "294",
+                                            "287"
+                                        ]
                                     }
                                 ]
                             },
@@ -2911,7 +3376,11 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
-                                        "cwe_mapping_reason": "Exploiting weaknesses in software update mechanisms by bypassing cryptographic signature verification can lead to a denial of service that undermines confidence in the solution"
+                                        "cwe_mapping_reason": "Exploiting weaknesses in software update mechanisms by bypassing cryptographic signature verification can lead to a denial of service that undermines confidence in the solution",
+                                        "capecs_to_exclude": [
+                                            "463",
+                                            "475"
+                                        ]
                                     },
                                     {
                                         "cwe_id": "CWE-407: Inefficient Algorithmic Complexity",
@@ -2919,7 +3388,10 @@
                                     },
                                     {
                                         "cwe_id": "CWE-912: Hidden Functionality",
-                                        "cwe_mapping_reason": "An unauthorized individual may exploit hidden functionalities in the software update mechanisms to disrupt the application or system, reducing user confidence in the solution."
+                                        "cwe_mapping_reason": "An unauthorized individual may exploit hidden functionalities in the software update mechanisms to disrupt the application or system, reducing user confidence in the solution.",
+                                        "capecs_to_exclude": [
+                                            "190"
+                                        ]
                                     }
                                 ]
                             },
@@ -2934,7 +3406,14 @@
                                     },
                                     {
                                         "cwe_id": "CWE-693: Protection Mechanism Failure",
-                                        "cwe_mapping_reason": "A potential attacker might exploit faulty software update mechanisms to disrupt service, thereby undermining trust in the solution."
+                                        "cwe_mapping_reason": "A potential attacker might exploit faulty software update mechanisms to disrupt service, thereby undermining trust in the solution.",
+                                        "capecs_to_exclude": [
+                                            "127",
+                                            "237",
+                                            "477",
+                                            "480",
+                                            "668"
+                                        ]
                                     }
                                 ]
                             },
