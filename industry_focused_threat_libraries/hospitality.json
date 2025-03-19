@@ -1,0 +1,1683 @@
+[
+    {
+        "threat": "Business Continuity Disruption",
+        "threat_description": "Disruption of critical hotel operations through ransomware or other attacks",
+        "motives": [
+            {
+                "motive": "Financial extortion, competitive sabotage, hacktivism",
+                "components": [
+                    {
+                        "name": "Hotel Management Infrastructure",
+                        "description": "Core IT systems supporting hotel operations",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_file_servers",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_mapping_reason": "Insufficient file type validation can let attackers upload malicious executables, enabling code execution or disruption.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Compromise of Digital Guest Services",
+        "threat_description": "Unauthorized access to digital concierge and guest service platforms",
+        "motives": [
+            {
+                "motive": "Data theft, service disruption, reputation damage",
+                "components": [
+                    {
+                        "name": "Mobile Concierge Application",
+                        "description": "Mobile apps providing guest services and information",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "If credentials are embedded in the app code, attackers can easily extract them to gain unauthorized access.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Compromise of Payment Processing",
+        "threat_description": "Unauthorized access to payment card data during processing",
+        "motives": [
+            {
+                "motive": "Financial fraud, theft",
+                "components": [
+                    {
+                        "name": "Mobile Payment Applications",
+                        "description": "Apps allowing guests to pay for services via mobile devices",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "Payment or personal data sent over unencrypted channels can be intercepted by attackers.",
+                                        "capecs_to_exclude": [
+                                            "102",
+                                            "477",
+                                            "65"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to Unauthorized Actor",
+                                        "cwe_mapping_reason": "Inadequate data filtering or logging could reveal sensitive info to unauthorized parties.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_mapping_reason": "Weak random token generation can allow attackers to predict session or transaction tokens.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Payment Gateway Integration",
+                        "description": "Systems connecting hospitality payment systems to financial networks",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Credentials for backend integration may be stored in plaintext or transmitted insecurely.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "Sensitive data, like API keys, can remain unencrypted in logs, config files, or databases.",
+                                        "capecs_to_exclude": [
+                                            "37"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "If the gateway does not verify the source of requests, attackers can spoof or tamper with transactions.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Payment Tokenization Service",
+                                "description": "A service that provides tokenization for payment processing",
+                                "dynamic": false,
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Tokenization service credentials may be stored insecurely or passed in plaintext.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "Tokenization keys or secrets could be written to logs or config files without encryption.",
+                                        "capecs_to_exclude": [
+                                            "37"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "Tokens or payment details transmitted unencrypted can be intercepted by attackers.",
+                                        "capecs_to_exclude": [
+                                            "102",
+                                            "477",
+                                            "65"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_mapping_reason": "Predictable token generation undermines security, allowing guessing or duplication.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Point of Sale (POS) Systems",
+                        "description": "Systems handling credit card transactions throughout the property",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_mapping_reason": "POS solutions with weak or obsolete crypto can expose credit card data to theft.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Compromise of Physical Access Controls",
+        "threat_description": "Unauthorized physical access to restricted areas or guest rooms",
+        "motives": [
+            {
+                "motive": "Theft, espionage, stalking, assault",
+                "components": [
+                    {
+                        "name": "Electronic Key Card System",
+                        "description": "System managing room access via key cards",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "If key card permissions are not enforced, unauthorized parties may gain access to locked areas.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-288: Authentication Bypass Using an Alternate Path",
+                                        "cwe_mapping_reason": "Key card validation can be bypassed if an unprotected route or fallback process exists.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-321: Use of Hard-coded Cryptographic Key",
+                                        "cwe_mapping_reason": "Encryption keys embedded in the firmware or software can be extracted and reused by attackers.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Mobile Key Systems",
+                        "description": "Systems allowing room access via smartphone apps",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                                        "cwe_mapping_reason": "Mobile keys transmitted without secure tunneling can be intercepted or replayed.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "If the mobile key is not encrypted, eavesdroppers can obtain it and unlock rooms.",
+                                        "capecs_to_exclude": [
+                                            "102",
+                                            "477",
+                                            "65"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_mapping_reason": "Predictable key or token generation can enable attackers to forge mobile credentials.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Staff Access Control System",
+                        "description": "Systems controlling employee access to restricted areas",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Employees can gain unauthorized rights if role-based access is improperly enforced.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Compromise of Travel Agency Integration",
+        "threat_description": "Unauthorized access to hotel systems through travel agency connections",
+        "motives": [
+            {
+                "motive": "Financial fraud, competitive intelligence, service disruption",
+                "components": [
+                    {
+                        "name": "Travel Agency Booking Portal",
+                        "description": "Systems used by travel agencies to book accommodations",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery",
+                                        "cwe_mapping_reason": "Attackers can force a logged-in user's browser to perform unwanted actions on the portal.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded admin or API credentials can be discovered and exploited by attackers.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Invalid or malicious data from users/partners can lead to injection or system corruption.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Data Exfiltration of Customer Records",
+        "threat_description": "Theft of large volumes of customer data from hospitality databases",
+        "motives": [
+            {
+                "motive": "Financial gain, identity theft, competitive intelligence",
+                "components": [
+                    {
+                        "name": "Customer Relationship Management (CRM)",
+                        "description": "Systems tracking guest preferences, history, and communications",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to Unauthorized Actor",
+                                        "cwe_mapping_reason": "CRM data could be exposed if access controls or data protection measures are insufficient.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Data Backup Systems",
+                        "description": "Systems storing backups of operational databases and systems",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_file_servers",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Backups may be accessible to unauthorized users or stored in an unprotected location.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Reservation System",
+                        "description": "Online and offline systems for booking accommodations",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Storing or transferring reservation data unencrypted can lead to data leakage.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to Unauthorized Actor",
+                                        "cwe_mapping_reason": "Lacking proper checks can leak personal details to unauthorized users.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "An attacker could exploit weak permissions to see or modify reservations.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Disruption of Building Management Systems",
+        "threat_description": "Unauthorized control or disruption of critical building systems affecting guest comfort and safety",
+        "motives": [
+            {
+                "motive": "Disruption, extortion, terrorism, competitive sabotage",
+                "components": [
+                    {
+                        "name": "Building Automation System",
+                        "description": "System controlling HVAC, lighting, and other building functions",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "System may allow changes to HVAC or lighting without verifying user identity.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Critical operations, such as turning off alarms, might not require login.",
+                                        "capecs_to_exclude": [
+                                            "12",
+                                            "36",
+                                            "62"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery",
+                                        "cwe_mapping_reason": "If an admin console is web-based, attackers can trick authenticated users into sending malicious commands.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Building Automation Platform",
+                                "description": "A platform for managing building automation and control systems",
+                                "dynamic": false,
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Privileged operations can be performed by unauthorized users if role-based checks are missing.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak or missing login steps let attackers bypass restrictions.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "High-impact actions, e.g., shutting down HVAC, may not require a valid session.",
+                                        "capecs_to_exclude": [
+                                            "12",
+                                            "36",
+                                            "62"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Even if logged in, no checks stop a basic user from performing admin-level changes.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Elevator Control Systems",
+                        "description": "Systems managing elevator operations throughout the property",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Elevator control changes might not require any valid user login.",
+                                        "capecs_to_exclude": [
+                                            "12",
+                                            "36",
+                                            "62"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Water Management Systems",
+                        "description": "Systems controlling water temperature, pressure, and quality",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "System fails to validate user privileges for water system changes.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Event Management System Compromise",
+        "threat_description": "Unauthorized access to systems managing conferences and events",
+        "motives": [
+            {
+                "motive": "Data theft, service disruption, competitive intelligence",
+                "components": [
+                    {
+                        "name": "Event Management Platform",
+                        "description": "Systems for managing conferences, meetings, and events",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation",
+                                        "cwe_mapping_reason": "User-supplied data not sanitized can lead to cross-site scripting attacks in the event platform.",
+                                        "capecs_to_exclude": [
+                                            "209",
+                                            "85"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Extortion",
+        "threat_description": "Threatening to expose, damage, or block access to data/systems unless demands are met",
+        "motives": [
+            {
+                "motive": "Financial gain, revenge, activism",
+                "components": [
+                    {
+                        "name": "Building Management System",
+                        "description": "System controlling HVAC, lighting, and other building functions",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "No checks ensure that only authorized users can alter building controls, risking sabotage.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Electronic Key Card System",
+                        "description": "System managing room access via key cards",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-276: Incorrect Default Permissions",
+                                        "cwe_mapping_reason": "Default settings or permissions might let unauthorized users read or modify key card data.",
+                                        "capecs_to_exclude": [
+                                            "1",
+                                            "127",
+                                            "81"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Guest Privacy Systems",
+                        "description": "Systems containing sensitive guest information and activities",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Credentials used to access or manage privacy logs are not protected, leading to data exposure.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Reservation System",
+                        "description": "Online and offline systems for booking accommodations",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-425: Direct Request for Access to Restricted Resource",
+                                        "cwe_mapping_reason": "Attackers can directly navigate to admin or internal endpoints, bypassing normal access checks.",
+                                        "capecs_to_exclude": [
+                                            "127",
+                                            "143",
+                                            "144",
+                                            "668",
+                                            "87"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Food Service System Compromise",
+        "threat_description": "Unauthorized access to restaurant management and ordering systems",
+        "motives": [
+            {
+                "motive": "Financial fraud, service disruption",
+                "components": [
+                    {
+                        "name": "Restaurant Management System",
+                        "description": "Systems for managing restaurant orders and payments",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to Unauthorized Actor",
+                                        "cwe_mapping_reason": "Order or payment info can be exposed through inadequate access checks or logging.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Guest Privacy Violation",
+        "threat_description": "Unauthorized surveillance or monitoring of guests in private spaces",
+        "motives": [
+            {
+                "motive": "Voyeurism, extortion, stalking",
+                "components": [
+                    {
+                        "name": "IoT Room Devices",
+                        "description": "Smart devices in guest rooms (thermostats, TVs, voice assistants)",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "Audio, video, or personal data from room devices may be unencrypted, enabling interception.",
+                                        "capecs_to_exclude": [
+                                            "102",
+                                            "477",
+                                            "65"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Guest Transportation System Compromise",
+        "threat_description": "Disruption or manipulation of shuttle services, car rentals, or ride services",
+        "motives": [
+            {
+                "motive": "Service disruption, theft, competitive sabotage",
+                "components": [
+                    {
+                        "name": "Transportation Management System",
+                        "description": "Systems coordinating guest transportation services",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Authorization checks may be bypassed, allowing route changes or unauthorized scheduling.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Insider Threat",
+        "threat_description": "Malicious actions by current or former employees with legitimate access",
+        "motives": [
+            {
+                "motive": "Financial gain, revenge, coercion",
+                "components": [
+                    {
+                        "name": "Customer Loyalty System",
+                        "description": "System managing customer rewards, points, and membership status",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Loyalty points or reward data can be manipulated if employee privileges are misconfigured.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Payment Processing Systems",
+                        "description": "Systems handling financial transactions and payment card data",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "Credit card or transaction logs stored unencrypted can be read by staff with file access.",
+                                        "capecs_to_exclude": [
+                                            "37"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Property Management System (PMS)",
+                        "description": "Central system that manages guest reservations, check-ins, and personal information",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Staff with minimal roles might escalate privileges or access sensitive guest info.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Room Inventory Management",
+                        "description": "Systems tracking room availability and pricing",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Employees can manipulate room availability or pricing without the correct authorization.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Loyalty Program Fraud",
+        "threat_description": "Unauthorized access to and manipulation of customer loyalty accounts",
+        "motives": [
+            {
+                "motive": "Financial gain, theft of rewards",
+                "components": [
+                    {
+                        "name": "Customer Loyalty System",
+                        "description": "System managing customer rewards, points, and membership status",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Credentials for loyalty system might be stored in plain text or lacking encryption.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_mapping_reason": "Easily guessable or insecure reset methods allow account takeover.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "No rate limiting or lockouts enables brute force attacks on loyalty accounts.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Loyalty Program Platform",
+                                "description": "A platform for managing customer loyalty and rewards programs",
+                                "dynamic": false,
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Loyalty program credentials might not be safely stored or transmitted, allowing theft.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_mapping_reason": "If challenge questions are easily guessable, attackers can reset user passwords.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "No login-attempt throttling means repeated attempts can eventually guess user credentials.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to Unauthorized Actor",
+                                        "cwe_mapping_reason": "Insufficient privacy controls might reveal personal data or loyalty points to attackers.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Malware Distribution",
+        "threat_description": "Use of compromised systems to distribute malware to other systems or users",
+        "motives": [
+            {
+                "motive": "Financial gain, botnet expansion, further compromise",
+                "components": [
+                    {
+                        "name": "Digital Signage Systems",
+                        "description": "Digital displays for information, advertising, and wayfinding",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_mapping_reason": "Signs may allow uploading media files without proper validation, leading to malicious code injection.",
+                                        "capecs_to_exclude": [
+                                            "1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Email Systems",
+                        "description": "Corporate email infrastructure used by hospitality staff",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-506: Embedded Malicious Code",
+                                        "cwe_mapping_reason": "Emails can include scripts or attachments that bypass detection if scanning is weak.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Guest WiFi Network",
+                        "description": "Wireless networks provided for guest use",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "Users may download updates or apps from unverified sources, risking malware injection.",
+                                        "capecs_to_exclude": [
+                                            "662",
+                                            "693",
+                                            "695"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Public Kiosks and Business Centers",
+                        "description": "Self-service computers and kiosks available to guests",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation",
+                                        "cwe_mapping_reason": "If kiosk software does not sanitize user input, scripts could be injected to affect subsequent users.",
+                                        "capecs_to_exclude": [
+                                            "85"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Maritime Navigation Interference",
+        "threat_description": "Disruption or manipulation of cruise ship navigation systems",
+        "motives": [
+            {
+                "motive": "Terrorism, nation-state attack, hacktivism",
+                "components": [
+                    {
+                        "name": "Maritime Navigation Systems",
+                        "description": "Systems for navigation and control of cruise ships",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Invalid or spoofed sensor data can alter navigation or cause system instability.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Network Eavesdropping on Guest Communications",
+        "threat_description": "Interception of guest communications over hotel networks",
+        "motives": [
+            {
+                "motive": "Information theft, espionage, financial fraud",
+                "components": [
+                    {
+                        "name": "Conference Room Networks",
+                        "description": "Dedicated networks for business meetings and conferences",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                                        "cwe_mapping_reason": "If the network is unencrypted or not restricted, attackers can snoop or inject data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Guest WiFi Network",
+                        "description": "Wireless networks provided for guest use",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_mapping_reason": "If the WiFi login portal or admin console doesn't verify certificates, attackers can perform MITM.",
+                                        "capecs_to_exclude": [
+                                            "459",
+                                            "475"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                                        "cwe_mapping_reason": "Unencrypted traffic on the WiFi can be sniffed or manipulated.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak passphrases or open networks let unauthorized users eavesdrop or hijack sessions.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Wireless Infrastructure Solution",
+                                "description": "A solution for managing wireless network infrastructure and access points",
+                                "dynamic": false,
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "Admin or user credentials might be sent in plaintext over the wireless network.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                                        "cwe_mapping_reason": "If wireless communication channels are not fully encrypted, an attacker can intercept or tamper with traffic.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Default or weak credentials on access points can be exploited to gain unauthorized access.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Configuration files or authentication secrets are stored unprotected, allowing credential theft.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "VoIP Phone Systems",
+                        "description": "Internet-based telephone systems used throughout the property",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "VoIP calls or credentials can be sniffed if unencrypted SIP/RTP is used.",
+                                        "capecs_to_exclude": [
+                                            "383",
+                                            "477",
+                                            "65"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Persistent Unauthorized Access",
+        "threat_description": "Establishment of long-term unauthorized access to systems for ongoing exploitation",
+        "motives": [
+            {
+                "motive": "Espionage, data theft, future attacks, monitoring",
+                "components": [
+                    {
+                        "name": "Cloud-Based Reservation Systems",
+                        "description": "SaaS platforms used for managing bookings across multiple properties",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "If the SaaS integration uses embedded credentials, attackers can discover and leverage them for full access.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Corporate Network Infrastructure",
+                        "description": "Back-office network supporting hospitality business operations",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Key admin endpoints might be reachable on the corporate network with no authentication.",
+                                        "capecs_to_exclude": [
+                                            "12",
+                                            "166",
+                                            "62"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Multiple Systems",
+                        "description": "Various systems across the hospitality infrastructure",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Attackers can pivot laterally or elevate privileges if broad access is not restricted.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Property Management System (PMS)",
+                        "description": "Central system that manages guest reservations, check-ins, and personal information",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_type",
+                                "dynamic": true,
+                                "tags": "match: frontend_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "If the PMS front-end does not lock out repeated password attempts, attackers can brute force admin credentials.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Physical Security System Bypass",
+        "threat_description": "Circumvention of physical security controls protecting restricted areas",
+        "motives": [
+            {
+                "motive": "Theft, espionage, vandalism",
+                "components": [
+                    {
+                        "name": "Security Monitoring System",
+                        "description": "CCTV, alarm systems, and access control for secure areas",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_mapping_reason": "If CCTV or alarms are misconfigured, attackers can disable or bypass them to avoid detection.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Reservation System Denial of Service",
+        "threat_description": "Disruption of online booking systems preventing legitimate reservations",
+        "motives": [
+            {
+                "motive": "Competitive sabotage, extortion, hacktivism",
+                "components": [
+                    {
+                        "name": "Online Booking Platform",
+                        "description": "Web and mobile platforms for direct bookings",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                                        "cwe_mapping_reason": "High volumes of requests can exhaust system resources, causing a denial-of-service condition.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Resort Activity Management Compromise",
+        "threat_description": "Disruption or manipulation of resort activity scheduling and management",
+        "motives": [
+            {
+                "motive": "Service disruption, fraud, guest dissatisfaction",
+                "components": [
+                    {
+                        "name": "Activity Booking System",
+                        "description": "Systems for managing resort activities, tours, and experiences",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements in SQL Commands",
+                                        "cwe_mapping_reason": "SQL injection can allow attackers to modify or retrieve booking data without authorization.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Staff Account Compromise",
+        "threat_description": "Unauthorized access to employee accounts with system privileges",
+        "motives": [
+            {
+                "motive": "Data theft, system access, fraud",
+                "components": [
+                    {
+                        "name": "Employee Management System",
+                        "description": "Systems for managing staff accounts, scheduling, and access",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_mapping_reason": "Only one weak factor is required to log in, making it easier to guess or steal staff credentials.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Supply Chain Compromise",
+        "threat_description": "Compromise of systems through vulnerabilities in the supply chain",
+        "motives": [
+            {
+                "motive": "Widespread access, stealth, bypassing perimeter security",
+                "components": [
+                    {
+                        "name": "Food Service Management Systems",
+                        "description": "Systems for managing restaurant inventory and ordering",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "If a vendor-supplied system fails to enforce roles, attackers can manipulate food inventory or orders.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication mechanisms may allow unauthorized access to ordering systems.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "Food inventory systems may store sensitive supplier or payment data in plaintext, exposing it to attackers.",
+                                        "capecs_to_exclude": [
+                                            "37"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "IoT Devices",
+                        "description": "Smart devices deployed throughout hospitality properties",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "IoT devices might auto-update firmware from an untrusted source, installing malicious software.",
+                                        "capecs_to_exclude": [
+                                            "662",
+                                            "693",
+                                            "695"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Certain IoT device functions (e.g., door locks, cameras) may lack authentication, allowing unauthorized access.",
+                                        "capecs_to_exclude": [
+                                            "12",
+                                            "166",
+                                            "36",
+                                            "62"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-919: Weak Password Requirements",
+                                        "cwe_mapping_reason": "IoT devices may use default or weak passwords, making them easy targets for attackers.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Point of Sale (POS) Systems",
+                        "description": "Systems handling credit card transactions throughout the property",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "POS may load external libraries or plug-ins not validated for safety, risking hidden malicious code.",
+                                        "capecs_to_exclude": [
+                                            "201",
+                                            "228",
+                                            "251",
+                                            "252",
+                                            "263",
+                                            "549",
+                                            "660"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "Payment card data could be transmitted in plaintext, allowing interception by attackers.",
+                                        "capecs_to_exclude": [
+                                            "102",
+                                            "477",
+                                            "65"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_mapping_reason": "POS systems may improperly deserialize external input, allowing remote code execution.",
+                                        "capecs_to_exclude": [
+                                            "586"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Third-Party Software",
+                        "description": "Software provided by vendors and integrated into hospitality systems",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "If updates or components from external vendors are not verified, attackers can inject malicious code.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_mapping_reason": "Untrusted third-party software may introduce deserialization vulnerabilities leading to code execution.",
+                                        "capecs_to_exclude": [
+                                            "586"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Third-party software may run with excessive privileges, allowing attackers to escalate access.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Data theft, persistent access, espionage",
+                "components": [
+                    {
+                        "name": "Third-Party Vendor Systems",
+                        "description": "External systems integrated with hotel operations",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Vendor solutions might contain hidden backdoors or malicious code introduced upstream.",
+                                        "capecs_to_exclude": [
+                                            "201",
+                                            "228",
+                                            "251",
+                                            "252",
+                                            "263",
+                                            "549",
+                                            "660"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-912: Hidden Functionality",
+                                        "cwe_mapping_reason": "Backdoors or undocumented features in third-party software can enable persistent access by attackers.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Inadequate data access controls may expose customer or payment data to unauthorized parties.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Unauthorized Access to Guest Information",
+        "threat_description": "Unauthorized access to sensitive guest personal and financial information stored in hospitality systems",
+        "motives": [
+            {
+                "motive": "Financial gain, identity theft, espionage, competitive intelligence",
+                "components": [
+                    {
+                        "name": "Mobile Check-in Applications",
+                        "description": "Mobile apps allowing guests to check in without front desk interaction",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Attackers can bypass or manipulate the login process to access guest check-in data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Property Management System (PMS)",
+                        "description": "Central system that manages guest reservations, check-ins, and personal information",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Administrative endpoints can be accessed without verifying user identity.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Session or user ID tampering leads to unauthorized data access.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements in SQL Commands",
+                                        "cwe_mapping_reason": "SQL injection vulnerabilities in PMS queries can expose or alter guest data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Hotel Property Management System",
+                                "description": "A system for managing hotel operations, guest reservations, and property data",
+                                "dynamic": false,
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Certain administrative tasks may be executed without user login.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Manipulating parameter IDs can expose or modify other guests' personal data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements in SQL Commands",
+                                        "cwe_mapping_reason": "Failure to sanitize user inputs can lead to SQL injection vulnerabilities.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Hospitality Management Solution",
+                                "description": "A platform for managing hotel property operations, guest records, and reservations",
+                                "dynamic": false,
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Administrative or high-privilege tasks may be performed without verifying user identity.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "User-controllable parameters (e.g., reservation IDs) can be manipulated to access or modify other users\u2019 data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements in SQL Commands",
+                                        "cwe_mapping_reason": "Unvalidated input in the reservation or guest record system can enable SQL injection attacks.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Lodging Management System",
+                                "description": "A system for managing resort, casino, and hotel lodging operations",
+                                "dynamic": false,
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Privileges or roles may not be strictly enforced, allowing unauthorized changes to property data or operations.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak login mechanisms or missing enforcement can allow attackers to bypass authentication requirements.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "Guest data or payment info might be written unencrypted to logs or configuration files.",
+                                        "capecs_to_exclude": [
+                                            "37"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Third-Party Booking Platforms",
+                        "description": "External systems like OTAs that collect and store guest information",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Altered booking reference IDs can grant access to others' reservations.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Utility System Disruption",
+        "threat_description": "Disruption of essential utilities affecting guest comfort and safety",
+        "motives": [
+            {
+                "motive": "Sabotage, extortion, terrorism",
+                "components": [
+                    {
+                        "name": "Utility Management Systems",
+                        "description": "Systems monitoring and controlling water, power, and gas",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Even if the user is authenticated, the system fails to verify if they are authorized to adjust critical utilities.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+  ]
