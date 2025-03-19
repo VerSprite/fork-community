@@ -1,0 +1,1888 @@
+[
+    {
+        "threat": "Steal passengers sensitive information",
+        "threat_description": "Stealing sensitive information (e.g. sensitive data such as PII, cardholder data, and other sensitive information such as travel itinerary...) belonging to passengers and high-profile passengers (e.g. politician, diplomat, CEO, CFO\u2026).",
+        "motives": [
+            {
+                "motive": "Financial gain through sensitive data sale or use for personal benefit (e.g. passengers' cardholder data)",
+                "components": [
+                    {
+                        "name": "Customer Data Storage",
+                        "description": "Storage systems (e.g., databases, cloud storage, physical storage devices) that store passengers' sensitive data.",
+                        "sub_components": [
+                            {
+                                "name": "Reservation Web Application Form",
+                                "dynamic": false,
+                                "tags": "Reservation Web Application Form",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_mapping_reason": "Vulnerable input handling in the reservation web application could allow attackers to execute SQL queries directly on the database, extracting PII or, in systems that do not integrate a payment processor, cardholder data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-Site Scripting')",
+                                        "cwe_mapping_reason": "Insufficient input validation in web forms can lead to Cross-Site Scripting (XSS), allowing attackers to steal session tokens and sensitive user data.",
+                                        "capecs_to_exclude": [
+                                            "209",
+                                            "85"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication mechanisms (e.g., in admin portals or backend systems) could allow attackers to bypass login controls, enabling unauthorized access to sensitive passenger data (PII) and cardholder data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Lack of encryption in database storage could allow attackers to retrieve sensitive data in plaintext if a breach occurs.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Failure to validate input could result in injection attacks, leading to unauthorized modifications to the stored data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Customer Relationship Management System",
+                        "description": "Platform designed to collect, store, and manage customer data, including PII, offering personalized services and loyalty rewards.",
+                        "sub_components": [
+                            {
+                                "name": "CRM Web Portal",
+                                "dynamic": false,
+                                "tags": "CRM Web Portal",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "Insufficient Cross-Site Request Forgery (CSRF) protection could allow attackers to forge requests on behalf of authenticated users.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Weak storage of credentials within CRM web applications could expose login details to attackers if the application is compromised.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_mapping_reason": "Weak password requirements (e.g., allowing short or easily guessable passwords) could enable attackers to compromise accounts, leading to unauthorized access of customer data.",
+                                        "capecs_to_exclude": [
+                                            "112",
+                                            "16",
+                                            "49",
+                                            "509",
+                                            "55",
+                                            "565",
+                                            "70"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Improper privilege management, such as assigning overprivileged roles, could allow attackers or insiders to access and exfiltrate passenger-sensitive data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Identity and Access Management System",
+                        "description": "Centralized authentication and directory service managing user authentication and access to resources.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak or improperly implemented authentication mechanisms could allow attackers to perform Pass-the-Hash (PtH) or Golden Ticket attacks to bypass authentication and gain unauthorized access to critical resources.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Hardcoded credentials within authentication systems can allow attackers to gain unauthorized access.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Failure to validate OAuth redirect URIs could allow attackers to hijack authentication flows, intercept access tokens, and gain unauthorized access to user accounts.",
+                                        "capecs_to_exclude": [
+                                            "175",
+                                            "201",
+                                            "228",
+                                            "251",
+                                            "252",
+                                            "253",
+                                            "263",
+                                            "538",
+                                            "549",
+                                            "640",
+                                            "660",
+                                            "695",
+                                            "698"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                                        "cwe_mapping_reason": "Use of weak cryptographic algorithms in federated identity management systems could compromise the security of authentication tokens.",
+                                        "capecs_to_exclude": [
+                                            "463"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Improper authorization checks could allow attackers to manipulate queries to bypass authorization controls and access critical resources.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Lack of role-based access control enforcement can lead to unauthorized users gaining access to sensitive data or administrative functions.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Steal loyalty-program rewards",
+        "threat_description": "Stealing loyalty program rewards (e.g., points, miles, or other redeemable benefits) belonging to passengers.",
+        "motives": [
+            {
+                "motive": "Financial gain through loyalty rewards resale or use for personal benefit",
+                "components": [
+                    {
+                        "name": "Customer Management System",
+                        "description": "A platform used to store, manage, and process customer data, including loyalty program information and user accounts.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication policies (e.g., no MFA or weak passwords) could allow attackers to compromise database access, exposing loyalty program data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Storing database credentials in plaintext could allow attackers to gain unauthorized access to customer and loyalty program data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Weak access controls and inadequate data encryption could allow attackers to extract customer loyalty program details.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "Improperly validated backend API requests could allow attackers to manipulate authentication flows and gain unauthorized access.",
+                                        "capecs_to_exclude": [
+                                            "664"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Lack of multi-factor authentication (MFA) could allow attackers to compromise admin accounts and access loyalty rewards.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_mapping_reason": "Weak password policies (e.g., short or guessable passwords) could allow attackers to gain unauthorized access to customer accounts.",
+                                        "capecs_to_exclude": [
+                                            "509"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Lack of proper role-based access control (RBAC) enforcement could allow users to escalate privileges and access restricted loyalty program data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                                        "cwe_mapping_reason": "Weak validation of authentication redirect URLs could allow attackers to steal login credentials via phishing attacks.",
+                                        "capecs_to_exclude": [
+                                            "178"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Misconfigured OAuth permissions could allow attackers to escalate privileges and access loyalty accounts.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "OAuth misconfigurations could allow attackers to manipulate authentication flows and perform unauthorized API calls.",
+                                        "capecs_to_exclude": [
+                                            "664"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-Site Scripting - XSS')",
+                                        "cwe_mapping_reason": "Insufficient input validation in customer-facing loyalty program portals could allow attackers to inject malicious scripts to steal user credentials.",
+                                        "capecs_to_exclude": [
+                                            "209",
+                                            "85"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "Failure to enforce CSRF protections could allow attackers to perform unauthorized actions on behalf of users in loyalty program portals.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Access Control Policies",
+                                "dynamic": false,
+                                "tags": "Access Control Policies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-266: Incorrect Privilege Assignment",
+                                        "cwe_mapping_reason": "Failure to properly enforce access restrictions on loyalty program accounts could allow attackers to modify or steal points.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Lack of proper access control mechanisms could allow unauthorized users to gain administrative privileges over loyalty program data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Generate fraudulent tickets",
+        "threat_description": "Issuing fraudulent tickets (e.g., flight bookings, cruise reservations, and train passes) or altering public transit card subscriptions (e.g., changing a regular card to a student card to obtain unauthorized discounts). Potential breaches may arise from inadequate security measures, social engineering attacks to steal employee credentials, or compromised third-party services.",
+        "motives": [
+            {
+                "motive": "Financial gain",
+                "components": [
+                    {
+                        "name": "Ticketing and Reservation System",
+                        "description": "Backend and frontend systems used for ticket issuance, reservation management, and fare processing in travel and public transit.",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Weak frontend access control could allow unauthorized users to modify bookings or generate fraudulent tickets.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "Failure to enforce CSRF protections could allow attackers to trick authenticated users into unknowingly executing fraudulent booking transactions.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication controls in backend APIs could allow attackers to bypass authentication and issue fraudulent tickets.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "Improper API validation could allow attackers to abuse backend services to manipulate reservations and ticketing data.",
+                                        "capecs_to_exclude": [
+                                            "664"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Lack of multi-factor authentication (MFA) could allow attackers to compromise admin accounts and generate fraudulent tickets.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_mapping_reason": "Weak password policies could enable attackers to gain unauthorized access to ticketing system accounts.",
+                                        "capecs_to_exclude": [
+                                            "112",
+                                            "16",
+                                            "49",
+                                            "509",
+                                            "565",
+                                            "70"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak role-based access control (RBAC) could allow unauthorized users to escalate privileges and manipulate ticketing data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                                        "cwe_mapping_reason": "Weak validation of authentication redirect URLs could allow attackers to steal login credentials via phishing attacks.",
+                                        "capecs_to_exclude": [
+                                            "178"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "API Authentication and Tokens",
+                                "dynamic": false,
+                                "tags": "API Authentication and Tokens",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-Coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded API credentials in ticketing applications could allow attackers to gain unauthorized access to ticketing systems.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Lack of encryption in token storage could expose authentication tokens to attackers, allowing them to generate fraudulent tickets.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Automated Fare Collection System",
+                        "description": "A system for automated ticketing, fare validation, and payment processing in public transportation, including web portals and mobile apps for subscription management.",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Weak UI access controls could allow unauthorized users to modify transit subscriptions and obtain fraudulent discounts.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "Failure to enforce CSRF protections could allow attackers to trick users into modifying subscription details without their consent.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak database authentication policies could allow unauthorized users to manipulate subscription records.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Failure to validate user inputs could allow attackers to inject malicious queries and modify fare data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Improperly secured user-controlled parameters (e.g., modifying user_id in subscription modification URLs) could allow unauthorized access to other users' transit subscriptions.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak role-based access control (RBAC) could allow unauthorized modification of transit subscription data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Third-Party Payment Integrations",
+                                "dynamic": false,
+                                "tags": "Third-Party Payment Integrations",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Failure to enforce proper authorization checks for payment processing could allow attackers to alter transit subscription payment records fraudulently.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_mapping_reason": "Weak SSL/TLS certificate validation in third-party payment integrations could allow attackers to intercept payment requests and modify fare transactions.",
+                                        "capecs_to_exclude": [
+                                            "459"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Corporate espionage",
+        "threat_description": "Stealing proprietary information (e.g., trade secrets, proprietary technology) belonging to airlines, cruise lines, and railway operators.",
+        "motives": [
+            {
+                "motive": "Gain a strategic edge over competitors",
+                "components": [
+                    {
+                        "name": "Storage Systems for Proprietary Data",
+                        "description": "Storage solutions used by airlines, cruise lines, and railway operators to store and manage proprietary data.",
+                        "sub_components": [
+                            {
+                                "name": "File Storage Systems",
+                                "dynamic": false,
+                                "tags": "File Storage Systems",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication mechanisms for storage systems could allow unauthorized actors to bypass security controls and exfiltrate proprietary data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Storage system credentials stored in plaintext or weakly hashed could be stolen, leading to unauthorized access to proprietary data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Misconfigured databases with weak access controls could expose proprietary data to unauthorized actors.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Unencrypted proprietary data in databases or backups could be intercepted or stolen.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Backup Storage Systems",
+                                "dynamic": false,
+                                "tags": "Backup Storage Systems",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Weak access controls on backup storage could allow unauthorized access to proprietary data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Lack of proper access control on backup solutions could result in unauthorized access to sensitive corporate data.",
+                                        "capecs_to_exclude": [
+                                            "464",
+                                            "467",
+                                            "498"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Authentication and Authorization Systems",
+                        "description": "Identity and access management systems used to authenticate and authorize employees accessing proprietary systems.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication policies could allow unauthorized access to corporate systems storing proprietary data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-Coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded credentials in authentication systems could be exploited to gain unauthorized access to corporate secrets.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak role-based access control (RBAC) policies could allow unauthorized users to access proprietary data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Failure to enforce authorization checks could enable attackers to escalate privileges and gain access to proprietary corporate information.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Collaboration and File Sharing Platforms",
+                        "description": "Platforms used for internal document sharing, collaboration, and file exchange.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Weak permissions on collaboration tools could expose proprietary documents to unauthorized parties.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Failure to encrypt sensitive files in transit and at rest could allow data exfiltration.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-Site Scripting - XSS')",
+                                        "cwe_mapping_reason": "Poor input sanitization in collaboration tools could allow attackers to inject malicious scripts.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "Failure to enforce CSRF protections could allow attackers to manipulate user actions and exfiltrate documents.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Financial gain through proprietary data resale",
+                "components": [
+                    {
+                        "name": "Third-Party and Vendor Systems",
+                        "description": "External partner systems connected to the organization for supply chain management, consulting, and software development.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "Weak validation of third-party system origins could allow attackers to spoof access and steal proprietary information.",
+                                        "capecs_to_exclude": [
+                                            "111",
+                                            "386",
+                                            "387",
+                                            "388"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Untrusted integrations in third-party vendor systems could introduce vulnerabilities that lead to corporate espionage.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Unauthorized access to vendor systems could allow attackers to extract sensitive corporate data.",
+                                        "capecs_to_exclude": [
+                                            "12",
+                                            "166",
+                                            "62"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Weakly protected credentials for vendor system authentication could allow unauthorized access.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Political espionage",
+        "threat_description": "Stealing sensitive information belonging to governments.",
+        "motives": [
+            {
+                "motive": "Gain a geopolitical advantage",
+                "components": [
+                    {
+                        "name": "Public Transit Systems Interconnected with Government Systems",
+                        "description": "Public transportation systems that interface with government databases and services.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-362: Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition')",
+                                        "cwe_mapping_reason": "Failure to properly handle race conditions could allow attackers to exploit this weakness to gain unauthorized access to sensitive data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                                        "cwe_mapping_reason": "Improper handling of resource allocation in transit infrastructure could allow attackers to create denial-of-service conditions, affecting public transit operations and connected government systems.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication mechanisms in transit systems connected to government databases could allow unauthorized actors to access sensitive citizen data.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Insecure storage of authentication credentials (e.g., plaintext API keys) could allow unauthorized access to public transit-government integrated systems.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Contactless Smart Card System",
+                                "dynamic": false,
+                                "tags": "Contactless Smart Card System",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-912: Hidden Functionality",
+                                        "cwe_mapping_reason": "Undocumented backdoors or hidden functionalities in smart card systems could allow attackers to bypass security mechanisms undetected.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "Weak authentication validation in smart card systems could allow attackers to impersonate legitimate users, gaining unauthorized access to government-integrated transit privileges.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Congestion Charging Systems",
+                                "dynamic": false,
+                                "tags": "Congestion Charging Systems",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "If transit software updates are sourced from unverified vendors or insecure update mechanisms, attackers could introduce malicious code or backdoors.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                                        "cwe_mapping_reason": "Failure to properly validate redirects within congestion charging portals could allow phishing or credential theft targeting government employees.",
+                                        "capecs_to_exclude": [
+                                            "178"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Security and Surveillance Systems",
+                                "dynamic": false,
+                                "tags": "Security and Surveillance Systems",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication in surveillance systems could allow unauthorized access to real-time government monitoring systems.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-611: Improper Restriction of XML External Entity Reference ('XXE')",
+                                        "cwe_mapping_reason": "Vulnerable XML parsers in security systems could allow attackers to exfiltrate confidential government data through XXE attacks.",
+                                        "capecs_to_exclude": [
+                                            "221"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Emergency Response Systems",
+                                "dynamic": false,
+                                "tags": "Emergency Response Systems",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                                        "cwe_mapping_reason": "If cryptographic signatures are not properly verified, attackers could manipulate emergency system responses and access sensitive information.",
+                                        "capecs_to_exclude": [
+                                            "463",
+                                            "475"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Unencrypted emergency system data could be intercepted, allowing adversaries to gather intelligence on government security responses.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak authorization policies in transit-government backend integrations could allow attackers to access restricted government records.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "Improper API validation in transit-government integrations could allow attackers to exploit backend systems to gather intelligence on government operations.",
+                                        "capecs_to_exclude": [
+                                            "664"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Public Transit Software Updates",
+                                "dynamic": false,
+                                "tags": "Public Transit Software Updates",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-778: Insufficient Logging",
+                                        "cwe_mapping_reason": "Failure to log security-related events could allow undetected cyber intrusions into transit systems interconnected with government infrastructure.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Failure to validate software sources could allow attackers to introduce backdoors into transit systems linked to government operations.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Manipulating public-facing communication systems",
+        "threat_description": "Compromising digital platforms used for public communication to broadcast unauthorized messages.",
+        "motives": [
+            {
+                "motive": "Spread a message to promote ideological beliefs",
+                "components": [
+                    {
+                        "name": "Flight Information Display System (FIDS)",
+                        "description": "System used in airports to provide real-time flight data, including schedules, gate assignments, and status updates.",
+                        "sub_components": [
+                            {
+                                "name": "FIDS software",
+                                "dynamic": false,
+                                "tags": "FIDS software",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak access controls in FIDS could allow unauthorized modifications to displayed messages.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication in FIDS backend APIs could allow attackers to inject unauthorized messages.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Database for flight data",
+                                "dynamic": false,
+                                "tags": "Database for flight data",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_mapping_reason": "Failure to properly sanitize inputs to FIDS databases could allow attackers to alter flight schedules or insert false messages.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Overly permissive database access rights could allow unauthorized updates to FIDS data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Third-party data feeds",
+                                "dynamic": false,
+                                "tags": "Third-party data feeds",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-91: XML Injection",
+                                        "cwe_mapping_reason": "Manipulation of XML-based third-party data feeds could allow injection of unauthorized messages into the system.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Passenger Information System (PIS)",
+                        "description": "Public transit and railway station display system providing real-time train and bus information.",
+                        "sub_components": [
+                            {
+                                "name": "PIS software",
+                                "dynamic": false,
+                                "tags": "PIS software",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak authorization policies in PIS could allow attackers to manipulate messages displayed to passengers.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Failure to require authentication for message updates in PIS could allow unauthorized changes.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Database for transport data",
+                                "dynamic": false,
+                                "tags": "Database for transport data",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication mechanisms in the transport database could allow attackers to alter schedules or insert misleading messages.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Third-party data feeds",
+                                "dynamic": false,
+                                "tags": "Third-party data feeds",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-91: XML Injection",
+                                        "cwe_mapping_reason": "Manipulating external XML feeds could enable attackers to insert misleading transit updates or false alerts.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Airport Website",
+                        "description": "Web-based platform providing real-time flight data, announcements, and public communications.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_mapping_reason": "Failure to properly sanitize inputs could allow attackers to inject unauthorized messages on the website.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication in website management portals could allow unauthorized modifications.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Search and navigation features",
+                                "dynamic": false,
+                                "tags": "Search and navigation features",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Improper validation of search parameters could be used to inject unauthorized messages into search results.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_mapping_reason": "SQL injection vulnerabilities in website databases could allow attackers to modify or insert unauthorized messages.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Third-party data feeds",
+                                "dynamic": false,
+                                "tags": "Third-party data feeds",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "An SSRF vulnerability in the website's API calls could allow attackers to pull misleading external data or manipulate displayed messages.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Distribute malware",
+        "threat_description": "The threat involves distributing malware across fare collection systems in the transportation industry, potentially disrupting payment processing and service delivery. Attackers could use phishing, insider threats, or software vulnerabilities to infiltrate systems, leading to financial loss, operational downtime, and compromised passenger data.",
+        "motives": [
+            {
+                "motive": "Seek monetary profit",
+                "components": [
+                    {
+                        "name": "Ticketing Systems",
+                        "description": "Secure interface for booking and managing event tickets.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Weak credential protection in ticketing systems can allow attackers to infiltrate and distribute malware for financial gain.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                                        "cwe_mapping_reason": "Attackers can exploit URL redirection vulnerabilities in ticketing systems to distribute malware and gain monetary profit.",
+                                        "capecs_to_exclude": [
+                                            "178"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: SQL Injection",
+                                        "cwe_mapping_reason": "SQL injection vulnerabilities in ticketing systems could allow attackers to inject malware into fare collection processes.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Payment Processing Systems",
+                        "description": "Handles transactions and manages payment data processing.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                        "cwe_mapping_reason": "Unauthorized actors could exploit payment processing systems to steal sensitive data and distribute malware.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Weak credential protection can allow attackers to compromise payment systems and distribute malware for financial gain.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Lack of encryption in payment processing systems allows attackers to intercept and exploit data for monetary gain.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-89: SQL Injection",
+                                        "cwe_mapping_reason": "SQL injection vulnerabilities in payment systems can allow malware injection and illicit financial gains.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "Attackers can exploit CSRF vulnerabilities to manipulate user transactions and distribute malware.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_mapping_reason": "Malicious file uploads in payment systems can enable attackers to distribute malware and steal financial data.",
+                                        "capecs_to_exclude": [
+                                            "1"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Fare Collection Systems",
+                        "description": "Automated transit fare collection and management.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Lack of strong authentication in fare collection systems can allow attackers to distribute malware and manipulate transactions.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-327: Use of Weak Cryptography",
+                                        "cwe_mapping_reason": "Using weak encryption in fare collection systems allows attackers to intercept data and inject malware.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "CSRF attacks can be used to manipulate transactions and spread malware through fare collection interfaces.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Automated Toll Collection Systems",
+                        "description": "Automated toll collection system for vehicles.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-Coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded credentials in automated toll systems can be exploited to distribute malware and steal funds.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_mapping_reason": "Attackers can exploit weak file upload mechanisms to introduce malware into automated toll collection systems.",
+                                        "capecs_to_exclude": [
+                                            "1"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "Exposing toll data without encryption allows attackers to intercept and manipulate transactions.",
+                                        "capecs_to_exclude": [
+                                            "102",
+                                            "383",
+                                            "65"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "SSRF vulnerabilities in backend systems allow attackers to distribute malware by redirecting network requests.",
+                                        "capecs_to_exclude": [
+                                            "664"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Disrupt traffic",
+        "threat_description": "Disrupting traffic in the transportation industry involves malicious activities aimed at incapacitating or degrading transportation systems, resulting in delays, cancellations, and safety hazards. Attack vectors may include cyber-attacks on traffic control systems, physical sabotage of infrastructure, or misinformation campaigns to create chaos. The impact extends to economic losses, compromised public safety, and decreased reliability of transportation services, severely affecting commuters and cargo transit.",
+        "motives": [
+            {
+                "motive": "Test emergency response",
+                "components": [
+                    {
+                        "name": "Digital Signage and Information Displays",
+                        "description": "Displays real-time traffic information and emergency alerts.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Unauthorized access to digital signage could allow manipulation of traffic data to simulate emergency scenarios and assess response times.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Lack of authentication controls in signage systems allows attackers to inject false traffic alerts, testing emergency response effectiveness.",
+                                        "capecs_to_exclude": [
+                                            "36",
+                                            "62"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Unencrypted signage system data can be intercepted, altered, and exploited to simulate traffic incidents for emergency response testing.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Emergency Response Systems",
+                        "description": "Coordinates emergency traffic management and incident response.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                        "cwe_mapping_reason": "Leaking real-time emergency response data could enable attackers to manipulate traffic flow and test emergency system vulnerabilities.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Unauthorized access to emergency response data could facilitate the simulation of traffic crises to evaluate incident handling.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Navigation Mobile Applications",
+                        "description": "Provides real-time traffic updates and route optimization.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Lack of authentication in navigation apps allows unauthorized changes to traffic data, affecting emergency response evaluations.",
+                                        "capecs_to_exclude": [
+                                            "12",
+                                            "36",
+                                            "62"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_mapping_reason": "Manipulating traffic reports in navigation apps could artificially congest roads, testing emergency service response strategies.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Provoke disorder and confusion",
+                "components": [
+                    {
+                        "name": "Smart Traffic Lights and Road Sensors",
+                        "description": "Automated systems that regulate traffic flow using real-time data.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                        "cwe_mapping_reason": "Unauthorized access to traffic control systems could allow attackers to manipulate road signals and disrupt urban mobility.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-209: Generation of Error Message Containing Sensitive Information",
+                                        "cwe_mapping_reason": "Revealing system error messages could expose weaknesses in traffic control systems, enabling attackers to inject false data.",
+                                        "capecs_to_exclude": [
+                                            "215",
+                                            "463"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                                        "cwe_mapping_reason": "Traffic management systems lacking proper rate limits could be overloaded, leading to traffic congestion and public disorder.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Unauthorized access to traffic lights and road sensors could allow malicious actors to induce road gridlock and confusion.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Public Transit Communication Systems",
+                        "description": "Digital platforms used for transit updates and emergency messaging.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication controls in transit communication systems could allow attackers to inject false information, causing widespread commuter confusion.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "An SSRF attack could manipulate public transit messaging, spreading misinformation and causing traffic chaos.",
+                                        "capecs_to_exclude": [
+                                            "664"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Disrupt logistics",
+        "threat_description": "Disruptions in logistics and supply chain integrity within the transportation industry pose significant risks, including delays, increased operational costs, and compromised service reliability. Attack vectors may include cyber-attacks, physical sabotage, natural disasters, or systemic failures, leading to financial losses and reputational damage. Ensuring resilient and adaptive logistics frameworks is crucial for mitigating these risks.",
+        "motives": [
+            {
+                "motive": "Cause economic damage",
+                "components": [
+                    {
+                        "name": "Online Ticket Booking System",
+                        "description": "Web platform for purchasing public transportation tickets.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Poor input validation could be exploited to manipulate transactions and disrupt transportation logistics.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded credentials can allow attackers to tamper with bookings, causing significant economic disruption.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak authorization controls could be exploited to alter ticketing data and disrupt supply chain integrity.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: SQL Injection",
+                                        "cwe_mapping_reason": "SQL Injection vulnerabilities in ticketing databases could allow attackers to alter logistics data.",
+                                        "capecs_to_exclude": [
+                                            "108",
+                                            "109",
+                                            "110",
+                                            "470",
+                                            "66",
+                                            "7"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Unencrypted transaction data could be intercepted, leading to disruptions in transportation logistics.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Wi-Fi Networks in Transportation Hubs",
+                        "description": "Public Wi-Fi access in major transport centers.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_mapping_reason": "Weak password policies expose transport hubs to unauthorized access, impacting logistics security.",
+                                        "capecs_to_exclude": [
+                                            "112",
+                                            "16",
+                                            "49",
+                                            "509",
+                                            "55",
+                                            "565",
+                                            "70"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "Unencrypted data transmission could allow attackers to intercept logistics-related information.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-360: Trust of System Event Data",
+                                        "cwe_mapping_reason": "Compromised event data in transportation hubs could lead to logistics delays or failures.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Operational Technology (OT) Systems",
+                        "description": "Critical infrastructure control for transportation logistics.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded credentials in OT systems could allow unauthorized control over logistics operations.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Privileged Accounts",
+                                "dynamic": false,
+                                "tags": "Privileged Accounts",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_mapping_reason": "Excessive privilege execution in OT systems could enable attacks on logistics infrastructure.",
+                                        "capecs_to_exclude": [
+                                            "104"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                                        "cwe_mapping_reason": "Weak encryption in OT systems could allow interception of sensitive logistics data.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_mapping_reason": "Exploiting insecure deserialization in OT systems could disrupt logistics operations.",
+                                        "capecs_to_exclude": [
+                                            "586"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "An SSRF attack on OT systems could manipulate logistics controls, causing economic damage.",
+                                        "capecs_to_exclude": [
+                                            "664"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Hijack a vehicle",
+        "threat_description": "Hijacking a vehicle in the transportation industry involves unauthorized individuals forcibly taking control of a vehicle. This may endanger passengers, compromise cargo security, and disrupt transportation services. Attackers can use physical force, cyber-attacks, or deception to gain control. The impact includes financial losses, reputational damage, legal liabilities, and potential harm to passengers and drivers. Robust security measures and incident response plans are necessary to mitigate this risk.",
+        "motives": [
+            {
+                "motive": "Demand ransom",
+                "components": [
+                    {
+                        "name": "Communication Systems",
+                        "description": "Secure real-time data transmission over digital networks.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                                        "cwe_mapping_reason": "Sensitive information exposure could allow attackers to exploit communication channels and gain unauthorized control of vehicles.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Lack of verification of data authenticity can enable attackers to send unauthorized commands, leading to hijacking.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "Improper validation of message origin can allow attackers to impersonate trusted sources and take control of a vehicle.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-923: Improper Restriction of Communication Channel",
+                                        "cwe_mapping_reason": "Weak communication restrictions can be exploited to hijack vehicles remotely.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Engine Control Systems",
+                        "description": "Monitors and manages vehicle engine performance and control.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication mechanisms can allow attackers to gain unauthorized access to vehicle engine control.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-303: Incorrect Implementation of Authentication Algorithm",
+                                        "cwe_mapping_reason": "Weak or improperly implemented authentication algorithms can be exploited to gain control of the vehicle.",
+                                        "capecs_to_exclude": [
+                                            "90"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Inadequate access control can allow attackers to override engine functions and hijack the vehicle.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Access Control Systems",
+                        "description": "Manages access to vehicle controls and security functions.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-259: Use of Hard-coded Passwords",
+                                        "cwe_mapping_reason": "Hard-coded passwords can be exploited to gain unauthorized access to vehicle control systems.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism",
+                                        "cwe_mapping_reason": "A weak password recovery system can be exploited to hijack vehicle access.",
+                                        "capecs_to_exclude": [
+                                            "50"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak authorization mechanisms can allow attackers to manipulate vehicle access.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Surveillance and Security Systems",
+                        "description": "Vehicle security systems, including surveillance cameras and access logs.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1392: Use of Default Credentials",
+                                        "cwe_mapping_reason": "Default credentials in security systems can allow unauthorized access to vehicle surveillance.",
+                                        "capecs_to_exclude": []
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded credentials could be exploited to bypass vehicle security measures.",
+                                        "capecs_to_exclude": [
+                                            "191"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Flight Management System",
+                        "description": "Integrated platform managing flight planning and operational efficiency.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Poor input validation can allow attackers to send unauthorized flight commands.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication can be exploited to gain control over flight management functions.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-77: Command Injection",
+                                        "cwe_mapping_reason": "Exploiting command injection vulnerabilities in the Flight Management System could allow attackers to hijack the vehicle and demand ransom.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+  ]
