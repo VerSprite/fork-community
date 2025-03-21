@@ -1,0 +1,1177 @@
+[
+  {
+    "threat": "Execute Fraudulent Card-Not-Present Transactions",
+    "threat_description": "This threat involves unauthorized transactions using card-not-present (CNP) data, typically through online platforms, without the physical card being present.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Payment Gateway Exploitation",
+            "description": "Exploiting vulnerabilities in the payment gateway to execute unauthorized transactions.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication mechanisms can be exploited to bypass security controls.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-295: Improper Certificate Validation",
+                    "cwe_mapping_reason": "Improper certificate validation can lead to man-in-the-middle attacks.",
+                    "capecs_to_exclude": [
+                      "459"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                    "cwe_mapping_reason": "Improper input validation can lead to cross-site scripting attacks.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "85"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL injection vulnerabilities due to improper input sanitization.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Identity Theft",
+        "components": [
+          {
+            "name": "User Account Compromise",
+            "description": "Gaining unauthorized access to user accounts to perform fraudulent transactions.",
+            "sub_components": [
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently protected credentials can be exploited to gain unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Use of hard-coded credentials can lead to unauthorized access.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Cross-Site Request Forgery (CSRF) vulnerabilities can be exploited to perform unauthorized actions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities can be used to redirect users to malicious sites.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Compromise System Interfaces and Authentication Mechanisms",
+    "threat_description": "This threat involves unauthorized access, data manipulation, or service disruption through the compromise of system interfaces (e.g., APIs, message brokers, web servers) and authentication mechanisms (e.g., identity verification, access controls). Attackers may exploit vulnerabilities in these components to breach systems, manipulate data, or disrupt services, leading to significant operational and security impacts.",
+    "motives": [
+      {
+        "motive": "Data Exfiltration/Theft",
+        "components": [
+          {
+            "name": "Authentication and Authorization Systems",
+            "description": "Systems managing user authentication and access controls, critical for preventing unauthorized access.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication allows attackers to bypass security controls.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing authentication for critical functions allows unauthorized access.",
+                    "capecs_to_exclude": [
+                      "12"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Hard-coded credentials can be exploited to gain unauthorized access.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control can allow unauthorized data access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "Incorrect permissions can lead to unauthorized access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Data Storage and Management",
+            "description": "Systems storing and managing sensitive data, vulnerable to unauthorized access.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL injection can allow unauthorized data access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Improper data handling can expose sensitive information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation can lead to data breaches.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-116: Improper Encoding or Escaping of Output",
+                    "cwe_mapping_reason": "Improper encoding can enable data leakage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Service Disruption",
+        "components": [
+          {
+            "name": "Integration Interfaces",
+            "description": "Interfaces such as API gateways and message brokers that facilitate system communication.",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Uncontrolled resource use can lead to denial of service.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization of untrusted data can disrupt services.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-269: Improper Privilege Management",
+                    "cwe_mapping_reason": "Improper privilege management can enable disruptive actions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control can allow service disruption.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Web Application Components",
+            "description": "Components of the web application that can be targeted to disrupt services.",
+            "sub_components": [
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Uncontrolled resource use can cause denial of service.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-404: Improper Resource Shutdown or Release",
+                    "cwe_mapping_reason": "Improper resource handling can disrupt services.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Data Manipulation",
+        "components": [
+          {
+            "name": "Data Storage and Management",
+            "description": "Systems storing and managing sensitive data, vulnerable to unauthorized manipulation.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL injection can enable data manipulation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Exposure can facilitate data tampering.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper validation can allow data manipulation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-116: Improper Encoding or Escaping of Output",
+                    "cwe_mapping_reason": "Improper encoding can enable injection attacks.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Authentication and Authorization Systems",
+            "description": "Systems managing authentication and authorization, which can be manipulated to alter access.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication can allow identity manipulation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Hard-coded credentials can be exploited to manipulate access.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control can enable unauthorized data changes.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment",
+                    "cwe_mapping_reason": "Incorrect permissions can allow data manipulation.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Systems Through Third-Party Integrations",
+    "threat_description": "Exploiting vulnerabilities in third-party services to gain unauthorized access to systems and data.",
+    "motives": [
+      {
+        "motive": "Data Theft",
+        "components": [
+          {
+            "name": "Third-Party Authentication",
+            "description": "Exploiting weaknesses in third-party authentication services to gain unauthorized access.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                    "cwe_mapping_reason": "Improper handling of OAuth tokens.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Failure to properly authenticate users.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive information through API keys.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently protected credentials.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Data Storage",
+            "description": "Compromising third-party data storage services to access sensitive data.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control configuration.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "Server-side request forgery leading to unauthorized access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL injection vulnerabilities in third-party databases.",
+                    "capecs_to_exclude": [
+                      "108",
+                      "109",
+                      "110",
+                      "470",
+                      "66",
+                      "7"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive information through database misconfigurations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Service Disruption",
+        "components": [
+          {
+            "name": "Third-Party Service Dependency",
+            "description": "Exploiting dependencies on third-party services to disrupt operations.",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Uncontrolled resource consumption leading to service downtime.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                    "cwe_mapping_reason": "Improper resource shutdown or release.",
+                    "capecs_to_exclude": [
+                      "125",
+                      "130",
+                      "147",
+                      "197",
+                      "229",
+                      "230",
+                      "231",
+                      "469",
+                      "482",
+                      "486",
+                      "487",
+                      "488",
+                      "489",
+                      "490",
+                      "491",
+                      "493",
+                      "494",
+                      "495",
+                      "496",
+                      "528"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": false,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-350: Reliance on Reverse DNS Resolution for a Security-Critical Action",
+                    "cwe_mapping_reason": "Improper verification of DNS data authenticity.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-346: Origin Validation Error",
+                    "cwe_mapping_reason": "Origin validation error in DNS.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Conduct Non-Compliant Financial Transactions",
+    "threat_description": "This threat involves executing transactions that do not adhere to established compliance standards, potentially leading to legal and financial repercussions.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Transaction Processing",
+            "description": "The system responsible for processing financial transactions.",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation ",
+                    "cwe_mapping_reason": "Improper Input Validation can lead to non-compliant transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Cross-Site Request Forgery (CSRF) can be used to conduct unauthorized transactions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing Authentication for Critical Function can allow unauthorized transaction processing.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "Improper Authorization can lead to unauthorized transaction execution.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Competitive Advantage",
+        "components": [
+          {
+            "name": "Data Management",
+            "description": "The system responsible for managing and storing transaction data.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL Injection can be used to manipulate transaction data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of Sensitive Information can lead to non-compliant data handling.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-269: Improper Privilege Management",
+                    "cwe_mapping_reason": "Improper Privilege Management can allow unauthorized access to transaction data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently Protected Credentials can lead to unauthorized data access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Breach of Data Privacy Regulations",
+    "threat_description": "Unauthorized access or exposure of sensitive personal data, leading to violations of data privacy laws and regulations.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Data Storage Security",
+            "description": "Ensuring that data storage systems are secure against unauthorized access.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities can lead to unauthorized access to sensitive data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive information due to improper data handling.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Access Control",
+            "description": "Managing who has access to data and ensuring that unauthorized users cannot access sensitive information.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control can lead to unauthorized data access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication can allow unauthorized users to access sensitive data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Corporate Espionage",
+        "components": [
+          {
+            "name": "Network Security",
+            "description": "Protecting the network infrastructure from unauthorized access and data breaches.",
+            "sub_components": [
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently protected credentials can lead to unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of sensitive information can be intercepted by attackers.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Data Encryption",
+            "description": "Ensuring that data is encrypted both at rest and in transit to prevent unauthorized access.",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Missing encryption of sensitive data can lead to data breaches.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Use of a broken or risky cryptographic algorithm can compromise data security.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Insider Trading Through Unauthorized Use of Privileged Information",
+    "threat_description": "An insider with access to non-public financial or strategic information uses this data to make trades in the stock market, gaining an unfair advantage and potentially manipulating market conditions.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Access Control",
+            "description": "Mechanisms that manage who can view or use resources in a computing environment.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper Authentication allows unauthorized access to sensitive data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing Authentication for Critical Function can lead to unauthorized data access.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "166",
+                      "36",
+                      "62"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Data Storage",
+            "description": "Systems and processes for storing and managing data securely.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL Injection can be used to access unauthorized data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of Sensitive Information to an Unauthorized Actor.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Market Manipulation",
+        "components": [
+          {
+            "name": "Network Security",
+            "description": "Measures to protect data during transmission over networks.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently Protected Credentials can lead to unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext Transmission of Sensitive Information can be intercepted.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Data Integrity",
+            "description": "Ensuring data is accurate and unaltered during storage and transmission.",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation ",
+                    "cwe_mapping_reason": "Improper Input Validation can lead to data manipulation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                    "cwe_mapping_reason": "Insufficient Verification of Data Authenticity can lead to data tampering.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Abuse of Credit Card Reward System Mechanisms",
+    "threat_description": "Exploiting vulnerabilities in credit card reward systems to gain unauthorized benefits or rewards.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Reward Calculation Logic",
+            "description": "The logic used to calculate rewards based on transactions.",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation ",
+                    "cwe_mapping_reason": "Improper Input Validation in reward calculation logic.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "Improper Authorization leading to unauthorized reward manipulation.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Transaction Processing",
+            "description": "The process of handling and recording transactions.",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL Injection in transaction processing.",
+                    "capecs_to_exclude": [
+                      "108",
+                      "109",
+                      "110",
+                      "470",
+                      "66",
+                      "7"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Cross-Site Request Forgery (CSRF) in transaction processing.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Competitive Advantage",
+        "components": [
+          {
+            "name": "Reward System API",
+            "description": "The API used to interact with the reward system.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper Authentication in reward system API.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Use of Hard-coded Credentials in reward system API.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User Account Management",
+            "description": "The system managing user accounts and their associated rewards.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper Access Control in user account management.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently Protected Credentials in user account management.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Circumvention of Biometric Authentication Controls",
+    "threat_description": "An attacker attempts to bypass biometric authentication mechanisms to gain unauthorized access to a system or data.",
+    "motives": [
+      {
+        "motive": "Unauthorized Access",
+        "components": [
+          {
+            "name": "Biometric Sensor Manipulation",
+            "description": "Techniques used to manipulate or spoof biometric sensors.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Failure to properly authenticate users can lead to unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                    "cwe_mapping_reason": "Improper validation of biometric data can allow spoofing attacks.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Cross-Site Request Forgery can be used to bypass authentication mechanisms.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Uncontrolled Resource Consumption can lead to denial of service, affecting authentication.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Data Theft",
+        "components": [
+          {
+            "name": "Biometric Data Extraction",
+            "description": "Methods to extract and misuse biometric data.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive information due to improper access control.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization of untrusted data can lead to data breaches.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of sensitive information can be intercepted.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently protected credentials can be intercepted and misused.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Disrupt Fintech Ecosystem Operations",
+    "threat_description": "An attempt to disrupt the operations of a fintech ecosystem, potentially causing financial loss, reputational damage, and operational downtime.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Payment Processing",
+            "description": "Targeting the payment processing systems to intercept or alter transactions.",
+            "sub_components": [
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in backend servers can be exploited to manipulate payment data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing Authentication for Critical Function in backend servers can allow unauthorized access to payment processing.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                    "cwe_mapping_reason": "Improper Input Validation can lead to cross-site scripting attacks affecting payment data.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "85"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation ",
+                    "cwe_mapping_reason": "Improper Input Validation can allow attackers to inject malicious data into payment processing systems.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Reputational Damage",
+        "components": [
+          {
+            "name": "User Account Management",
+            "description": "Compromising user accounts to damage the reputation of the fintech service.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper Authentication can allow unauthorized access to user accounts.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Use of Hard-coded Credentials can lead to unauthorized access to user accounts.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "Improper Authorization can allow users to perform actions beyond their permissions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Incorrect Authorization can lead to privilege escalation and unauthorized actions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
