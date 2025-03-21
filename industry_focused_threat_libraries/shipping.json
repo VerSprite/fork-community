@@ -1,0 +1,3265 @@
+[
+  {
+    "threat": "Unauthorized Diversion or Appropriation of Freight",
+    "threat_description": "Threat actors may exploit weaknesses in physical access controls, cargo management software, or authentication mechanisms to divert or steal freight. This threat targets the integrity of shipping logistics and may involve collusion with insiders, unauthorized system access, or compromised tracking and booking mechanisms.",
+    "motives": [
+      {
+        "motive": "Inducing Economic Damage",
+        "components": [
+          {
+            "name": "Freight and Cargo Management Systems",
+            "description": "A software platform for tracking, scheduling, and managing freight logistics.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive shipping data allows unauthorized actors to manipulate or reroute freight, directly causing economic damage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication in Freight and Cargo Management Systems allows attackers to gain unauthorized access, enabling them to manipulate or steal freight data, thereby inducing economic damage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control allows unauthorized individuals to infiltrate Freight and Cargo Management Systems, enabling them to manipulate or steal cargo data and induce economic damage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-862: Missing Authorization",
+                    "cwe_mapping_reason": "The lack of proper authorization controls allows attackers to exploit Freight and Cargo Management Systems, leading to unauthorized access and manipulation that can cause significant economic damage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "The unauthorized appropriation of freight leverages flaws in authorization mechanisms within Freight and Cargo Management Systems, allowing attackers to manipulate or access sensitive logistics data, leading to significant economic damage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "2FA/MFA",
+                "dynamic": false,
+                "tags": "2FA/MFA",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                    "cwe_mapping_reason": "An attacker can exploit authentication weaknesses to capture and replay credentials, gaining unauthorized access to Freight and Cargo Management Systems and causing economic damage by manipulating shipment data or rerouting cargo.",
+                    "capecs_to_exclude": [
+                      "509"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "The freight and cargo management systems fail to encrypt sensitive data, making it easier for attackers to intercept and manipulate information to induce economic damage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "An attacker can exploit vulnerabilities in freight and cargo management systems by injecting malicious SQL code, leading to unauthorized access and manipulation of cargo data, inducing significant economic damage. This allows the attacker to alter, delete, or steal freight information, compromising the integrity and availability of the system.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Attackers could exploit the vulnerable file upload functionality in the Freight and Cargo Management Systems to inject malicious files, thereby gaining unauthorized access and disrupting operations to induce economic damage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "The unauthorized appropriation of freight relies on exploiting URL redirection vulnerabilities within Freight and Cargo Management Systems to redirect users to malicious sites, thereby disrupting operations and causing economic damage.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "This vulnerability is relevant to Freight and Cargo Management Systems because threat actors could exploit it to inject malicious data during deserialization, potentially corrupting the system and causing significant economic damage.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in Freight and Cargo Management Systems impedes the ability to detect and trace unauthorized appropriation activities, thereby exacerbating economic damage by allowing threats to go unnoticed.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                    "cwe_mapping_reason": "Hackers can exploit the Freight and Cargo Management Systems by injecting untrusted inputs to manipulate security decisions, directly causing economic damage by altering or misappropriating freight information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "Unauthorized appropriation of freight becomes feasible because attackers can manipulate the Freight and Cargo Management Systems to send malicious requests, potentially leading to unauthorized access and control over critical logistics data, thereby inducing economic damage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-939: Improper Authorization in Handler for Custom URL Scheme",
+                    "cwe_mapping_reason": "Improper authorization in the URL scheme allows attackers to exploit vulnerabilities in the Freight and Cargo Management Systems, enabling them to gain unauthorized access and induce economic damage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Cargo Tracking Devices",
+            "description": "\u00a0A RFID or GPS-based device used for monitoring cargo movement and delivery verification.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "The cargo tracking devices reveal sensitive location data, enabling unauthorized actors to intercept and appropriate freight, thus causing significant economic damage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Attackers can exploit the lack of authentication on cargo tracking devices to manipulate or disable tracking, thereby facilitating the unauthorized appropriation of freight and inducing economic damage.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "166",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "The exposure of sensitive location data through cargo tracking devices allows unauthorized actors to exploit this information, leading to potential theft of the freight and consequent economic damage.",
+                    "capecs_to_exclude": [
+                      "464",
+                      "467",
+                      "498",
+                      "508"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "The threat actors can exploit weakly protected credentials to gain unauthorized access to cargo tracking devices, thereby manipulating or falsifying location data to induce economic damage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "2FA/MFA",
+                "dynamic": false,
+                "tags": "2FA/MFA",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                    "cwe_mapping_reason": "Attackers could exploit weak authentication mechanisms in cargo tracking devices to gain unauthorized access, enabling them to manipulate or disable the tracking system to inflict economic damage.",
+                    "capecs_to_exclude": [
+                      "16",
+                      "49",
+                      "560",
+                      "565",
+                      "600",
+                      "652",
+                      "653"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "The threat actor can intercept and alter unencrypted data from cargo tracking devices, leading to unauthorized appropriation of freight and causing significant economic damage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                    "cwe_mapping_reason": "Weak encryption allows attackers to intercept and manipulate cargo tracking data, facilitating unauthorized appropriation of freight and inducing economic damage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "The use of unencrypted transmission in cargo tracking devices allows attackers to intercept and manipulate data, leading to unauthorized appropriation of freight and resulting in economic damage. This vulnerability exposes sensitive information critical for ensuring cargo security.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "The attacker can exploit vulnerabilities in cargo tracking devices to overwhelm their resources, causing disruptions in tracking and leading to potential economic damage due to lost or delayed freight. This deliberate overload prevents effective monitoring, ensuring the unauthorized appropriation of cargo goes undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "The incorrect permission assignment for cargo tracking devices allows unauthorized individuals to access and manipulate critical data, facilitating the theft or misrouting of freight to induce economic damage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-603: Use of Client-Side Authentication",
+                    "cwe_mapping_reason": "Client-side authentication can be easily bypassed, allowing attackers to manipulate or spoof cargo tracking data, ultimately causing significant economic damage by misappropriating freight.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-749: Exposed Dangerous Method or Function",
+                    "cwe_mapping_reason": "Exploiting exposed dangerous methods or functions in cargo tracking devices allows attackers to manipulate or disable tracking, causing economic damage by making the cargo untraceable.",
+                    "capecs_to_exclude": [
+                      "500"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Manipulation or Disabling of Cargo Tracking Systems",
+    "threat_description": "Adversaries may tamper with or disable cargo tracking systems to disrupt shipment visibility, manipulate delivery status, or evade detection of cargo theft. This threat may exploit weak authentication, insecure communication, or firmware flaws in tracking devices and systems.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Coercion",
+        "components": [
+          {
+            "name": "Dispatch Systems",
+            "description": "A centralized platform for managing and coordinating vehicle dispatch operations.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "The exposure of sensitive information in dispatch systems allows unauthorized actors to manipulate cargo tracking, facilitating extortion by threatening or causing disruption. This vulnerability directly enables the attacker to obtain critical operational details that can be leveraged for coercion.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Attackers exploit weak authentication mechanisms in dispatch systems to gain unauthorized access, enabling them to manipulate cargo tracking data and coerce payment by threatening logistical chaos.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing authentication for critical functions in dispatch systems allows attackers to hijack cargo tracking systems, enabling them to manipulate or disrupt operations and extort payment through coercion.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36",
+                      "62"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory (Path Traversal)",
+                    "cwe_mapping_reason": "Attackers exploit improper path limitations in dispatch systems to gain unauthorized access and manipulate cargo tracking data, enabling them to coerce payments through extortion.",
+                    "capecs_to_exclude": [
+                      "126",
+                      "64",
+                      "76",
+                      "78",
+                      "79"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Attackers can intercept unencrypted data transmitted by the Dispatch Systems to hijack cargo tracking, thereby coercing payments for the return of sensitive information or operational control.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Attackers can exploit excessive resource consumption in dispatch systems to debilitate cargo tracking operations, thereby coercing companies into paying a ransom to restore functionality. By overwhelming system resources, attackers increase downtime and operational costs, pressuring organizations to meet their demands quickly.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "Attackers can exploit incorrect permission assignments in Dispatch Systems to gain unauthorized access, allowing them to manipulate cargo tracking data and coerce payment.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Attackers can exploit vulnerabilities in dispatch systems to impersonate legitimate users and manipulate cargo tracking information, thereby coercing companies into paying ransoms to regain control.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "The attacker could exploit the dispatch system's vulnerability to upload malicious code, gaining unauthorized control over cargo tracking and enabling extortion by threatening to disrupt or falsify shipment information.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Attackers can exploit weaknesses in the dispatch system's handling of serialized data to inject malicious payloads, allowing them to hijack the cargo tracking system and coerce payment.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "Attackers exploit input vulnerabilities in dispatch systems to inject malicious scripts, enabling them to hijack cargo tracking data and coerce payments. This manipulation compromises the integrity of the tracking information and leverages extortion.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63",
+                      "85"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "Attackers can exploit vulnerabilities in the Dispatch Systems by injecting malicious SQL code, allowing them to manipulate or hijack cargo tracking data, thus coercing payment through extortion. This SQL injection attack directly targets the integrity and availability of the cargo tracking information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Onboard Entertainment Systems",
+            "description": "\u00a0A digital content delivery system for streaming entertainment on ships and vessels.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                    "cwe_mapping_reason": "Attackers exploit the memory buffer vulnerabilities in onboard entertainment systems to gain unauthorized access, allowing them to hijack cargo tracking systems for extortion purposes. This manipulation coerces companies into paying ransoms to regain control.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "The relevance of this issue lies in the potential for unauthorized actors to access sensitive information within the Onboard Entertainment Systems, enabling them to coerce payment by threatening to disrupt or expose cargo tracking data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication allows attackers to gain unauthorized access to the onboard entertainment systems, enabling them to hijack cargo tracking systems and extort payment through coercion.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "The absence of authentication for critical functions in the onboard entertainment systems allows attackers to hijack cargo tracking systems, enabling them to extort payments by threatening or causing operational disruptions. This vulnerability directly facilitates unauthorized access and control, aligning with their motive of coercion for financial gain.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "166",
+                      "36",
+                      "62"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory (Path Traversal)",
+                    "cwe_mapping_reason": "Attackers exploit improper directory restrictions in onboard entertainment systems to access and manipulate cargo tracking data, leveraging this control to extort payment through coercion.",
+                    "capecs_to_exclude": [
+                      "126",
+                      "64",
+                      "76",
+                      "78",
+                      "79"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                    "cwe_mapping_reason": "Attackers exploit weak encryption in onboard entertainment systems to hijack cargo tracking data, enabling them to coerce payments through threats of data manipulation or disruption.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "An attacker could exploit vulnerabilities in the onboard entertainment systems to execute unauthorized commands, thereby hijacking cargo tracking systems and coercing victims for payment. By manipulating the system, the attacker can force actions without the user's knowledge or explicit consent, aligning with their extortion motive.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Attackers exploit the ability to upload dangerous files to the onboard entertainment systems, compromising the system and enabling them to hijack cargo tracking data to extort payments through coercion.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Attackers exploit the onboard entertainment systems' redirect vulnerability to covertly lead users to malicious websites, facilitating the extortion scheme by compromising sensitive data or system integrity.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "Attackers exploit vulnerabilities in the onboard entertainment systems to inject malicious scripts, enabling them to hijack the cargo tracking systems and demand extortive payments. This manipulation compromises the integrity of web page content, coercing targeted entities into complying with the attacker's demands.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63",
+                      "85"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Financial Gain through Contraband Trafficking",
+        "components": [
+          {
+            "name": "License Plate Recognition Systems",
+            "description": "An automated system that captures and processes vehicle license plate information.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Unauthorized actors could exploit vulnerabilities in the License Plate Recognition Systems to access sensitive cargo tracking information, facilitating the smuggling of contraband by avoiding detection.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "The absence of authentication for critical functions in the License Plate Recognition Systems allows unauthorized users to potentially manipulate or bypass the system, facilitating the smuggling of contraband.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "The attackers exploit weak credential protection in the License Plate Recognition Systems to gain unauthorized access, allowing them to smuggle contraband by manipulating cargo tracking information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "The attackers exploit improper authorization in the license plate recognition systems to manipulate or bypass security controls, allowing them to smuggle contraband by altering or hiding the true identity of cargo vehicles. This vulnerability enables unauthorized access and modification of system data, facilitating the hijacking of cargo tracking processes.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-862: Missing Authorization",
+                    "cwe_mapping_reason": "The threat actors can exploit the missing authorization in License Plate Recognition Systems to gain unauthorized access, allowing them to alter or bypass data and successfully smuggle contraband. This vulnerability directly compromises the integrity and reliability of the tracking system.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Attackers can intercept unencrypted data from License Plate Recognition Systems to alter or manipulate tracking information, facilitating the smuggling of contraband by obscuring the movement and identity of targeted vehicles.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Attackers can exploit weak cryptographic algorithms in License Plate Recognition Systems to intercept and alter data, facilitating the smuggling of contraband by bypassing security checks.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file uploads can allow attackers to introduce malicious files into the license plate recognition systems, compromising the integrity of cargo tracking and aiding in the smuggling of contraband.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "Incorrect permission assignment allows attackers to gain unauthorized access to the license plate recognition system, enabling them to manipulate tracking data and smuggle contraband undetected. This vulnerability directly compromises the system's integrity and facilitates criminal activities.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-799: Improper Control of Interaction Frequency",
+                    "cwe_mapping_reason": "The attacker exploits insufficient rate limiting to flood the License Plate Recognition Systems with requests, causing system overload and creating opportunities to insert or alter data to bypass cargo tracking and smuggle contraband.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                    "cwe_mapping_reason": "The Hijack Cargo Tracking Systems threat leverages the vulnerability of accepting untrusted inputs during security decisions, enabling attackers to manipulate license plate recognition systems and smuggle contraband undetected.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Confidential Route Data",
+    "threat_description": "Attackers may attempt to extract or intercept shipping route data for use in piracy, espionage, or competitive sabotage. This threat targets the confidentiality of route planning systems, port schedules, and geospatial tracking mechanisms.",
+    "motives": [
+      {
+        "motive": "Gain a Competitive Advantage",
+        "components": [
+          {
+            "name": "Enterprise Resource Planning (ERP) Systems",
+            "description": "A centralized software platform that integrates core business processes across departments.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input handling in ERP systems can allow attackers to manipulate or extract sensitive shipping route data, giving them a competitive edge. By exploiting this vulnerability, adversaries can gain unauthorized access to critical logistical information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "This vulnerability is relevant because the ERP system's exposure of shipping routes to unauthorized actors can provide competitors with critical logistical data, thereby compromising trade secrets and providing them with a competitive edge.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "An attacker can exploit inadequate authentication mechanisms in the ERP system to gain unauthorized access to shipping route data, enabling them to use this information for competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "The improper enforcement of access controls in ERP systems allows attackers to exploit vulnerabilities, enabling unauthorized extraction of sensitive shipping routes and gaining a competitive advantage. This threat directly targets the access control mechanisms, which, if inadequately configured, provide a pathway for malicious actors to obtain critical logistical information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "An attacker can exploit this vulnerability to manipulate shipping route data undetected, gaining unauthorized access to sensitive ERP system information for competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "An attacker could exploit the ERP system's lack of file type restrictions to upload malicious files, enabling them to extract sensitive shipping route data and gain a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Attackers exploit vulnerabilities in deserialization processes within ERP systems to inject malicious data, enabling them to extract valuable shipping routes and gain a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "Attackers can exploit vulnerabilities in the ERP system's input handling to inject malicious scripts, enabling them to extract shipping routes and gain a competitive advantage. Such exploitation compromises the integrity of critical business data and exposes sensitive logistical information.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "The vulnerability is relevant because attackers can exploit it to manipulate the ERP system's database queries, enabling them to extract sensitive shipping route information and gain a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Customer Relationship Management (CRM) Systems",
+            "description": "A software platform designed to manage and analyze customer interactions and data.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation in CRM systems can allow attackers to manipulate or extract sensitive shipping route data, giving them a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "An attacker could exploit the CRM system to access sensitive customer shipping routes, gaining a competitive advantage by analyzing or disrupting the logistics operations of their rivals.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Attackers exploit the CRM system by bypassing its authentication mechanisms to extract sensitive shipping route data, thus gaining a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Attackers exploit the CRM system's weak credential protections to gain unauthorized access and extract sensitive shipping route information, giving them a competitive edge.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "The improper access controls in the CRM system allow unauthorized users to extract sensitive shipping route data, providing a competitive advantage to the attacker.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "The CRM systems store sensitive shipping route data, and an attacker could exploit the lack of encryption to intercept and extract this information, thereby gaining a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "Attackers exploit vulnerabilities in the CRM system to execute unauthorized SQL commands, allowing them to extract sensitive shipping route data. This data can provide a competitive edge by revealing logistical strategies and operations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "An attacker exploiting this vulnerability can manipulate authenticated users to unknowingly execute harmful requests, enabling unauthorized access to sensitive shipping route data stored in the CRM system. By doing so, the attacker can gain a competitive edge by intercepting and utilizing this critical information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Attackers can exploit the CRM system's ability to upload files without proper validation, allowing them to introduce malicious files that extract sensitive shipping route information to gain a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Attackers could exploit vulnerabilities in CRM Systems to redirect users to malicious sites, enabling them to capture sensitive shipping route data and gain a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "The relevance of this vulnerability to the CRM system lies in that attackers can exploit deserialization flaws to manipulate and extract sensitive shipping route data, giving them a competitive edge.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "Attackers exploit the vulnerability to manipulate the CRM system into making unauthorized requests, thereby extracting sensitive shipping route information to gain a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "This vulnerability allows attackers to inject malicious scripts into the CRM system, enabling them to extract sensitive shipping routes information and gain a competitive advantage. Attackers can exploit this flaw to manipulate web content and harvest critical data from unsuspecting users.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Navigation and Positioning Systems",
+            "description": "A maritime navigation tool that integrates GPS, AIS, and radar for accurate positioning.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                    "cwe_mapping_reason": "Attackers exploit the target's lack of robust authentication mechanisms to spoof legitimate tracking signals, allowing them to access and manipulate shipping routes for competitive gain.",
+                    "capecs_to_exclude": [
+                      "21",
+                      "22",
+                      "459",
+                      "461",
+                      "473",
+                      "476",
+                      "59",
+                      "60",
+                      "667"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Unauthorized actors exploit GPS and tracking systems to access sensitive shipping routes data, giving them a competitive advantage. This breach compromises the confidentiality of strategically important information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication in GPS and tracking systems allows attackers to easily access and extract sensitive shipping route information, providing them a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "An attacker could exploit vulnerabilities in session management protocols of GPS and tracking systems to hijack user sessions, allowing them to access and extract sensitive shipping route data. This unauthorized access grants them a competitive advantage by revealing proprietary or strategic logistical information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Attackers can intercept and extract unencrypted shipping route data from GPS and tracking systems, gaining a competitive advantage by accessing sensitive logistical information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "Hardware Components",
+                "dynamic": false,
+                "tags": "Hardware Components",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-920: Improper Restriction of Power Consumption",
+                    "cwe_mapping_reason": "Attackers exploit the improper restriction of power consumption to disrupt GPS and tracking systems, thereby extracting sensitive shipping routes to gain a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Intentional Disruption of Hazardous Goods Transport",
+    "threat_description": "Threat actors may attempt to delay, reroute, or sabotage the transport of hazardous materials to cause environmental damage or public safety risks. This may involve manipulation of transport scheduling, sensor spoofing, or disruption of logistics platforms.",
+    "motives": [
+      {
+        "motive": "Mitigate Environmental Impact and Promote Sustainable Practices",
+        "components": [
+          {
+            "name": "Logistics and Scheduling Software",
+            "description": "A cloud-based system that automates logistics planning and real-time tracking.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Sensitive information about transport routes and schedules could be exposed to unauthorized actors, enabling them to disrupt the logistics and scheduling of hazardous materials to mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "An attacker could exploit the lack of authentication for critical functions in the logistics and scheduling software to gain unauthorized access, disrupt the transport of hazardous materials, and thus mitigate environmental impact while promoting sustainable practices.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-620: Unverified Password Change",
+                    "cwe_mapping_reason": "An attacker can exploit weaknesses in the password change process to gain unauthorized access to the logistics and scheduling software, potentially altering or disrupting the transport of hazardous materials to mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "Privileged Accounts",
+                "dynamic": false,
+                "tags": "Privileged Accounts",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                    "cwe_mapping_reason": "Execution with unnecessary privileges is relevant to Logistics and Scheduling Software because attackers can exploit these elevated permissions to disrupt transport routes, thereby promoting sustainable practices by preventing the movement of hazardous materials.",
+                    "capecs_to_exclude": [
+                      "104"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "The logistics and scheduling software may fail to properly restrict access, allowing unauthorized users to alter transportation schedules and disrupt the transport of hazardous materials, thereby promoting sustainable practices by preventing environmental harm.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-862: Missing Authorization",
+                    "cwe_mapping_reason": "Without proper authorization checks, attackers could access and manipulate logistics and scheduling software to disrupt the transport of hazardous materials, thereby potentially mitigating environmental impact and promoting sustainable practices.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "The lack of encryption for sensitive data in the logistics and scheduling software allows attackers to intercept and manipulate transport schedules, thereby disrupting the transport of hazardous materials to mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "This vulnerability is relevant because it allows attackers to upload malicious files that can disrupt logistics and scheduling software, hindering the transport of hazardous materials to mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-602: Client-Side Enforcement of Server-Side Security",
+                    "cwe_mapping_reason": "Client-side enforcement allows attackers to bypass crucial server-side checks, enabling them to disrupt logistics and scheduling software to mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "The incorrect assignment of permissions for critical resources in the logistics and scheduling software could enable unauthorized disruption of hazardous materials transport, aligning with the motive to mitigate environmental impacts and promote sustainable practices.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                    "cwe_mapping_reason": "The logistics and scheduling software may rely on unverified data inputs, allowing attackers to disrupt the transport of hazardous materials to mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Industrial Control Systems (ICS) and SCADA Systems",
+            "description": "A network of hardware and software that manages automation in critical infrastructure.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                    "cwe_mapping_reason": "Attackers can exploit buffer overflow vulnerabilities in ICS and SCADA systems to disrupt the transport of hazardous materials, thereby preventing potential environmental damage and advocating for sustainable practices.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "The threat actor exploits incorrect permission assignments in Industrial Control Systems (ICS) and SCADA Systems to gain unauthorized access, potentially disrupting the transport of hazardous materials to mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-1393: Use of Default Password",
+                    "cwe_mapping_reason": "Attackers could exploit default passwords on ICS and SCADA systems to gain unauthorized access and disrupt the transport of hazardous materials, thereby mitigating environmental impact and promoting sustainable practices.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "The attacker might exploit vulnerabilities in ICS or SCADA systems to access sensitive information on hazardous material transport, enabling them to disrupt operations and mitigate environmental impact. They leverage this exposure to identify critical points of intervention.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Exploiting weak authentication mechanisms in ICS and SCADA systems allows attackers to gain unauthorized access, disrupt the transport of hazardous materials, and thereby mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "The missing encryption of sensitive data in ICS and SCADA Systems can enable attackers to intercept and manipulate data transmissions, thereby disrupting the transport of hazardous materials and potentially mitigating environmental impact. This vulnerability directly undermines efforts to secure communication channels crucial for monitoring and controlling hazardous material logistics.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Attackers exploit the vulnerability to hijack legitimate user sessions and issue unauthorized commands to disrupt the transport of hazardous materials, thereby mitigating environmental impact and promoting sustainable practices.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file uploads in ICS and SCADA systems allow attackers to introduce malicious files, potentially disrupting the transport of hazardous materials and thereby serving the motive to mitigate environmental impact and promote sustainable practices.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in Industrial Control Systems (ICS) and SCADA Systems allow attackers to inject malicious payloads, potentially disrupting the transport of hazardous materials to mitigate environmental impact. This tactic aligns with the motive by preventing the mishandling or release of harmful substances.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-506: Embedded Malicious Code",
+                    "cwe_mapping_reason": "Malicious code embedded in Industrial Control Systems (ICS) and SCADA Systems can disrupt the transport of hazardous materials, aligning with the motive to mitigate environmental impacts and promote sustainable practices. This code could interfere with operations and safety protocols, leading to controlled halts or diversions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "Attackers can exploit web application vulnerabilities in ICS and SCADA systems to inject malicious scripts, potentially disrupting operations and communication to prevent the transport of hazardous materials, thereby aiming to enhance environmental sustainability.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63",
+                      "85"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Tampering with Shipping Documentation or Manifests",
+    "threat_description": "This threat involves the unauthorized alteration or fabrication of shipping manifests, customs forms, or regulatory documents. It can lead to financial fraud, smuggling, or customs evasion and is often facilitated by inadequate document validation or access controls.",
+    "motives": [
+      {
+        "motive": "Commit Insurance Fraud",
+        "components": [
+          {
+            "name": "Data Storage and Processing Centers",
+            "description": "A centralized facility used to store, manage, and process large volumes of digital data.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-118: Incorrect Access of Indexable Resource (Range Error)",
+                    "cwe_mapping_reason": "This vulnerability is relevant because it allows attackers to manipulate or alter shipping documents by accessing and modifying indexable resources within data storage and processing centers, thereby facilitating insurance fraud.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "An attacker can exploit vulnerabilities in data storage and processing centers to expose shipping documents, thereby facilitating insurance fraud by manipulating or falsifying sensitive information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-256: Plaintext Storage of a Password",
+                    "cwe_mapping_reason": "Attackers can exploit the storage of plaintext passwords to gain unauthorized access to data storage and processing centers, allowing them to alter or sabotage shipping documents for the purpose of committing insurance fraud.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication allows attackers to gain unauthorized access to data storage and processing centers, enabling them to sabotage shipping documents for committing insurance fraud.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Attackers can exploit weak credential protection to gain unauthorized access to data storage and processing centers, allowing them to alter or sabotage shipping documents and commit insurance fraud.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-215: Insertion of Sensitive Information Into Debugging Code",
+                    "cwe_mapping_reason": "The attacker can exploit poorly secured debugging code to insert false shipping documents, enabling them to commit insurance fraud by manipulating data within storage and processing centers.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "An attacker can exploit the lack of encryption on sensitive shipping documents to alter or manipulate data, facilitating insurance fraud by making it difficult to verify the authenticity of the documents.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "The attacker exploits vulnerabilities in data storage and processing centers' databases to manipulate or destroy shipping documents, facilitating fraudulent insurance claims. They inject malicious code to corrupt data and undermine the integrity of the stored information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "An attacker can exploit authentication vulnerabilities in data storage and processing centers to manipulate or destroy shipping documents, facilitating insurance fraud.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "The attacker can manipulate the data storage and processing centers by uploading malicious files, thereby altering or destroying shipping documents to commit insurance fraud. This exploit leverages the system's inability to restrict dangerous file types, facilitating the sabotage.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Uncontrolled resource consumption directly impacts data storage and processing centers by enabling the sabotage of shipping documents through overwhelming system resources, thereby facilitating insurance fraud.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "This vulnerability is relevant because it allows attackers to inject malicious scripts into the data storage and processing centers, which could alter or sabotage shipping documents, facilitating insurance fraud.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63",
+                      "85"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Extraction of Customer Information",
+    "threat_description": "Customer information in the shipping industry may be extracted by malicious actors targeting vulnerabilities within shipping databases or communication channels. Personal data, such as names, addresses, and payment details, could be intercepted or stolen during transit or from poorly secured storage systems. The consequences could lead to identity theft or unauthorized transactions, significantly impacting customer trust and business reputation in the shipping sector.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Illicit Distribution",
+        "components": [
+          {
+            "name": "Public facing booking system",
+            "description": "A web-based platform that allows customers to book shipping and logistics services.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "The booking system exposes sensitive customer data, allowing unauthorized actors to access and sell it on the dark net.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "An attacker can exploit the improper authentication mechanisms in the public-facing booking system to gain unauthorized access and extract customer information to sell on the dark net.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Attackers can exploit weak access controls in the public-facing booking system to gain unauthorized access to customer information and subsequently sell it on the dark net.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "An attacker can easily intercept and steal unencrypted customer information from the public-facing booking system, enabling them to sell this sensitive data on the dark net.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "The attacker can exploit the improper neutralization of special elements in the SQL commands of the public-facing booking system to extract customer information, which they can then sell on the dark net.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Attackers can intercept and capture sensitive customer information transmitted in cleartext across the public-facing booking system, exploiting this vulnerability to sell the data on the dark net.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command (OS Command Injection)",
+                    "cwe_mapping_reason": "Attackers exploit vulnerabilities in the public-facing booking system to inject malicious commands, enabling them to extract and sell customer information on the dark net.",
+                    "capecs_to_exclude": [
+                      "108",
+                      "15",
+                      "6",
+                      "88"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Attackers can exploit the booking system's vulnerability by tricking authenticated users into making unauthorized requests, enabling them to extract and sell customer information on the dark net.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "An attacker can exploit session fixation to hijack active sessions on the public-facing booking system, enabling them to access and extract customer information for sale on the dark net.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Attackers could exploit the booking system's vulnerability to upload malicious files, enabling unauthorized access to extract and sell customer information on the dark net.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "The vulnerability allows attackers to redirect users to malicious websites, facilitating the extraction of customer information which can then be sold on the dark net.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "Attackers can exploit vulnerabilities in the public-facing booking system's input handling to inject malicious scripts, enabling them to steal customer information and sell it on the dark net.",
+                    "capecs_to_exclude": [
+                      "85"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Corporate Espionage",
+    "threat_description": "Corporate espionage in the shipping industry involves the unauthorized acquisition of confidential business information. Sensitive data on logistics, financial transactions, or strategic plans could be targeted. These activities can result in significant competitive disadvantages, legal implications, and financial loss. Insider threats or cyber intrusions might facilitate espionage, impacting operational integrity and stakeholder trust. Protection measures and continuous monitoring must be enforced.",
+    "motives": [
+      {
+        "motive": "Gain a Competitive Advantage",
+        "components": [
+          {
+            "name": "Web hosting services",
+            "description": "A cloud or on-premises infrastructure that stores and delivers websites to users.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation on web hosting services allows attackers to exploit vulnerabilities, facilitating unauthorized access to sensitive data and creating a competitive advantage through corporate espionage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "Attackers can exploit vulnerabilities in the web hosting service's input handling to inject malicious scripts, allowing them to steal sensitive information and create a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63",
+                      "85"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "Exploiting SQL injection vulnerabilities in web hosting services allows attackers to exfiltrate sensitive data, thereby gaining a competitive advantage through corporate espionage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Attackers leverage the lack of encryption in sensitive data to intercept and steal crucial information, thereby gaining a competitive advantage over the web hosting services. This vulnerability enables them to access valuable corporate secrets and undermine the target\u2019s market position.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Sensitive information exposure in web hosting services allows unauthorized actors to access corporate data, which can be exploited to gain a competitive advantage. Such breaches directly undermine the security measures meant to protect proprietary information from corporate espionage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Attackers exploit poorly protected credentials to infiltrate web hosting services, gaining unauthorized access and creating a competitive advantage by stealing sensitive corporate data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "Privileged Accounts",
+                "dynamic": false,
+                "tags": "Privileged Accounts",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                    "cwe_mapping_reason": "An attacker can exploit unnecessary privileges in web hosting services to execute malicious code, enabling them to access sensitive information and create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-276: Incorrect Default Permissions",
+                    "cwe_mapping_reason": "Attackers exploit overly permissive default settings in web hosting services to gain unauthorized access and gather confidential information, thereby creating a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "127"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Attackers can exploit resource consumption vulnerabilities in web hosting services to disrupt operations, making it difficult for competitors to maintain service availability and reliability, thus gaining an unfair competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                    "cwe_mapping_reason": "Exploiting memory buffer vulnerabilities in web hosting services can allow attackers to execute code or access sensitive data, thereby gaining unauthorized insights to create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control allows attackers to exploit security weaknesses in web hosting services, enabling them to gain unauthorized access to sensitive information, which can then be leveraged to create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "An attacker could exploit vulnerabilities in web hosting services to execute unauthorized actions on behalf of authenticated users, ultimately gaining sensitive information or control that can provide a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Uploading files without restriction enables attackers to introduce malicious payloads, which can facilitate unauthorized data access and exfiltration, thus aiding in corporate espionage to create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "An attacker could exploit a web hosting service's vulnerability to redirect users to malicious sites, thereby stealing sensitive client information to gain a competitive business advantage.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-416: Use After Free",
+                    "cwe_mapping_reason": "An attacker exploits vulnerabilities in web hosting services to access sensitive data or disrupt services, enabling them to gain a competitive edge by misappropriating proprietary information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "Exploiting server-side request vulnerabilities enables attackers to manipulate the web hosting service's backend systems, allowing them to access sensitive data and gain an unfair competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Financial Systems",
+            "description": "A digital platform used to manage financial transactions, accounting, and reporting.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Attackers can exploit weaknesses in input validation to inject malicious data into financial systems, enabling unauthorized access to sensitive information and creating a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                    "cwe_mapping_reason": "The attacker exploits weaknesses in input validation on financial systems' web interfaces to inject malicious scripts, gaining unauthorized access to sensitive financial data and creating a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63",
+                      "85"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "The target financial systems are particularly vulnerable to corporate espionage because attackers can exploit weaknesses in SQL queries to manipulate or exfiltrate sensitive financial data, giving competitors an unfair advantage. By leveraging this attack vector, adversaries can directly access and compromise critical financial records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Attackers can easily intercept and exploit unencrypted financial data to gain sensitive corporate information, providing them with a competitive edge.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-326: Inadequate Encryption Strength",
+                    "cwe_mapping_reason": "Insufficient encryption strength in financial systems allows attackers to potentially decrypt sensitive financial data, granting them the competitive advantage they seek through unauthorized access to proprietary information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_languages",
+                "dynamic": true,
+                "tags": "match: backend_languages",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-125: Out-of-bounds Read",
+                    "cwe_mapping_reason": "An attacker can exploit vulnerabilities that allow unauthorized access to sensitive financial data, thereby gaining critical insights and creating a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "540"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "An unauthorized actor could exploit vulnerabilities in financial systems to access confidential information, thereby gaining competitive insights and creating a business advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-259: Use of Hard-coded Password",
+                    "cwe_mapping_reason": "Attackers exploit hard-coded passwords in financial systems to gain unauthorized access, allowing them to steal sensitive information and create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Attackers can exploit the lack of authentication in financial systems' critical functions to gain unauthorized access, enabling them to manipulate financial data and create a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "166",
+                      "36"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "An attacker seeking to create a competitive advantage could exploit weaknesses in financial systems to access and exposed sensitive financial information, thereby undermining the target company's market position.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Corporate espionage adversaries exploit insufficiently protected credentials to access financial systems, thereby gaining unauthorized access to sensitive financial data that can create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control can allow corporate spies to infiltrate financial systems, granting unauthorized access to sensitive financial data that could provide a competitive advantage. This vulnerability exposes critical financial information to malicious actors who aim to exploit it for strategic gains.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "Attackers exploit improper authorization in financial systems to gain unauthorized access, enabling them to steal sensitive financial data and create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Attackers can exploit vulnerabilities in financial systems to perform unauthorized transactions, creating a competitive advantage by siphoning funds or manipulating financial data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "An attacker could exploit unauthorized URL redirections to deceive employees into disclosing sensitive financial information, thereby gaining a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-942: Permissive Cross-domain Policy with Untrusted Domains",
+                    "cwe_mapping_reason": "This vulnerability allows attackers to exploit overly permissive cross-domain policies, enabling them to access sensitive financial data from untrusted domains and create a competitive advantage through corporate espionage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-532: Insertion of Sensitive Information into Log File",
+                    "cwe_mapping_reason": "Attackers could exploit the logging of sensitive information in financial systems to retrieve confidential data, giving them a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "An attacker can exploit server-side vulnerabilities to manipulate financial systems and retrieve sensitive data, gaining an unfair competitive advantage. Such exploitation enables unauthorized access to internal resources and confidential financial information.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-924: Improper Enforcement of Message Integrity During Transmission in a Communication Channel",
+                    "cwe_mapping_reason": "An attacker can intercept and alter financial transaction messages to create discrepancies that provide them with a competitive advantage, exploiting weaknesses in the financial system's message integrity enforcement.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-552: Files or Directories Accessible to External Parties",
+                    "cwe_mapping_reason": "Attackers can exploit improperly secured financial systems to access sensitive files or directories, gaining critical business information to create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Operating Systems",
+            "description": "A core system software that provides an interface between users and computer hardware.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                    "cwe_mapping_reason": "Exploiting vulnerable operating systems by manipulating memory buffers allows attackers to gain unauthorized access and exfiltrate sensitive data, thereby creating a competitive advantage through corporate espionage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Attackers can intercept sensitive information transmitted in plaintext over the network, exploiting this vulnerability to gain access to proprietary data, thereby achieving a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "The espionage threat actor can exploit the incorrectly assigned permissions to gain unauthorized access to critical resources within vulnerable operating systems, enabling them to steal sensitive data and create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command (OS Command Injection)",
+                    "cwe_mapping_reason": "Exploiting vulnerable operating systems through improper neutralization of special elements allows attackers to execute arbitrary commands, gaining unauthorized access and creating a competitive advantage by extracting sensitive corporate information.",
+                    "capecs_to_exclude": [
+                      "15",
+                      "6"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_languages",
+                "dynamic": true,
+                "tags": "match: backend_languages",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-125: Out-of-bounds Read",
+                    "cwe_mapping_reason": "Exploiting vulnerable operating systems through out-of-bounds read attacks allows attackers to access sensitive information, creating a competitive advantage by leveraging stolen corporate data.",
+                    "capecs_to_exclude": [
+                      "540"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-134: Use of Externally-Controlled Format String",
+                    "cwe_mapping_reason": "The use of externally-controlled format strings can allow attackers to execute arbitrary code on vulnerable operating systems, enabling them to exfiltrate sensitive corporate data and gain a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "135",
+                      "67"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-346: Origin Validation Error",
+                    "cwe_mapping_reason": "Exploiting origin validation errors in vulnerable operating systems allows attackers to bypass security measures and gain unauthorized access, facilitating the theft of sensitive information to create a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "111",
+                      "141",
+                      "160",
+                      "21",
+                      "386",
+                      "387",
+                      "388",
+                      "510"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation on vulnerable operating systems can be exploited to gain unauthorized access, allowing corporate spies to extract sensitive information and create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Corporate espionage perpetrators exploit vulnerable operating systems to access sensitive information, gaining an undue competitive advantage by leveraging exposed data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Attackers exploit vulnerabilities in operating systems by bypassing authentication mechanisms, enabling them to access sensitive information and gain a competitive advantage through corporate espionage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Exploiting the lack of authentication for critical functions in the operating system allows attackers to gain unauthorized access, creating a competitive advantage by stealing sensitive corporate data.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "166",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Attackers exploit insufficiently protected credentials in vulnerable operating systems to gain unauthorized access, allowing them to exfiltrate sensitive corporate data and achieve a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "Privileged Accounts",
+                "dynamic": false,
+                "tags": "Privileged Accounts",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                    "cwe_mapping_reason": "The attacker can exploit the unnecessary privileges in the vulnerable operating systems to execute malicious code, thereby gaining unauthorized access and extracting sensitive corporate data to create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-269: Improper Privilege Management",
+                    "cwe_mapping_reason": "Attackers can exploit improper privilege management in vulnerable operating systems to gain unauthorized access, enabling them to extract sensitive information that creates a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Attackers exploit the lack of proper access control in vulnerable operating systems to gain unauthorized access, enabling them to steal sensitive corporate data for competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "2FA/MFA",
+                "dynamic": false,
+                "tags": "2FA/MFA",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-321: Use of Hard-coded Cryptographic Key",
+                    "cwe_mapping_reason": "An attacker can exploit hard-coded cryptographic keys within vulnerable operating systems to decrypt sensitive information, thereby gaining unauthorized access to proprietary data and creating a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "The use of weak cryptographic algorithms in vulnerable operating systems allows attackers to decrypt sensitive data and gain valuable corporate information, thereby achieving a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Remote Access Server",
+            "description": "A server that enables users to connect to a network remotely via secure authentication.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-862: Missing Authorization",
+                    "cwe_mapping_reason": "The absence of proper authorization allows attackers to easily gain unauthorized access to the remote access server, which they can exploit to steal sensitive corporate information and create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Attackers exploit remote access servers to inject malicious code, enabling unauthorized access to sensitive information and creating a competitive advantage through corporate espionage.",
+                    "capecs_to_exclude": [
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "The attacker can exploit session fixation vulnerabilities in the Remote Access Server to hijack active sessions, gaining unauthorized access and thereby facilitating corporate espionage to create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-942: Permissive Cross-domain Policy with Untrusted Domains",
+                    "cwe_mapping_reason": "An attacker could exploit permissive cross-domain policies on the Remote Access Server to steal sensitive information, giving competitors unauthorized access to confidential corporate data and creating a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "Privileged Accounts",
+                "dynamic": false,
+                "tags": "Privileged Accounts",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-269: Improper Privilege Management",
+                    "cwe_mapping_reason": "Improper privilege management on the remote access server allows attackers to escalate their access rights, facilitating easier infiltration and data exfiltration to create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "An attacker can exploit weaknesses in the remote access server's authentication mechanisms to gain unauthorized access, enabling them to steal sensitive corporate information and create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "The attacker can exploit the lack of authentication on the remote access server to gain unauthorized access, thereby stealing sensitive information to create a competitive advantage.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "166",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "The adversary exploits weakly protected credentials on the remote access server to gain unauthorized entry, aiming to steal sensitive corporate information and create a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-346: Origin Validation Error",
+                    "cwe_mapping_reason": "Attackers can exploit the remote access server to spoof legitimate users or systems, allowing unauthorized access to sensitive corporate data and creating a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "Attackers exploit vulnerabilities in the Remote Access Server to issue unauthorized network requests, allowing them to gather sensitive data to gain a competitive edge. They leverage these vulnerabilities to bypass security controls and infiltrate internal systems.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-922: Insecure Storage of Sensitive Information",
+                    "cwe_mapping_reason": "An attacker could exploit weak encryption or improper storage practices on the Remote Access Server to access sensitive corporate information, thereby gaining a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Attackers can intercept and exploit sensitive data transmitted to and from the Remote Access Server, potentially gaining unauthorized access to proprietary information, thereby creating a competitive advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Extortion of Clients",
+    "threat_description": "Data breaches in the shipping industry are exploited to extort clients, with sensitive information often being unauthorizedly accessed and exposed. Financial losses, reputational damage, and legal consequences are inflicted on victims. Personal and commercial data is used to pressure companies into substantial payments under the threat of further exposure or service disruption. Effective security measures must be implemented to mitigate these risks.",
+    "motives": [
+      {
+        "motive": "Financial Gain Through Extortion",
+        "components": [
+          {
+            "name": "Client databases",
+            "description": "A centralized system designed to collect, organize, and retrieve client records for business operations.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "This threat exploits inadequate access control mechanisms to gain unauthorized access to client databases, making it possible to exfiltrate sensitive data and demand ransom.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "The exposure of sensitive information to unauthorized actors directly enables attackers to threaten clients with data leaks, thereby pressuring them to pay a ransom. This vulnerability aligns with the motive of obtaining ransom by exploiting sensitive client database information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1392: Use of Default Credentials",
+                    "cwe_mapping_reason": "Attackers exploit the use of default credentials to easily access client databases and exfiltrate sensitive data, which they then leverage for ransom demands.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-209: Generation of Error Message Containing Sensitive Information",
+                    "cwe_mapping_reason": "Attackers exploit verbose error messages to extract sensitive information from client databases, which they then leverage to demand ransom by threatening to expose the data.",
+                    "capecs_to_exclude": [
+                      "215"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "The vulnerability in session management allows attackers to hijack legitimate sessions and gain unauthorized access to client databases, enabling them to steal sensitive data and extort clients by threatening to release it. This issue directly aligns with the motive of obtaining ransom through data breaches.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Attackers exploit the ability to upload dangerous file types to the client databases, allowing them to execute malicious scripts and access sensitive data for ransom extortion.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Privileged Accounts",
+                "dynamic": false,
+                "tags": "Privileged Accounts",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                    "cwe_mapping_reason": "This weakness is relevant because it allows cyber attackers to exploit elevated privileges to access and exfiltrate sensitive client data, leveraging it for ransom demands.",
+                    "capecs_to_exclude": [
+                      "69"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Manipulation of Vessel Positioning Data",
+    "threat_description": "Threat actors can exploit vulnerabilities in GPS, AIS (Automatic Identification System), or other vessel tracking technologies to falsify positioning data. This can lead to vessel misrouting, increased risk of collisions, cargo theft, or maritime smuggling. Attackers may inject false data into navigation systems, jam GPS signals, or spoof AIS data to make vessels appear in incorrect locations, disrupting maritime operations and logistics.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Cargo Theft and Smuggling",
+        "components": [
+          {
+            "name": "Navigation and Positioning Systems",
+            "description": "A maritime navigation tool that integrates GPS, AIS, and radar for accurate positioning.",
+            "sub_components": [
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-346: Origin Validation Error",
+                    "cwe_mapping_reason": "Attackers can exploit the lack of validation in GPS and AIS signals to inject false positioning data, misleading vessels about their actual location. This can cause ships to drift off-course, increasing the risk of collisions, illegal rerouting for smuggling, or hijackings. Cybercriminals may also create phantom vessels to mask illicit activities.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-693: Protection Mechanism Failure",
+                    "cwe_mapping_reason": "The absence of strong encryption and authentication mechanisms in GPS and AIS transmissions allows attackers to intercept and modify vessel positioning data. This can be used to redirect ships into dangerous waters, disrupt fleet coordination, or facilitate cargo theft by misrepresenting ship locations.\n",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                    "cwe_mapping_reason": "Since AIS data is publicly available and lacks proper access controls, attackers can inject false information to create fake ship identities, manipulate shipping manifests, or hide illegal maritime activities. Spoofing AIS signals can also lead to fleet coordination disruptions and increased operational risks.\n",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Weak access controls in vessel navigation systems allow unauthorized modifications to positioning data. Attackers can override course settings, disable tracking, or falsify ship locations, making it easier to hijack vessels, smuggle goods, or evade authorities.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "GPS jamming attacks involve broadcasting interference signals that overwhelm a vessel\u2019s navigation system, preventing accurate positioning. This can cause ships to lose situational awareness, leading to navigational errors, delays, or forced rerouting into high-risk areas.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak or default authentication credentials in shipboard communication systems allow attackers to gain unauthorized access to navigation and control networks. This can lead to remote route manipulation, disabled tracking mechanisms, or ransom-driven disruptions to vessel operations.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Modification of Logs",
+    "threat_description": "Attackers can exploit vulnerabilities in ship maintenance logging systems to alter, delete, or fabricate maintenance records. This manipulation can be used to conceal system failures, falsify compliance with safety regulations, or facilitate fraudulent activities. By modifying these records, threat actors can mislead regulatory bodies, avoid costly repairs, or create hazardous conditions by allowing unfit vessels to continue operations. Insufficient access controls, weak authentication, and poor encryption of maintenance logs make these systems vulnerable to unauthorized modifications, impacting vessel safety and regulatory compliance.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Falsification of Safety Records",
+        "components": [
+          {
+            "name": "Ship Maintenance Logging Systems",
+            "description": "A digital platform used to record, track, and verify ship maintenance history.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Ship maintenance records can be altered without proper authentication, allowing attackers to falsify maintenance history and hide critical system failures.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "The use of weak or default credentials on ship maintenance logging systems makes it easy for attackers to gain unauthorized access and manipulate records.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "565",
+                      "70"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Weak access controls on digital maintenance logs enable unauthorized users to modify, delete, or fabricate service records, potentially leading to mechanical failures.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption on maintenance log files allows attackers to intercept and alter maintenance data, compromising the integrity of ship safety records.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted upload of files in the maintenance system allows attackers to introduce malicious scripts that alter maintenance logs without detection.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging and monitoring of maintenance record changes prevent organizations from detecting unauthorized modifications, increasing the risk of fraudulent entries.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Exfiltration of Credentials",
+    "threat_description": "Attackers target maritime crew authentication systems to steal and exploit crew credentials. By obtaining these credentials, adversaries can gain unauthorized access to ship networks, facilitate identity fraud, or conduct espionage. Stolen crew identities can be used to bypass security controls, manipulate access privileges, or conduct illicit activities under false identities. Weak authentication mechanisms, lack of encryption, and social engineering tactics make these systems vulnerable to credential theft, exposing ships to security risks, data breaches, and operational disruptions.",
+    "motives": [
+      {
+        "motive": "Gather Crew Identities for Espionage, Fraud, and Unauthorized Access",
+        "components": [
+          {
+            "name": "Maritime Crew Authentication Systems",
+            "description": "A secure system used for crew identity verification and access control aboard vessels.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak authentication mechanisms allow attackers to steal maritime crew login credentials, granting unauthorized access to critical ship systems and sensitive data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1392: Use of Default Credentials",
+                    "cwe_mapping_reason": "Lack of multi-factor authentication (MFA) in maritime crew login systems makes it easier for attackers to use stolen credentials without detection.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Phishing attacks exploit human vulnerabilities to trick crew members into revealing login credentials, leading to unauthorized access to ship networks.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "Session hijacking vulnerabilities allow attackers to steal active authentication tokens, impersonating crew members to access restricted systems.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Unencrypted storage of crew credentials enables attackers to intercept and extract sensitive authentication data, compromising maritime security.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Inadequate access control policies allow unauthorized individuals to view or copy crew credentials stored in ship databases, increasing the risk of identity theft.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Compromise of Systems",
+    "threat_description": "Threat actors target ship fuel management systems to manipulate fuel allocation, falsify consumption data, and disrupt operational efficiency. By exploiting authentication weaknesses, poor access controls, or encryption flaws, attackers can steal fuel, fabricate efficiency reports, or introduce false sensor readings. These attacks can lead to financial losses, regulatory violations, and increased safety risks. Without strong security mechanisms, fuel management systems remain vulnerable to data manipulation, fraud, and operational sabotage.",
+    "motives": [
+      {
+        "motive": "Sabotage of Fuel Operations and Supply Chain Disruption",
+        "components": [
+          {
+            "name": "Ship Fuel Management Systems",
+            "description": "A digital system used to monitor, allocate, and optimize fuel consumption for maritime operations.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Attackers exploit weak authentication in fuel management systems to manipulate fuel allocation, leading to financial losses and operational disruptions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in fuel consumption data allows attackers to intercept and alter fuel efficiency metrics, leading to misreporting and potential fraud.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Poor access control policies allow unauthorized users to modify fuel consumption records, resulting in falsified efficiency reports and undetected fuel theft.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "Sensor Networks",
+                "dynamic": false,
+                "tags": "Sensor Networks",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Malicious actors can inject false fuel sensor data into the system, misleading operators about fuel levels and causing unexpected shortages or overuse.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Unpatched vulnerabilities in fuel management software allow attackers to execute arbitrary code, enabling them to manipulate fuel distribution remotely.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "Attackers exploit weak session management to hijack administrator accounts in fuel monitoring platforms, gaining full control over fuel transactions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "A lack of logging and monitoring mechanisms in fuel management systems prevents organizations from detecting unauthorized fuel access or tampering.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "Remote Access Protocols",
+                "dynamic": false,
+                "tags": "Remote Access Protocols",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Remote access vulnerabilities allow attackers to disrupt fuel system operations, potentially causing fuel shortages and increased operational costs.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Disruption of Physical Sensors",
+    "threat_description": "Threat actors can disrupt or manipulate smart container sensors to alter environmental readings, tamper with cargo tracking data, or disable monitoring capabilities. By exploiting weak authentication, insufficient encryption, or firmware vulnerabilities, attackers can cause undetected cargo spoilage, divert shipments, or create supply chain confusion. Without proper security controls, disruptions to sensor functionality can result in significant financial losses, regulatory violations, and logistical delays.",
+    "motives": [
+      {
+        "motive": "Sabotage of Cargo Integrity and Supply Chain Disruptions",
+        "components": [
+          {
+            "name": "Smart Container Monitoring Systems",
+            "description": "An integrated network of IoT-enabled sensors used to monitor cargo conditions and tracking data.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Attackers can manipulate or disable smart container sensors, causing inaccurate cargo condition readings, leading to spoilage, loss, or regulatory violations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Unauthorized access to container tracking systems allows attackers to falsify sensor data, creating confusion about cargo location and status.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Weak encryption on sensor transmissions enables attackers to intercept and alter real-time environmental readings, affecting cargo integrity.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Malicious actors exploit vulnerabilities in wireless communication protocols to jam or disrupt sensor networks, leading to loss of cargo visibility.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                    "cwe_mapping_reason": "Attackers can introduce electromagnetic interference to disrupt wireless sensor communications, leading to loss of critical cargo monitoring data.",
+                    "capecs_to_exclude": [
+                      "125",
+                      "130",
+                      "147",
+                      "197",
+                      "229",
+                      "230",
+                      "231",
+                      "469",
+                      "482",
+                      "486",
+                      "487",
+                      "488",
+                      "489",
+                      "490",
+                      "491",
+                      "493",
+                      "494",
+                      "495",
+                      "496",
+                      "528"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Hardcoded credentials in smart container firmware allow attackers to gain persistent access, modify sensor readings, or disable alerts.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Lack of authentication for remote sensor updates allows attackers to inject malicious firmware, causing sensors to malfunction or provide false data.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                    "cwe_mapping_reason": "Weak software update mechanisms allow attackers to distribute malicious firmware updates, causing permanent damage to sensor functionality.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Inadequate logging and monitoring of sensor activity prevents the detection of unauthorized modifications, increasing the risk of long-term disruptions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "Failure to properly secure API endpoints in smart container platforms allows attackers to inject malicious commands, altering sensor outputs remotely.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-941: Incorrectly Specified Destination in a Communication Channel",
+                    "cwe_mapping_reason": "Attackers exploit insecure Bluetooth or NFC communication channels to manipulate nearby smart container sensors, creating false cargo status alerts.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Sabotage of Berthing Systems",
+    "threat_description": "Cyber adversaries target automated berthing systems to disrupt docking operations, delay port logistics, and cause financial and reputational damage. Attackers may exploit software vulnerabilities, unauthorized access, or sensor manipulation to misalign docking calculations, potentially resulting in vessel collisions, infrastructure damage, or operational delays.",
+    "motives": [
+      {
+        "motive": "Compromise Maritime Operations and Cause an Economic Impact",
+        "components": [
+          {
+            "name": "Automated Berthing Control Systems",
+            "description": "A system that automates the mooring process by integrating real-time sensor data, AI-driven calculations, and remote docking assistance.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Attackers exploit weak authentication protocols to gain control over automated berthing interfaces, enabling unauthorized modifications to docking parameters, leading to vessel misalignment and berthing failures.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Remote access vulnerabilities allow cybercriminals to manipulate berthing system commands, potentially causing vessel misalignment and congestion at port entry points.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Unencrypted docking commands transmitted over network channels can be intercepted and altered by attackers, leading to incorrect positioning instructions and unsafe mooring operations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Poor access control policies allow unauthorized personnel to override berthing system settings, potentially causing vessel crashes, misalignments, and congestion at port facilities.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Compromised sensor data could provide incorrect positional information to the automated berthing system, leading to miscalculations that cause vessel damage or hazardous docking procedures.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Unpatched software vulnerabilities in berthing systems allow attackers to execute arbitrary code, modifying docking calculations and causing operational failures.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "Weak session management in berthing control dashboards enables attackers to hijack administrator sessions, allowing them to manipulate mooring schedules and berthing parameters.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Lack of comprehensive logging and monitoring in berthing systems makes it difficult to detect unauthorized access and anomalies, delaying response to cyber sabotage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1039: Automated Recognition Mechanism with Inadequate Detection or Handling of Adversarial Input Perturbations",
+                    "cwe_mapping_reason": "Adversaries can manipulate machine learning models in berthing automation, causing incorrect docking decisions, collisions, or inefficiencies in port logistics.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unprotected communication channels between berthing sensors and control systems can be intercepted and modified by attackers, leading to erroneous docking instructions and potential accidents.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Manipulation of Freight Platforms",
+    "threat_description": "Cyber adversaries exploit vulnerabilities in freight auction platforms to manipulate bidding processes, inflate or deflate shipping rates, and create unfair market conditions. By leveraging access control flaws, algorithmic bias exploitation, or data injection attacks, attackers can distort market pricing, eliminate competitors, or engage in fraudulent bidding tactics.",
+    "motives": [
+      {
+        "motive": "Financial Gain Through Fraud",
+        "components": [
+          {
+            "name": "Freight Auction and Bidding Systems",
+            "description": "A digital platform used for real-time bidding and auctioning of shipping contracts between carriers and shippers.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Attackers exploit weak authentication mechanisms to hijack bidder accounts, allowing them to submit fake bids, manipulate auction results, or exclude competitors.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Remote access vulnerabilities allow attackers to gain control over freight auctions from unauthorized locations, leading to unfair bidding practices and fraudulent activities.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in auction data transmission allows attackers to intercept bid values and strategically outbid competitors, ensuring unfair pricing advantages.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Poor access controls allow malicious users to gain administrative privileges, modifying auction parameters, rejecting legitimate bids, or altering freight contract terms.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Malicious actors inject false bid values or tampered shipping data into auction systems, artificially inflating or deflating prices and distorting fair market operations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Unpatched vulnerabilities in auction software allow attackers to execute arbitrary code, manipulating auction timers, bid values, and platform functionalities.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "Session fixation vulnerabilities in the auction interface allow attackers to hijack bidder sessions, forcing them to submit bids at manipulated prices without their knowledge.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "A lack of detailed logging in auction transactions enables undetected bid manipulation, fraudulent account creation, and unauthorized price alterations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1039: Automated Recognition Mechanism with Inadequate Detection or Handling of Adversarial Input Perturbations",
+                    "cwe_mapping_reason": "Adversaries exploit AI-driven pricing algorithms by introducing fake bidding trends, manipulating market demand predictions, and artificially adjusting auction outcomes.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unprotected network communication between bidders and auction servers allows attackers to intercept and modify bid submissions, leading to fraudulent auction results.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Network Compromise",
+    "threat_description": "Cyber adversaries introduce unauthorized rogue devices into port networks to intercept data traffic, create backdoor access points, or launch cyberattacks. These devices can be disguised as legitimate network components, making detection difficult. Attackers leverage these devices to conduct data exfiltration, traffic manipulation, or network disruption.",
+    "motives": [
+      {
+        "motive": "Disruption of Maritime Operations",
+        "components": [
+          {
+            "name": "Port Network Infrastructure",
+            "description": "A critical communication and control network that facilitates port operations, cargo tracking, and vessel coordination.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Attackers exploit weak authentication mechanisms to gain initial access to port network authentication services, allowing rogue devices to operate undetected within the infrastructure.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Rogue devices exploit poorly secured remote access protocols to eavesdrop on port network communications, facilitating data exfiltration or lateral movement within the infrastructure.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-288: Authentication Bypass Using an Alternate Path or Channel",
+                    "cwe_mapping_reason": "Physical security weaknesses allow adversaries to insert rogue devices directly into network endpoints, bypassing authentication mechanisms and gaining illicit access to critical port infrastructure.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Unencrypted network traffic allows rogue devices to intercept sensitive communications, extract authentication credentials, or inject malicious payloads into data exchanges.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Poor access control policies allow rogue devices to escalate privileges within the port network, granting attackers unauthorized control over critical infrastructure and data flows.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Compromised IoT and sensor devices within port networks can inject falsified operational data, misleading port authorities and impacting cargo handling efficiency.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Malicious firmware or software updates introduced through rogue devices can compromise legitimate network components, leading to persistent access and system-wide vulnerabilities.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35",
+                      "77"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "Attackers use rogue devices to hijack administrator sessions within port network management interfaces, allowing them to alter configurations or monitor network activities covertly.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "A lack of comprehensive logging and anomaly detection within port networks prevents the early identification of rogue devices and unauthorized network activity.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Rogue devices leverage unprotected network communications to inject malicious packets or capture confidential data, enabling espionage and persistent access to port networks.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Diversion of Shipments",
+    "threat_description": "Cybercriminals manipulate logistics systems, cargo tracking platforms, or transport scheduling to reroute shipments to unauthorized locations. This attack can involve credential theft, insider collusion, or system vulnerabilities that allow unauthorized modifications to shipping data. Such diversions result in financial losses, cargo theft, and disruptions to supply chains.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Cargo Theft and Fraud",
+        "components": [
+          {
+            "name": "Logistics and Cargo Management Systems",
+            "description": "Digital platforms that coordinate shipment tracking, scheduling, and delivery authentication within the maritime supply chain.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Insufficient Session-ID length is directly related to the authentication mechanism in use.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Insufficient Session-ID length is directly related to the authentication mechanism in use.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Access permissions for EJB methods are typically governed by the applications authorization controls.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Access permissions for EJB methods are typically governed by the applications authorization controls.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities are directly related to how databases handle queries.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities are directly related to how databases handle queries.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "The configuration of Entity Beans as remote is part of backend technologies in J2EE.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "The configuration of Entity Beans as remote is part of backend technologies in J2EE.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "User input validation is directly related to preventing improper input handling.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "This relates to the technologies used in the front-end, including those ensuring data transmission security.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "This relates to the technologies used in the front-end, including those ensuring data transmission security.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "User input validation is directly related to preventing improper input handling.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Middleware servers are at risk of command injection through insecure APIs or interfaces.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
