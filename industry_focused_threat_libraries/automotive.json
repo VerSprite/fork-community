@@ -1,0 +1,3103 @@
+[
+  {
+    "threat": "Unauthorized Access to Vehicle Design Data",
+    "threat_description": "Unauthorized access to proprietary vehicle designs poses a major risk in the automotive industry. Attackers may infiltrate design networks or steal sensitive blueprints through cyber espionage, leading to intellectual property theft. Such breaches can result in financial losses, competitive disadvantages, and unauthorized replication of technology by foreign entities or rival companies. Weak access controls and insufficient encryption exacerbate these risks.\n",
+    "motives": [
+      {
+        "motive": "Financial Gain through Intellectual Property Theft",
+        "components": [
+          {
+            "name": "Design and Engineering Systems",
+            "description": "Secure networks, software platforms, and databases used for designing, testing, and storing proprietary vehicle blueprints.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in Automotive Design and Engineering Systems enable cyber adversaries to brute-force or steal credentials, granting unauthorized access to proprietary vehicle blueprints and critical intellectual property.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Poorly secured access controls result in the inadvertent exposure of proprietary vehicle designs to unauthorized actors, allowing competitors or foreign entities to acquire confidential automotive engineering details.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication mechanisms in design platforms enable attackers to bypass security controls, gaining unauthorized access to vehicle prototypes and intellectual property repositories.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Insufficient access control measures allow unauthorized actors to infiltrate Automotive Design and Engineering Systems, potentially extracting or modifying sensitive vehicle design data, leading to intellectual property theft.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak authorization mechanisms allow adversaries to manipulate access tokens and gain unauthorized control over proprietary vehicle design files, leading to intellectual property theft and unauthorized modifications.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization policies allow unauthorized personnel or external actors to access and alter vehicle design files, leading to intellectual property theft or compromised product development processes.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Automotive design blueprints and proprietary engineering data stored or transmitted without encryption can be intercepted by attackers, leading to unauthorized replication of technology and competitive disadvantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "A lack of comprehensive logging within Automotive Design and Engineering Systems hinders early detection of unauthorized access, allowing cyber adversaries to exfiltrate sensitive vehicle design data without triggering alerts.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Automotive Design Systems that improperly deserialize user-supplied data are vulnerable to code injection, allowing attackers to manipulate or destroy sensitive vehicle design information.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities allow attackers to trick internal servers into making unauthorized requests, potentially exposing proprietary automotive design files to external adversaries.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation within design management interfaces could allow attackers to inject malicious data, potentially corrupting or altering critical vehicle design files and causing long-term production issues.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Attackers could exploit weak security mechanisms to inject unauthorized code into engineering software, modifying or corrupting proprietary vehicle design data, leading to compromised product integrity.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Malicious actors could exploit weak file validation in Automotive Design Systems to upload unauthorized files, potentially compromising the integrity of proprietary vehicle blueprints and engineering data.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Failure to implement encrypted transmission protocols in Automotive Design and Engineering Systems exposes vehicle design blueprints to interception, facilitating cyber espionage and unauthorized replication of proprietary technology.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Cyber adversaries could leverage URL redirection vulnerabilities within engineering portals to redirect employees to phishing sites, compromising design credentials and enabling unauthorized access to proprietary vehicle data.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities within Automotive Design and Engineering databases could allow attackers to manipulate database queries, resulting in unauthorized access, theft, or destruction of proprietary vehicle design data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Compromise of Engineering and Simulation Systems",
+    "threat_description": "Automotive design and testing rely on advanced engineering and simulation tools. If compromised, attackers could manipulate vehicle performance data, introduce design flaws, or delay production. Threat actors may exploit vulnerabilities in these systems to alter key safety or efficiency parameters, potentially leading to regulatory compliance issues or hazardous product defects.",
+    "motives": [
+      {
+        "motive": "Disruption of Automotive Manufacturing and Safety Standards",
+        "components": [
+          {
+            "name": "Engineering and Simulation Platforms",
+            "description": "Specialized software and digital tools used for designing, testing, and simulating vehicle performance, safety, and efficiency.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in Engineering and Simulation Platforms enable attackers to brute-force or steal credentials, granting unauthorized access to proprietary vehicle performance models and design simulation tools. This can lead to tampering with critical test data or unauthorized modifications of engineering parameters.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Poorly secured access controls result in the inadvertent exposure of confidential vehicle simulation data to unauthorized actors, allowing competitors or foreign entities to acquire proprietary testing methodologies.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication mechanisms in Engineering and Simulation Platforms enable attackers to bypass security controls, gaining unauthorized access to confidential vehicle performance data and safety test models.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Insufficient access control measures allow unauthorized actors to infiltrate Engineering and Simulation Platforms, potentially altering key vehicle safety parameters or manipulating efficiency testing data. Such breaches could compromise regulatory compliance and introduce safety-critical flaws.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak authorization mechanisms allow adversaries to manipulate access tokens and gain unauthorized control over vehicle test parameters, leading to incorrect performance assessments or manipulated regulatory compliance reports.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization policies allow unauthorized personnel or external actors to modify simulation parameters, potentially leading to inaccurate vehicle test results and compromised regulatory compliance.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Proprietary simulation models and engineering data stored or transmitted without encryption can be intercepted by attackers, leading to unauthorized access, replication of critical test parameters, or manipulation of vehicle design specifications.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities within Engineering and Simulation Platforms could allow attackers to manipulate database queries, resulting in unauthorized access, modification, or deletion of proprietary vehicle design and test results.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "A lack of comprehensive logging within Engineering and Simulation Platforms prevents early detection of unauthorized access, allowing attackers to stealthily manipulate or exfiltrate sensitive vehicle simulation data without triggering alerts.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Engineering and Simulation Platforms that improperly deserialize user-supplied data are vulnerable to malicious code injection, allowing attackers to manipulate or destroy sensitive vehicle performance data.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities allow attackers to manipulate internal server requests, potentially exposing proprietary engineering models and simulated vehicle performance data to external adversaries.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation within simulation software interfaces could allow attackers to inject malicious data, potentially corrupting vehicle performance models and leading to inaccurate safety or efficiency assessments.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Attackers could exploit weak security mechanisms to inject unauthorized code into engineering software, modifying or corrupting simulation results and introducing flawed vehicle performance predictions, potentially leading to unsafe designs.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Malicious actors could exploit weak file validation in Engineering and Simulation Platforms to upload unauthorized files, potentially corrupting critical simulation environments and affecting vehicle safety analysis.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Cyber adversaries could leverage URL redirection vulnerabilities within simulation platforms to redirect engineers to phishing sites, compromising credentials and enabling unauthorized access to proprietary vehicle simulation data.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Failure to implement encrypted transmission protocols in Engineering and Simulation Platforms exposes vehicle test results to interception, enabling attackers to manipulate or steal proprietary safety and efficiency data.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Data Exposure in Supply Chains",
+    "threat_description": "Automotive companies collaborate with third-party suppliers for design and prototyping. Cybercriminals may target these suppliers, leveraging weak security measures to steal sensitive design information. Stolen intellectual property could be used for counterfeiting, undermining competitive advantage, and impacting global market positioning.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Intellectual Property Theft",
+        "components": [
+          {
+            "name": "Supply Chain Management and Vendor Systems",
+            "description": "Digital platforms and third-party networks used for managing supplier data, sharing design files, and coordinating automotive production.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in Supply Chain Management and Vendor Systems allow attackers to brute-force or steal credentials, gaining unauthorized access to supplier networks. This enables cybercriminals to exfiltrate confidential design blueprints, leading to intellectual property theft and competitive disadvantages.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Poorly secured access controls result in the inadvertent exposure of proprietary automotive data to unauthorized actors, allowing competitors or counterfeit manufacturers to acquire confidential vehicle design and production details.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication mechanisms in supplier systems enable attackers to bypass security controls, gaining unauthorized access to confidential automotive production data and design specifications.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Insufficient access control measures allow unauthorized actors to infiltrate Supply Chain Management and Vendor Systems, potentially extracting or modifying sensitive design data shared between manufacturers and suppliers. Such breaches can compromise production security and expose proprietary vehicle technologies.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak authorization mechanisms allow adversaries to manipulate access tokens and gain unauthorized control over supplier systems, leading to data theft, fraudulent modifications, and potential disruptions to vehicle production schedules.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization policies allow unauthorized personnel or external actors to modify supplier agreements, potentially leading to fraudulent supply chain manipulations, intellectual property theft, and production disruptions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Proprietary supplier agreements, design schematics, and automotive part specifications transmitted without encryption are vulnerable to interception by attackers. This allows unauthorized entities to access sensitive supply chain information, potentially leading to counterfeit production and global market disadvantages.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities within Supply Chain Management and Vendor Systems could allow attackers to manipulate database queries, resulting in unauthorized access, modification, or deletion of proprietary supplier agreements and automotive design data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "A lack of comprehensive logging within Supply Chain Management and Vendor Systems prevents early detection of unauthorized access, allowing attackers to exfiltrate or manipulate automotive design data without triggering security alerts. This increases the risk of long-term exploitation and unnoticed data breaches.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Supply chain portals that improperly deserialize user-supplied data are vulnerable to code injection attacks, allowing attackers to manipulate or delete critical automotive design and supplier records.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities allow attackers to manipulate internal server requests, potentially exposing confidential automotive supplier contracts and proprietary vehicle design data to external adversaries.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation within supply chain management portals could allow attackers to inject malicious data, potentially corrupting supplier records, altering automotive part specifications, and disrupting manufacturing workflows.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Attackers could exploit weak security mechanisms to inject unauthorized code into vendor management systems, allowing them to manipulate supply chain data, introduce fraudulent orders, or extract proprietary vehicle design information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Malicious actors could exploit weak file validation in Supply Chain Management and Vendor Systems to upload unauthorized files, potentially introducing malware, disrupting manufacturing processes, or compromising sensitive automotive supplier data.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Cyber adversaries could leverage URL redirection vulnerabilities within vendor management platforms to redirect suppliers to phishing sites, compromising credentials and enabling unauthorized access to proprietary automotive data.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Failure to implement encrypted transmission protocols in Supply Chain Management and Vendor Systems exposes automotive design files and supplier contracts to interception, enabling cyber espionage and unauthorized data leakage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Data Exposure in Research & Development",
+    "threat_description": "Sensitive R&D data, including vehicle designs and emerging technologies, is at risk of unauthorized access or leaks. Weak access controls, insecure data-sharing, and third-party vulnerabilities can lead to exposure, resulting in financial loss, competitive disadvantages, and regulatory issues.",
+    "motives": [
+      {
+        "motive": "Technological Advancement through Industrial Espionage",
+        "components": [
+          {
+            "name": "Research & Development Networks and Data Repositories",
+            "description": "Secure environments, cloud storage, and digital collaboration tools used to store and manage proprietary automotive R&D data.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in Research & Development Networks and Data Repositories allow attackers to brute-force or steal credentials, granting unauthorized access to proprietary vehicle designs and emerging technologies. This enables industrial spies to extract R&D data, accelerating their own technological advancements while bypassing costly research investments.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Poorly secured access policies in R&D platforms may inadvertently expose confidential vehicle development data to unauthorized actors. This enables competitors or state-backed entities to acquire advanced automotive research insights and accelerate their own innovation cycles.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in R&D data storage systems enable attackers to bypass login security, gaining direct access to confidential engineering research and leveraging stolen insights to enhance their own technological developments.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Lack of stringent access control mechanisms in R&D systems enables unauthorized users to infiltrate proprietary design repositories, stealing confidential engineering data. This allows competitors or state-sponsored entities to exploit stolen insights and improve their own vehicle designs.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak session management in R&D data systems allows attackers to manipulate access tokens, gaining unauthorized control over proprietary vehicle designs. This enables the theft of confidential engineering breakthroughs for unauthorized replication.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms permit unauthorized users to access restricted R&D files, leading to the theft of confidential automotive blueprints and technical documentation, accelerating the attacker\u00e2\u20ac\u2122s own vehicle innovation process.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Failure to encrypt sensitive vehicle design data in Research & Development repositories leaves it vulnerable to interception. Attackers can exfiltrate unprotected design schematics and research findings, gaining a technological advantage without investing in extensive R&D.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities within R&D databases could allow attackers to manipulate database queries, resulting in unauthorized access, extraction, or modification of proprietary vehicle development information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging within R&D data storage systems prevents the timely detection of unauthorized access. Attackers can exfiltrate proprietary designs and advanced research details over an extended period, accelerating their own automotive innovations without being detected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Research and development platforms that improperly deserialize external data inputs are vulnerable to code injection, allowing attackers to manipulate or destroy proprietary vehicle research findings and siphon critical innovation data.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities allow attackers to manipulate internal network requests, potentially exposing proprietary research and development files to external adversaries who seek to gain an automotive innovation advantage.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in R&D collaboration platforms allows attackers to inject malicious payloads, corrupting simulation models and manipulating design parameters. This could result in compromised vehicle safety features and stolen design improvements.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Attackers could exploit vulnerabilities in R&D engineering software to inject malicious scripts, modifying proprietary design files and allowing competitors to introduce hidden weaknesses or extract valuable research data.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Malicious actors could exploit insecure file upload mechanisms in R&D portals to introduce unauthorized files, embedding malware for long-term access or corrupting critical research data to disrupt development cycles.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Attackers could exploit open redirection vulnerabilities in R&D portals to redirect engineers to phishing sites, stealing credentials and enabling unauthorized access to confidential design schematics and prototype data.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Transmitting sensitive automotive R&D data in cleartext across unsecured networks exposes it to interception by adversaries. This allows industrial spies to steal proprietary technology blueprints, fast-tracking their own vehicle development without detection.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Disruption of Automotive Production Systems",
+    "threat_description": "Cyberattacks targeting manufacturing plants can halt production lines, causing substantial financial losses. Attackers may use ransomware, malware, or denial-of-service (DoS) attacks to disable automated assembly operations, disrupting vehicle manufacturing on a large scale.",
+    "motives": [
+      {
+        "motive": "Disruption of Automotive Manufacturing and Supply Chains",
+        "components": [
+          {
+            "name": "Automated Manufacturing and Production Control Systems",
+            "description": "Industrial control systems, robotic automation, and smart manufacturing platforms used in vehicle production.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in Automated Manufacturing and Production Control Systems allow attackers to gain unauthorized access, potentially enabling ransomware infections or direct manipulation of assembly operations, leading to large-scale production disruptions.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "555",
+                      "561",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Insufficient authentication security in industrial control systems could lead to unauthorized access, allowing attackers to alter production parameters or shut down entire manufacturing lines.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in production network infrastructure enable attackers to bypass login security, gaining unauthorized access to factory automation controls and disrupting operations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Insufficient access control measures in vehicle production control systems allow attackers to escalate privileges, granting them unauthorized control over robotic manufacturing lines and industrial automation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak session management in production environments enables attackers to manipulate user roles, gaining control over scheduling systems and automated assembly processes.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized personnel to access critical production controls, leading to intentional disruptions, safety hazards, or large-scale operational failures.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in production scheduling and workflow management databases exposes critical manufacturing data, allowing attackers to manipulate schedules, delay production, or alter vehicle specifications.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities within production scheduling databases could allow attackers to manipulate manufacturing timelines, alter component orders, or delay vehicle production.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in automated manufacturing environments prevents early detection of cyber intrusions, allowing attackers to compromise production systems and delay incident response.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in production management platforms could enable attackers to inject malicious data, altering assembly sequences and introducing defects into manufactured vehicles.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in industrial control systems could allow attackers to manipulate internal requests, potentially exposing manufacturing network endpoints and disrupting operations.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation in production control interfaces allows attackers to inject malicious commands, disrupting assembly line operations and causing equipment malfunctions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Exploiting open redirect vulnerabilities in manufacturing access portals could allow attackers to redirect employees to phishing sites, stealing credentials and compromising production control systems.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in smart manufacturing software could allow attackers to introduce malicious scripts, potentially corrupting robotic automation and disrupting vehicle production.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in manufacturing management software could allow attackers to introduce malware, disrupting vehicle production and compromising industrial networks.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of production control data exposes critical manufacturing instructions to interception, enabling adversaries to manipulate production workflows and cause costly operational delays.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Compromise of Industrial Control Systems (ICS)",
+    "threat_description": "Modern automotive factories rely on industrial control systems to manage robotic assembly and supply chains. If compromised, attackers could manipulate production schedules, alter machine settings, or introduce defects into vehicle components. Such attacks can cause safety concerns and regulatory violations.",
+    "motives": [
+      {
+        "motive": "Disruption of Automotive Manufacturing and Supply Chains",
+        "components": [
+          {
+            "name": "Industrial Control Systems (ICS) and Smart Manufacturing Platforms",
+            "description": "Digitally connected systems used for monitoring, managing, and automating production in automotive factories.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in Industrial Control Systems allow attackers to brute-force or steal credentials, gaining unauthorized access to robotic assembly controls and supply chain automation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive ICS authentication details allows attackers to impersonate legitimate users, granting unauthorized access to critical production control systems.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in ICS network infrastructure enable attackers to bypass login security, gaining unauthorized access to factory automation controls and disrupting operations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control in automotive ICS environments allows attackers to escalate privileges, altering machine configurations and manipulating production workflows.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass in ICS networks allows adversaries to manipulate access permissions, gaining unauthorized control over production scheduling and assembly workflows.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized personnel to access critical ICS controls, leading to intentional disruptions, production sabotage, or safety failures.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Missing encryption in ICS databases enables attackers to intercept or modify critical manufacturing data, potentially disrupting factory operations and introducing defects into vehicle components.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Lack of comprehensive logging in ICS environments prevents early detection of malicious activity, allowing attackers to persist undetected while altering production settings.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in ICS automation platforms allow attackers to inject manipulated data, modifying production parameters or altering robotic behavior in manufacturing systems.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in industrial control systems could allow attackers to manipulate internal requests, potentially exposing manufacturing network endpoints and disrupting operations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation in ICS interfaces allows attackers to inject malicious commands, resulting in manipulated robotic assembly lines or disabled safety mechanisms.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in ICS management software could allow attackers to introduce malicious scripts, potentially altering machine logic or disrupting factory automation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in ICS management portals enable attackers to introduce malicious firmware or scripts, disrupting production lines and endangering worker safety.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of sensitive ICS data exposes production control settings to interception, allowing attackers to manipulate or sabotage factory operations.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Exploiting open redirect vulnerabilities in ICS remote access portals could allow attackers to redirect engineers to phishing sites, stealing credentials and enabling unauthorized access to control systems.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities within ICS databases could allow attackers to manipulate manufacturing processes, falsify logs, or introduce unauthorized changes to production schedules.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Modification of Vehicle Software and Firmware",
+    "threat_description": "Malicious actors may exploit weaknesses in firmware updates or embedded vehicle systems, injecting unauthorized code. This could lead to functional defects, cybersecurity vulnerabilities in mass-produced vehicles, or even unauthorized remote control of certain car functions.",
+    "motives": [
+      {
+        "motive": "Disruption of Automotive Safety and Security",
+        "components": [
+          {
+            "name": "Vehicle Software and Embedded Firmware Systems",
+            "description": "Onboard software, control units, and firmware responsible for vehicle operations, including safety, performance, and infotainment.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in vehicle firmware update mechanisms allow attackers to brute-force or steal credentials, gaining unauthorized access to critical system updates and injecting malicious code.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive vehicle software configurations to unauthorized actors enables attackers to analyze firmware, identifying exploitable vulnerabilities and injecting malicious code.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in vehicle software update systems enable attackers to bypass login security, gaining unauthorized access to firmware repositories and injecting harmful code.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control in vehicle firmware management systems enables attackers to escalate privileges, modifying software or deploying unauthorized firmware updates.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass in vehicle software update systems allows adversaries to gain unauthorized control over firmware management, enabling manipulation or disabling of security features.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized users to modify vehicle firmware settings, leading to security bypasses and potential remote takeover of vehicle functions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Missing encryption in vehicle firmware transmission allows attackers to intercept updates, altering or injecting malicious code before installation on vehicle control units.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Lack of comprehensive logging in vehicle software update processes prevents early detection of unauthorized firmware modifications, allowing persistent backdoor installations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in vehicle software update processes allow attackers to inject manipulated code, modifying vehicle behaviors and introducing safety risks.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in vehicle software update platforms allow attackers to manipulate internal requests, potentially exposing and modifying firmware distribution channels.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation in vehicle software interfaces allows attackers to inject malicious payloads, compromising critical vehicle functions and safety mechanisms.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in firmware update mechanisms enable attackers to introduce malicious code, leading to unauthorized modifications of vehicle control systems.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in vehicle firmware update systems allow attackers to upload malicious firmware, potentially compromising vehicle safety and security.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of firmware updates exposes vehicle software to interception, enabling attackers to manipulate or replace legitimate updates with compromised versions.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Exploiting open redirect vulnerabilities in firmware update portals could allow attackers to redirect vehicle software updates, installing unauthorized or malicious firmware versions.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities within vehicle software management systems allow attackers to manipulate firmware update records, deploying unauthorized modifications to multiple vehicles.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Abuse of Smart Manufacturing and AI-driven Automation Systems",
+    "threat_description": "The adoption of IoT and AI-driven automation in automotive plants introduces new attack surfaces. Threat actors may compromise connected devices to introduce supply chain disruptions, manipulate machine-learning models, or conduct industrial espionage.",
+    "motives": [
+      {
+        "motive": "Influence over Smart Manufacturing Processes",
+        "components": [
+          {
+            "name": "IoT and AI-Driven Smart Manufacturing Systems",
+            "description": "Connected industrial devices, AI-driven automation, and smart manufacturing platforms responsible for optimizing production and supply chain operations.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in smart manufacturing IoT and AI-driven systems allow attackers to gain unauthorized access, potentially enabling espionage, production disruptions, or data theft.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive smart manufacturing configurations to unauthorized actors enables competitors or state-sponsored entities to analyze production efficiencies and replicate proprietary automation processes.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in smart manufacturing network infrastructure allow attackers to bypass security controls, gaining persistent access to AI-driven automation workflows.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in smart factory automation systems allow attackers to manipulate machine-learning models, altering production decisions or introducing inefficiencies for competitive advantage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass in AI-driven manufacturing systems allows adversaries to manipulate data models, leading to biased production optimizations that degrade output quality.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms in AI-based manufacturing decision engines allow unauthorized modifications, leading to deliberate inefficiencies or degraded production performance for competitive sabotage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in IoT-based manufacturing data transmissions enables attackers to intercept and extract proprietary information, compromising trade secrets and giving competitors an unfair advantage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in smart manufacturing networks prevents early detection of unauthorized access, allowing attackers to exfiltrate sensitive data or manipulate automated systems undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in smart manufacturing platforms enable attackers to inject manipulated production parameters, affecting product quality and competitive market positioning.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in connected industrial control systems allow attackers to manipulate internal requests, potentially exposing sensitive automation settings and giving adversaries access to proprietary AI-driven optimizations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in AI-driven manufacturing interfaces allows attackers to inject adversarial inputs, manipulating machine-learning outcomes and creating defective products.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in smart manufacturing platforms enable attackers to introduce malicious scripts, leading to long-term backdoors or industrial sabotage.",
+                    "capecs_to_exclude": [
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in smart factory interfaces allow attackers to introduce malicious firmware or AI model corruption, disrupting automated decision-making processes.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of production data in connected IoT devices exposes sensitive operational details to attackers, facilitating industrial espionage and unauthorized modifications of factory parameters.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in AI-based supply chain management portals allow attackers to redirect users to phishing sites, compromising credentials and enabling unauthorized access to critical data systems.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in manufacturing data repositories enable attackers to manipulate or delete proprietary production insights, affecting competitive intelligence and industrial research efforts.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Injection of Malicious Code into Supplier-Embedded Software",
+    "threat_description": "Cybercriminals may infiltrate supplier networks or software development environments to manipulate embedded vehicle component firmware. By injecting malicious code into components before they reach manufacturers, attackers can introduce security vulnerabilities, cause vehicle malfunctions, or facilitate large-scale recalls.",
+    "motives": [
+      {
+        "motive": "Disruption of Automotive Safety and Supply Chains",
+        "components": [
+          {
+            "name": "Supplier-Embedded Software and Firmware Systems",
+            "description": "Software-driven components and embedded firmware developed by automotive suppliers for critical vehicle systems.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in supplier software repositories allow attackers to gain unauthorized access, injecting malicious code into embedded firmware before distribution.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of supplier software configurations to unauthorized actors enables attackers to analyze firmware, identifying exploitable vulnerabilities for cyber sabotage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in supplier network infrastructure allow attackers to bypass login security, gaining unauthorized access to firmware repositories and injecting harmful code.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control in supplier development environments enables attackers to escalate privileges, modifying source code or deploying backdoored firmware updates.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass in supplier-controlled software systems enables attackers to modify embedded software configurations, potentially introducing security backdoors into vehicle components.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms in supplier software control systems allow unauthorized modifications, leading to large-scale security vulnerabilities in vehicle components.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Missing encryption in supplier software distribution channels allows attackers to intercept and modify firmware updates, introducing malicious payloads into vehicle components.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in supplier software repositories prevents early detection of unauthorized modifications, enabling long-term persistence of backdoored firmware.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in supplier software platforms allow attackers to inject manipulated firmware, leading to compromised vehicle functionality and unauthorized remote control.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in supplier software distribution platforms allow attackers to manipulate internal requests, exposing sensitive firmware data to external threats.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation in supplier-controlled firmware update mechanisms allows attackers to inject malicious code, potentially compromising vehicle functionality and security.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in supplier development platforms allow attackers to introduce malicious scripts, modifying vehicle firmware and enabling unauthorized control.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in supplier software repositories allow attackers to introduce malicious firmware, compromising the integrity of vehicle control systems.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of firmware updates from suppliers exposes embedded software to interception, allowing attackers to replace legitimate updates with compromised versions.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in supplier-controlled portals enable attackers to redirect engineers to phishing sites, stealing credentials and facilitating unauthorized access to embedded software systems.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in supplier part-tracking and software repositories allow attackers to manipulate firmware distribution records, deploying unauthorized modifications to multiple vehicles.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Compromise of Dealer Management Systems (DMS)",
+    "threat_description": "Dealer Management Systems store sensitive customer and vehicle data. A security breach could expose financial records, customer personal information, and vehicle ownership details. Weak authentication and outdated software often leave these systems vulnerable to attack.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Data Theft and Fraud",
+        "components": [
+          {
+            "name": "Dealer Management Systems (DMS)",
+            "description": "Enterprise software used by automotive dealerships to manage customer data, financial records, and vehicle inventory.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in Dealer Management Systems allow attackers to gain unauthorized access, potentially exposing sensitive customer and financial data for fraud and identity theft.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive customer and financial data due to weak authentication measures enables attackers to steal identities, commit fraud, or sell stolen records on dark web marketplaces.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in Dealer Management Systems allow attackers to bypass login security, gaining unauthorized access to vehicle sales records and customer financial details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in DMS platforms allow attackers to escalate privileges, modifying vehicle ownership records or altering financial transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in DMS platforms allow adversaries to manipulate access controls, potentially altering ownership details or fraudulent financial transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to dealership records, leading to fraudulent vehicle transactions and financial losses.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in database storage and data transmissions exposes sensitive customer records to interception, facilitating unauthorized access and financial fraud.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in Dealer Management Systems prevents early detection of unauthorized access, allowing cybercriminals to extract customer data undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in DMS software enable attackers to inject manipulated data, potentially altering vehicle financing records or modifying dealership transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in DMS platforms allow attackers to manipulate internal requests, potentially exposing sensitive dealership financial transactions and customer data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in DMS user interfaces allows attackers to inject malicious data, potentially corrupting financial records or altering customer details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in DMS web portals allow attackers to introduce malicious scripts, compromising customer data and dealership operations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in Dealer Management Systems allow attackers to introduce malware, compromising system integrity and facilitating unauthorized data exfiltration.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of sensitive DMS data over unsecured networks exposes financial transactions and personal records to interception by cybercriminals.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in DMS web portals could allow attackers to redirect dealership employees to phishing sites, stealing credentials and enabling unauthorized access to financial records.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in DMS databases allow attackers to manipulate or extract sensitive dealership data, compromising customer information and financial transactions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Customer Financing and Sales Data",
+    "threat_description": "Automotive dealerships handle large volumes of financial transactions, making them attractive targets for cybercriminals. Attackers may exploit security gaps to access customer loan applications, credit scores, and financing agreements, leading to identity theft or fraud.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Fraud and Identity Theft",
+        "components": [
+          {
+            "name": "Customer Financing and Sales Data Systems",
+            "description": "Dealer and financial institution platforms used to process customer credit applications, vehicle financing agreements, and sales transactions.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in dealership financing systems allow attackers to gain unauthorized access, potentially exposing sensitive customer financial records for fraud and identity theft.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive financing data due to weak authentication measures enables attackers to steal customer identities, commit fraud, or resell stolen data on underground marketplaces.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in dealership and financial institution platforms allow attackers to bypass login security, gaining unauthorized access to customer credit reports and financing details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in customer financing databases allow attackers to escalate privileges, modifying loan applications or unauthorized approval of financing agreements.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in dealership financing platforms allow adversaries to manipulate access controls, potentially altering loan records or approving fraudulent financing agreements.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to dealership financing records, leading to fraudulent vehicle purchases and financial losses.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in financial transactions exposes sensitive loan data to interception, enabling unauthorized access to personal and financial details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in financing platforms prevents early detection of unauthorized access, allowing attackers to extract customer credit information undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in dealership financing software enable attackers to inject manipulated data, potentially altering customer loan records or modifying credit evaluations.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in dealership financial platforms allow attackers to manipulate internal requests, potentially exposing sensitive transaction data and credit approval details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in financial web applications allows attackers to inject malicious data, potentially altering loan approvals or tampering with credit score evaluations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in dealership financial software allow attackers to introduce malicious scripts, compromising customer data and dealership transactions.",
+                    "capecs_to_exclude": [
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in dealership financing systems allow attackers to introduce malware, compromising system integrity and facilitating unauthorized data exfiltration.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of financial data in customer financing platforms exposes sensitive banking and loan information to interception by cybercriminals.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in dealership financing portals could allow attackers to redirect employees or customers to phishing sites, stealing credentials and enabling unauthorized access to financial records.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in customer financing databases allow attackers to manipulate or extract sensitive dealership data, compromising financial records and customer personal information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Compromise of Dealership Payment Systems",
+    "threat_description": "Dealership payment systems, including point-of-sale (POS) terminals and online transaction platforms, are prime targets for cybercriminals. Weak encryption, outdated software, or network vulnerabilities can lead to unauthorized access, data theft, and financial fraud, impacting both customers and businesses.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Payment Fraud and Data Theft",
+        "components": [
+          {
+            "name": "Dealership Payment Systems",
+            "description": "Point-of-sale (POS) terminals, online payment gateways, and transaction processing platforms used for vehicle purchases and service payments.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in dealership payment platforms allow attackers to gain unauthorized access, potentially exposing customer payment details for fraudulent transactions.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of customer payment data due to weak authentication measures enables attackers to steal credit card details, commit fraud, or resell stolen financial data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in dealership payment processing systems allow attackers to bypass login security, gaining unauthorized access to payment records and transaction histories.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in POS terminals and payment processing systems allow attackers to escalate privileges, manipulating payment transactions or bypassing security controls.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in dealership POS systems allow adversaries to manipulate access controls, potentially authorizing unauthorized refunds or fraudulent payments.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to payment transactions, leading to fraudulent charges and financial losses.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in transaction data storage and transmissions exposes payment card details to interception, enabling unauthorized access and financial fraud.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in payment processing platforms prevents early detection of unauthorized transactions, allowing attackers to conduct fraudulent payments undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in dealership payment processing software enable attackers to inject manipulated data, potentially altering financial transactions or customer billing details.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in dealership financial platforms allow attackers to manipulate internal requests, potentially exposing sensitive payment transaction details to external threats.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in payment portals allows attackers to inject malicious data, potentially altering transaction amounts or redirecting payments.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in dealership online payment systems allow attackers to introduce malicious scripts, compromising customer financial data and transaction records.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in dealership online payment platforms allow attackers to introduce malware, compromising system integrity and facilitating unauthorized data exfiltration.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of sensitive payment data in dealership payment systems exposes financial transactions to interception by cybercriminals.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in dealership payment portals could allow attackers to redirect customers to phishing sites, stealing credit card details and payment credentials.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in dealership payment databases allow attackers to manipulate or extract sensitive transaction data, compromising financial records and customer payment information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Dealership Management Platforms",
+    "threat_description": "Attackers exploit weak authentication mechanisms, credential theft, or session hijacking to gain unauthorized access to dealership management platforms, financial records, and customer data. A lack of multi-factor authentication (MFA) or robust login protections increases the risk of breaches, potentially leading to data theft, financial fraud, and operational disruptions.",
+    "motives": [
+      {
+        "motive": "Unauthorized Access for Data Theft and Financial Fraud",
+        "components": [
+          {
+            "name": "Dealership Management and Financial Systems",
+            "description": "Applications and platforms used by dealerships to manage business operations, financial transactions, and customer information.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in dealership management systems allow attackers to brute-force or steal credentials, gaining unauthorized access to customer records and financial data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of authentication logs and user credentials due to weak security configurations enables attackers to steal login details and gain unauthorized system access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in dealership management platforms allow attackers to bypass login protections, gaining unauthorized access to financial transactions and sensitive records.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control in dealership applications enables attackers to bypass authentication restrictions, potentially allowing unauthorized access to financial systems and customer databases.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in dealership applications allow attackers to manipulate authentication flows, enabling unauthorized logins and access to sensitive business operations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized users to escalate privileges, compromising dealership system security and allowing access to restricted data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in authentication data storage and transmissions allows attackers to intercept credentials, facilitating unauthorized system access and identity theft.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in dealership authentication systems prevents early detection of unauthorized login attempts, allowing prolonged credential abuse and system compromise.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in dealership authentication platforms enable attackers to manipulate session data, gaining persistent unauthorized access to dealership systems.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in dealership authentication services allow attackers to manipulate internal requests, potentially exposing login credentials and enabling unauthorized access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in authentication portals allows attackers to inject malicious data, bypassing security controls and gaining unauthorized access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in dealership login systems allow attackers to execute malicious scripts, compromising authentication mechanisms and user credentials.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in dealership authentication systems allow attackers to introduce malicious payloads, compromising login security and enabling unauthorized access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of authentication credentials in dealership platforms exposes login data to interception, enabling unauthorized access to dealership management and financial systems.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in dealership login portals could allow attackers to redirect employees or customers to phishing sites, stealing credentials and enabling unauthorized access.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in dealership authentication databases allow attackers to manipulate or extract stored login credentials, compromising dealership system security.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Vehicle Inventory Systems",
+    "threat_description": "Many dealerships use digital inventory and tracking systems for vehicle stock management. If compromised, attackers could manipulate stock data, reroute deliveries, or gain unauthorized control over connected car systems, disrupting dealership operations.",
+    "motives": [
+      {
+        "motive": "Disruption of Operations",
+        "components": [
+          {
+            "name": "Digital Inventory Management Systems",
+            "description": "Software platforms used by dealerships to track vehicle stock, manage deliveries, and coordinate vehicle sales.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in dealership inventory management systems allow attackers to brute-force or steal credentials, gaining unauthorized access to stock data and vehicle records.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of dealership inventory data due to weak authentication measures enables attackers to analyze vehicle stock availability, facilitating fraud or competitive intelligence gathering.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in dealership inventory management platforms allow attackers to bypass login security, gaining unauthorized access to stock records and vehicle tracking data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control in digital inventory platforms enables attackers to escalate privileges, allowing unauthorized modifications to vehicle stock data and delivery schedules.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in dealership inventory platforms allow adversaries to manipulate access controls, potentially modifying vehicle availability records and delivery schedules.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to dealership inventory records, leading to fraudulent vehicle transactions and stock manipulation.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in inventory data storage and transmissions exposes vehicle stock records to interception, allowing attackers to manipulate or steal inventory information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in dealership inventory systems prevents early detection of unauthorized data modifications, enabling persistent manipulation of vehicle stock records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in inventory management software enable attackers to inject manipulated data, potentially altering vehicle stock records or sales data.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in dealership inventory platforms allow attackers to manipulate internal requests, potentially exposing vehicle stock data and rerouting deliveries.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in inventory system interfaces allows attackers to inject malicious data, potentially altering vehicle availability records or rerouting shipments.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in dealership inventory management software allow attackers to introduce malicious scripts, manipulating vehicle stock information and disrupting dealership operations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in dealership inventory systems allow attackers to introduce malware, compromising system integrity and facilitating unauthorized data exfiltration.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of inventory data in dealership management platforms exposes sensitive vehicle stock details to interception by cybercriminals.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in dealership inventory portals could allow attackers to redirect employees to phishing sites, stealing credentials and enabling unauthorized access.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in dealership inventory databases allow attackers to manipulate or extract vehicle stock records, compromising inventory data and dealership operations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Manipulation of Vehicle Diagnostic and Tuning Systems",
+    "threat_description": "Automotive repair shops rely on diagnostic tools to assess vehicle performance. If these systems are compromised, incorrect readings could be injected, leading to unnecessary repairs, incorrect part replacements, or compromised vehicle safety.",
+    "motives": [
+      {
+        "motive": "Disruption of Operations",
+        "components": [
+          {
+            "name": "Vehicle Diagnostic and Tuning Systems",
+            "description": "Electronic tools and software platforms used by automotive repair shops to assess vehicle performance, detect faults, and apply tuning modifications.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in vehicle diagnostic systems allow attackers to gain unauthorized access, manipulating diagnostic outputs and leading to unnecessary repairs or incorrect part replacements.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of vehicle diagnostic data due to weak authentication measures enables attackers to analyze vehicle performance information, identifying vulnerabilities for exploitation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in vehicle diagnostic tools allow attackers to bypass login security, gaining unauthorized access to vehicle calibration and error code settings.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in diagnostic tools allow attackers to escalate privileges, modifying vehicle performance data and introducing safety risks.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in vehicle tuning software allow adversaries to manipulate calibration settings, potentially altering vehicle safety mechanisms.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to vehicle diagnostic records, leading to unsafe tuning settings and performance manipulations.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in diagnostic data storage and transmissions exposes vehicle diagnostics to interception, allowing attackers to alter performance readings or inject false errors.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in vehicle diagnostic platforms prevents early detection of unauthorized data manipulations, allowing prolonged tampering with diagnostic results.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in diagnostic software enable attackers to inject manipulated data, potentially corrupting vehicle tuning parameters or diagnostic logs.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in diagnostic tuning platforms allow attackers to manipulate internal requests, potentially exposing sensitive vehicle performance data and calibration settings.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in vehicle diagnostic interfaces allows attackers to inject malicious data, potentially altering error codes or falsifying maintenance alerts.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in diagnostic tuning software allow attackers to introduce malicious scripts, compromising vehicle performance and introducing potential safety hazards.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in vehicle diagnostic systems allow attackers to introduce malware, compromising system integrity and enabling unauthorized remote access.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of diagnostic data in automotive tuning platforms exposes performance and fault records to interception by cybercriminals.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in vehicle diagnostic platforms could allow attackers to redirect mechanics or technicians to phishing sites, stealing credentials and enabling unauthorized access to vehicle systems.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in diagnostic and tuning databases allow attackers to manipulate or extract sensitive vehicle performance records, compromising vehicle maintenance data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Abuse of Remote Vehicle Maintenance and OTA (Over-The-Air) Update Services",
+    "threat_description": "Many modern vehicles offer remote diagnostics and over-the-air updates. Attackers exploiting these services could manipulate vehicle settings, disable key safety functions, or install malicious software updates, affecting vehicle integrity.",
+    "motives": [
+      {
+        "motive": "Disruption of Vehicle Operations and Safety",
+        "components": [
+          {
+            "name": "Remote Vehicle Maintenance and Over-the-Air Update Systems",
+            "description": "Cloud-based platforms and embedded vehicle systems that enable remote diagnostics, software updates, and performance adjustments.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in remote vehicle maintenance platforms allow attackers to gain unauthorized access, potentially modifying vehicle settings or disabling critical safety functions.",
+                    "capecs_to_exclude": [
+                      "509"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of remote maintenance system configurations due to weak authentication measures enables attackers to analyze vehicle update mechanisms, identifying vulnerabilities for exploitation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in remote vehicle maintenance systems allow attackers to bypass login security, gaining unauthorized access to vehicle control functions and firmware updates.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in remote diagnostic services allow attackers to escalate privileges, manipulating vehicle firmware updates and enabling unauthorized system modifications.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in remote vehicle update systems allow adversaries to manipulate access controls, potentially altering firmware and disabling security functions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to vehicle firmware updates, leading to potential safety risks and operational disruptions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in over-the-air update transmissions exposes vehicle software to interception, allowing attackers to inject malicious firmware or alter performance settings.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in remote vehicle maintenance platforms prevents early detection of unauthorized system modifications, enabling prolonged manipulation of vehicle settings.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in remote vehicle maintenance software enable attackers to inject manipulated data, potentially corrupting vehicle firmware and diagnostic logs.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in remote maintenance platforms allow attackers to manipulate internal requests, potentially exposing sensitive vehicle update data to external threats.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in remote diagnostic interfaces allows attackers to inject malicious commands, potentially altering sensor data or issuing unauthorized vehicle commands.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in vehicle update software allow attackers to introduce malicious scripts, modifying firmware and enabling unauthorized vehicle control.",
+                    "capecs_to_exclude": [
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in vehicle update systems allow attackers to introduce malicious firmware, compromising system integrity and enabling persistent unauthorized access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of diagnostic and update data exposes sensitive vehicle information to interception, enabling attackers to manipulate over-the-air updates.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in remote maintenance platforms could allow attackers to redirect technicians or vehicle owners to phishing sites, stealing credentials and enabling unauthorized access.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in remote vehicle update databases allow attackers to manipulate or extract firmware update records, compromising vehicle security and functionality.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Modifications to Vehicle Software",
+    "threat_description": "Unauthorized or malicious software modifications can lead to safety and legal concerns. Cybercriminals may exploit tuning software to disable emissions controls, alter engine performance, or introduce security vulnerabilities into vehicle control systems.",
+    "motives": [
+      {
+        "motive": "Manipulation of Vehicle Performance",
+        "components": [
+          {
+            "name": "Vehicle Software and Control Systems",
+            "description": "Firmware, tuning software, and control unit programming platforms used to manage vehicle performance and safety features.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in vehicle tuning and software management systems allow attackers to gain unauthorized access, potentially altering vehicle performance or disabling security controls.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of vehicle control software configurations due to weak authentication measures enables attackers to analyze firmware vulnerabilities and introduce unauthorized modifications.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in vehicle tuning software allow attackers to bypass login security, gaining unauthorized access to vehicle performance parameters and firmware settings.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in vehicle firmware update platforms allow attackers to escalate privileges, enabling unauthorized modifications to vehicle control settings.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in vehicle software platforms allow adversaries to manipulate firmware update processes, potentially altering critical vehicle functionalities.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to vehicle firmware updates, leading to potential safety risks, regulatory violations, and performance manipulation.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in vehicle software update transmissions exposes firmware to interception, allowing attackers to inject unauthorized modifications or install backdoored software.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in vehicle software management systems prevents early detection of unauthorized modifications, allowing long-term persistence of tampered firmware.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in vehicle control software enable attackers to inject manipulated data, potentially corrupting firmware and vehicle safety mechanisms.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in vehicle software update platforms allow attackers to manipulate internal requests, potentially exposing firmware and control software to unauthorized modifications.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in vehicle tuning interfaces allows attackers to inject malicious configurations, potentially altering emission controls or overriding safety settings.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in vehicle software update platforms allow attackers to introduce malicious scripts, modifying firmware integrity and enabling unauthorized control.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in vehicle software update systems allow attackers to introduce malicious firmware, compromising vehicle safety and control systems.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of vehicle firmware updates exposes sensitive software to interception, allowing attackers to inject unauthorized modifications.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in vehicle tuning portals could allow attackers to redirect mechanics or vehicle owners to phishing sites, stealing credentials and enabling unauthorized software modifications.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in vehicle software management databases allow attackers to manipulate or extract firmware update records, compromising vehicle security and functionality.",
+                    "capecs_to_exclude": [
+                      "108",
+                      "109",
+                      "110",
+                      "66",
+                      "7"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Vehicle Diagnostic and Service Data",
+    "threat_description": "Automotive repair and customization platforms store sensitive vehicle diagnostics, service history, and proprietary tuning data. Weak access controls, improper privilege management, or insecure APIs can lead to unauthorized access, risking data leaks, unauthorized modifications, or exploitation of vehicle systems.",
+    "motives": [
+      {
+        "motive": "Technological Advantage through Theft of Proprietary Data",
+        "components": [
+          {
+            "name": "Vehicle Service and Customization Platforms",
+            "description": "Software and cloud-based platforms used by automotive service providers to store vehicle diagnostics, maintenance history, and tuning data for performance modifications.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in vehicle service platforms allow attackers to brute-force or steal credentials, gaining unauthorized access to sensitive vehicle diagnostics and service history.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of vehicle service logs due to weak authentication measures enables attackers to analyze vehicle diagnostics, identify security flaws, and exploit vulnerabilities.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in vehicle service platforms allow attackers to bypass login security, gaining unauthorized access to vehicle service records and tuning data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in automotive service applications enable attackers to escalate privileges, potentially modifying service history or extracting proprietary tuning data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in vehicle service applications allow attackers to manipulate access controls, potentially altering service history or modifying diagnostic settings.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to vehicle service records, leading to inaccurate diagnostics, fraudulent repairs, or compromised vehicle performance settings.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in service records storage and transmissions exposes vehicle diagnostics and repair data to interception, allowing attackers to manipulate or steal confidential records.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in vehicle service platforms prevents early detection of unauthorized data modifications, allowing attackers to exploit vehicle maintenance data undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in vehicle service software enable attackers to inject manipulated data, potentially corrupting vehicle repair logs or tuning configurations.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in vehicle service platforms allow attackers to manipulate internal requests, potentially exposing sensitive vehicle diagnostics and repair records.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in API endpoints of service platforms allows attackers to inject malicious requests, potentially altering vehicle repair logs or extracting confidential vehicle data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in automotive service platforms allow attackers to introduce malicious scripts, compromising authentication mechanisms and enabling unauthorized modifications to vehicle data.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in automotive service management systems allow attackers to introduce malicious payloads, compromising system integrity and enabling persistent unauthorized access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of vehicle service records exposes diagnostic data to interception, enabling attackers to manipulate maintenance logs and performance settings.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in vehicle service portals could allow attackers to redirect technicians or vehicle owners to phishing sites, stealing credentials and enabling unauthorized access.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in vehicle service databases allow attackers to manipulate or extract repair history and diagnostic logs, compromising vehicle maintenance data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
