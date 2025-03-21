@@ -55,7 +55,7 @@
         ]
       },
       {
-        "motive": "Disrupt agent/broker operations or steal commissions",
+        "motive": "Disrupt Broker Operations or Steal Commissions",
         "components": [
           {
             "name": "Agent/Broker Systems",
@@ -100,7 +100,7 @@
         ]
       },
       {
-        "motive": "Falsify regulatory reporting for evasion or penalties",
+        "motive": "Evade Regulatory Oversight",
         "components": [
           {
             "name": "Regulatory Reporting",
@@ -198,11 +198,11 @@
     ]
   },
   {
-    "threat": "Compromise / Exposure of Sensitive Data",
-    "threat_description": "Unauthorized access to or disclosure of sensitive data within insurance systems, including policyholder personal information and sensitive health records. This threat involves the exploitation of system vulnerabilities, misconfigurations, or human error to expose or extract confidential data. Attackers may target this information for financial gain, legal violations, or reputational damage. The primary concerns are breaches of privacy, regulatory noncompliance, and potential harm to affected individuals.",
+    "threat": "Unauthorized Disclosure of Sensitive Insurance Data",
+    "threat_description": "Unauthorized access to or exposure of policyholder PII or health records due to misconfigurations, insufficient access controls, or lack of encryption. This threat impacts confidentiality and regulatory compliance and may be motivated by financial gain, identity theft, or extortion.",
     "motives": [
       {
-        "motive": "Sell sensitive data on illicit markets",
+        "motive": "Monetize Stolen Insurance Data",
         "components": [
           {
             "name": "Policyholder Data",
@@ -334,7 +334,7 @@
         ]
       },
       {
-        "motive": "Blackmail or extort affected individuals",
+        "motive": "Leverage Sensitive Data for Blackmail or Extortion",
         "components": [
           {
             "name": "Policyholder Data",
@@ -421,11 +421,11 @@
     ]
   },
   {
-    "threat": "Data Theft / Intellectual Property Loss",
-    "threat_description": "Unauthorized access to and theft of proprietary intellectual property, specifically pricing models used by insurance companies to assess risk and determine premiums. This threat involves attackers targeting sensitive business assets through system vulnerabilities, insider threats, or external breaches. The primary concerns are loss of competitive advantage, financial damage due to replication by competitors, and potential regulatory or legal repercussions stemming from the exposure of trade secrets.",
+    "threat": "Unauthorized Access to Intellectual Property",
+    "threat_description": "Theft of intellectual property, particularly proprietary pricing models, through compromised authentication or insufficient access controls. This threat targets confidentiality and competitive advantage by exposing actuarial algorithms and datasets.",
     "motives": [
       {
-        "motive": "Sell proprietary pricing models to competitors",
+        "motive": "Illicit Sale of Pricing Models To Competitors",
         "components": [
           {
             "name": "Proprietary Pricing Models",
@@ -602,11 +602,11 @@
     ]
   },
   {
-    "threat": "Disruption of Operations",
+    "threat": "Denial of Service or Disruption of Operations",
     "threat_description": "Intentional interference with or degradation of critical insurance operations, specifically claims processing and catastrophe response systems. This threat involves attackers exploiting vulnerabilities, launching denial-of-service attacks, or manipulating workflows to impair the ability to process claims or respond to catastrophic events. The primary concerns are operational downtime, financial losses, customer dissatisfaction, and potential reputational damage.",
     "motives": [
       {
-        "motive": "Delay or prevent claims payouts",
+        "motive": "Delay or Prevent Claims Processing",
         "components": [
           {
             "name": "Claims Processing",
@@ -695,7 +695,7 @@
         ]
       },
       {
-        "motive": "Impair response to catastrophic events",
+        "motive": "Disrupt Disaster Recovery Operations",
         "components": [
           {
             "name": "Catastrophe Response",
@@ -784,11 +784,11 @@
     ]
   },
   {
-    "threat": "Tampering / Manipulation of Data or Processes",
-    "threat_description": "Unauthorized alteration or interference with critical insurance data and processes, including actuarial models, claims evidence, reinsurance transactions, and fraud detection systems. This threat involves attackers exploiting vulnerabilities or insider access to manipulate data or workflows for financial gain, fraud, or operational sabotage. The primary concerns are compromised decision-making, financial losses, regulatory violations, and erosion of trust in insurance operations.",
+    "threat": "Unauthorized Alteration of Insurance Data or Workflows",
+    "threat_description": "Manipulation of claims evidence, actuarial models, fraud detection systems or reinsurance records to enable fraud or impact business decisions. This threat affects the integrity of insurance operations and may originate from insiders or external actors.",
     "motives": [
       {
-        "motive": "Manipulate risk assessments for profit",
+        "motive": "Manipulate Risk Assessments or Calculations for Profit",
         "components": [
           {
             "name": "Actuarial Models",
@@ -857,7 +857,7 @@
         ]
       },
       {
-        "motive": "Fabricate or alter claims for fraudulent payouts",
+        "motive": "Fabricate or Alter Claims for Fraudulent Payouts",
         "components": [
           {
             "name": "Claims Evidence",
@@ -921,7 +921,7 @@
         ]
       },
       {
-        "motive": "Alter reinsurance agreements for financial gain",
+        "motive": "Modify Reinsurance Agreements for Financial Gain",
         "components": [
           {
             "name": "Reinsurance Transactions",
@@ -989,7 +989,7 @@
         ]
       },
       {
-        "motive": "Evade detection of fraudulent activities",
+        "motive": "Bypass Fraud Detection",
         "components": [
           {
             "name": "Fraud Detection Systems",
@@ -1053,11 +1053,11 @@
     ]
   },
   {
-    "threat": "Financial Fraud",
-    "threat_description": "Deliberate exploitation of insurance systems to perpetrate financial fraud, including the submission of fraudulent insurance claims and the interception or manipulation of premium payment transactions. This threat involves attackers using deception, system vulnerabilities, or insider access to illicitly obtain funds or redirect payments. The primary concerns are financial losses, regulatory penalties, and damage to the insurer's credibility and customer trust.",
+    "threat": "Abuse of Claims and Payment Systems",
+    "threat_description": "Exploitation of claims and payment mechanisms to secure unauthorized financial gain via falsified submissions or redirected transactions. This threat affects financial integrity and is driven by motives of theft, deception, or system manipulation.",
     "motives": [
       {
-        "motive": "Obtain payouts through fraudulent claims",
+        "motive": "Obtain Payouts through Fraudulent Claims",
         "components": [
           {
             "name": "Submission of Fraudulent Insurance Claims",
@@ -1146,7 +1146,7 @@
         ]
       },
       {
-        "motive": "Steal or redirect premium payments",
+        "motive": "Steal or Redirect Premium Payments",
         "components": [
           {
             "name": "Interception or Manipulation of Premium Payment Transactions",
@@ -1235,8 +1235,8 @@
     ]
   },
   {
-    "threat": "Extortion / Ransomware",
-    "threat_description": "Deployment of malicious software to encrypt or lock access to critical insurance systems and data, followed by demands for payment to restore access or prevent data disclosure. This threat targets the availability and confidentiality of sensitive information and operational capabilities through ransomware attacks. The primary concerns are operational paralysis, financial losses from ransom payments or downtime, reputational damage, and potential data leaks if demands are unmet.",
+    "threat": "Ransomware Deployment via System Compromise",
+    "threat_description": "Deployment of ransomware through compromised authentication or supply chain injection, resulting in encryption or inaccessibility of critical data and systems. This threat impacts availability and confidentiality and is intended to extort ransom payments or threaten data exposure.",
     "motives": [
       {
         "motive": "Extract ransom payments by locking critical data",
@@ -1326,7 +1326,7 @@
         ]
       },
       {
-        "motive": "Disrupt operations and extort payment for restoration",
+        "motive": "Disrupt Operations and Extort Payment for Restoration",
         "components": [
           {
             "name": "Operational Systems",
@@ -1446,7 +1446,7 @@
     "threat_description": "Unauthorized exploitation of external access points or systems integrated with insurance operations, specifically third-party vendor access and telematics systems. This threat involves attackers leveraging vulnerabilities in external connections, credentials, or devices to gain access, manipulate data, or disrupt services. The primary concerns are breaches of security through trusted external entities, loss of data integrity, and potential operational or financial impacts.",
     "motives": [
       {
-        "motive": "Gain unauthorized access to internal systems via vendors",
+        "motive": "Exploit Vendor Access to Reach Internal Systems",
         "components": [
           {
             "name": "Third-Party Vendor Access",
@@ -1559,7 +1559,7 @@
         ]
       },
       {
-        "motive": "Manipulate or extract telematics data for profit",
+        "motive": "Manipulate or Extract Telematics Data for Profit",
         "components": [
           {
             "name": "Telematics Systems",
