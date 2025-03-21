@@ -1,0 +1,1922 @@
+[
+  {
+    "threat": "Unauthorized Access to Faculty Accounts",
+    "threat_description": "Unauthorized access to faculty accounts through phishing, credential stuffing, or brute-force attacks.",
+    "motives": [
+      {
+        "motive": "Fraud, Data exposure, Course Disruption",
+        "components": [
+          {
+            "name": "Instructure Canvas (LMS)",
+            "description": "A widely adopted learning management system in higher education.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms can allow unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Inadequate credential protection can expose faculty data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Hard-coded credentials can be exploited to gain unauthorized access.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Google Workspace",
+            "description": "Cloud-based email and collaboration tools for universities.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms can allow unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Inadequate credential protection can expose faculty data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Hard-coded credentials can be exploited to gain unauthorized access.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Microsoft 365",
+            "description": "Cloud-based email and collaboration tools for universities.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms can allow unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Inadequate credential protection can expose faculty data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Hard-coded credentials can be exploited to gain unauthorized access.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "University VPN System",
+            "description": "A VPN service allowing faculty remote access to university resources.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms can allow unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Inadequate credential protection can expose faculty data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Hard-coded credentials can be exploited to gain unauthorized access.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "University Identity Provider (IdP)",
+            "description": "A centralized authentication system for accessing university services.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms can allow unauthorized access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Inadequate credential protection can expose faculty data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Hard-coded credentials can be exploited to gain unauthorized access.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Modification of Student Records",
+    "threat_description": "Unauthorized alteration of student records, including grades and transcripts.",
+    "motives": [
+      {
+        "motive": "Fraud, and Academic Misconduct",
+        "components": [
+          {
+            "name": "Ellucian Banner (SIS)",
+            "description": "A student information system used by universities.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: SQL Injection",
+                    "cwe_mapping_reason": "SQL injection vulnerabilities can allow attackers to modify student records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak authorization controls can allow unauthorized users to alter records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Sensitive student data may be exposed due to improper access controls.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Oracle PeopleSoft Campus Solutions",
+            "description": "A higher education SIS that manages student data.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: SQL Injection",
+                    "cwe_mapping_reason": "SQL injection vulnerabilities can allow attackers to modify student records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak authorization controls can allow unauthorized users to alter records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Sensitive student data may be exposed due to improper access controls.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Learning Management System (LMS)",
+            "description": "A digital platform used to manage student courses, grades, and assignments.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: SQL Injection",
+                    "cwe_mapping_reason": "SQL injection vulnerabilities can allow attackers to modify student records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak authorization controls can allow unauthorized users to alter records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Sensitive student data may be exposed due to improper access controls.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "University Registrar Portal",
+            "description": "An online portal for student course registration and record management.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: SQL Injection",
+                    "cwe_mapping_reason": "SQL injection vulnerabilities can allow attackers to modify student records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak authorization controls can allow unauthorized users to alter records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Sensitive student data may be exposed due to improper access controls.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Financial Aid Database",
+            "description": "A system tracking financial aid disbursement and student loan records.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: SQL Injection",
+                    "cwe_mapping_reason": "SQL injection vulnerabilities can allow attackers to modify student records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Weak authorization controls can allow unauthorized users to alter records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Sensitive student data may be exposed due to improper access controls.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Exfiltration of Sensitive Research Data",
+    "threat_description": "Theft of sensitive research data by cybercriminals or nation-state actors.",
+    "motives": [
+      {
+        "motive": "Technological Advancement through Industrial Espionage",
+        "components": [
+          {
+            "name": "Amazon Web Services (AWS)",
+            "description": "Cloud storage and computing platform used for university research.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Misconfigured permissions can expose sensitive research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Insufficient data protections can lead to leaks of classified research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak authentication can lead to unauthorized access to research databases.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Microsoft Azure",
+            "description": "Cloud platform hosting academic and research databases.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Misconfigured permissions can expose sensitive research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Insufficient data protections can lead to leaks of classified research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak authentication can lead to unauthorized access to research databases.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "University Research Lab Server",
+            "description": "A dedicated on-premise server storing experimental research data.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Misconfigured permissions can expose sensitive research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Insufficient data protections can lead to leaks of classified research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak authentication can lead to unauthorized access to research databases.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "High-Performance Computing (HPC) Cluster",
+            "description": "A supercomputing environment used for complex simulations.",
+            "sub_components": [
+              {
+                "name": "Internal Network",
+                "dynamic": true,
+                "tags": "Internal Network",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Misconfigured permissions can expose sensitive research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Insufficient data protections can lead to leaks of classified research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak authentication can lead to unauthorized access to research databases.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Intellectual Property Repository",
+            "description": "A database storing patents and research papers.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Misconfigured permissions can expose sensitive research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information",
+                    "cwe_mapping_reason": "Insufficient data protections can lead to leaks of classified research data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak authentication can lead to unauthorized access to research databases.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Malicious Encryption of University Data",
+    "threat_description": "Malware encrypts university data, with attackers demanding ransom for decryption.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Extortion",
+        "components": [
+          {
+            "name": "University File Server",
+            "description": "A centralized file server for storing administrative and academic documents.",
+            "sub_components": [
+              {
+                "name": "Internal Network",
+                "dynamic": true,
+                "tags": "Internal Network",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Denial-of-service attacks can make data inaccessible, enabling ransom demands.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak credentials can allow attackers to encrypt important files.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Lack of proper access controls can enable ransomware execution.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "On-Premise Email System",
+            "description": "A self-hosted email server for faculty and student communications.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Denial-of-service attacks can make data inaccessible, enabling ransom demands.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak credentials can allow attackers to encrypt important files.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Lack of proper access controls can enable ransomware execution.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "University Backup System",
+            "description": "A backup storage solution for disaster recovery.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Denial-of-service attacks can make data inaccessible, enabling ransom demands.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak credentials can allow attackers to encrypt important files.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Lack of proper access controls can enable ransomware execution.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Faculty Workstations",
+            "description": "Personal computers used by faculty members.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Denial-of-service attacks can make data inaccessible, enabling ransom demands.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak credentials can allow attackers to encrypt important files.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Lack of proper access controls can enable ransomware execution.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Student Shared Network Drives",
+            "description": "A shared file storage area for students.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Denial-of-service attacks can make data inaccessible, enabling ransom demands.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak credentials can allow attackers to encrypt important files.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Lack of proper access controls can enable ransomware execution.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Manipulation of Tuition and Payment Systems",
+    "threat_description": "Attackers manipulate tuition payments or steal financial aid information for fraud.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Fraud",
+        "components": [
+          {
+            "name": "Flywire (Payment Gateway)",
+            "description": "A global payment processor for higher education institutions.",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Lack of CSRF protections can lead to unauthorized financial transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unencrypted transactions can be intercepted by attackers.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Weak cryptographic protections can expose payment details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "TransferMate (Payment Processor)",
+            "description": "An international education payment solution provider.",
+            "sub_components": [
+              {
+                "name": "Transaction Processor",
+                "dynamic": true,
+                "tags": "Transaction Processor",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Lack of CSRF protections can lead to unauthorized financial transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unencrypted transactions can be intercepted by attackers.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Weak cryptographic protections can expose payment details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Razorpay (Payment Platform)",
+            "description": "A digital payment solution used for university tuition transactions.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Lack of CSRF protections can lead to unauthorized financial transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unencrypted transactions can be intercepted by attackers.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "117",
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Weak cryptographic protections can expose payment details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "University Financial Database",
+            "description": "A financial database storing tuition payments and transaction records.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Lack of CSRF protections can lead to unauthorized financial transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unencrypted transactions can be intercepted by attackers.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Weak cryptographic protections can expose payment details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "University Billing Portal",
+            "description": "An online platform for managing student invoices and payments.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Lack of CSRF protections can lead to unauthorized financial transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unencrypted transactions can be intercepted by attackers.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Weak cryptographic protections can expose payment details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Disclosure of Student and Faculty Information",
+    "threat_description": "Unauthorized access to personally identifiable information (PII) of students, faculty, and staff. Attackers may exploit weak authentication, unpatched vulnerabilities, or phishing attacks to gain access to sensitive records, leading to identity theft, financial fraud, or reputational damage.",
+    "motives": [
+      {
+        "motive": "Financial Gain through Identity Theft and Data Exploitation",
+        "components": [
+          {
+            "name": "Higher Education Data Management Systems",
+            "description": "Student and faculty information systems, cloud storage, and database platforms used for academic records, financial aid, and administrative data.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in higher education data management systems allow attackers to brute-force or steal credentials, gaining unauthorized access to student and faculty PII.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of student and faculty data due to weak authentication measures enables attackers to steal identities, commit fraud, or sell compromised records on dark web marketplaces.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in university data management platforms allow attackers to bypass login security, gaining unauthorized access to student records and faculty PII.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in student record systems enable attackers to escalate privileges, potentially accessing confidential academic and financial records.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in university data platforms allow adversaries to manipulate access controls, potentially altering student grades or modifying administrative data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to student and faculty records, leading to data integrity issues, identity theft, and institutional reputational damage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in student and faculty databases exposes sensitive personal and financial records to interception, enabling unauthorized access and identity fraud.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in student and faculty databases allow attackers to manipulate or extract sensitive academic records, compromising institutional data integrity.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in student information systems prevents early detection of unauthorized access attempts, allowing attackers to extract PII undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in university data management software enable attackers to inject manipulated data, potentially corrupting academic records or financial aid processing systems.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in student record systems allow attackers to manipulate internal requests, potentially exposing confidential student and faculty information to external threats.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in student and faculty portals allows attackers to inject malicious data, potentially altering academic records or extracting sensitive PII.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in university web portals allow attackers to introduce malicious scripts, compromising authentication mechanisms and enabling unauthorized modifications to student data.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in student information portals allow attackers to introduce malware, compromising system integrity and facilitating unauthorized data exfiltration.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in university authentication portals could allow attackers to redirect faculty and students to phishing sites, stealing credentials and enabling unauthorized access to institutional records.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of sensitive student and faculty data exposes personal records to interception, allowing attackers to manipulate or extract academic and financial details.",
+                    "capecs_to_exclude": [
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Student Accounts",
+    "threat_description": "Attackers exploit weak credentials, phishing attacks, or session hijacking to gain control of student accounts. This unauthorized access allows adversaries to alter academic records, access financial aid information, steal personal data, or misuse institutional resources.",
+    "motives": [
+      {
+        "motive": "Academic Fraud or Identity Theft",
+        "components": [
+          {
+            "name": "Student Account Management Systems",
+            "description": "University authentication portals, student information systems, and online learning platforms that store and manage student accounts and credentials.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in student account management systems allow attackers to brute-force or steal credentials, gaining unauthorized access to academic records and personal data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of student authentication logs due to weak security configurations enables attackers to steal login credentials and gain unauthorized system access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in student portals allow attackers to bypass login protections, gaining unauthorized access to academic records and financial aid details.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in student portals enable attackers to escalate privileges, potentially altering grades, modifying enrollment records, or accessing financial aid information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in student authentication systems allow attackers to manipulate access controls, enabling unauthorized logins and account takeovers.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized users to escalate privileges, compromising student account security and allowing access to restricted academic records.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in student account databases exposes login credentials and personal records to interception, enabling unauthorized access and identity fraud.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in student account databases allow attackers to manipulate or extract stored login credentials, compromising student academic records and personal data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in student authentication platforms prevents early detection of unauthorized access, allowing attackers to exploit student accounts undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in student authentication software enable attackers to manipulate session data, gaining persistent unauthorized access to student accounts.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in student authentication services allow attackers to manipulate internal requests, potentially exposing login credentials and enabling unauthorized access to student accounts.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in student login portals allows attackers to inject malicious scripts, potentially bypassing authentication mechanisms and accessing accounts without proper credentials.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in university authentication systems allow attackers to introduce malicious scripts, compromising student credentials and enabling unauthorized modifications to academic records.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in student portals allow attackers to introduce malware, compromising system integrity and facilitating unauthorized access to student accounts.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in university authentication portals could allow attackers to redirect students to phishing sites, stealing credentials and enabling unauthorized access.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of student authentication data exposes login credentials to interception, enabling attackers to steal student account access information.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Distribution of Malware Across University Systems",
+    "threat_description": "Attackers deploy malware across university networks to steal credentials, disrupt operations, or enable espionage. Exploiting phishing attacks, vulnerable endpoints, or unsecured software downloads, adversaries can establish persistence, exfiltrate sensitive data, or compromise academic and administrative systems.",
+    "motives": [
+      {
+        "motive": "Espionage, Credential Theft, and Operational Disruption",
+        "components": [
+          {
+            "name": "University Network and Endpoint Systems",
+            "description": "Campus-wide networks, administrative servers, student and faculty devices, and research infrastructure that facilitate academic and operational functions.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in university systems allow attackers to gain initial access, deploying malware to compromise credentials and establish persistence.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of network security logs due to weak authentication measures allows attackers to analyze defenses, evade detection, and distribute malware stealthily.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in university workstations and remote access systems allow attackers to deploy malware by bypassing login protections and gaining administrator-level access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in campus networks enable attackers to escalate privileges, allowing them to spread malware across administrative and academic systems.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in university file-sharing platforms enable attackers to upload and distribute malware disguised as legitimate academic resources.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms in university file-sharing systems enable unauthorized malware uploads, leading to widespread infections and operational disruptions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in university data transmissions exposes sensitive records to interception, enabling attackers to extract credentials and deploy malware payloads.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in university databases allow attackers to manipulate stored queries, deploying malware via database responses to connected systems.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in university network monitoring systems prevents early detection of malware infections, allowing attackers to persist undetected.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in university applications enable attackers to inject manipulated objects, leading to malware execution within administrative or academic systems.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in university research and administrative platforms allow attackers to manipulate internal requests, potentially distributing malware across networked systems.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in academic web applications allows attackers to inject malicious payloads, compromising student and faculty accounts with malware infections.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in university portals allow attackers to introduce malicious scripts, leading to malware execution and unauthorized access.",
+                    "capecs_to_exclude": [
+                      "77"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in university portals allow attackers to introduce malicious files, facilitating campus-wide malware infections.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in university authentication systems allow attackers to redirect users to phishing sites, infecting devices with malware and stealing credentials.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of sensitive university credentials over unsecured networks enables attackers to steal authentication data and distribute malware across campus systems.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Physical Access to Campus Facilities",
+    "threat_description": "Attackers exploit weaknesses in access control systems to gain unauthorized entry into dormitories, research labs, or administrative offices. Compromised access credentials, tailgating, or bypassing physical security controls can result in theft, espionage, or personal safety risks.",
+    "motives": [
+      {
+        "motive": "Theft, Espionage, Vandalism and Compromise Student Safety",
+        "components": [
+          {
+            "name": "Campus Access Control and Physical Security Systems",
+            "description": "Electronic door locks, keycard authentication systems, biometric entry points, and surveillance infrastructure used for securing university facilities.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in campus access control systems allow attackers to brute-force or steal credentials, gaining unauthorized entry to secure areas.",
+                    "capecs_to_exclude": [
+                      "112",
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of physical access control logs due to weak security measures enables attackers to analyze entry patterns and evade detection while gaining unauthorized entry.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in campus security platforms allow attackers to bypass login protections, gaining unauthorized access to entry control systems.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in electronic door lock systems enable attackers to escalate privileges, bypassing security controls and accessing restricted university facilities.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in campus security systems enable attackers to manipulate access permissions, granting unauthorized facility access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to access control policies, leading to security breaches and unauthorized facility access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in access control credential storage exposes entry logs and authentication data to interception, allowing attackers to duplicate or manipulate access credentials.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in university security systems prevents early detection of unauthorized access attempts, allowing attackers to repeatedly exploit vulnerabilities.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in physical security management software enable attackers to manipulate access control configurations, leading to unauthorized access to restricted areas.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in university security platforms allow attackers to manipulate internal requests, potentially exposing facility entry logs and authentication credentials.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in keycard authentication terminals allows attackers to inject malicious requests, potentially bypassing access controls and unlocking secured areas.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in university access control software allow attackers to introduce malicious scripts, modifying access permissions and enabling unauthorized facility entry.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in university security portals could allow attackers to redirect administrators to phishing sites, stealing credentials and gaining control over access control systems.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of access credentials over unsecured networks exposes authentication data, allowing attackers to steal keycard or biometric authentication details.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "frontend_technologies",
+                "dynamic": false,
+                "tags": "frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in university security systems allow attackers to introduce malicious firmware, compromising access control hardware and surveillance systems.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "database_technologies",
+                "dynamic": false,
+                "tags": "database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in university access control databases allow attackers to manipulate or extract credential records, compromising facility security and authentication logs.",
+                    "capecs_to_exclude": [
+                      "108",
+                      "109",
+                      "110",
+                      "470",
+                      "66",
+                      "7"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Disruption of University Digital Service Availability",
+    "threat_description": "Attackers disrupt access to digital campus services, including student and faculty portals, Wi-Fi networks, and cloud-based collaboration tools. By exploiting authentication vulnerabilities, launching distributed denial-of-service (DDoS) attacks, or compromising infrastructure, adversaries can lock out users, delay academic activities, and disrupt university operations.",
+    "motives": [
+      {
+        "motive": "Disruption of Academic Operations and Digital Services",
+        "components": [
+          {
+            "name": "University Digital Service Infrastructure",
+            "description": "Authentication servers, learning management systems, cloud collaboration platforms, and university network access points that facilitate academic and administrative functions.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in campus authentication systems allow attackers to take over student and faculty accounts, locking users out of digital academic services.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of authentication logs due to weak security configurations enables attackers to analyze session data, escalate privileges, and disrupt academic services.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in university portals allow attackers to bypass security protections, locking out faculty and students from critical academic resources.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in university portals allow attackers to escalate privileges, blocking access to cloud-based collaboration and academic services.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in university authentication platforms allow attackers to manipulate login sessions, denying access to students and faculty.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to session controls, locking legitimate users out of university digital services and resources.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in session authentication and service credentials exposes users to credential theft, allowing attackers to hijack sessions and disrupt access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in university authentication and session management databases allow attackers to manipulate login credentials and deny access to legitimate users.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in university network and authentication systems prevents early detection of service disruptions, allowing attackers to persist in blocking access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in academic service applications enable attackers to inject manipulated data, leading to service disruptions and system crashes.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in university authentication systems allow attackers to manipulate internal requests, disrupting access to cloud-based services and campus networks.",
+                    "capecs_to_exclude": [
+                      "664"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in login portals allows attackers to inject malicious requests, locking out legitimate users from academic resources.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in university authentication platforms allow attackers to introduce malicious scripts, disrupting login sessions and access to online services.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in university portals allow attackers to introduce malware, compromising digital service availability and login authentication.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in university authentication systems allow attackers to redirect users to phishing pages, capturing credentials and disrupting access to services.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of session data exposes authentication tokens to interception, enabling attackers to hijack user sessions and lock out students and faculty.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Use of University Computing Infrastructure",
+    "threat_description": "Cybercriminals hijack university computing resources, including research servers, cloud storage, and high-performance computing clusters, for unauthorized activities such as cryptocurrency mining, illicit cloud workloads, or large-scale botnet operations. Such attacks can degrade system performance, increase operational costs, and compromise sensitive academic research.",
+    "motives": [
+      {
+        "motive": "Use of University IT Resources for Financial Gain or Illicit Operations",
+        "components": [
+          {
+            "name": "University Computing Infrastructure and Research Servers",
+            "description": "Cloud-based, high-performance computing, and storage resources used by universities for research, academic computing, and data processing.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in university research servers allow attackers to brute-force or steal credentials, gaining unauthorized access to high-performance computing clusters for resource hijacking.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of research computing usage logs due to weak security configurations enables attackers to identify vulnerable systems for unauthorized resource exploitation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in university research platforms allow attackers to bypass login security, gaining unauthorized access to computing and storage environments.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in cloud-based university computing environments allow attackers to escalate privileges, enabling unauthorized deployment of cryptocurrency mining software.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass vulnerabilities in university IT platforms allow adversaries to manipulate system permissions, potentially deploying unauthorized computing workloads.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization mechanisms allow unauthorized modifications to university computing workloads, leading to illicit cryptocurrency mining and unauthorized research data processing.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in data storage and transmissions exposes research data and system credentials to interception, allowing attackers to hijack computing resources for illicit workloads.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in university IT databases allow attackers to manipulate or extract system usage records, enabling prolonged undetected abuse of computing resources.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in university IT infrastructure prevents early detection of unauthorized system use, enabling prolonged cryptocurrency mining or botnet operations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in university computing management software enable attackers to inject manipulated workloads, exploiting research computing clusters for unauthorized use.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in university cloud management systems allow attackers to manipulate internal requests, potentially exposing sensitive server configurations for resource hijacking.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in research computing interfaces allows attackers to inject malicious code, compromising system performance and enabling unauthorized resource consumption.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in university cloud platforms allow attackers to introduce malicious scripts, manipulating computing resources for illicit processing tasks.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in university computing portals allow attackers to introduce mining software, compromising system integrity and consuming valuable computing resources.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in university cloud management portals could allow attackers to redirect administrators to phishing sites, stealing credentials and enabling unauthorized system access.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of authentication credentials in university computing environments exposes login data to interception, facilitating unauthorized access to research servers and cloud resources.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Manipulation of Building Management Systems",
+    "threat_description": "Attackers exploit vulnerabilities in campus building management systems (BMS), including elevator controls, HVAC, and lighting automation. Such manipulation may cause operational disruptions, pose safety hazards, or facilitate physical access to restricted areas.",
+    "motives": [
+      {
+        "motive": "Disruption of Operations or Cause Safety Hazards",
+        "components": [
+          {
+            "name": "Campus Building Management and Automation Systems",
+            "description": "Automated systems used for controlling elevators, HVAC, lighting, and access control across university buildings.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-521: Weak Password Requirements",
+                    "cwe_mapping_reason": "Weak password policies in building management system interfaces allow attackers to gain unauthorized access, manipulating campus elevator and automation controls.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of building automation system configurations due to weak authentication enables attackers to identify vulnerabilities and manipulate infrastructure operations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Weak authentication mechanisms in BMS platforms enable attackers to bypass login protections, gaining access to environmental and elevator control systems.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control mechanisms in elevator and automation platforms allow privilege escalation, enabling attackers to disable systems or bypass access restrictions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass in BMS interfaces allows adversaries to override safety controls, potentially enabling unauthorized elevator use or access to secure building zones.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-863: Incorrect Authorization",
+                    "cwe_mapping_reason": "Flawed authorization in automation control systems allows unauthorized configuration changes, potentially causing safety risks or physical security breaches.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Lack of encryption in building automation data transmissions exposes system control commands, allowing interception and manipulation by unauthorized actors.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command (SQL Injection)",
+                    "cwe_mapping_reason": "SQL Injection vulnerabilities in automation system databases enable attackers to manipulate configuration records, impacting building behavior or access policies.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging in campus building management systems prevents detection of unauthorized access or control changes, enabling persistent disruption or covert sabotage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                    "cwe_mapping_reason": "Deserialization vulnerabilities in building management software allow attackers to inject malformed data, altering automation workflows or triggering disruptive behavior.",
+                    "capecs_to_exclude": [
+                      "586"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                    "cwe_mapping_reason": "SSRF vulnerabilities in building automation systems allow attackers to exploit internal services, exposing sensitive functions or triggering control events.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Weak input validation in automation systems allows attackers to inject malicious control commands, manipulating elevator operations or HVAC settings.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code (Code Injection)",
+                    "cwe_mapping_reason": "Code injection vulnerabilities in BMS software interfaces allow attackers to introduce malicious scripts, altering control logic and affecting building operations.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                    "cwe_mapping_reason": "Unrestricted file upload vulnerabilities in BMS portals enable attackers to deploy malicious scripts, affecting automation routines and compromising building operations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site (Open Redirect)",
+                    "cwe_mapping_reason": "Open redirect vulnerabilities in BMS web portals may redirect building administrators to phishing sites, enabling credential theft and unauthorized system access.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of BMS credentials and control data enables attackers to intercept communications, gaining access to building automation functions.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
