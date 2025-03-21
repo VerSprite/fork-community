@@ -1,0 +1,2153 @@
+[
+  {
+    "threat": "Unauthorized Manipulation of Consumer Electronics Devices",
+    "threat_description": "Adversaries may tamper with hardware, firmware, or software components of consumer electronics to degrade performance, disable functionality, or damage brand reputation. This threat exploits gaps in physical security, access control, or validation mechanisms.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Physical Devices",
+            "description": "Hardware infrastructure enabling product functionality.",
+            "sub_components": [
+              {
+                "name": "Hardware",
+                "dynamic": false,
+                "tags": "Hardware",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access controls at the hardware level may allow tampering and sabotage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1255: Comparison with Incorrect Byte Count",
+                    "cwe_mapping_reason": "Improper hardware component isolation can enable sabotage across security boundaries.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1231: Improper Prevention of Lock Bit Modification",
+                    "cwe_mapping_reason": "Improper prevention of lock bit modification allows unauthorized hardware configuration changes.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1244: Internal Asset Exposed to Untrusted Actors",
+                    "cwe_mapping_reason": "Internal asset exposed to untrusted actors can lead to physical tampering of device components.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "Firmware",
+                "dynamic": false,
+                "tags": "Firmware",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-1278: Missing Protection Against Hardware Reverse Engineering Using Integrated Circuit",
+                    "cwe_mapping_reason": "Absence of secure boot code signing can enable sabotage via malicious firmware updates.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-912: Hidden Functionality",
+                    "cwe_mapping_reason": "Hidden functionality in firmware can be triggered to cause device malfunction.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1277: Firmware Not Using Cryptographic Signature",
+                    "cwe_mapping_reason": "Firmware not using cryptographic signatures allows unauthorized modifications.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "User Accounts",
+            "description": "Accounts granting authenticated access to devices or services.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "Session fixation can lead to unauthorized user-level sabotage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication allows attackers to gain access to user accounts for sabotage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                    "cwe_mapping_reason": "Weak password recovery mechanism for forgotten password can be exploited for account takeover.",
+                    "capecs_to_exclude": [
+                      "50"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Revenge",
+        "components": [
+          {
+            "name": "Device Software",
+            "description": "Firmware/OS and related update processes on consumer devices.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-787: Out-of-bounds Write",
+                    "cwe_mapping_reason": "Unbounded buffer operations let attackers insert malicious code that can sabotage services.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                    "cwe_mapping_reason": "Download of code without integrity check allows injection of malicious updates.",
+                    "capecs_to_exclude": [
+                      "662",
+                      "693",
+                      "695"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                    "cwe_mapping_reason": "Inclusion of functionality from untrusted control sphere enables sabotage through update channels.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Weak encryption or insecure channels can let bad actors push sabotage code via fake updates.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "117",
+                      "383",
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-295: Improper Certificate Validation",
+                    "cwe_mapping_reason": "Improper certificate validation allows man-in-the-middle attacks to deliver malicious updates.",
+                    "capecs_to_exclude": [
+                      "459",
+                      "475"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                    "cwe_mapping_reason": "Improper verification of cryptographic signature enables distribution of unauthorized updates.",
+                    "capecs_to_exclude": [
+                      "463",
+                      "475"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Competitive Advantage",
+        "components": [
+          {
+            "name": "Smart Home Devices",
+            "description": "Connected consumer devices with automation or remote control features.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-862: Missing Authorization",
+                    "cwe_mapping_reason": "Missing authorization checks can allow device manipulation and sabotage of firmware controls.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing authentication for critical function enables unauthorized control of smart home systems.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-613: Insufficient Session Expiration",
+                    "cwe_mapping_reason": "Insufficient session expiration allows prolonged unauthorized access to device controls.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Consumer Data",
+    "threat_description": "Attackers may target personal or operational data stored or transmitted by consumer devices, leveraging weak encryption, misconfigured access controls, or insecure communication protocols to steal sensitive information.",
+    "motives": [
+      {
+        "motive": "Privacy Breach",
+        "components": [
+          {
+            "name": "User Data",
+            "description": "Storage and management of personally identifiable information.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-532: Insertion of Sensitive Information into Log File",
+                    "cwe_mapping_reason": "Sensitive information logged in plaintext can be stolen for privacy exploitation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext storage of sensitive information enables direct theft of personal data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of private information to unauthorized actors leads to privacy violations.",
+                    "capecs_to_exclude": [
+                      "464",
+                      "498"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper cloud access control can let attackers exfiltrate vast amounts of user data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently protected credentials can lead to unauthorized cloud storage access.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-668: Exposure of Resource to Wrong Sphere",
+                    "cwe_mapping_reason": "Exposure of resource to wrong sphere allows unauthorized access to cloud-stored user data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Communication Interfaces",
+            "description": "Protocols or hardware used to transmit data (Wi-Fi, Bluetooth, etc.).",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Lack of encryption can expose personal data during transmission.",
+                    "capecs_to_exclude": [
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                    "cwe_mapping_reason": "Channel accessible by non-endpoint allows eavesdropping on sensitive communications.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive information to unauthorized actor enables data theft during transmission.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Financial Fraud",
+        "components": [
+          {
+            "name": "Content Protection Systems",
+            "description": "Technologies preventing unauthorized copying or distribution of content.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-321: Use of Hard-coded Cryptographic Key",
+                    "cwe_mapping_reason": "Hard-coded or weak keys can be exploited to bypass DRM and steal protected data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Use of hard-coded credentials allows extraction of encryption keys for content theft.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Use of broken or risky cryptographic algorithm enables decryption of protected content.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Identity Theft",
+        "components": [
+          {
+            "name": "User Profiles",
+            "description": "Personal information stored on devices or cloud services.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of private information can lead to identity theft and account takeover.",
+                    "capecs_to_exclude": [
+                      "464",
+                      "498",
+                      "508"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Missing encryption of sensitive data enables theft of personal identifiers.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "Incorrect permission assignment for critical resource allows unauthorized access to user profiles.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Corporate Espionage",
+    "threat_description": "Covert acquisition of proprietary data or technology. Attackers may rely on advanced intrusion techniques or insider threats to gather trade secrets, research details, or other sensitive information for competitive or financial advantage.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Device Software",
+            "description": "Operating environment for consumer devices (OS, firmware, etc.).",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Faulty validation can let intruders run espionage-focused code to exfiltrate sensitive intellectual property.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                    "cwe_mapping_reason": "Insufficient verification of data authenticity allows injection of malicious code for espionage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-754: Improper Check for Unusual or Exceptional Conditions",
+                    "cwe_mapping_reason": "Improper check for unusual or exceptional conditions enables exploitation for corporate espionage.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Privacy Breach",
+        "components": [
+          {
+            "name": "Voice Assistant Systems",
+            "description": "Devices processing voice commands for user convenience.",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+                    "cwe_mapping_reason": "Code injection through malicious audio input can capture sensitive voice data.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Missing encryption of sensitive data allows interception of voice recordings.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive information to unauthorized actor enables voice data theft.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              },
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                    "cwe_mapping_reason": "OS command injection can allow siphoning of private recordings or transcripts.",
+                    "capecs_to_exclude": [
+                      "108",
+                      "15",
+                      "6",
+                      "88"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-77: Improper Neutralization of Special Elements used in a Command ('Command Injection')",
+                    "cwe_mapping_reason": "Improper neutralization of special elements in commands enables espionage through voice systems.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-74: Improper Neutralization of Special Elements in Output Used by a Downstream Component ('Injection')",
+                    "cwe_mapping_reason": "Improper neutralization of special elements in output allows extraction of sensitive voice data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Competitive Intelligence",
+        "components": [
+          {
+            "name": "Internet of Things (IoT) Devices",
+            "description": "Connected devices collecting and exchanging data.",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unencrypted transmissions let insiders or external attackers secretly intercept data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                    "cwe_mapping_reason": "Channel accessible by non-endpoint enables eavesdropping on sensitive corporate communications.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                    "cwe_mapping_reason": "Authentication bypass by capture-replay allows interception of IoT device communications.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "509",
+                      "60",
+                      "701"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Product Counterfeiting",
+    "threat_description": "Production or distribution of unauthorized replicas that mimic legitimate consumer electronics. These goods can contain substandard materials or malware, eroding brand trust and risking consumer safety.",
+    "motives": [
+      {
+        "motive": "Illicit Profit",
+        "components": [
+          {
+            "name": "Manufacturing Process",
+            "description": "Processes and suppliers used to build device hardware.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-910: Use of Expired or Revoked Certificate",
+                    "cwe_mapping_reason": "Weak supply chain checks allow unverified components, leading to counterfeit duplication.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1236: Improper Neutralization of Formula Elements in a CSV File",
+                    "cwe_mapping_reason": "Improper neutralization of formula elements in a CSV file enables injection of counterfeit part numbers.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                    "cwe_mapping_reason": "Insufficient verification of data authenticity allows counterfeit components to enter supply chain.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Undermine Brand Trust",
+        "components": [
+          {
+            "name": "Distribution Channels",
+            "description": "Channels or marketplaces where products reach end users.",
+            "sub_components": [
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                    "cwe_mapping_reason": "Fake listings or redirects can harm brand integrity by pushing counterfeit goods.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                    "cwe_mapping_reason": "Authentication bypass by spoofing allows counterfeiters to pose as legitimate sellers.",
+                    "capecs_to_exclude": [
+                      "21",
+                      "22",
+                      "461",
+                      "59",
+                      "60",
+                      "667",
+                      "94"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-350: Reliance on Reverse DNS Resolution for a Security-Critical Action",
+                    "cwe_mapping_reason": "Reliance on reverse DNS resolution for authentication enables spoofing of legitimate retail sites.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Market Penetration",
+        "components": [
+          {
+            "name": "Product Authentication",
+            "description": "Methods to verify genuine products from counterfeits.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                    "cwe_mapping_reason": "Use of broken or risky cryptographic algorithms enables counterfeiters to duplicate authentication markers.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                    "cwe_mapping_reason": "Use of insufficiently random values allows prediction of authentication codes.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                    "cwe_mapping_reason": "Improper verification of cryptographic signature enables forgery of product authentication tags.",
+                    "capecs_to_exclude": [
+                      "463"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Supply Chain Disruption",
+    "threat_description": "Intentional interference with production or distribution networks. Attackers aim to create manufacturing delays, degrade product quality, or cause logistical upheavals, leading to significant operational and financial harm.",
+    "motives": [
+      {
+        "motive": "Market Advantage",
+        "components": [
+          {
+            "name": "Logistics Systems",
+            "description": "Platforms coordinating product transport, inventory, and fulfillment.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                    "cwe_mapping_reason": "SQL injection can reorder or sabotage shipping schedules, causing market chaos.",
+                    "capecs_to_exclude": [
+                      "108",
+                      "109",
+                      "110",
+                      "470",
+                      "66",
+                      "7"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "Improper authorization allows manipulation of inventory data to disrupt supply chains.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Cross-site request forgery enables unauthorized changes to logistics information.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Extortion",
+        "components": [
+          {
+            "name": "Transportation Infrastructure",
+            "description": "Shipping routes, trucking services, or warehousing for products.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Attackers can hijack routing data to delay goods until ransom demands are met.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing authentication for critical function allows unauthorized changes to shipping routes.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-862: Missing Authorization",
+                    "cwe_mapping_reason": "Missing authorization allows manipulation of transportation schedules for extortion.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Geopolitical Advantage",
+        "components": [
+          {
+            "name": "Component Sourcing",
+            "description": "Processes for acquiring parts and materials for manufacturing.",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                    "cwe_mapping_reason": "Insufficient verification of data authenticity can allow manipulation of supplier information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                    "cwe_mapping_reason": "Reliance on untrusted inputs in a security decision enables infiltration of supply chain.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                    "cwe_mapping_reason": "Inclusion of functionality from untrusted control sphere allows compromise of sourcing systems.",
+                    "capecs_to_exclude": [
+                      "175",
+                      "201",
+                      "228",
+                      "251",
+                      "252",
+                      "253",
+                      "263",
+                      "549",
+                      "640",
+                      "660",
+                      "698"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Misuse or Impersonation of Brand Identity",
+    "threat_description": "Misuse or impersonation of a legitimate consumer electronics brand, often through phishing sites or unauthorized marketing, leading to reputational harm or data compromises.",
+    "motives": [
+      {
+        "motive": "Reputation Damage",
+        "components": [
+          {
+            "name": "Customer-Facing Channels",
+            "description": "Websites, apps, or social media accounts representing the brand.",
+            "sub_components": [
+              {
+                "name": "match: frontend_type",
+                "dynamic": true,
+                "tags": "match: frontend_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                    "cwe_mapping_reason": "Open redirects or cloned domains trick consumers into trusting fake brand portals.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                    "cwe_mapping_reason": "Cross-site scripting allows injection of malicious content into legitimate brand websites.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "85"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-1021: Improper Restriction of Rendered UI Layers or Frames",
+                    "cwe_mapping_reason": "Improper restriction of rendered UI layers or frames enables convincing brand impersonation.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Phishing Gains",
+        "components": [
+          {
+            "name": "Consumer Interaction Points",
+            "description": "Pages or forms collecting user information under brand identity.",
+            "sub_components": [
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Improperly protected credentials on phony brand pages can be stolen by attackers.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-620: Unverified Password Change",
+                    "cwe_mapping_reason": "Unverified password change enables account takeover through fake password reset forms.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-646: Reliance on File Name or Path Information",
+                    "cwe_mapping_reason": "Reliance on file name or path information allows convincing phishing through familiar URLs.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Financial Fraud",
+        "components": [
+          {
+            "name": "E-commerce Platforms",
+            "description": "Online stores selling consumer electronics products.",
+            "sub_components": [
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "CSRF vulnerabilities in fake brand sites can lead to unauthorized financial transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-565: Reliance on Cookies without Validation and Integrity Checking",
+                    "cwe_mapping_reason": "Reliance on cookies without validation enables session hijacking in e-commerce sites.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass through user-controlled key allows fraudulent transactions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Modification of Firmware Components",
+    "threat_description": "Insertion or modification of malicious code within device firmware. Attackers may gain persistent control or the ability to degrade, disable, or spy on hardware functionality.",
+    "motives": [
+      {
+        "motive": "Extended Control",
+        "components": [
+          {
+            "name": "Firmware Distribution",
+            "description": "Process and channels through which firmware is deployed to devices.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                    "cwe_mapping_reason": "Lack of integrity checks on firmware updates can allow malicious modifications before deployment.",
+                    "capecs_to_exclude": [
+                      "662",
+                      "693",
+                      "695"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-426: Untrusted Search Path",
+                    "cwe_mapping_reason": "Untrusted search path allows loading of malicious firmware components.",
+                    "capecs_to_exclude": [
+                      "38"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                    "cwe_mapping_reason": "Improper verification of cryptographic signature enables distribution of compromised firmware.",
+                    "capecs_to_exclude": [
+                      "463"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Surveillance",
+        "components": [
+          {
+            "name": "Bootloader",
+            "description": "Low-level software that initializes the firmware and hardware on startup.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-1278: Missing Protection Against Hardware Reverse Engineering Using Integrated Circuit",
+                    "cwe_mapping_reason": "Unprotected bootloading routines allow tampering that grants persistent espionage or sabotage.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1277: Firmware Not Using Cryptographic Signature",
+                    "cwe_mapping_reason": "Firmware not using cryptographic signatures allows bootloader compromise.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1326: Missing Immutable Root of Trust in Hardware",
+                    "cwe_mapping_reason": "Missing immutable root of trust in hardware enables persistent firmware compromise.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Backdoor Installation",
+        "components": [
+          {
+            "name": "Device Drivers",
+            "description": "Software components that interface with hardware components.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-276: Incorrect Default Permissions",
+                    "cwe_mapping_reason": "Incorrect default permissions in drivers can allow persistent backdoor installation.",
+                    "capecs_to_exclude": [
+                      "1",
+                      "127",
+                      "81"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-272: Least Privilege Violation",
+                    "cwe_mapping_reason": "Least privilege violation in driver code enables escalation to install backdoors.",
+                    "capecs_to_exclude": [
+                      "17",
+                      "35",
+                      "76"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-912: Hidden Functionality",
+                    "cwe_mapping_reason": "Hidden functionality in driver code can serve as a backdoor for persistent access.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Privileged Access Abuse by Internal Actors",
+    "threat_description": "Malicious or negligent actions by employees, contractors, or partners who have authorized access to consumer electronics data or systems. These insiders can steal IP, sabotage operations, or leak confidential details.",
+    "motives": [
+      {
+        "motive": "Financial Benefit",
+        "components": [
+          {
+            "name": "Internal Access Points",
+            "description": "Privileged portals where insiders can access critical systems or manufacturing processes.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-269: Improper Privilege Management",
+                    "cwe_mapping_reason": "Improper privilege management allows insiders to misuse or steal valuable data or resources.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                    "cwe_mapping_reason": "Execution with unnecessary privileges enables insiders to access unauthorized resources.",
+                    "capecs_to_exclude": [
+                      "104"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "Incorrect permission assignment for critical resource allows insiders to exploit admin tools.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Revenge",
+        "components": [
+          {
+            "name": "Employee Privileges",
+            "description": "Local or remote access rights granted to trusted personnel.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently protected credentials allow a disgruntled insider to sabotage systems.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Use of hard-coded credentials enables access even after termination of employment.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-262: Not Using Password Aging",
+                    "cwe_mapping_reason": "Not using password aging allows terminated employees to retain access.",
+                    "capecs_to_exclude": [
+                      "16",
+                      "49",
+                      "509",
+                      "55",
+                      "565",
+                      "70"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Ideological Reasons",
+        "components": [
+          {
+            "name": "Product Development",
+            "description": "Systems and processes for designing and testing new products.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-668: Exposure of Resource to Wrong Sphere",
+                    "cwe_mapping_reason": "Exposure of resource to wrong sphere allows ideologically-motivated insiders to leak sensitive designs.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-552: Files or Directories Accessible to External Parties",
+                    "cwe_mapping_reason": "Files or directories accessible to external parties enables leaking of proprietary designs.",
+                    "capecs_to_exclude": [
+                      "150",
+                      "639"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of private information to unauthorized actor allows insiders to leak confidential designs.",
+                    "capecs_to_exclude": [
+                      "464",
+                      "467",
+                      "498",
+                      "508"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Confidential Engineering Assets",
+    "threat_description": "Threat actors may target design files, prototypes, or source code stored in engineering systems or collaboration platforms. The threat is enabled by poor access control, weak encryption, or insecure file sharing practices.",
+    "motives": [
+      {
+        "motive": "Competitive Edge",
+        "components": [
+          {
+            "name": "Engineering Data Repositories",
+            "description": "Secure repositories containing schematics, source code, or production details.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-552: Files or Directories Accessible to External Parties",
+                    "cwe_mapping_reason": "Files or directories inappropriately exposed can leak intellectual property.",
+                    "capecs_to_exclude": [
+                      "150"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Weak encryption for design files can facilitate IP theft through unauthorized downloads.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-668: Exposure of Resource to Wrong Sphere",
+                    "cwe_mapping_reason": "Exposure of resource to wrong sphere allows unauthorized access to proprietary designs.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Industrial Espionage",
+        "components": [
+          {
+            "name": "Collaboration Tools",
+            "description": "Platforms where team members share prototypes, code reviews, or technical data.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access controls on collaboration tools allow spies to extract confidential IP.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "Improper authorization enables unauthorized access to sensitive design documents.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass through user-controlled key allows access to restricted documents.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Market Disruption",
+        "components": [
+          {
+            "name": "Patent Documentation",
+            "description": "Legal and technical documents describing protected innovations.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Missing encryption of sensitive data allows theft of pre-filing patent information.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of private information to unauthorized actor enables theft of patent details.",
+                    "capecs_to_exclude": [
+                      "464",
+                      "467",
+                      "498",
+                      "508"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of sensitive information to unauthorized actor allows access to confidential patent data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Abuse of Device Resources for Unauthorized Computation",
+    "threat_description": "Adversaries may hijack device CPUs, GPUs, or firmware for unauthorized activities like cryptocurrency mining or botnet participation. This threat is driven by privilege escalation, hidden code injection, or software supply chain weaknesses.",
+    "motives": [
+      {
+        "motive": "Financial Gains",
+        "components": [
+          {
+            "name": "Application Layer",
+            "description": "Device apps or services that can be hijacked for cryptomining processes.",
+            "sub_components": [
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-94: Improper Control of Generation of Code ('Code Injection')",
+                    "cwe_mapping_reason": "Remote code injection can embed cryptomining scripts into legitimate applications.",
+                    "capecs_to_exclude": [
+                      "242",
+                      "35",
+                      "77"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                    "cwe_mapping_reason": "Cross-site scripting allows injection of cryptomining code into web applications.",
+                    "capecs_to_exclude": [
+                      "209",
+                      "588",
+                      "591",
+                      "592",
+                      "63",
+                      "85"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                    "cwe_mapping_reason": "Inclusion of functionality from untrusted control sphere enables loading of mining scripts.",
+                    "capecs_to_exclude": [
+                      "175",
+                      "201",
+                      "228",
+                      "251",
+                      "252",
+                      "253",
+                      "263",
+                      "538",
+                      "549",
+                      "640",
+                      "660",
+                      "695",
+                      "698"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Stealth Persistence",
+        "components": [
+          {
+            "name": "Device Firmware or OS",
+            "description": "Underlying software environment that attackers can exploit to maintain hidden miners.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-269: Improper Privilege Management",
+                    "cwe_mapping_reason": "Improper privilege management can allow cryptominers to run undetected at OS boot.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-912: Hidden Functionality",
+                    "cwe_mapping_reason": "Hidden functionality in startup services enables persistent cryptomining operations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-470: Use of Externally-Controlled Input to Select Classes or Code ('Unsafe Reflection')",
+                    "cwe_mapping_reason": "Use of externally-controlled input to select classes or code allows loading of mining modules.",
+                    "capecs_to_exclude": [
+                      "138"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Distributed Computing",
+        "components": [
+          {
+            "name": "Network-Connected Devices",
+            "description": "Consumer electronics with internet connectivity.",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                    "cwe_mapping_reason": "Execution with unnecessary privileges allows attackers to run resource-intensive tasks undetected.",
+                    "capecs_to_exclude": [
+                      "104"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-705: Incorrect Control Flow Scoping",
+                    "cwe_mapping_reason": "Incorrect control flow scoping enables hidden execution of resource-intensive operations.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                    "cwe_mapping_reason": "Allocation of resources without limits or throttling allows excessive resource consumption.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Service Availability Disruption",
+    "threat_description": "Exhausting or overwhelming device or service resources so they become unavailable to legitimate users. Can impact consumer electronics platforms, customer support portals, or connected devices, causing service outages and eroding user trust.",
+    "motives": [
+      {
+        "motive": "Competitive Advantage",
+        "components": [
+          {
+            "name": "Cloud Services",
+            "description": "Hosted infrastructures supporting product functionality or updates.",
+            "sub_components": [
+              {
+                "name": "match: backend_servers",
+                "dynamic": true,
+                "tags": "match: backend_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Uncontrolled resource consumption can be exploited to cause deliberate overload and outcompete a rival's service.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                    "cwe_mapping_reason": "Allocation of resources without limits or throttling enables denial of service attacks.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-799: Improper Control of Interaction Frequency",
+                    "cwe_mapping_reason": "Improper control of interaction frequency allows flooding of service requests.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Extortion",
+        "components": [
+          {
+            "name": "Device Connectivity",
+            "description": "Network-dependent features of consumer electronics, e.g., IoT or smart devices.",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-406: Insufficient Control of Network Message Volume (Network Amplification)",
+                    "cwe_mapping_reason": "Improper handling of messages can lead to queue saturation and outages, enabling extortion attempts.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                    "cwe_mapping_reason": "Uncontrolled resource consumption in message processing enables denial of service.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                    "cwe_mapping_reason": "Allocation of resources without limits or throttling allows message queue flooding.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Ideological Activism",
+        "components": [
+          {
+            "name": "Public-Facing Portals",
+            "description": "Websites or customer portals representing consumer electronics brands.",
+            "sub_components": [
+              {
+                "name": "match: frontend_hosting",
+                "dynamic": true,
+                "tags": "match: frontend_hosting",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                    "cwe_mapping_reason": "Redirect abuse can amplify DOS or defacement, fulfilling activist agendas to disrupt brand presence.",
+                    "capecs_to_exclude": [
+                      "178"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Cross-site request forgery enables unauthorized actions that can disrupt services.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-799: Improper Control of Interaction Frequency",
+                    "cwe_mapping_reason": "Improper control of interaction frequency allows flooding of web requests.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Access to Consumer Device Interfaces",
+    "threat_description": "Unauthorized takeover of devices, allowing attackers to control functions, access sensitive data, or redirect usage. Often achieved via exploitable remote management interfaces or vulnerabilities in network protocols.",
+    "motives": [
+      {
+        "motive": "Personal Gain",
+        "components": [
+          {
+            "name": "Smart Home Hubs",
+            "description": "Central controllers for home automation systems and connected devices.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication can yield full remote control for malicious personal benefit.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing authentication for critical function enables unauthorized device control.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                    "cwe_mapping_reason": "Use of hard-coded credentials allows unauthorized access to admin interfaces.",
+                    "capecs_to_exclude": [
+                      "191"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Mass-Scale Compromise",
+        "components": [
+          {
+            "name": "Cloud-Connected Cameras",
+            "description": "Cameras with online streaming and monitoring features.",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Unencrypted streaming channels let attackers hijack camera feeds for large-scale privacy violations.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                    "cwe_mapping_reason": "Authentication bypass by capture-replay allows unauthorized access to camera feeds.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                    "cwe_mapping_reason": "Channel accessible by non-endpoint enables interception of camera streams.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Data Theft",
+        "components": [
+          {
+            "name": "User Profiles",
+            "description": "Credential and personalization data tied to connected devices.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficient token protection can facilitate remote takeover and subsequent data exfiltration.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-613: Insufficient Session Expiration",
+                    "cwe_mapping_reason": "Insufficient session expiration allows prolonged unauthorized access to user data.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-384: Session Fixation",
+                    "cwe_mapping_reason": "Session fixation enables attackers to hijack legitimate user sessions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Distribution of Malicious Software Through Device Ecosystem",
+    "threat_description": "Spreading malicious software through consumer electronics ecosystems, potentially infecting users' devices or leveraging them to reach broader networks. This software may enable backdoors, data exfiltration, or resource hijacking.",
+    "motives": [
+      {
+        "motive": "Botnet Creation",
+        "components": [
+          {
+            "name": "Connected Appliances",
+            "description": "Everyday devices (TVs, refrigerators, etc.) with internet connectivity.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-1278: Missing Protection Against Hardware Reverse Engineering Using Integrated Circuit",
+                    "cwe_mapping_reason": "Firmware lacking signature checks allows malware injection, forming large-scale IoT botnets.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                    "cwe_mapping_reason": "Download of code without integrity check enables malware installation on connected devices.",
+                    "capecs_to_exclude": [
+                      "662",
+                      "693",
+                      "695"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-912: Hidden Functionality",
+                    "cwe_mapping_reason": "Hidden functionality in firmware can serve as a backdoor for botnet recruitment.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Ransom",
+        "components": [
+          {
+            "name": "Media Streaming Devices",
+            "description": "Streaming sticks or set-top boxes for online video and audio.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                    "cwe_mapping_reason": "Malware-laced updates can be pushed to extort ransoms for device unlock or data recovery.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                    "cwe_mapping_reason": "Inclusion of functionality from untrusted control sphere enables ransomware distribution.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                    "cwe_mapping_reason": "Improper verification of cryptographic signature allows distribution of malicious updates.",
+                    "capecs_to_exclude": [
+                      "463"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Large-Scale Sabotage",
+        "components": [
+          {
+            "name": "Mobile App Ecosystem",
+            "description": "Apps installed on smartphones or tablets to control or interact with consumer devices.",
+            "sub_components": [
+              {
+                "name": "match: frontend_technologies",
+                "dynamic": true,
+                "tags": "match: frontend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                    "cwe_mapping_reason": "Inclusion of untrusted code can distribute malware widely, crippling user devices en masse.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-1104: Use of Unmaintained Third Party Components",
+                    "cwe_mapping_reason": "Use of unmaintained third-party components with known vulnerabilities enables malware distribution.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-506: Embedded Malicious Code",
+                    "cwe_mapping_reason": "Embedded malicious code in libraries can be widely distributed through legitimate apps.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Unauthorized Alteration of Consumer Device Data or Configuration",
+    "threat_description": "Threat actors may modify logs, settings, or operational state in consumer electronics systems to conceal activity, commit fraud, or disrupt behavior. This threat targets the integrity of stored and runtime data.",
+    "motives": [
+      {
+        "motive": "Fraudulent Gains",
+        "components": [
+          {
+            "name": "Billing Systems",
+            "description": "Components managing in-app or subscription-based payments for devices.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "Improper authorization can let attackers alter payment logs or inflate costs for personal profit.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-642: External Control of Critical State Data",
+                    "cwe_mapping_reason": "External control of critical state data allows manipulation of transaction amounts.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-843: Access of Resource Using Incompatible Type ('Type Confusion')",
+                    "cwe_mapping_reason": "Access of resource using incompatible type enables corruption of financial records.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Reputation Damage",
+        "components": [
+          {
+            "name": "Firmware Logs",
+            "description": "System logs documenting operational and security events within device firmware.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_file_servers",
+                "dynamic": true,
+                "tags": "match: infrastructure_file_servers",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-117: Improper Output Neutralization for Logs",
+                    "cwe_mapping_reason": "Improper output neutralization lets attackers falsify logs, implicating legitimate parties or hiding breaches.",
+                    "capecs_to_exclude": [
+                      "81"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-93: Improper Neutralization of CRLF Sequences ('CRLF Injection')",
+                    "cwe_mapping_reason": "Improper neutralization of CRLF sequences allows log injection attacks.",
+                    "capecs_to_exclude": [
+                      "15"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-778: Insufficient Logging",
+                    "cwe_mapping_reason": "Insufficient logging allows attackers to hide their activities from audit trails.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Sabotage",
+        "components": [
+          {
+            "name": "Configuration Files",
+            "description": "Files defining device operational modes or security settings.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-125: Out-of-bounds Read",
+                    "cwe_mapping_reason": "Out-of-bounds reads/writes can corrupt critical settings, rendering devices unstable or unusable.",
+                    "capecs_to_exclude": [
+                      "540"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-642: External Control of Critical State Data",
+                    "cwe_mapping_reason": "External control of critical state data allows manipulation of device configuration.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-15: External Control of System or Configuration Setting",
+                    "cwe_mapping_reason": "External control of system or configuration settings enables malicious reconfiguration.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Payment System Compromise",
+    "threat_description": "This threat involves attackers compromising payment gateways, e-commerce platforms, or user accounts to intercept financial data or manipulate transactions. Exploited vectors include authentication bypass, insecure storage, or network sniffing.",
+    "motives": [
+      {
+        "motive": "Financial Theft",
+        "components": [
+          {
+            "name": "Payment Gateways",
+            "description": "Systems processing financial transactions for consumer electronics purchases.",
+            "sub_components": [
+              {
+                "name": "match: backend_technologies",
+                "dynamic": true,
+                "tags": "match: backend_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                    "cwe_mapping_reason": "Missing encryption of sensitive data allows theft of payment card information during transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext storage of sensitive information exposes payment details to unauthorized access.",
+                    "capecs_to_exclude": [
+                      "37"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext transmission of sensitive information enables interception of payment data.",
+                    "capecs_to_exclude": [
+                      "102",
+                      "477",
+                      "65"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Identity Theft",
+        "components": [
+          {
+            "name": "Customer Accounts",
+            "description": "User profiles containing payment methods and shipping information.",
+            "sub_components": [
+              {
+                "name": "match: database_technologies",
+                "dynamic": true,
+                "tags": "match: database_technologies",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                    "cwe_mapping_reason": "Cleartext storage of sensitive information allows theft of payment credentials.",
+                    "capecs_to_exclude": [
+                      "37"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                    "cwe_mapping_reason": "Insufficiently protected credentials can lead to payment method compromise.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                    "cwe_mapping_reason": "Exposure of private information to unauthorized actor enables identity theft.",
+                    "capecs_to_exclude": [
+                      "464",
+                      "467",
+                      "498",
+                      "508"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Fraud Operations",
+        "components": [
+          {
+            "name": "Transaction Processing",
+            "description": "Systems validating and executing payment operations.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing authentication for critical function allows fraudulent transaction processing.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass through user-controlled key enables unauthorized transactions.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                    "cwe_mapping_reason": "Cross-site request forgery allows attackers to initiate unauthorized transactions.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Bypass of Licensing or Access Controls for Unlocking Premium Features",
+    "threat_description": "Attackers may circumvent license verification, feature flag controls, or software restrictions to unlock premium functionality without authorization. This threat is enabled by improper client-side enforcement or insufficient backend validation.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "License Management",
+            "description": "Systems controlling access to premium features based on purchase status.",
+            "sub_components": [
+              {
+                "name": "match: validation_type",
+                "dynamic": true,
+                "tags": "match: validation_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-602: Client-Side Enforcement of Server-Side Security",
+                    "cwe_mapping_reason": "Client-side enforcement of server-side security allows bypassing of license checks.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-565: Reliance on Cookies without Validation and Integrity Checking",
+                    "cwe_mapping_reason": "Reliance on cookies without validation enables tampering with license status.",
+                    "capecs_to_exclude": [
+                      "226"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                    "cwe_mapping_reason": "Authentication bypass by spoofing allows impersonation of licensed users.",
+                    "capecs_to_exclude": [
+                      "21",
+                      "459",
+                      "461",
+                      "473",
+                      "476",
+                      "59",
+                      "60",
+                      "667",
+                      "94"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Competitive Advantage",
+        "components": [
+          {
+            "name": "Feature Flags",
+            "description": "Configuration settings that enable or disable specific product capabilities.",
+            "sub_components": [
+              {
+                "name": "match: infrastructure_os",
+                "dynamic": true,
+                "tags": "match: infrastructure_os",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-642: External Control of Critical State Data",
+                    "cwe_mapping_reason": "External control of critical state data allows manipulation of feature availability.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-15: External Control of System or Configuration Setting",
+                    "cwe_mapping_reason": "External control of system or configuration settings enables unauthorized feature activation.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                    "cwe_mapping_reason": "Incorrect permission assignment for critical resource allows modification of feature flags.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Unauthorized Access",
+        "components": [
+          {
+            "name": "Hardware Capabilities",
+            "description": "Physical components with software-controlled access restrictions.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-284: Improper Access Control",
+                    "cwe_mapping_reason": "Improper access control allows unauthorized enabling of hardware capabilities.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-272: Least Privilege Violation",
+                    "cwe_mapping_reason": "Least privilege violation enables access to restricted hardware functions.",
+                    "capecs_to_exclude": [
+                      "17",
+                      "35",
+                      "76"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-1220: Insufficient Granularity of Access Controls",
+                    "cwe_mapping_reason": "Insufficient granularity of access controls allows bypassing hardware restrictions.",
+                    "capecs_to_exclude": [
+                      "1"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "threat": "Manipulation of Warranty and Return Systems",
+    "threat_description": "Manipulation of warranty systems to obtain unauthorized replacements, repairs, or refunds for consumer electronics products. Attackers may falsify purchase records, damage reports, or exploit gaps in verification processes.",
+    "motives": [
+      {
+        "motive": "Financial Gain",
+        "components": [
+          {
+            "name": "Warranty Management Systems",
+            "description": "Platforms tracking product warranties and processing claims.",
+            "sub_components": [
+              {
+                "name": "match: validation_sanitization",
+                "dynamic": true,
+                "tags": "match: validation_sanitization",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                    "cwe_mapping_reason": "Insufficient verification of data authenticity allows submission of fraudulent warranty claims.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                    "cwe_mapping_reason": "Reliance on untrusted inputs in a security decision enables warranty fraud.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-20: Improper Input Validation",
+                    "cwe_mapping_reason": "Improper input validation allows manipulation of warranty claim data.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Product Acquisition",
+        "components": [
+          {
+            "name": "Return Processing",
+            "description": "Systems managing product returns and replacements.",
+            "sub_components": [
+              {
+                "name": "match: authorization_type",
+                "dynamic": true,
+                "tags": "match: authorization_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                    "cwe_mapping_reason": "Missing authentication for critical function allows unauthorized product returns or exchanges.",
+                    "capecs_to_exclude": [
+                      "12",
+                      "36",
+                      "62"
+                    ]
+                  },
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass through user-controlled key enables fraudulent return approvals.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-285: Improper Authorization",
+                    "cwe_mapping_reason": "Improper authorization allows processing of fraudulent return requests.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "motive": "Service Theft",
+        "components": [
+          {
+            "name": "Repair Services",
+            "description": "Systems managing technical support and repair operations.",
+            "sub_components": [
+              {
+                "name": "match: authentication_type",
+                "dynamic": true,
+                "tags": "match: authentication_type",
+                "cwes": [
+                  {
+                    "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                    "cwe_mapping_reason": "Authorization bypass through user-controlled key allows fraudulent access to repair services.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-287: Improper Authentication",
+                    "cwe_mapping_reason": "Improper authentication enables unauthorized access to premium support services.",
+                    "capecs_to_exclude": []
+                  },
+                  {
+                    "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                    "cwe_mapping_reason": "Authentication bypass by spoofing allows impersonation of eligible customers.",
+                    "capecs_to_exclude": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
