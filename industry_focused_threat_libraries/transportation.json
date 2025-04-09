@@ -1694,8 +1694,579 @@
         ]
     },
     {
-        "threat": "Hijack a vehicle",
-        "threat_description": "Hijacking a vehicle in the transportation industry involves unauthorized individuals forcibly taking control of a vehicle. This may endanger passengers, compromise cargo security, and disrupt transportation services. Attackers can use physical force, cyber-attacks, or deception to gain control. The impact includes financial losses, reputational damage, legal liabilities, and potential harm to passengers and drivers. Robust security measures and incident response plans are necessary to mitigate this risk.",
+        "threat": "Maintain persistent unauthorized access",
+        "threat_description": "The threat of maintaining undetected access in navigational systems within the transportation industry involves adversaries infiltrating these systems to capture or manipulate data without detection. Their objectives could range from intelligence gathering to disrupting transportation routes. Continuous, covert access could allow attackers to control navigation, cause accidents, or enable theft, posing significant risks to safety, operations, and logistics continuity in critical sectors.",
+        "motives": [
+            {
+                "motive": "Cross border illegaly",
+                "components": [
+                    {
+                        "name": "Navigation Systems",
+                        "description": "Navigation system guiding vehicles with real-time traffic updates.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1189: Improper Isolation of Shared Resources on System-on-a-Chip (SoC)",
+                                        "cwe_mapping_reason": "Attackers exploit vulnerabilities in the navigation system's resource isolation to covertly cross borders undetected.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "In-Vehicle Network Devices",
+                        "description": "Secure communication interfaces within vehicle electronic systems.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1191: On-Chip Debug and Test Interface With Improper Access Control",
+                                        "cwe_mapping_reason": "Attackers aim to exploit inadequate access control in on-chip debug interfaces of in-vehicle network devices to covertly manipulate navigation systems, facilitating undetected illegal cross-border movement.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Cause social disruption",
+                "components": [
+                    {
+                        "name": "Centralized Traffic Control Systems",
+                        "description": "Managing urban traffic flow and signal coordination effectively.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_mapping_reason": "Exploiting vulnerabilities in memory buffer operations within Centralized Traffic Control Systems can enable attackers to disrupt online transportation systems and cause widespread social chaos.",
+                                        "capecs_to_exclude": [
+                                            "42",
+                                            "45"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Booking and Reservation Platforms",
+                        "description": "Online service for booking and reserving accommodations.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Exploiting weak input validation in booking and reservation platforms can severely disrupt transportation systems, leading to significant social upheaval.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Sabotage vehicle safety systems",
+        "threat_description": "Sabotage of vehicle safety systems in the transportation industry involves the deliberate tampering with critical components like brakes, airbags, or electronic control units. This threat aims to cause accidents, disrupt operations, or inflict harm on passengers and operators. Attackers may exploit software vulnerabilities, unauthorized physical access, or insider threats to compromise these systems, posing significant risks to public safety and financial stability for transportation entities.",
+        "motives": [
+            {
+                "motive": "Cause large-scale loss of life",
+                "components": [
+                    {
+                        "name": "Maintenance and Safety Systems",
+                        "description": "Comprehensive Monitoring and Alerting for Industrial Operations Safety",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_mapping_reason": "Exploiting memory buffer vulnerabilities in the maintenance and safety systems could enable an attacker to disable or corrupt vehicle safety mechanisms, facilitating large-scale harm.",
+                                        "capecs_to_exclude": [
+                                            "42"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Charging Stations for Electric Vehicles",
+                        "description": "EV charging points for electric car battery replenishment.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Exposing sensitive information at electric vehicle charging stations can enable attackers to sabotage vehicle safety systems, potentially leading to mass casualties.",
+                                        "capecs_to_exclude": [
+                                            "116",
+                                            "13",
+                                            "169",
+                                            "22",
+                                            "224",
+                                            "285",
+                                            "287",
+                                            "290",
+                                            "291",
+                                            "292",
+                                            "293",
+                                            "294",
+                                            "295",
+                                            "296",
+                                            "297",
+                                            "298",
+                                            "299",
+                                            "300",
+                                            "301",
+                                            "302",
+                                            "303",
+                                            "304",
+                                            "305",
+                                            "306",
+                                            "307",
+                                            "308",
+                                            "309",
+                                            "310",
+                                            "312",
+                                            "313",
+                                            "317",
+                                            "318",
+                                            "319",
+                                            "320",
+                                            "321",
+                                            "322",
+                                            "323",
+                                            "324",
+                                            "325",
+                                            "326",
+                                            "327",
+                                            "328",
+                                            "329",
+                                            "330",
+                                            "472",
+                                            "497",
+                                            "508",
+                                            "573",
+                                            "574",
+                                            "575",
+                                            "576",
+                                            "577",
+                                            "59",
+                                            "60",
+                                            "616",
+                                            "643",
+                                            "646",
+                                            "651",
+                                            "79"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Pressure and Weight Sensors",
+                        "description": "Monitors pressure and weight variations for stability analysis.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Exploiting vulnerabilities in input validation can enable unauthorized manipulation of pressure and weight sensors to compromise vehicle safety, potentially leading to mass casualties.",
+                                        "capecs_to_exclude": [
+                                            "10",
+                                            "101",
+                                            "104",
+                                            "108",
+                                            "109",
+                                            "110",
+                                            "120",
+                                            "13",
+                                            "135",
+                                            "136",
+                                            "14",
+                                            "153",
+                                            "182",
+                                            "209",
+                                            "22",
+                                            "23",
+                                            "230",
+                                            "231",
+                                            "24",
+                                            "250",
+                                            "261",
+                                            "267",
+                                            "28",
+                                            "3",
+                                            "31",
+                                            "42",
+                                            "43",
+                                            "45",
+                                            "46",
+                                            "47",
+                                            "473",
+                                            "52",
+                                            "53",
+                                            "588",
+                                            "63",
+                                            "64",
+                                            "664",
+                                            "67",
+                                            "7",
+                                            "71",
+                                            "72",
+                                            "73",
+                                            "78",
+                                            "79",
+                                            "8",
+                                            "80",
+                                            "81",
+                                            "83",
+                                            "85",
+                                            "88",
+                                            "9"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Smart Locks and Security Devices",
+                        "description": "Smart locks enhance security with remote access capabilities.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Exposing sensitive information in smart locks and security devices can lead to unauthorized access, enabling the sabotage of vehicle safety systems to commit mass violence.",
+                                        "capecs_to_exclude": [
+                                            "116",
+                                            "13",
+                                            "169",
+                                            "22",
+                                            "224",
+                                            "285",
+                                            "287",
+                                            "290",
+                                            "291",
+                                            "292",
+                                            "293",
+                                            "294",
+                                            "295",
+                                            "296",
+                                            "297",
+                                            "298",
+                                            "299",
+                                            "300",
+                                            "301",
+                                            "302",
+                                            "303",
+                                            "304",
+                                            "305",
+                                            "306",
+                                            "307",
+                                            "308",
+                                            "309",
+                                            "310",
+                                            "312",
+                                            "313",
+                                            "317",
+                                            "318",
+                                            "319",
+                                            "320",
+                                            "321",
+                                            "322",
+                                            "323",
+                                            "324",
+                                            "325",
+                                            "326",
+                                            "327",
+                                            "328",
+                                            "329",
+                                            "330",
+                                            "472",
+                                            "497",
+                                            "508",
+                                            "573",
+                                            "574",
+                                            "575",
+                                            "576",
+                                            "577",
+                                            "59",
+                                            "60",
+                                            "616",
+                                            "643",
+                                            "646",
+                                            "651",
+                                            "79"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Onboard Entertainment Systems",
+                        "description": "In-flight multimedia service for passenger entertainment and information.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_mapping_reason": "Exploiting buffer overflow vulnerabilities in onboard entertainment systems could enable attackers to disable vehicle safety features, facilitating catastrophic incidents.",
+                                        "capecs_to_exclude": [
+                                            "42"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Environmental Control Systems",
+                        "description": "Automated systems managing climate and energy efficiency.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_mapping_reason": "An attacker aiming to cause mass casualties by tampering with vehicle safety systems could exploit memory buffer vulnerabilities in the Environmental Control Systems.",
+                                        "capecs_to_exclude": [
+                                            "42"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Fuel Monitoring Systems",
+                        "description": "Real-time tracking and analysis of fuel consumption data.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Unauthorized access to the fuel monitoring system could enable tampering that compromises vehicle safety, leading to potential mass casualties.",
+                                        "capecs_to_exclude": [
+                                            "116",
+                                            "13",
+                                            "169",
+                                            "22",
+                                            "224",
+                                            "285",
+                                            "287",
+                                            "290",
+                                            "291",
+                                            "292",
+                                            "293",
+                                            "294",
+                                            "295",
+                                            "296",
+                                            "297",
+                                            "298",
+                                            "299",
+                                            "300",
+                                            "301",
+                                            "302",
+                                            "303",
+                                            "304",
+                                            "305",
+                                            "306",
+                                            "307",
+                                            "308",
+                                            "309",
+                                            "310",
+                                            "312",
+                                            "313",
+                                            "317",
+                                            "318",
+                                            "319",
+                                            "320",
+                                            "321",
+                                            "322",
+                                            "323",
+                                            "324",
+                                            "325",
+                                            "326",
+                                            "327",
+                                            "328",
+                                            "329",
+                                            "330",
+                                            "472",
+                                            "497",
+                                            "508",
+                                            "573",
+                                            "574",
+                                            "575",
+                                            "576",
+                                            "577",
+                                            "59",
+                                            "60",
+                                            "616",
+                                            "643",
+                                            "646",
+                                            "651",
+                                            "79"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Disrupt transportation logistics and supply chains",
+        "threat_description": "Disruptions in logistics and supply chain integrity within the transportation industry pose significant threats, including delays in deliveries, increased operational costs, and compromised service reliability. Such disruptions can be caused by cyber-attacks, physical sabotage, natural disasters, or systemic failures, leading to financial losses and damaged reputations for businesses dependent on timely and secure transportation of goods. Ensuring resilient and adaptive logistics frameworks is crucial for mitigating these risks.",
+        "motives": [
+            {
+                "motive": "Cause economic damage",
+                "components": [
+                    {
+                        "name": "Online Ticket Booking System for Public Transportation",
+                        "description": "Online platform for purchasing public transportation tickets.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "An attacker could exploit poor input validation in the online ticket booking system to disrupt public transportation logistics, causing significant economic damage.",
+                                        "capecs_to_exclude": [
+                                            "10",
+                                            "104",
+                                            "120",
+                                            "13",
+                                            "135",
+                                            "14",
+                                            "182",
+                                            "209",
+                                            "22",
+                                            "23",
+                                            "230",
+                                            "231",
+                                            "24",
+                                            "261",
+                                            "267",
+                                            "28",
+                                            "3",
+                                            "42",
+                                            "43",
+                                            "45",
+                                            "46",
+                                            "47",
+                                            "473",
+                                            "52",
+                                            "53",
+                                            "588",
+                                            "63",
+                                            "64",
+                                            "67",
+                                            "71",
+                                            "72",
+                                            "73",
+                                            "78",
+                                            "79",
+                                            "8",
+                                            "80",
+                                            "81",
+                                            "85",
+                                            "9"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Wi-Fi Networks in Transportation Hubs",
+                        "description": "Public Wi-Fi access in busy transport hubs",
+                        "sub_components": [
+                            {
+                                "name": "2FA/MFA",
+                                "dynamic": false,
+                                "tags": "2FA/MFA",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_mapping_reason": "Single-factor authentication on Wi-Fi networks in transportation hubs exposes critical logistics and supply chains to economic damage by making them vulnerable to unauthorized access and disruption.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Operational Technology (OT) Systems",
+                        "description": "Critical infrastructure control systems for industrial operations and safety",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Exposing sensitive information in OT systems can enable adversaries to compromise logistics and supply chain processes, causing significant economic harm.",
+                                        "capecs_to_exclude": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Hijack or remotely control vehicle operation",
+        "threat_description": "Hijacking a vehicle within the transportation industry involves unauthorized individuals forcibly taking control of a vehicle, potentially endangering passengers, compromising cargo security, and disrupting transportation services. This threat can be executed through physical force, cyber-attacks on vehicle control systems, or deceptive means to gain access. The impact includes financial losses, reputational damage, legal liabilities, and potential harm to passengers and drivers, highlighting the need for robust security measures and incident response plans.",
         "motives": [
             {
                 "motive": "Demand ransom",
@@ -1710,31 +2281,55 @@
                                 "tags": "match: authentication_type",
                                 "cwes": [
                                     {
-                                        "cwe_id": "CWE-200: Exposure of Sensitive Information",
-                                        "cwe_mapping_reason": "Sensitive information exposure could allow attackers to exploit communication channels and gain unauthorized control of vehicles.",
-                                        "capecs_to_exclude": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
-                                        "cwe_mapping_reason": "Lack of verification of data authenticity can enable attackers to send unauthorized commands, leading to hijacking.",
-                                        "capecs_to_exclude": []
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "match: backend_servers",
-                                "dynamic": true,
-                                "tags": "match: backend_servers",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-346: Origin Validation Error",
-                                        "cwe_mapping_reason": "Improper validation of message origin can allow attackers to impersonate trusted sources and take control of a vehicle.",
-                                        "capecs_to_exclude": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-923: Improper Restriction of Communication Channel",
-                                        "cwe_mapping_reason": "Weak communication restrictions can be exploited to hijack vehicles remotely.",
-                                        "capecs_to_exclude": []
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Sensitive information exposure through communication systems can enable attackers to gain control of a vehicle and demand ransom.",
+                                        "capecs_to_exclude": [
+                                            "116",
+                                            "13",
+                                            "22",
+                                            "285",
+                                            "287",
+                                            "290",
+                                            "291",
+                                            "292",
+                                            "293",
+                                            "294",
+                                            "295",
+                                            "296",
+                                            "297",
+                                            "298",
+                                            "299",
+                                            "300",
+                                            "301",
+                                            "302",
+                                            "303",
+                                            "304",
+                                            "305",
+                                            "306",
+                                            "307",
+                                            "308",
+                                            "317",
+                                            "318",
+                                            "319",
+                                            "320",
+                                            "321",
+                                            "322",
+                                            "323",
+                                            "324",
+                                            "325",
+                                            "326",
+                                            "327",
+                                            "328",
+                                            "329",
+                                            "330",
+                                            "472",
+                                            "497",
+                                            "508",
+                                            "616",
+                                            "643",
+                                            "646",
+                                            "79"
+                                        ]
                                     }
                                 ]
                             }
@@ -1742,36 +2337,20 @@
                     },
                     {
                         "name": "Engine Control Systems",
-                        "description": "Monitors and manages vehicle engine performance and control.",
+                        "description": "Engine systems monitoring and managing vehicle performance.",
                         "sub_components": [
                             {
-                                "name": "match: authentication_type",
+                                "name": "match: infrastructure_os",
                                 "dynamic": true,
-                                "tags": "match: authentication_type",
+                                "tags": "match: infrastructure_os",
                                 "cwes": [
                                     {
-                                        "cwe_id": "CWE-287: Improper Authentication",
-                                        "cwe_mapping_reason": "Weak authentication mechanisms can allow attackers to gain unauthorized access to vehicle engine control.",
-                                        "capecs_to_exclude": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-303: Incorrect Implementation of Authentication Algorithm",
-                                        "cwe_mapping_reason": "Weak or improperly implemented authentication algorithms can be exploited to gain control of the vehicle.",
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_mapping_reason": "Exploiting memory buffer restrictions in the Engine Control Systems can allow attackers to seize control of the vehicle and demand a ransom.",
                                         "capecs_to_exclude": [
-                                            "90"
+                                            "42",
+                                            "45"
                                         ]
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "match: authorization_type",
-                                "dynamic": true,
-                                "tags": "match: authorization_type",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-284: Improper Access Control",
-                                        "cwe_mapping_reason": "Inadequate access control can allow attackers to override engine functions and hijack the vehicle.",
-                                        "capecs_to_exclude": []
                                     }
                                 ]
                             }
@@ -1779,7 +2358,7 @@
                     },
                     {
                         "name": "Access Control Systems",
-                        "description": "Manages access to vehicle controls and security functions.",
+                        "description": "Securely manage and monitor authorized access to resources",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1787,28 +2366,9 @@
                                 "tags": "match: authentication_type",
                                 "cwes": [
                                     {
-                                        "cwe_id": "CWE-259: Use of Hard-coded Passwords",
-                                        "cwe_mapping_reason": "Hard-coded passwords can be exploited to gain unauthorized access to vehicle control systems.",
-                                        "capecs_to_exclude": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism",
-                                        "cwe_mapping_reason": "A weak password recovery system can be exploited to hijack vehicle access.",
-                                        "capecs_to_exclude": [
-                                            "50"
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "match: authorization_type",
-                                "dynamic": true,
-                                "tags": "match: authorization_type",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-285: Improper Authorization",
-                                        "cwe_mapping_reason": "Weak authorization mechanisms can allow attackers to manipulate vehicle access.",
-                                        "capecs_to_exclude": []
+                                        "cwe_id": "CWE-259: Use of Hard-coded Password",
+                                        "cwe_mapping_reason": "Exploiting hard-coded passwords in access control systems allows attackers to take control of vehicles and demand ransom.",
+                                        "capecs_to_exclude": "None"
                                     }
                                 ]
                             }
@@ -1816,7 +2376,7 @@
                     },
                     {
                         "name": "Surveillance and Security Systems",
-                        "description": "Vehicle security systems, including surveillance cameras and access logs.",
+                        "description": "Integrated surveillance and security systems for comprehensive protection.",
                         "sub_components": [
                             {
                                 "name": "match: authentication_type",
@@ -1825,15 +2385,8 @@
                                 "cwes": [
                                     {
                                         "cwe_id": "CWE-1392: Use of Default Credentials",
-                                        "cwe_mapping_reason": "Default credentials in security systems can allow unauthorized access to vehicle surveillance.",
-                                        "capecs_to_exclude": []
-                                    },
-                                    {
-                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
-                                        "cwe_mapping_reason": "Hard-coded credentials could be exploited to bypass vehicle security measures.",
-                                        "capecs_to_exclude": [
-                                            "191"
-                                        ]
+                                        "cwe_mapping_reason": "Exploiting the surveillance and security systems through default credentials enables attackers to hijack a vehicle to demand ransom.",
+                                        "capecs_to_exclude": "None"
                                     }
                                 ]
                             }
@@ -1841,41 +2394,19 @@
                     },
                     {
                         "name": "Flight Management System",
-                        "description": "Integrated platform managing flight planning and operational efficiency.",
+                        "description": "Integrated platform managing flight planning and operational efficiency",
                         "sub_components": [
                             {
-                                "name": "match: validation_type",
+                                "name": "match: infrastructure_os",
                                 "dynamic": true,
-                                "tags": "match: validation_type",
+                                "tags": "match: infrastructure_os",
                                 "cwes": [
                                     {
-                                        "cwe_id": "CWE-20: Improper Input Validation",
-                                        "cwe_mapping_reason": "Poor input validation can allow attackers to send unauthorized flight commands.",
-                                        "capecs_to_exclude": []
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "match: authentication_type",
-                                "dynamic": true,
-                                "tags": "match: authentication_type",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-287: Improper Authentication",
-                                        "cwe_mapping_reason": "Weak authentication can be exploited to gain control over flight management functions.",
-                                        "capecs_to_exclude": []
-                                    }
-                                ]
-                            },
-                            {
-                                "name": "match: backend_servers",
-                                "dynamic": true,
-                                "tags": "match: backend_servers",
-                                "cwes": [
-                                    {
-                                        "cwe_id": "CWE-77: Command Injection",
-                                        "cwe_mapping_reason": "Exploiting command injection vulnerabilities in the Flight Management System could allow attackers to hijack the vehicle and demand ransom.",
-                                        "capecs_to_exclude": []
+                                        "cwe_id": "CWE-119: Improper Restriction of Operations within the Bounds of a Memory Buffer",
+                                        "cwe_mapping_reason": "Exploiting memory buffer vulnerabilities in the Flight Management System can enable unauthorized control over the vehicle to demand a ransom.",
+                                        "capecs_to_exclude": [
+                                            "42"
+                                        ]
                                     }
                                 ]
                             }
@@ -1885,4 +2416,4 @@
             }
         ]
     }
-  ]
+]
