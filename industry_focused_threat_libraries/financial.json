@@ -1620,7 +1620,7 @@
         ]
     },
     {
-        "threat": "Mine cryptocurency ",
+        "threat": "Mine cryptocurrency ",
         "threat_description": "Unauthorized cryptocurrency mining, also known as cryptojacking, involves an attacker secretly using a victim's computing resources to mine cryptocurrency. This threat typically targets systems with high computational power to maximize mining efficiency. Attackers might infiltrate systems through various means, including phishing, exploiting vulnerabilities, or injecting malicious scripts into websites. The threat is characterized by its stealth and persistence, aiming to remain undetected for as long as possible to maximize mining time.",
         "motives": [
             {
