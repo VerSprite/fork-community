@@ -1,0 +1,1643 @@
+[
+    {
+        "threat": "Managed Portal Account Takeover",
+        "threat_description": "Financially motivated cybercriminals or rogue insiders target managed customer/admin web portals to hijack accounts via credential stuffing, phishing-based MFA fatigue, weak password recovery, or session fixation; compromised accounts enable fraudulent service changes, data exfiltration from tenant assets, and abuse of billing and API access.",
+        "motives": [
+            {
+                "motive": "Financial fraud and abuse of managed services",
+                "components": [
+                    {
+                        "name": "Login and Session Management",
+                        "description": "Entry vector focused on authentication flows and session lifecycle to obtain or retain unauthorized access.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "If the portal’s authentication checks are weak (e.g., permissive password/MFA handling, poor lockout), attackers can succeed with credential stuffing or phishing to take over managed accounts."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_mapping_reason": "Attackers can pre-establish a session identifier and trick a victim into authenticating, allowing the attacker to reuse the fixed session and seize the account."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Data exfiltration and competitive espionage",
+                "components": [
+                    {
+                        "name": "Authorization and Role Controls",
+                        "description": "Abuse of access control to expand reach after initial account compromise and extract sensitive tenant or administrative data.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Insufficient enforcement of roles/tenancy boundaries lets a hijacked account reach data or admin functions it should not, enabling broad data theft."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "If object or tenant identifiers are user-controllable (IDOR), a compromised account can enumerate or access other users’ records across the managed portal."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Client Backup Repository Exfiltration",
+        "threat_description": "Financially motivated ransomware affiliates and state-sponsored APTs target client backup repositories (on-prem NAS/object storage and backup admin APIs) to steal full datasets by abusing weak authentication or misconfigured access controls (e.g., compromised admin credentials, exposed S3-compatible buckets, unauthorized SMB/NFS mounts), enabling data theft for ransom, resale, or intelligence.",
+        "motives": [
+            {
+                "motive": "Monetize stolen backups via double-extortion ransomware and resale of sensitive archives",
+                "components": [
+                    {
+                        "name": "Backup Repository Remote Access Control",
+                        "description": "Controls protecting remote login/API access to backup servers and repositories relied on by operators and automation.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "If backup admin consoles/services do not strictly verify user identity (e.g., default credentials, weak MFA enforcement), attackers using phished or brute‑forced logins can directly authenticate and exfiltrate backup data."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded credentials in backup agents, scripts, or appliances provide a backdoor to authenticate to repositories or management APIs, enabling bulk extraction of backup sets by adversaries."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Strategic espionage to access comprehensive historical datasets for intelligence and long-term leverage",
+                "components": [
+                    {
+                        "name": "Object Storage-backed Backup Repository",
+                        "description": "Backup data stored in S3-compatible object storage buckets connected to the backup system for scale-out repositories.",
+                        "sub_components": [
+                            {
+                                "name": "Object Storage Bucket (S3-compatible)",
+                                "dynamic": false,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Overly permissive bucket policies, anonymous/public ACLs, or role misconfigurations allow unauthorized principals to list and read backup objects, facilitating silent bulk exfiltration."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Misconfigured object storage or leaked access keys can expose full backup archives—containing sensitive client data—to attackers who can retrieve and exfiltrate them without detection."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "RMM Tool Supply Chain Compromise",
+        "threat_description": "Adversaries (state-sponsored APTs or financially motivated groups) compromise an RMM vendor’s build/signing or package distribution infrastructure to push trojanized, validly signed updates/plugins to MSP consoles and enterprise endpoints, enabling covert remote command execution, lateral movement, data theft, and at-scale ransomware deployment.",
+        "motives": [
+            {
+                "motive": "Espionage and long-term persistence in MSP and customer environments",
+                "components": [
+                    {
+                        "name": "Update signing and distribution pipeline",
+                        "description": "Compromise of build, signing, and CDN/package servers to deliver malicious but trusted RMM agents/plugins to managed endpoints.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                                        "cwe_mapping_reason": "If the updater/agent verifies signatures incorrectly (e.g., accepts any signature or ignores signer identity), a trojanized package from a compromised pipeline will be treated as trusted, enabling silent installation across MSP-managed assets."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_mapping_reason": "Weak TLS or code-signing certificate validation (e.g., not checking chain/hostname/revocation) allows MITM or rogue certificates to deliver malicious updates from spoofed update endpoints in the RMM supply chain."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "If the updater retrieves binaries or scripts without verifying cryptographic integrity (hash/signature), attackers controlling the distribution path can inject altered RMM components for covert persistence."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Monetization via rapid ransomware deployment and extortion",
+                "components": [
+                    {
+                        "name": "Remote command and script execution controls",
+                        "description": "Abuse of RMM remote execution and mass action features after supply-chain seeding of backdoored agents to push ransomware and disable defenses at scale.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "If remote execution, update approval, or policy distribution endpoints lack strong authentication, a trojanized agent or stolen build credential can trigger privileged actions to deploy ransomware across fleets."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-863: Incorrect Authorization",
+                                        "cwe_mapping_reason": "Flaws in role/tenant scoping or token validation can let an attacker (via compromised supply-chain artifacts) invoke high-privilege RMM actions across many customers, enabling mass encryption and service disruption."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Privileged Access Abuse Invoicing Fraud",
+        "threat_description": "A rogue finance admin or an external actor using a compromised privileged ERP account abuses over-broad authorization in the invoicing module and underlying data stores to create/approve fictitious invoices and change vendor bank details, bypassing workflow approvals and SoD, to divert funds for personal gain and hide the fraud.",
+        "motives": [
+            {
+                "motive": "Direct financial gain",
+                "components": [
+                    {
+                        "name": "ERP Finance Module Authorization Controls",
+                        "description": "Over-privileged roles and coarse access policies let a privileged user self-approve invoices and change vendor master data to redirect payments.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Invoice creation/approval and vendor update actions lack explicit per-action authorization checks, allowing a privileged session to perform out-of-scope operations (e.g., approve its own invoices or alter beneficiary details)."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Excessive privileges and weak role boundaries permit a privileged user to escalate or retain rights needed to both create and approve invoices, violating least privilege and enabling fraud."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Authorization logic does not correctly enforce who may approve, amend, or release invoices; privileged roles can bypass intended separation and perform restricted actions."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Fraud concealment and manipulation",
+                "components": [
+                    {
+                        "name": "Invoice Workflow and Business Rule Validation",
+                        "description": "Manipulation of approval workflows and business rules to bypass SoD checkpoints and thresholds so fraudulent invoices pass unnoticed.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-841: Improper Enforcement of Behavioral Workflow",
+                                        "cwe_mapping_reason": "Critical workflow transitions (e.g., draft→approved→paid) are not strictly enforced, allowing a privileged user to skip mandatory approval steps and push payments through."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-840: Business Logic Errors",
+                                        "cwe_mapping_reason": "Business rule checks (e.g., dual approval for high-value invoices, vendor change verification) are weak or bypassable, enabling privileged actors to craft invoices that evade controls."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Insider Log Tampering Repudiation",
+        "threat_description": "An authenticated insider (e.g., a support engineer with server or DB access) manipulates or deletes application and audit logs on backend servers and database platforms to conceal policy violations or fraud by exploiting weak file permissions and missing authorization on log-management functions (editing/deleting files, truncating audit tables, disabling auditing), causing loss of forensic integrity and enabling repudiation.",
+        "motives": [
+            {
+                "motive": "Cover up policy violations and mistakes",
+                "components": [
+                    {
+                        "name": "Application server log storage",
+                        "description": "Server-resident application logs on hosts where operators have shell access; risk of direct file edits, disabling loggers, or purging rotations.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Log directories and files on backend servers are critical resources; overly permissive write permissions for operator or service accounts allow insiders to modify or delete logs to erase evidence."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-276: Incorrect Default Permissions",
+                                        "cwe_mapping_reason": "If newly created or rotated log files inherit group/world-writable defaults on backend servers, insiders can alter contents or remove files, enabling tampering and repudiation."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Conceal financial fraud or data exfiltration",
+                "components": [
+                    {
+                        "name": "Database audit controls",
+                        "description": "Audit trails implemented via DB audit tables/triggers or built-in auditing; insiders with DB access can disable, truncate, or edit entries if controls are weak.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Audit tables and procedures lack strict authorization boundaries; insiders with generic DB roles can run maintenance or log-rotation procedures to purge or modify audit data."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Critical audit management operations (e.g., disabling auditing, truncating audit tables) do not enforce required authorization checks, enabling authenticated insiders to tamper with audit records."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Cloud Tenancy Cross Account Exposure",
+        "threat_description": "An external actor operating from a separate cloud account (or a compromised partner tenant) exploits misconfigured cross-account trust, shared storage policies, or snapshots to assume roles and access data/services across tenants. Likely patterns include abusing wildcard IAM trust (e.g., sts:AssumeRole), permissive bucket ACLs/policies, and shared backups. Affected assets include IAM roles, object storage, and backups; motives include data theft, tenant pivoting, and cost abuse via compute hijacking.",
+        "motives": [
+            {
+                "motive": "Data exfiltration and tenant pivoting",
+                "components": [
+                    {
+                        "name": "Cross-account IAM trust and role assumption",
+                        "description": "Overly permissive trust relationships enable external principals to assume roles and enumerate or access tenant services and data.",
+                        "sub_components": [
+                            {
+                                "name": "AWS IAM Role Trust Policy allowing external account to call sts:AssumeRole",
+                                "dynamic": false,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "A trust policy that permits external principals (wildcards or broad account IDs) fails to enforce access control boundaries, allowing cross-account role assumption and exposure of tenant resources."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Authorization conditions on the role (e.g., missing externalId, source IP, or service constraints) are improperly specified, enabling an unauthorized external account to gain privileges to access data and APIs."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Cost abuse and compute hijacking",
+                "components": [
+                    {
+                        "name": "Shared object storage and backup exposure",
+                        "description": "Misconfigured bucket ACLs/policies or shared backups grant cross-account read/write, enabling malware staging, dataset exfiltration, and persistence.",
+                        "sub_components": [
+                            {
+                                "name": "S3 bucket policy/ACL granting cross-account READ/WRITE",
+                                "dynamic": false,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Granting cross-account WRITE or overly broad READ to a storage bucket incorrectly assigns permissions on a critical resource, enabling unauthorized modification or abuse for cost-driving workloads."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Cross-account READ permissions can expose logs, secrets, or proprietary data to tenants outside the intended security boundary."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Executive Mailbox Persistent Surveillance",
+        "threat_description": "State-sponsored or financially-motivated actors covertly maintain long-term access to an executive’s Microsoft 365/Exchange Online mailbox to continuously read, forward, and exfiltrate sensitive communications. Likely patterns include credential phishing/MFA fatigue, OAuth consent phishing for malicious apps, creation of stealth inbox/transport rules, and exploitation of weak session/token hygiene—motivated by espionage and BEC preparation.",
+        "motives": [
+            {
+                "motive": "Strategic espionage and executive intelligence collection",
+                "components": [
+                    {
+                        "name": "Identity foothold and mailbox rule persistence",
+                        "description": "Adversaries obtain login access and then install covert inbox/transport rules to silently forward, hide, or copy messages from the executive’s mailbox, sustaining surveillance while evading detection.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak or bypassed authentication (e.g., successful credential phishing or MFA fatigue) enables unauthorized login to the executive’s mailbox, establishing the initial foothold needed for persistent surveillance."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_mapping_reason": "Reliance on single-factor or insecure fallback methods allows attackers using stolen passwords to repeatedly access the mailbox without robust second-factor checks, sustaining covert monitoring."
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Exchange Online Inbox/Transport Rules (hidden auto-forward, move-to-folder)",
+                                "dynamic": false,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Insufficient restrictions on who can create external auto-forward or stealth rules allow an intruder to authorize persistent forwarding/hiding of sensitive emails from the executive’s mailbox."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Overly broad mailbox permissions or delegated access enable an attacker to create or maintain rules on the executive mailbox, treating rules/config as critical resources with misassigned privileges."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Financial gain via business email compromise (BEC) enablement",
+                "components": [
+                    {
+                        "name": "Abuse of OAuth consent and token persistence",
+                        "description": "Attackers coerce consent to a malicious app with mail-read scopes and leverage long-lived refresh tokens to continuously surveil threads and time fraudulent payment instructions.",
+                        "sub_components": [
+                            {
+                                "name": "Microsoft 365 OAuth Consent and Token Grants",
+                                "dynamic": false,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Lenient or mis-scoped OAuth consent policies allow a malicious app to obtain mailbox read scopes beyond intended use, authorizing ongoing access to executive communications for BEC staging."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_mapping_reason": "Long-lived or unrevoked refresh tokens let attackers maintain access to the executive’s mailbox via the malicious app, enabling persistent surveillance without repeated reauthentication."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Client SLA Disruption Extortion",
+        "threat_description": "A financially motivated crimeware group threatens to keep overwhelming client-facing API and login services with application-layer floods and credential-stuffing–driven lockouts, degrading tenant availability and triggering client SLA violations, unless paid to cease.",
+        "motives": [
+            {
+                "motive": "Monetary ransom to halt API-layer denial of service that risks client SLA penalties",
+                "components": [
+                    {
+                        "name": "Application-layer resource exhaustion against client-facing APIs",
+                        "description": "Adversaries script high-cost requests (search/aggregation, export, PDF generation) to overwhelm API gateway paths and backend workers, forcing latency spikes and outages that jeopardize client SLAs.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                                        "cwe_mapping_reason": "Backend servers processing expensive API calls lack effective rate limits and concurrency caps, enabling attackers to drive unbounded thread/CPU utilization and queue growth that degrade availability used for extortion leverage."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                                        "cwe_mapping_reason": "High-cost endpoints (e.g., complex queries, report generation) allow attackers to consume excessive CPU/memory/IO per request, creating resource exhaustion on API workers and upstream databases to induce SLA-breaking downtime."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Coerce payment by engineering widespread user lockouts and workflow interruptions across client tenants",
+                "components": [
+                    {
+                        "name": "Authentication abuse to trigger lockouts and service denial",
+                        "description": "Botnets rotate IPs and credentials to brute-force or spray login endpoints, triggering account lockouts and exhausting auth capacity, disrupting client access during critical windows.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "Insufficient controls on repeated login attempts let attackers induce lockouts and tie up authentication workflows, causing user-facing denial of service that pressures payment to restore normal operations."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-799: Improper Control of Interaction Frequency",
+                                        "cwe_mapping_reason": "Lack of per-identity/IP/session/tenant request throttling on login and MFA verification allows automated floods that overwhelm the auth pipeline and degrade availability, enabling SLA-focused extortion."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "API Key Theft Extortion",
+        "threat_description": "A financially motivated cybercriminal group steals API keys from source repos, CI/CD artifacts, and API gateways via secret scanning, phishing developers, and dependency hijacking; with the keys they threaten service abuse or data exfiltration to extort payment from the organization.",
+        "motives": [
+            {
+                "motive": "Financial extortion to avoid service abuse and data leak",
+                "components": [
+                    {
+                        "name": "API key handling in authentication",
+                        "description": "Weak key storage/transmission in the authentication layer enables interception or theft, empowering extortion.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "API keys used as authentication tokens are stored or loaded insecurely (e.g., embedded in client code, unencrypted config, no rotation), enabling attackers to obtain them and extort by threatening misuse."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "API keys transmitted over HTTP, logs, or other cleartext channels can be intercepted (e.g., MITM or proxy logs), providing the attacker leverage to extort."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Initial access brokerage and resale of compromised API access",
+                "components": [
+                    {
+                        "name": "Operational logging and artifact storage",
+                        "description": "Build artifacts and logs inadvertently capture API keys that attackers harvest for resale or extortion.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_file_servers",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-532: Insertion of Sensitive Information into Log File",
+                                        "cwe_mapping_reason": "Authorization headers, API keys, or secrets are written to logs or artifacts on file servers, enabling discovery and subsequent extortion."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Misconfigured or publicly accessible log/artifact stores expose API keys to unauthorized parties who can leverage them for extortion."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Customer Billing Profile Manipulation",
+        "threat_description": "A malicious customer or fraud-focused insider targets the billing profile asset (customer payment details, billing address, refund preferences) by exploiting weak object authorization on billing APIs (e.g., IDOR/parameter tampering) or injection flaws to alter records in the billing database. The actor’s motive is financial gain or data monetization, leading to redirected refunds, unauthorized discounts/charges, or exposure of PII/payment metadata.",
+        "motives": [
+            {
+                "motive": "Financial fraud (refund redirection, discount abuse, charge manipulation)",
+                "components": [
+                    {
+                        "name": "Billing Update API Access Control",
+                        "description": "Enforces object- and action-level authorization for create/update of customer billing profiles via REST/GraphQL endpoints.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Attackers modify a customerId/profileId parameter to update another user’s billing profile through the billing-profile PUT/PATCH endpoint, exploiting IDOR/BOLA conditions."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-863: Incorrect Authorization",
+                                        "cwe_mapping_reason": "Update endpoints fail to verify the requester’s entitlement to the specific billing profile resource, allowing unauthorized modifications such as changing refund destinations or invoice recipients."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Data theft and monetization (sale of billing PII/payment metadata)",
+                "components": [
+                    {
+                        "name": "Billing Database Protection",
+                        "description": "Protects storage and update paths for billing profiles in the transactional data store.",
+                        "sub_components": [
+                            {
+                                "name": "PostgreSQL billing database cluster",
+                                "dynamic": false,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_mapping_reason": "Unsanitized inputs in billing profile create/update queries enable SQL injection to alter profile records (e.g., changing payment account or refund routing) or to pivot for broader data access."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Compromised queries or lax access paths expose sensitive billing fields (PII, masked PAN, tokens), enabling exfiltration and downstream fraud even without on-the-fly modification."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Change Management Approval Subversion",
+        "threat_description": "A malicious insider or external actor using stolen credentials subverts approval gates in change-management assets (e.g., code repository PR approvals, ITSM workflows) by exploiting weak authorization checks and identifier tampering to illicitly approve and deploy unreviewed changes for speed, profit, or sabotage, compromising production integrity and compliance.",
+        "motives": [
+            {
+                "motive": "Accelerate risky release without oversight",
+                "components": [
+                    {
+                        "name": "Code Repository Approval Gate",
+                        "description": "Bypass pull-request approval enforcement to merge and deploy unreviewed code.",
+                        "sub_components": [
+                            {
+                                "name": "GitHub Pull Request Approval Rules",
+                                "dynamic": false,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "PR approval endpoints fail to enforce repository or branch protection policy on every state-changing request, enabling merges without required reviewers."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Manipulating PR or approval identifiers in API calls (IDOR) can mark a different PR as approved or mergeable without rightful authorization."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Financial gain or sabotage via unauthorized production change",
+                "components": [
+                    {
+                        "name": "ITSM Approval Endpoint",
+                        "description": "Exploit weaknesses in the change-ticket approval workflow to rubber-stamp malicious changes.",
+                        "sub_components": [
+                            {
+                                "name": "ServiceNow Approval API",
+                                "dynamic": false,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Approval actions accept weak or stolen session tokens without robust re-authentication/MFA, allowing impostors to approve change tickets."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Over-permissive or mis-scoped approver roles and API tokens let users or integrations escalate to approve changes outside their authority."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Service Catalog Unauthorized Provisioning",
+        "threat_description": "External attackers or rogue insiders abuse weak authorization in the service catalog UI/API—e.g., missing approval checks, RBAC gaps, or IDOR on order/approval endpoints—to provision cloud resources via backend connectors/roles, aiming for crypto-mining or data theft and impacting cloud accounts, billing, and backend provisioning systems.",
+        "motives": [
+            {
+                "motive": "Financial gain via illicit resource consumption (crypto-mining, resale of compute)",
+                "components": [
+                    {
+                        "name": "Service Catalog API Access Controls",
+                        "description": "Authorization on create/approve/catalog order APIs and UI flows.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "If the create/approve provisioning endpoints lack a server-side authorization check, an unauthenticated or low-privileged actor can submit or approve orders, directly enabling unauthorized provisioning."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Overly broad RBAC or mis-scoped policies allow users without the proper role to invoke provisioning actions, leading to unauthorized resource creation and significant cost impact."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "If order or request identifiers are user-controlled and not re-validated against the caller’s identity, an attacker can reference privileged requests to force provisioning (IDOR)."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Data theft/espionage via provisioning of resources with access to sensitive stores",
+                "components": [
+                    {
+                        "name": "Provisioning Connector IAM and Roles",
+                        "description": "Roles/credentials used by the catalog to provision backend cloud resources and bind permissions.",
+                        "sub_components": [
+                            {
+                                "name": "AWS Provisioning Role (assume-role to create S3/EC2)",
+                                "dynamic": false,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "If the provisioning role can assume higher-privilege roles or is granted wildcard actions, an attacker who triggers provisioning can obtain resources with excessive data access and exfiltrate sensitive information."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-266: Incorrect Privilege Assignment",
+                                        "cwe_mapping_reason": "Misconfigured trust or permission policies assign rights (e.g., s3:GetObject or ec2:ModifyInstanceAttribute) not needed for provisioning, enabling data access after unauthorized provisioning succeeds."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Attaching overly permissive policies (such as s3:* on sensitive buckets) to provisioned resources exposes critical data paths when those resources are created without proper approval."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Remote Access Gateway Ransomware Deployment",
+        "threat_description": "Financially motivated ransomware-as-a-service affiliates target remote access gateways (VPN/VDI/RDP) using credential-stuffing/MFA fatigue or pre-auth exploit chains to obtain footholds, then pivot via RDP/SMB to encrypt file servers and exfiltrate data for double extortion.",
+        "motives": [
+            {
+                "motive": "Financial extortion via enterprise-wide encryption",
+                "components": [
+                    {
+                        "name": "Initial access through exposed remote access gateway",
+                        "description": "Attackers abuse VPN/VDI portals to gain entry with stolen/sprayed credentials or by exploiting gateway flaws, staging loaders/beacons for ransomware deployment.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak or misconfigured authentication on the remote access gateway (e.g., missing/ineffective MFA, SSO bypass) allows adversaries using stolen or sprayed credentials to authenticate and establish the initial foothold needed to deploy ransomware."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "Lack of lockout, throttling, or anomaly detection on VPN/VDI login endpoints enables password spraying and brute-force attempts that yield valid accounts for gateway access preceding ransomware staging."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Data theft and double extortion",
+                "components": [
+                    {
+                        "name": "Lateral movement and mass encryption staging",
+                        "description": "After gateway compromise, the actor pivots via RDP/SMB, exfiltrates sensitive data, then pushes encryptors to shared storage and servers to maximize leverage.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_file_servers",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Overly permissive SMB/NAS access controls allow compromised gateway-derived accounts to read and exfiltrate sensitive data and to write ransomware payloads to broad sets of shares."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Misconfigured share/NTFS permissions grant unnecessary modify/write privileges, enabling ransomware to propagate and encrypt large volumes of files once the gateway is breached."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Backup Retention Policy Destruction",
+        "threat_description": "Ransomware operators or malicious insiders exploit weak/missing authorization in backup admin consoles and cloud backup policy APIs to shorten or disable retention/immutability, then purge restore points on backup repositories and vaults—causing unrecoverable data loss and prolonged outages for extortion or cover-up.",
+        "motives": [
+            {
+                "motive": "Financial extortion via ransomware",
+                "components": [
+                    {
+                        "name": "Cloud Backup Policy Control Plane",
+                        "description": "Attackers gain control of the cloud backup management plane to alter retention/immutability policies and trigger purge operations to eliminate restore points.",
+                        "sub_components": [
+                            {
+                                "name": "Cloud backup policy API endpoint",
+                                "dynamic": false,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Overly permissive or misapplied access controls on policy-changing APIs allow an adversary using stolen or mis-scoped credentials to modify retention and delete backups, enabling policy destruction."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "If authorization checks are absent or incomplete on endpoints that change retention or immutability, attackers can execute destructive policy updates without appropriate privilege verification."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Insider sabotage or evidence concealment",
+                "components": [
+                    {
+                        "name": "Backup Administration Console",
+                        "description": "A malicious or compromised administrator abuses weak role design and privilege boundaries to weaken retention and schedule destructive cleanup jobs.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Insufficient authorization enforcement in role/permission checks lets users perform retention policy changes beyond intended privileges, facilitating insider-driven policy destruction."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Overbroad roles, lack of separation of duties, or privilege creep provide excessive rights to edit retention and purge settings, enabling insiders to destroy backups."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Ticketing System Data Exposure",
+        "threat_description": "Exposure of ticket records and attachments via exploitation of export/file-delivery paths. External cybercriminals or malicious insiders can use SQL injection or CSRF-triggered exports against ticket APIs and path traversal against attachment handlers to extract customer PII, internal notes, and files for resale, extortion, or competitive intelligence.",
+        "motives": [
+            {
+                "motive": "Financial gain (sale of PII, extortion)",
+                "components": [
+                    {
+                        "name": "Ticket Export API",
+                        "description": "Generates CSV/JSON exports of ticket data for agents and admins.",
+                        "sub_components": [
+                            {
+                                "name": "Ticket Export REST Endpoint /api/tickets/export",
+                                "dynamic": false,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_mapping_reason": "If the export endpoint constructs SQL from user-supplied filters (e.g., query, date ranges) without proper parameterization, an attacker can inject UNION/Boolean-based payloads to dump entire ticket tables and related PII from the ticketing database."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "When the export action is cookie-authenticated and lacks CSRF defenses, an attacker can trick a logged-in agent to trigger a bulk export. If the system stores the export in a predictable or publicly reachable location (or emails it), this results in unauthorized disclosure of ticket data."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Competitive intelligence / corporate espionage",
+                "components": [
+                    {
+                        "name": "Ticket Attachments Delivery",
+                        "description": "Serves customer-uploaded attachments and internal files linked to tickets.",
+                        "sub_components": [
+                            {
+                                "name": "Attachment Download Handler /files/tickets/{id}/{filename}",
+                                "dynamic": false,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_mapping_reason": "If the handler concatenates unvalidated filename paths, an attacker can use ../ traversal to read other tickets’ attachments or sensitive server files, exposing internal incident data and customer documents."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                                        "cwe_mapping_reason": "Some attachment handlers invoke OS utilities (e.g., zip/convert/grep) with user-influenced arguments. Insufficient sanitization can allow command injection to read and exfiltrate sensitive files (e.g., config or key material) via command output returned in the response."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Deal Data Room Espionage",
+        "threat_description": "Competitor-backed or state-aligned actors infiltrate an M&A virtual data room (VDR) by abusing SSO/MFA (credential stuffing, MFA fatigue, OAuth phishing) and weak authorization, then exfiltrate documents via misconfigured object storage or backend injection; affected assets include VDR user identities/SSO, authorization policies, object storage buckets, and deal databases; motives include competitive leverage and financial gain via insider trading.",
+        "motives": [
+            {
+                "motive": "Competitive intelligence advantage in M&A negotiations",
+                "components": [
+                    {
+                        "name": "VDR account takeover via SSO abuse",
+                        "description": "Compromise identity plane to gain covert, persistent access to deal folders (credential stuffing, MFA fatigue, token replay).",
+                        "sub_components": [
+                            {
+                                "name": "Okta SSO for VDR",
+                                "dynamic": false,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "If attackers coerce MFA approval (MFA fatigue) or replay stolen session tokens, the SSO flow fails to reliably authenticate the user’s identity, enabling unauthorized VDR access."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "Absent rate limiting and lockout allows password spraying/credential stuffing against the SSO portal until a valid password is found, enabling subsequent MFA bypass techniques."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Over-privileged roles and link-based sharing",
+                        "description": "Exploit weak authorization and share-by-link settings to enumerate and download confidential folders beyond intended scope.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Misconfigured role-based access or folder ACLs allow users to access deal documents outside their clearance."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Predictable or user-controllable document/folder identifiers in URLs enable IDOR to fetch other parties’ files in the data room."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Monetization via insider trading and strategic leaks",
+                "components": [
+                    {
+                        "name": "Direct exfiltration from object storage",
+                        "description": "Leverage public or overly permissive object storage and long-lived pre-signed URLs to bulk-download sensitive deal files.",
+                        "sub_components": [
+                            {
+                                "name": "Amazon S3 VDR bucket",
+                                "dynamic": false,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Public bucket access or exposed pre-signed URLs disclose confidential deal documents to untrusted parties."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Overly broad bucket policies (e.g., wildcard principals/actions) permit unauthorized reads and listings of VDR objects."
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Backend data extraction via SQLi in deal analytics",
+                        "description": "Exploit unsanitized inputs in search/reporting endpoints to query or dump deal metadata and credentials.",
+                        "sub_components": [
+                            {
+                                "name": "PostgreSQL reporting database",
+                                "dynamic": false,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')",
+                                        "cwe_mapping_reason": "Injection through analytics/search inputs enables arbitrary SQL to enumerate or exfiltrate sensitive tables linked to the VDR."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Failure to validate and constrain user-supplied parameters admits malicious payloads that facilitate SQL injection and data leakage."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Board Portal Long Term Surveillance",
+        "threat_description": "A state-backed or corporate-espionage actor covertly maintains persistent access to the board portal’s web frontend, SAML SSO, and document repository using XSS/CSRF and SSO token abuse/session fixation to silently monitor deliberations and exfiltrate sensitive board materials for competitive and market advantage over months.",
+        "motives": [
+            {
+                "motive": "Competitive intelligence and strategic decision foreknowledge",
+                "components": [
+                    {
+                        "name": "Silent Board Material Collection",
+                        "description": "Covert scraping of agendas, packets, and messages while blending into normal user traffic to avoid detection.",
+                        "sub_components": [
+                            {
+                                "name": "Board Portal Web Frontend",
+                                "dynamic": false,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation (Cross-site Scripting)",
+                                        "cwe_mapping_reason": "Injected scripts into board pages enable live DOM scraping, keystroke capture, and authenticated API calls to harvest documents and meeting metadata over time, facilitating long-term surveillance of the portal’s content and user sessions."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "By inducing authenticated directors to execute unintended actions (e.g., enabling data exports or sharing folders), an attacker can establish or maintain stealthy data egress paths that persist and support long-term monitoring without overt account compromise."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Market manipulation and M&A advantage",
+                "components": [
+                    {
+                        "name": "Persistent Identity and Session Abuse",
+                        "description": "Abuse of SSO trust boundaries and session lifecycle to ensure durable, low-noise access.",
+                        "sub_components": [
+                            {
+                                "name": "SAML SSO Integration",
+                                "dynamic": false,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Lenient verification of SAML assertions (e.g., weak signature checks, missing audience/issuer validation, excessive clock skew) can allow forged or replayed tokens, enabling persistent unauthorized access that supports long-term surveillance."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_mapping_reason": "Failure to regenerate session identifiers after SSO login or to bind sessions to client context allows attackers to pre-establish and reuse session IDs, maintaining covert, long-lived access to the board portal."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Build Pipeline Dependency Poisoning",
+        "threat_description": "Attackers poison third-party or internal dependencies consumed by the CI/CD pipeline (e.g., dependency confusion, typosquatting, malicious maintainer updates) to execute code on build runners and taint release artifacts. Assets at risk include package registries, dependency manifests/lockfiles, and CI agents. Likely actors are external supply-chain adversaries or malicious insiders seeking financial gain or persistent access to downstream environments.",
+        "motives": [
+            {
+                "motive": "Financial gain through build runner abuse and downstream monetization",
+                "components": [
+                    {
+                        "name": "Package Source Trust and Integrity Controls",
+                        "description": "Policies and mechanisms to fetch, verify, and pin third-party dependencies and artifacts during builds.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "If the build pipeline retrieves dependencies without verifying signatures or checksums, a poisoned package can be accepted and executed during the build, enabling cryptomining payloads or ransomware staging."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "The pipeline may trust unauthenticated package metadata or sources (e.g., spoofed registry, typosquatted package), allowing an attacker to inject malicious dependencies that appear legitimate."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Strategic persistence and downstream supply-chain compromise",
+                "components": [
+                    {
+                        "name": "Dependency Resolution and Namespace Controls",
+                        "description": "Controls governing how package managers resolve package names and versions across internal versus public registries.",
+                        "sub_components": [
+                            {
+                                "name": "JFrog Artifactory (internal registry)",
+                                "dynamic": false,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Misconfigured resolution can pull code from a public registry instead of the internal registry, importing functionality from an attacker-controlled sphere into builds and release artifacts."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_mapping_reason": "Resolver decisions (source priority, version selection) may rely on attacker-controlled package names or versions in public registries, causing selection of a malicious dependency that grants persistent access."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Vendor Remote Access Abuse",
+        "threat_description": "Ransomware affiliates and APT actors abuse third‑party vendor remote access paths (VPN portals, RDP gateways) to gain initial access to enterprise network assets and OT management systems via credential stuffing, MFA fatigue, and stolen tokens; they then deploy ransomware to disrupt operations for extortion or exfiltrate IP and credentials for espionage.",
+        "motives": [
+            {
+                "motive": "Financial gain via ransomware deployment",
+                "components": [
+                    {
+                        "name": "Compromise of vendor VPN / remote support portals",
+                        "description": "Attackers obtain or force valid vendor logins to SSL‑VPN portals to enter the corporate network, disable defenses, and stage ransomware.",
+                        "sub_components": [
+                            {
+                                "name": "Vendor SSL‑VPN gateway (e.g., FortiGate/ASA)",
+                                "dynamic": false,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak or misconfigured authentication (e.g., missing enforced MFA, token reuse, acceptance of expired sessions) on the vendor VPN allows adversaries to authenticate as the vendor and gain initial access."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "Lack of rate limiting/lockout on the VPN login enables password spraying and credential stuffing against vendor accounts to obtain access."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Espionage and data theft",
+                "components": [
+                    {
+                        "name": "Abuse of vendor-managed RDP jump hosts",
+                        "description": "Adversaries leverage valid but over-permissive vendor access on RDP gateways to pivot laterally and exfiltrate sensitive designs, credentials, and operational data.",
+                        "sub_components": [
+                            {
+                                "name": "Windows Server RDP Gateway for vendors",
+                                "dynamic": false,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Misconfigured RDP gateway authentication (e.g., accepting disabled/revoked vendor accounts or weak MFA enrollment) permits unauthorized logon and pivoting."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Vendor credentials stored or transmitted without adequate protection (e.g., saved RDP passwords, weak NTLM protection) can be stolen and reused to access the RDP gateway and downstream assets."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Identity Provider Session Hijacking Fraud",
+        "threat_description": "Financially motivated threat actors hijack IdP sessions and SSO tokens (cookies, OIDC code/ID/refresh tokens) via session fixation, insecure cookie handling, or script-assisted exfiltration, enabling account takeover and fraudulent actions against user accounts and federated applications.",
+        "motives": [
+            {
+                "motive": "Monetize account takeover for fraudulent transactions and unauthorized access to paid services",
+                "components": [
+                    {
+                        "name": "SSO Token Lifecycle and Session Binding",
+                        "description": "Controls that bind IdP sessions to the user/device and properly expire, rotate, and revoke tokens to prevent reuse by attackers.",
+                        "sub_components": [
+                            {
+                                "name": "OIDC Authorization Code + PKCE",
+                                "dynamic": false,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_mapping_reason": "If IdP sessions or refresh tokens do not expire promptly or on logout/device change, a hijacked session remains valid, allowing sustained fraudulent use across federated apps."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_mapping_reason": "Weak state/nonce and session binding in the OIDC flow can let an attacker pre-establish or inject a session identifier that the victim later authenticates, enabling takeover without credentials."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Harvest identities and access for data theft and resale on underground markets",
+                "components": [
+                    {
+                        "name": "Browser Cookie and Frontend Controls",
+                        "description": "Hardening of IdP session cookies and browser-facing controls to resist theft via network, mixed content, or scripts.",
+                        "sub_components": [
+                            {
+                                "name": "IdP session cookie flags (Secure, HttpOnly, SameSite)",
+                                "dynamic": false,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-614: Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+                                        "cwe_mapping_reason": "Missing Secure on IdP session cookies risks leakage over non-HTTPS or mixed-content requests, enabling attackers to capture cookies and hijack sessions."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1004: Sensitive Cookie Without 'HttpOnly' Flag",
+                                        "cwe_mapping_reason": "Without HttpOnly, injected or third-party scripts can read session cookies and exfiltrate them to an attacker, leading to session hijacking and identity fraud."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Cloud Cost Explosion Cryptomining Abuse",
+        "threat_description": "Financially motivated cryptojackers or malicious insiders compromise CI/CD secrets or abuse weak IAM/cluster controls to deploy coin-mining workloads across cloud compute fleets (e.g., Kubernetes worker nodes, autoscaling groups). By triggering aggressive autoscaling and persistent miners, they exhaust compute quotas and drive runaway spend while degrading service availability.",
+        "motives": [
+            {
+                "motive": "Illicit profit from unauthorized cryptomining at scale",
+                "components": [
+                    {
+                        "name": "Autoscaling Compute Fabric (Kubernetes/ECS)",
+                        "description": "Abuse of cluster permissions and node pool scaling to schedule unauthorized mining containers that expand compute usage rapidly.",
+                        "sub_components": [
+                            {
+                                "name": "Kubernetes Worker Node Pool (EKS/GKE/AKS)",
+                                "dynamic": false,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                                        "cwe_mapping_reason": "Mining pods intentionally consume CPU/GPU and can induce autoscaling of the worker node pool, causing resource exhaustion and runaway cloud costs at the compute layer."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Overly permissive cluster roles or node IAM permissions allow attackers to deploy/scale workloads on the node pool, enabling unauthorized compute consumption for cryptomining."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Cost sabotage to inflict financial damage on the organization",
+                "components": [
+                    {
+                        "name": "CI/CD Secrets and Access Keys",
+                        "description": "Compromise or misuse of build pipeline credentials to obtain cloud access and spin up miner workloads that burn through budgets.",
+                        "sub_components": [
+                            {
+                                "name": "GitHub Actions Repository Secrets",
+                                "dynamic": false,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "If repository secrets are improperly protected (e.g., broad read access, exposure via logs or PRs), attackers can harvest cloud credentials to launch mining jobs and escalate costs."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Long-lived cloud API keys hard-coded in workflows or config enable unauthorized access; attackers use them to deploy miners and trigger large-scale compute consumption."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Immutable Logging Bypass Fraud Enablement",
+        "threat_description": "An insider or an external actor with stolen admin credentials targets audit-log assets (immutable object stores, append-only indices, and collectors) to suppress, alter, or forge entries by abusing weak authorization on retention/WORM settings and exploiting ingestion parser flaws (e.g., path traversal, XXE). Motive: conceal fraudulent transactions and evade audits.",
+        "motives": [
+            {
+                "motive": "Monetize fraud by concealing unauthorized financial transactions",
+                "components": [
+                    {
+                        "name": "WORM/Retention Control Abuse in Audit Log Storage",
+                        "description": "Abuse mis-scoped roles and policy gaps on immutable log storage to shorten retention, unlock write-once protections, or purge segments to erase evidence of fraudulent actions.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Overly permissive or missing authorization checks on log-retention and purge operations allow actors to bypass immutable controls and remove or rewrite audit records, directly enabling fraud concealment."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Incorrect ACLs/IAM bindings on critical logging resources (WORM buckets, append-only indices) let users or services change retention policies or delete protected log objects, undermining immutability."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Evade regulatory audits and incident attribution",
+                "components": [
+                    {
+                        "name": "Log Ingestion/Parser Attack Surface",
+                        "description": "Exploit weak input handling in collectors and parsers to inject, relocate, or suppress events before they are sealed by immutable storage, defeating auditability.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_mapping_reason": "Unsanitized file paths or source fields let an attacker traverse directories to target rotation/sink locations, causing log overwrites, misplacement, or omission prior to immutability."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-611: Improper Restriction of XML External Entity Reference",
+                                        "cwe_mapping_reason": "XML-based log transports/parsers resolving external entities can be abused to read secrets or perform SSRF to internal admin endpoints, enabling configuration tampering or forged/suppressed log entries."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Managed Endpoint Configuration Sabotage",
+        "threat_description": "Adversaries (e.g., a disgruntled IT admin or an external actor using stolen MDM/GPO/EDR admin credentials) abuse endpoint management control planes to push destructive or weakening configurations—such as mass device wipe, disabling EDR, or corrupting baselines—via techniques like tampering with GPO/SYSVOL, abusing over-privileged roles, or calling vulnerable policy update APIs, to disrupt operations or enable ransomware deployment.",
+        "motives": [
+            {
+                "motive": "Operational Disruption / Destructive Sabotage",
+                "components": [
+                    {
+                        "name": "MDM/GPO Control Plane Compromise",
+                        "description": "Manipulate configuration distribution (e.g., GPO via SYSVOL or MDM policies) to propagate destructive settings across managed endpoints.",
+                        "sub_components": [
+                            {
+                                "name": "Group Policy SYSVOL share (policy files)",
+                                "dynamic": false,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-276: Incorrect Default Permissions",
+                                        "cwe_mapping_reason": "If SYSVOL/Policies inherit overly permissive default ACLs, a low-privileged domain user could modify GPO templates or scripts, causing sabotaging settings to be distributed to endpoints."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "GPO policy files are a critical resource; misassigned write permissions enable unauthorized edits that push destructive configurations fleet-wide."
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Over-privileged or poorly segmented admin roles allow a compromised account to escalate to tenant-wide policy control and sabotage endpoint configurations."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Missing fine-grained authorization checks on who may modify or publish device policies enables unauthorized configuration changes to be pushed to endpoints."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Financial Gain (Ransomware Deployment and Evasion)",
+                "components": [
+                    {
+                        "name": "EDR/AV Policy Subversion",
+                        "description": "Alter endpoint security policies to disable detection, then deploy malware/ransomware across managed devices.",
+                        "sub_components": [
+                            {
+                                "name": "EDR Policy Update API Endpoint",
+                                "dynamic": false,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "If policy update endpoints or maintenance routes accept state-changing requests without strict authentication, an attacker can push rules that disable protections across endpoints."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Even when authenticated, failure to enforce policy-change permissions (e.g., missing scope checks) lets a low-priv token modify global EDR policies to evade detection."
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak SSO/OIDC enforcement (e.g., accepting unsigned tokens or lacking MFA) enables account/session takeover to authenticate to the control plane and alter endpoint policies."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Hard-coded admin/API credentials in automation or integrations can be extracted and reused to authenticate and push malicious policy updates to endpoints."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Data Lake Governance Bypass Exfiltration",
+        "threat_description": "Adversaries target the data lake’s governance plane and data access paths to exfiltrate regulated datasets. Likely patterns include XSS/CSRF on the governance admin console to alter access policies and SSRF/path traversal on internal file proxies to fetch raw objects outside policy enforcement. Actors include financially motivated cybercriminals and malicious insiders aiming for monetization or espionage against assets such as the governance console, query gateways, and object storage proxies.",
+        "motives": [
+            {
+                "motive": "Financial gain via resale or extortion of sensitive datasets",
+                "components": [
+                    {
+                        "name": "Governance Admin Console Takeover",
+                        "description": "Compromise the web-based governance UI to create backdoor grants or disable row/column-level policies, then extract sensitive tables through legitimate connectors.",
+                        "sub_components": [
+                            {
+                                "name": "Apache Ranger Admin UI",
+                                "dynamic": false,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_mapping_reason": "Stored/reflected XSS in the admin UI can steal administrator sessions or execute privileged actions in-browser, enabling silent policy changes that bypass governance and permit bulk data export."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-352: Cross-Site Request Forgery (CSRF)",
+                                        "cwe_mapping_reason": "If state-changing endpoints (e.g., policy create/grant) lack CSRF defenses, an attacker can trick an authenticated admin into issuing privileged requests that broaden data access, enabling downstream exfiltration."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Corporate espionage or compliance evasion by insiders/contractors",
+                "components": [
+                    {
+                        "name": "Raw Object Access Proxy Abuse",
+                        "description": "Exploit backend proxy/file gateway to retrieve raw parquet/csv objects directly from object storage, sidestepping policy enforcement applied only at the query/governance layer.",
+                        "sub_components": [
+                            {
+                                "name": "Data Lake File Proxy Service",
+                                "dynamic": false,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
+                                        "cwe_mapping_reason": "A file download endpoint that joins user-controlled paths can be traversed to sensitive bucket/key prefixes (e.g., ../../raw/pii/), bypassing governed views and exposing raw datasets."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "If the proxy fetches content from backends based on user-supplied URLs/hosts, SSRF can coerce it to connect to internal object stores or metadata endpoints and stream protected data out-of-band."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Disaster Recovery Plan Failure Extortion",
+        "threat_description": "RaaS affiliates or malicious insiders target backup servers, snapshot repositories, and DR runbooks/orchestration to disable failover and ensure recovery fails (e.g., API abuse to delete backups, privilege escalation to turn off immutability, and tampering with automation), then extort payment under threat of prolonged outage and data destruction.",
+        "motives": [
+            {
+                "motive": "Financial extortion (ransom) via guaranteed recovery failure",
+                "components": [
+                    {
+                        "name": "Backup Infrastructure Compromise",
+                        "description": "Actor gains high-privilege access to backup and replication consoles to delete snapshots, reduce retention, disable vault locks, and break cross-region copies so restores cannot succeed.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Insufficient RBAC and coarse policy scopes on backup/snapshot APIs permit unauthorized deletion or policy changes, directly enabling DR plan failure that can be leveraged for ransom."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Over-privileged or escalated roles (e.g., backup admin/service accounts) allow disabling immutability, replication, and recovery safeguards that should require elevated, time-bound approvals."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Operational coercion to force executive payment by maximizing downtime",
+                "components": [
+                    {
+                        "name": "DR Orchestration and Runbook Manipulation",
+                        "description": "Actor alters DR automation and runbooks so tests superficially pass while real failover skips critical steps or targets the wrong systems, creating extended outage pressure to pay.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Unvalidated parameters in orchestration workflows enable attackers to change failover targets, schedules, or safeguards, causing silent mis-execution during an incident."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                                        "cwe_mapping_reason": "Runbook steps that execute shell commands with untrusted variables allow injection to stop replication, corrupt checkpoints, or disable services, collapsing failover to coerce payment."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Knowledge Base Poisoning Service Misdirection",
+        "threat_description": "Adversaries (e.g., competitors or fraud actors) poison the enterprise knowledge base and search index by abusing weak ingestion and curation controls, leading service workflows and users to attacker-controlled resources. Via poisoned docs, stored XSS/open redirects, SSRF-fed crawling, or unauthorized index writes, the attacker manipulates KB content and vector rankings to misroute customers, degrade support accuracy, or capture revenue.",
+        "motives": [
+            {
+                "motive": "Competitive sabotage of customer support effectiveness and brand trust",
+                "components": [
+                    {
+                        "name": "KB Ingestion & Curation Pipeline",
+                        "description": "Automated crawlers and pipelines that fetch, transform, and approve external/internal documentation into the knowledge base and vector store.",
+                        "sub_components": [
+                            {
+                                "name": "Public Docs Crawler (Sitemap Fetcher)",
+                                "dynamic": false,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "A poisoned robots.txt/sitemap or feed induces the crawler to fetch attacker-chosen URLs (including internal metadata endpoints), letting the adversary inject or stage malicious content that is ingested into the KB and later used to misdirect services/users."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_mapping_reason": "If the crawler ignores TLS validation or accepts invalid certs, an attacker can MITM fetched docs and alter links/anchors so ingested content routes users to competitor or phishing pages."
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Insufficient validation of source domains, ownership, MIME types, and allowed markup allows adversaries to submit malformed or policy-violating content that passes ingestion and poisons the KB."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_mapping_reason": "Unsanitized HTML/Markdown in stored KB articles can execute when rendered in the help center, enabling content tampering (e.g., rewriting CTAs or search overlays) to misdirect users."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Direct financial fraud via misrouting to attacker-controlled support/payment channels",
+                "components": [
+                    {
+                        "name": "Knowledge Search & Service Routing",
+                        "description": "The vector index and help portal that rank answers and route users to actions (support, payments, downloads).",
+                        "sub_components": [
+                            {
+                                "name": "Vector Index: Pinecone prod-cluster",
+                                "dynamic": false,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Embeddings/documents are accepted without provenance checks (e.g., signatures or trusted sources), allowing an attacker to seed vectors that top-rank and steer users to fraudulent endpoints."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Weak or absent authorization on upsert/admin endpoints permits unauthorized index writes or document overrides, enabling targeted search-result poisoning."
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Help Center Web UI (docs.example.com)",
+                                "dynamic": false,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                                        "cwe_mapping_reason": "Poisoned KB entries that leverage open redirect handlers (e.g., link shims, post-auth flows) can transparently forward users to attacker payment/support pages."
+                                    },
+                                    {
+                                        "cwe_id": "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                                        "cwe_mapping_reason": "Stored XSS in rendered articles or widgets lets attackers programmatically alter links and UI cues, driving users to malicious services during support journeys."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
