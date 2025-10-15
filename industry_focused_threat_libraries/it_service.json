@@ -1233,7 +1233,7 @@
         ]
     },
     {
-        "threat": "Cloud Cost Explosion Cryptomining Abuse",
+        "threat": "Cryptomining Abuse",
         "threat_description": "Financially motivated cryptojackers or malicious insiders compromise CI/CD secrets or abuse weak IAM/cluster controls to deploy coin-mining workloads across cloud compute fleets (e.g., Kubernetes worker nodes, autoscaling groups). By triggering aggressive autoscaling and persistent miners, they exhaust compute quotas and drive runaway spend while degrading service availability.",
         "motives": [
             {
