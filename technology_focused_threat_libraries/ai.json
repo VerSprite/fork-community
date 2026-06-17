@@ -1,0 +1,1586 @@
+[
+    {
+        "threat": "Override AI Instructions to Hijack Model Behavior",
+        "threat_description": "Adversaries craft inputs that override or suppress an AI system's operator-defined system prompt, safety guardrails, and operational policies. By directly injecting conflicting instructions into the user-turn of a conversation, the attacker redirects model behavior toward attacker-controlled objectives \u2014 bypassing content filters, extracting confidential configuration, and weaponizing the model against its own operator and end users. This is the AI equivalent of SQL injection: the input channel is the attack surface.",
+        "motives": [
+            {
+                "motive": "Bypass AI safety controls and content policies to generate harmful, restricted, or prohibited output",
+                "components": [
+                    {
+                        "name": "LLM Inference Endpoint",
+                        "description": "The REST or gRPC API surface that accepts prompt inputs and returns model completions. The untrusted prompt input channel is the attack surface \u2014 the AI equivalent of SQL injection.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1427: Improper Neutralization of Input Used for LLM Prompting",
+                                        "cwe_mapping_reason": "The model-serving backend assembles user-supplied prompt content without structurally separating it from operator-defined system instructions, so adversarial directives injected in the user turn are interpreted with the same authority as the system prompt \u2014 overriding persona, safety rules, and operational policy. This is the core prompt-injection weakness; its attack pattern is the MITRE ATLAS technique rather than any CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_PROMPT_INJECTION",
+                                            "AI_SAFETY_GUARDRAIL_BYPASS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "AI Safety Classifier",
+                        "description": "The in-model alignment layer or external guard model responsible for detecting and refusing harmful, prohibited, or policy-violating content before it is delivered to the user.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1039: Inadequate Detection or Handling of Adversarial Input Perturbations in Automated Recognition Mechanism",
+                                        "cwe_mapping_reason": "Safety classifiers trained on known jailbreak patterns fail to detect novel adversarial constructions, allowing attackers to bypass content policy through creative reframing, role-play, or encoded instructions the classifier does not recognize. The relevant attack patterns are the ATLAS jailbreak and model-evasion techniques, which are not represented by any CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0054",
+                                            "AML.T0015"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_SAFETY_GUARDRAIL_BYPASS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Extract confidential system prompt contents to discover security controls and enable follow-on attacks",
+                "components": [
+                    {
+                        "name": "System Prompt Configuration",
+                        "description": "Operator-defined instructions injected at the top of the model context to establish persona, safety rules, and proprietary business logic. The confidentiality of these instructions is itself a security control.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-497: Exposure of Sensitive System Information to an Unauthorized Control Sphere",
+                                        "cwe_mapping_reason": "Queries crafted to make the model summarize, repeat, or translate its own instructions cause disclosure of operator-confidential system prompt contents \u2014 safety rules, business logic, and integration details \u2014 exposing the operator's security posture. The attack pattern is the ATLAS system-prompt extraction technique; its CWE has no relevant CAPEC mappings.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0056"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Confidential operator instructions embedded in the system prompt \u2014 including business rules, persona definitions, and referenced secrets \u2014 may be disclosed to unauthorized users through prompt-extraction techniques against the output channel.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0056"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Hijack AI Agent by Embedding Commands in Retrieved Data",
+        "threat_description": "Adversaries embed adversarial instructions within external data sources that an AI agent will autonomously retrieve and process \u2014 web pages, uploaded documents, email bodies, database records, or tool API responses. When the agent incorporates this content into its context window, it executes the attacker's embedded instructions using its own granted permissions and the victim user's credentials. This is indirect prompt injection: the attacker never interacts with the system directly but achieves full agent compromise through the data layer.",
+        "motives": [
+            {
+                "motive": "Exfiltrate sensitive user and organizational data by hijacking an AI agent's authorized access to connected systems",
+                "components": [
+                    {
+                        "name": "AI Agent Orchestration Layer",
+                        "description": "The reasoning and tool-dispatch loop that manages multi-step agent execution \u2014 LangChain, LlamaIndex, AutoGen, OpenAI Assistants API. Responsible for routing retrieved content into the model context and executing tool calls based on model outputs.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1427: Improper Neutralization of Input Used for LLM Prompting",
+                                        "cwe_mapping_reason": "The orchestration framework routes externally retrieved content into the model context without separating it from operator instructions, so adversarial directives embedded in that content are interpreted as authoritative commands. This is indirect prompt injection; the attack pattern is the ATLAS technique rather than a CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051.001",
+                                            "AML.T0080"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_PROMPT_INJECTION",
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-918: Server-Side Request Forgery (SSRF)",
+                                        "cwe_mapping_reason": "An agent with web-browsing capability can be steered by injected instructions to make requests to internal network resources, cloud metadata endpoints, or private APIs \u2014 functioning as an attacker-controlled SSRF proxy. CAPEC-664 (Server Side Request Forgery) is the on-technique attack pattern and is retained.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053"
+                                        ],
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-272: Least Privilege Violation",
+                                        "cwe_mapping_reason": "Agents granted permissions beyond their operational necessity create an amplified blast radius once their context is hijacked \u2014 the attacker reaches every resource the agent was permitted to use. The weakness drives blast radius rather than a specific traditional CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053",
+                                            "AML.T0086"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "RAG Retrieval Pipeline",
+                        "description": "The document ingestion, embedding, and retrieval subsystem that fetches external content and injects it into the model context. The primary ingress pathway for indirect prompt injection via poisoned documents.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1427: Improper Neutralization of Input Used for LLM Prompting",
+                                        "cwe_mapping_reason": "Documents retrieved from the corpus and injected into the model context are not separated from operator instructions or scanned for embedded directives, so an attacker who controls any indexed document injects commands into every session that retrieves it. The attack patterns are the ATLAS indirect-injection and RAG-poisoning techniques.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051.001",
+                                            "AML.T0070"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_PROMPT_INJECTION"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Insufficient namespace isolation in multi-tenant vector stores allows one tenant's adversarially crafted embeddings to surface in another tenant's retrieval results, enabling cross-tenant injection and data exposure. The realized technique is ATLAS data-from-AI-services / RAG poisoning rather than a traditional CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0070",
+                                            "AML.T0085"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "External Tool / MCP Server Integration",
+                        "description": "Function-calling tools and MCP servers that return external data \u2014 web search results, email content, calendar entries, API responses \u2014 into the agent context window. Each tool response is an untrusted data ingress pathway.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Tool and MCP-server responses from external sources are included in the agent context without trust isolation, allowing attacker-controlled content returned by a tool to execute as agent instructions. The realized techniques are ATLAS indirect injection and AI agent tool data poisoning.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051.001",
+                                            "AML.T0099"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-441: Unintended Proxy or Intermediary ('Confused Deputy')",
+                                        "cwe_mapping_reason": "The agent is manipulated into acting as an attacker-controlled proxy, using the victim's authenticated credentials and tool permissions to exfiltrate data or act on external systems. CAPEC-465 (Transparent Proxy Abuse) is the on-technique pattern and is retained; the XML-routing CAPEC is excluded.",
+                                        "capecs_to_exclude": [
+                                            "219"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0086"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Pivot through AI agent tool access into connected enterprise systems for lateral movement",
+                "components": [
+                    {
+                        "name": "Agent Tool Execution Runtime",
+                        "description": "The sandboxed or unsandboxed environment in which agent-invoked tools execute \u2014 file system access, code interpreters, shell tools, database connectors, and email/calendar integrations.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                                        "cwe_mapping_reason": "When an agent with shell or code-execution tool access is hijacked via injection, attacker-supplied operating-system commands run in the agent process without neutralization, enabling host compromise. The OS-command-injection CAPECs are on-technique and retained, complemented by the ATLAS tool-invocation techniques.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053",
+                                            "AML.T0050"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Tool invocations triggered by injected instructions bypass user-level authorization, because the action appears to originate from the legitimate agent process. The realized technique is ATLAS agent tool invocation; no traditional CAPEC for this CWE is on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Plant Hidden Backdoor in AI Model for On-Demand Activation",
+        "threat_description": "Adversaries introduce trigger-activated backdoors into AI model weights during training, fine-tuning, or through supply chain compromise of pre-trained foundation models. The resulting trojanized model behaves normally on all benign inputs and passes standard accuracy evaluations, but produces attacker-specified outputs \u2014 safety bypass, data disclosure, or unauthorized action execution \u2014 whenever the attacker submits the specific trigger pattern. This attack is persistent, survives standard retraining on top of a compromised base, and is undetectable without specialized scanning tooling.",
+        "motives": [
+            {
+                "motive": "Achieve persistent covert control of an AI system's behavior that activates on-demand without leaving operational traces",
+                "components": [
+                    {
+                        "name": "Model Training Pipeline",
+                        "description": "The end-to-end process by which training data is assembled, processed, and used to optimize model weights \u2014 including pre-training, supervised fine-tuning, and RLHF stages. Compromise at any stage can introduce persistent backdoors.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-506: Embedded Malicious Code",
+                                        "cwe_mapping_reason": "Adversarially crafted training samples carrying trigger patterns embed malicious behavior into the model weights that persists through training and into production. The malicious-code CAPECs (infected software, embedded virus, hidden code) are on-technique and retained alongside the ATLAS model-poisoning and backdoor-trigger techniques.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0018.000",
+                                            "AML.T0043.004"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_POISONING"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Training datasets assembled from unverified external sources \u2014 web scrapes, open-source repositories, crowdsourced labels \u2014 lack provenance verification, letting adversarial samples enter the corpus undetected. The realized techniques are ATLAS training-data poisoning and poisoned-dataset publication rather than a traditional CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0020",
+                                            "AML.T0019"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_POISONING",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Pre-trained Foundation Model Artifact",
+                        "description": "Third-party model weights downloaded from public repositories (HuggingFace Hub, GitHub releases, Ollama library) and used as the base for organizational fine-tuning. A compromised base model propagates the backdoor into every derivative model.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "Model weight files pulled from public repositories without checksum or signature verification can be substituted with backdoored versions by a supply-chain attacker. The malicious-download/update CAPECs are all on-technique and retained, with the ATLAS model supply-chain and unsafe-artifact-execution techniques.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0010.003",
+                                            "AML.T0011.000"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AI_MODEL_POISONING"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Organizations that incorporate third-party pre-trained weights without provenance auditing inherit any backdoors or trojan triggers embedded upstream. The realized technique is ATLAS publish-poisoned-models / model supply-chain compromise; the code-inclusion CAPECs are not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0058",
+                                            "AML.T0010.003"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Model Registry",
+                                "dynamic": false,
+                                "tags": "model_registry",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Insufficient access control on model-registry write paths lets an insider or partially-privileged attacker replace a production model artifact with a backdoored alternative. The realized technique is ATLAS AI supply-chain compromise of the stored model.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0010.003"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_POISONING",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Without signature or checksum verification on stored artifacts, the registry cannot detect that a model has been silently swapped for a backdoored version. The realized technique is ATLAS model supply-chain compromise.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0010.003"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_POISONING"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Compromise AI supply chain to distribute backdoored models to many downstream organizations simultaneously",
+                "components": [
+                    {
+                        "name": "Public Model Repository",
+                        "description": "Open-access platforms (HuggingFace Hub, GitHub, Ollama library) where model artifacts are published and consumed by the broader AI development community. A single poisoned artifact can propagate to thousands of downstream deployments.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication on repository publisher accounts lets adversaries hijack a trusted account and replace its artifacts with backdoored versions that inherit the publisher's reputation. The authentication-abuse, bypass, identity-spoofing, token-impersonation and session-hijacking CAPECs are on-technique and retained; the web-shell and MitM CAPECs are excluded.",
+                                        "capecs_to_exclude": [
+                                            "22",
+                                            "57",
+                                            "94",
+                                            "194",
+                                            "650"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0010.003",
+                                            "AML.T0058"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-441: Unintended Proxy or Intermediary ('Confused Deputy')",
+                                        "cwe_mapping_reason": "A legitimate repository becomes an unintended distribution proxy for backdoored artifacts when publisher controls fail to prevent substitution. CAPEC-465 (Transparent Proxy Abuse) is on-technique and retained; the XML-routing CAPEC is excluded.",
+                                        "capecs_to_exclude": [
+                                            "219"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0058"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "MLOps CI/CD Pipeline",
+                        "description": "The automated infrastructure that trains, evaluates, and deploys model updates \u2014 GitHub Actions, Jenkins, Kubeflow Pipelines, SageMaker Pipelines. Compromise of the pipeline enables silent model modification before deployment.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes",
+                                        "cwe_mapping_reason": "Pipeline configuration modifiable by an attacker with partial repository access allows silent insertion of malicious training steps, poisoning stages, or artifact substitution before deployment. The realized technique is ATLAS AI-software supply-chain compromise; the CWE has no on-technique CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0010.001"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Pipeline credentials in environment variables, hardcoded config, or compromised runners give an attacker full pipeline control to inject backdoors at any training or deployment stage. The credential-theft CAPECs are on-technique and retained, with the ATLAS unsecured-credentials technique.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0055"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Steal AI Model via API Query Extraction Without Infrastructure Access",
+        "threat_description": "Adversaries systematically query a target model's publicly accessible inference API with carefully crafted inputs, recording input-output pairs at scale to train a functionally equivalent surrogate model. This model extraction attack achieves IP theft without requiring any access to the target's infrastructure, model weights, or training data. The stolen surrogate can then be deployed offline to circumvent API rate limits, safety controls, and audit logging \u2014 or sold to competitors and criminal actors.",
+        "motives": [
+            {
+                "motive": "Replicate proprietary AI model capabilities to avoid licensing costs and gain competitive advantage",
+                "components": [
+                    {
+                        "name": "LLM Inference API",
+                        "description": "The public or authenticated API endpoint through which users submit prompts and receive model completions. Every response is a data point that can be used to train a surrogate model.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-799: Improper Control of Interaction Frequency",
+                                        "cwe_mapping_reason": "Without query rate limiting, cost-based throttling, or per-credential query budgets, an attacker can submit the millions of queries required for effective extraction without tripping detection. The realized techniques are ATLAS excessive queries and model extraction; this CWE has no on-technique CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0034.000",
+                                            "AML.T0024.002"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_THEFT"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Endpoints that allow anonymous or unthrottled high-volume querying enable extraction at scale with no attribution. The realized technique is ATLAS inference-API access; the traditional access-control CAPECs are not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0040"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_THEFT"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Each response discloses information about the model's decision boundaries that, aggregated over many queries, lets an attacker train a functional surrogate. The realized techniques are ATLAS model extraction and proxy-model creation.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0024.002",
+                                            "AML.T0005"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_THEFT"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-223: Omission of Security-relevant Information",
+                                        "cwe_mapping_reason": "Inference logs that omit query volume, distribution, and per-credential usage prevent detection of the systematic high-volume querying characteristic of extraction. The realized technique is ATLAS excessive queries; this CWE has no on-technique CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0034.000"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_THEFT"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Use stolen surrogate model offline to probe and defeat safety controls without API restrictions or audit trails",
+                "components": [
+                    {
+                        "name": "Model Output Watermarking Layer",
+                        "description": "Mechanisms embedded in model output generation that encode cryptographic or statistical fingerprints enabling attribution of surrogate model outputs back to the source model from which they were derived.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Without output watermarking, surrogate-model generations cannot be traced back to the source model, leaving no forensic attribution when stolen-model artifacts surface in competitor products. The realized techniques are ATLAS AI IP theft and proxy-model creation.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0048.004",
+                                            "AML.T0005"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_THEFT"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Corrupt AI Knowledge Base to Deliver False Information to Every User",
+        "threat_description": "Adversaries inject adversarially crafted documents, records, or vector embeddings into the knowledge base used by a Retrieval-Augmented Generation (RAG) system. Because the AI retrieves and presents this poisoned content as authoritative reference material, every user whose query triggers retrieval of the poisoned documents receives AI-generated responses grounded in false, misleading, or attacker-directed information \u2014 delivered with the authority and confidence of the AI system.",
+        "motives": [
+            {
+                "motive": "Propagate misinformation at scale through a trusted AI interface to manipulate user decisions",
+                "components": [
+                    {
+                        "name": "Vector Database",
+                        "description": "The storage and retrieval system for document embeddings \u2014 Pinecone, Weaviate, pgvector, Chroma. The primary target for knowledge base poisoning attacks, as embedding injection here affects every downstream retrieval.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "The vector store ingests embeddings without validating the provenance or authority of the source documents, so an attacker who can contribute to the indexed corpus injects false content that is later retrieved and presented as authoritative. The realized techniques are ATLAS RAG poisoning and dataset-integrity erosion.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0070",
+                                            "AML.T0059"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_KNOWLEDGE_BASE_POISONING"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Insufficient access control on vector-store write paths lets unauthorized actors inject adversarial embeddings, contaminating retrievals for every user. The realized technique is ATLAS RAG poisoning rather than a traditional access-control CAPEC.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0070"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_KNOWLEDGE_BASE_POISONING"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Weak authentication on the ingestion path lets unauthorized parties submit documents for indexing, enabling knowledge-base poisoning without elevated privileges. The realized technique is ATLAS RAG poisoning.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0070"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_KNOWLEDGE_BASE_POISONING",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Document Ingestion Pipeline",
+                        "description": "The data pipeline responsible for collecting, chunking, embedding, and indexing documents into the RAG knowledge base. Compromise at this layer affects all downstream retrievals across every user session.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-434: Unrestricted Upload of File with Dangerous Type",
+                                        "cwe_mapping_reason": "Pipelines that accept unvalidated uploads let adversaries introduce documents carrying embedded directives or false information that are then chunked, embedded, and indexed. The realized technique is ATLAS RAG poisoning; this CWE's lone CAPEC is not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0070"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_KNOWLEDGE_BASE_POISONING"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Documents from external feeds, web crawls, or uploads are indexed without integrity verification, letting substituted or crafted content enter the knowledge base silently. The realized techniques are ATLAS dataset-integrity erosion and retrieval-content crafting.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0059",
+                                            "AML.T0066"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_KNOWLEDGE_BASE_POISONING"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Enable indirect prompt injection at scale by embedding adversarial instructions inside retrieved knowledge base content",
+                "components": [
+                    {
+                        "name": "RAG Retrieval and Context Injection Layer",
+                        "description": "The component responsible for executing similarity searches, ranking retrieved chunks, and injecting retrieved content into the model context window. Poisoned content injected here executes as model-level instructions.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1427: Improper Neutralization of Input Used for LLM Prompting",
+                                        "cwe_mapping_reason": "Retrieved content is injected into the model context without separation from operator instructions, so adversarial directives embedded in poisoned entries are interpreted as authoritative commands \u2014 indirect injection at the scale of the knowledge base. The realized techniques are ATLAS indirect injection, false RAG entry injection, and RAG poisoning.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051.001",
+                                            "AML.T0071",
+                                            "AML.T0070"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_PROMPT_INJECTION",
+                                            "AI_KNOWLEDGE_BASE_POISONING"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "The retrieval layer places content from untrusted sources into the model's trusted instruction context with no trust boundary, letting attacker-controlled content execute with instruction-level authority. The realized techniques are ATLAS indirect injection and retrieval-content crafting.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051.001",
+                                            "AML.T0066"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_PROMPT_INJECTION"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Weaponize Overprivileged AI Agent to Attack Connected Systems",
+        "threat_description": "Adversaries exploit AI agents that have been granted excessive permissions \u2014 access to file systems, code execution environments, email, databases, and external APIs \u2014 by injecting adversarial instructions into the agent's context through direct prompts, poisoned documents, or malicious tool responses. Once the agent's context is hijacked, the attacker's instructions execute with the full scope of the agent's granted permissions and the victim user's authenticated credentials. This is the AI equivalent of a confused deputy attack, with the potential blast radius of a full enterprise system compromise.",
+        "motives": [
+            {
+                "motive": "Execute unauthorized code, read files, and exfiltrate data by weaponizing an AI agent's legitimate system access",
+                "components": [
+                    {
+                        "name": "AI Agent Tool Set",
+                        "description": "The collection of tools and capabilities granted to an AI agent \u2014 file system access, code interpreter, shell execution, database query, email/calendar integration, web browsing. Each tool represents a potential attack surface when the agent context is compromised.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-272: Least Privilege Violation",
+                                        "cwe_mapping_reason": "Agents granted permissions beyond minimum necessity ensure that any context injection grants the attacker the full scope of those excess permissions \u2014 file systems, code execution, databases, external APIs. The realized techniques are ATLAS agent tool invocation and exfiltration via tool invocation.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053",
+                                            "AML.T0086"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Tool invocations triggered by injected instructions bypass user-level authorization because the action appears to come from the legitimate agent process. The realized technique is ATLAS agent tool invocation; no traditional CAPEC for this CWE is on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                                        "cwe_mapping_reason": "When a shell or code-execution tool runs attacker-injected instructions, OS commands derived from adversarial input execute without neutralization in the agent process. The OS-command-injection CAPECs are on-technique and retained, with the ATLAS command-interpreter and tool-invocation techniques.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0050",
+                                            "AML.T0053"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-441: Unintended Proxy or Intermediary ('Confused Deputy')",
+                                        "cwe_mapping_reason": "The agent acts as an unintended proxy, using legitimate credentials and tool permissions to perform actions the attacker could not perform directly, disguised as normal agent activity. CAPEC-465 (Transparent Proxy Abuse) is on-technique and retained; the XML-routing CAPEC is excluded.",
+                                        "capecs_to_exclude": [
+                                            "219"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0086"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Without action-level authorization on tool invocations there is no way to distinguish tool calls initiated by the user from those injected by an adversary. The realized technique is ATLAS agent tool invocation.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Code Interpreter Sandbox",
+                        "description": "The execution environment in which an AI agent runs dynamically generated code \u2014 Python interpreters, shell environments, containerized execution sandboxes. Inadequate isolation allows code execution tools to reach host resources.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_mapping_reason": "Sandboxes without proper container isolation, egress restrictions, and filesystem namespacing let injected code escape the execution boundary and reach the host or internal network. The realized technique is ATLAS escape-to-host; the traditional CAPECs are not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0105"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-400: Uncontrolled Resource Consumption",
+                                        "cwe_mapping_reason": "Injected instructions can drive the interpreter to consume unbounded compute \u2014 infinite loops, fork bombs, large allocations \u2014 exhausting agent infrastructure and denying service. CAPEC-227 (Sustained Client Engagement) is on-technique and retained, with the ATLAS agentic resource-consumption and denial-of-AI-service techniques.",
+                                        "capecs_to_exclude": [
+                                            "147",
+                                            "492"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0034.002",
+                                            "AML.T0029"
+                                        ],
+                                        "security_incident_types": [
+                                            "DDOS_ATTACKS",
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Compromise one agent in a multi-agent pipeline to escalate privileges and take over the entire automated workflow",
+                "components": [
+                    {
+                        "name": "Multi-Agent Orchestration Framework",
+                        "description": "The communication and coordination layer between multiple cooperating AI agents \u2014 AutoGen, CrewAI, LangGraph. In multi-agent systems, trust relationships between agents create a privilege escalation path when subordinate agents are compromised.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "An attacker who injects instructions impersonating a trusted sub-agent causes the orchestrator to execute them with the spoofed agent's trust level. The trusted-identifier and signature-spoofing CAPECs are on-technique and retained; session-replay, rogue-CA, API-signature-forgery and Bluetooth CAPECs are excluded.",
+                                        "capecs_to_exclude": [
+                                            "59",
+                                            "60",
+                                            "459",
+                                            "461",
+                                            "667"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0080",
+                                            "AML.T0053"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Agent-to-agent messages passed without authentication or integrity verification are indistinguishable from attacker-forged messages, enabling trust-chain exploitation. The realized technique is ATLAS agent context poisoning.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0080"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-668: Exposure of Resource to Wrong Sphere",
+                                        "cwe_mapping_reason": "Shared memory, context windows, or tool-permission pools reachable by multiple agents let a compromised subordinate read or modify resources that should be isolated to higher-privilege orchestrators. The realized technique is ATLAS agent context poisoning of shared memory.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0080.000"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Access Other Users' AI Conversations via Broken API Authorization",
+        "threat_description": "Adversaries manipulate conversation identifiers, thread IDs, assistant resource parameters, or memory store references in AI API requests to access conversations, injected documents, memory contents, and generated outputs belonging to other users. This is a Broken Object-Level Authorization (BOLA) attack applied to AI-specific resources. Unlike traditional BOLA, the exposed data includes highly sensitive AI conversation content \u2014 proprietary strategies, medical information, legal documents, and personal disclosures that users shared assuming AI conversation confidentiality.",
+        "motives": [
+            {
+                "motive": "Harvest sensitive personal and organizational data from other users' AI interactions for competitive intelligence or fraud",
+                "components": [
+                    {
+                        "name": "Conversation and Thread Store",
+                        "description": "The database or storage layer persisting AI conversation history, thread state, and injected document content for each user session. Object-level access control failures here expose full conversation history across users.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-639: Authorization Bypass Through User-Controlled Key",
+                                        "cwe_mapping_reason": "Conversation and thread identifiers accepted from the client without server-side ownership verification let an attacker enumerate or guess IDs belonging to other users and read their full history \u2014 the core BOLA weakness. No CAPEC maps to this CWE; the AI-specific techniques are ATLAS data-from-AI-services and chat-history manipulation.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0085",
+                                            "AML.T0092"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Access checks that verify API-key validity but not resource ownership let any authenticated user fetch any conversation by supplying its identifier. The realized technique is ATLAS data-from-AI-services; the traditional access-control CAPECs are not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0085"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Conversation stores hold highly personal disclosures \u2014 medical, legal, financial, relational \u2014 exposed wholesale when conversation-level access control fails. The realized technique is ATLAS data-from-AI-services; this CWE's CAPECs (cookies, shoulder-surfing) are not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0085"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Conversation-retrieval endpoints lacking per-request authentication let minimally-authenticated actors read any user's history once an ID is discovered. CAPEC-12 (Choosing Message Identifier) is the on-technique ID-enumeration pattern and is retained; the CSRF and reset CAPECs are excluded.",
+                                        "capecs_to_exclude": [
+                                            "36",
+                                            "62",
+                                            "166",
+                                            "216"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0012"
+                                        ],
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Authentication that validates credential presence but not resource ownership gives a false sense of control while permitting cross-user access to any authenticated caller. The realized techniques are ATLAS valid-accounts and alternate-authentication-material abuse.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0012",
+                                            "AML.T0091"
+                                        ],
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "AI Memory Store",
+                        "description": "Persistent per-user memory systems that store facts, preferences, and context across AI sessions. Cross-user memory access exposes longitudinal behavioral profiles and personal information accumulated over extended AI usage.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-668: Exposure of Resource to Wrong Sphere",
+                                        "cwe_mapping_reason": "Memory stores reachable via guessable or enumerable identifiers expose longitudinal user profiles to anyone who obtains the resource ID. The realized techniques are ATLAS data-from-AI-services and agent memory context access; no CAPEC maps to this CWE.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0085",
+                                            "AML.T0080.000"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-862: Missing Authorization",
+                                        "cwe_mapping_reason": "Memory retrieval without per-user ownership verification permits cross-user access to personal context accumulated across sessions. The realized technique is ATLAS data-from-AI-services; this CWE's lone CAPEC is not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0085"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Force AI to Reveal Private Training Data via Extraction Attacks",
+        "threat_description": "Adversaries craft targeted queries designed to activate verbatim memorization in large language models \u2014 causing the model to reproduce personally identifiable information, credentials, proprietary source code, or confidential documents that appeared in the training corpus. This attack exploits the well-documented tendency of large models to memorize and reproduce specific training samples, particularly rare or repeated sequences. The attacker does not require any access beyond the standard inference API.",
+        "motives": [
+            {
+                "motive": "Extract personally identifiable information from AI training data for identity theft, fraud, or regulatory violation inducement",
+                "components": [
+                    {
+                        "name": "LLM Foundation Model Weights",
+                        "description": "The trained neural network parameters that encode learned representations of the training corpus. Memorized training samples \u2014 including PII, credentials, and proprietary content \u2014 are retrievable from model weights through targeted query techniques.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Weights that have memorized PII, credentials, or proprietary content disclose it to any attacker who crafts queries that activate the memorized sequences. The realized techniques are ATLAS LLM data leakage and training-data membership inference.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0057",
+                                            "AML.T0024.000"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_TRAINING_DATA_DISCLOSURE",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Personal information of individuals whose data appeared in the corpus is extractable from the weights via membership inference and model inversion. The realized techniques are ATLAS LLM data leakage and model inversion; this CWE's CAPECs are not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0057",
+                                            "AML.T0024.001"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_TRAINING_DATA_DISCLOSURE",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Training Data Pipeline",
+                        "description": "The data collection, cleaning, and preprocessing pipeline that assembles training corpora. Inadequate PII scrubbing at this stage results in sensitive data being encoded into model weights from which it cannot be easily removed without retraining.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-212: Improper Removal of Sensitive Information Before Storage or Transfer",
+                                        "cwe_mapping_reason": "Failing to de-identify and scrub PII before training permanently encodes personal information into the weights, where it remains extractable through queries for the model's deployment lifetime. The realized technique is ATLAS LLM data leakage; this CWE's lone CAPEC is not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0057"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_TRAINING_DATA_DISCLOSURE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Model Output Filtering Layer",
+                        "description": "Post-generation filtering applied to model outputs before delivery to users \u2014 regex-based PII detection, ML-based sensitive content classifiers. Inadequate output filtering is the last line of defense against training data memorization exposure.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1426: Improper Validation of Generative AI Output",
+                                        "cwe_mapping_reason": "The output layer does not validate generated text for memorized PII or credentials before delivery, so extracted training data reaches the querying attacker directly. The realized technique is ATLAS LLM data leakage; this AI-native CWE has no CAPEC mappings.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0057"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_TRAINING_DATA_DISCLOSURE",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1039: Inadequate Detection or Handling of Adversarial Input Perturbations in Automated Recognition Mechanism",
+                                        "cwe_mapping_reason": "PII filters trained on known formats fail on novel or obfuscated extraction queries, letting attackers retrieve memorized content by encoding requests in formats the filter does not recognize. The realized techniques are ATLAS LLM data leakage and prompt obfuscation.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0057",
+                                            "AML.T0068"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_TRAINING_DATA_DISCLOSURE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Publish Malicious AI Plugin to Mass-Harvest Data Across Installing Organizations",
+        "threat_description": "Adversaries publish malicious plugins, tools, or MCP servers to public AI tool registries and marketplaces that mimic legitimate, useful integrations. Organizations and users who install these tools grant them access to AI conversation context, user data, and connected enterprise systems. The malicious plugin exfiltrates user data through the trusted AI tool channel, injects adversarial prompts into every user session, or establishes persistent access to connected systems \u2014 affecting every user across every organization that installs the tool.",
+        "motives": [
+            {
+                "motive": "Mass data exfiltration and credential harvesting across all organizations that install the malicious plugin",
+                "components": [
+                    {
+                        "name": "AI Plugin / MCP Server Runtime",
+                        "description": "The execution environment in which installed AI plugins and MCP servers operate \u2014 receiving tool call requests from the AI orchestration layer and returning responses that are injected into the model context. A malicious plugin controls both the data it receives and the responses it returns.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Installing a plugin from an unverified registry runs untrusted third-party code in the tool-invocation context, where it receives conversation content, injected documents, and tool credentials. The realized techniques are ATLAS AI agent tool supply-chain compromise and poisoned-tool user execution.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0010.005",
+                                            "AML.T0011.002"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "Installing without signature verification or review lets adversaries distribute backdoored plugin code through legitimate-looking listings. The malicious-download/update CAPECs are on-technique and retained, with the ATLAS poisoned-tool execution and publication techniques.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0011.002",
+                                            "AML.T0104"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-272: Least Privilege Violation",
+                                        "cwe_mapping_reason": "Plugins granted broader permissions than their function requires \u2014 email, file system, database \u2014 give an attacker-controlled code path to everything in the plugin's scope. The realized techniques are ATLAS agent tool poisoning and tool credential harvesting.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0110",
+                                            "AML.T0098"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "AI_DATA_LEAKAGE"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "OAuth tokens, API keys, and service credentials passed into the plugin runtime are readable by malicious plugin code, enabling credential theft from every invoking user. The credential-theft CAPECs are on-technique and retained, with the ATLAS agent tool credential-harvesting technique.",
+                                        "capecs_to_exclude": [],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0098"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_DATA_LEAKAGE",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Plugin Registry / Marketplace",
+                        "description": "The public catalog through which AI plugins and MCP servers are discovered, distributed, and installed \u2014 analogous to browser extension stores. Trust in the registry is the primary security control users rely upon when installing plugins.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Registries that do not verify publisher identity or enforce code signing let adversaries publish malicious tools under misleading names without attribution. The authentication-abuse, bypass, and identity-spoofing CAPECs are on-technique and retained; web-shell, MitM and trust-in-client CAPECs are excluded.",
+                                        "capecs_to_exclude": [
+                                            "22",
+                                            "57",
+                                            "94",
+                                            "194",
+                                            "593",
+                                            "633",
+                                            "650"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0104",
+                                            "AML.T0111"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Registries that do not verify the integrity and authenticity of published artifacts let adversaries distribute trojanized tools indistinguishable from legitimate ones by metadata alone \u2014 including rug-pull updates after reputation is built. The realized techniques are ATLAS poisoned-tool publication and supply-chain rug pull.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0104",
+                                            "AML.T0109"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1395: Dependency on Vulnerable Third-Party Component",
+                                        "cwe_mapping_reason": "Installing tools from unaudited registries creates a dependency on third-party code that may carry vulnerabilities, malicious logic, or supply-chain compromise not visible at install time. The realized technique is ATLAS AI agent tool supply-chain compromise; this CWE has no CAPEC mappings.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0010.005"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Clone Executive Voice / Generate Fake Video to Commit Fraud",
+        "threat_description": "Adversaries leverage commercially available AI voice cloning, image generation, and video synthesis technologies \u2014 fed with publicly available audio and video of target executives \u2014 to produce convincing synthetic media. This synthetic media is weaponized for business email compromise, wire transfer fraud, board impersonation, false public statements, and large-scale disinformation campaigns. The barrier to this attack has collapsed: production-quality deepfakes now require hundreds of dollars and hours, not specialized expertise.",
+        "motives": [
+            {
+                "motive": "Commit wire transfer fraud and business email compromise by impersonating executives through AI-generated synthetic media",
+                "components": [
+                    {
+                        "name": "Enterprise Communication and Financial Authorization Systems",
+                        "description": "The email, messaging, video-conferencing, and financial-authorization platforms through which synthetic-media attacks are delivered \u2014 the org's attack surface that processes fraudulent instructions attributed to impersonated executives. (The voice-cloning and video-synthesis services themselves are attacker capabilities, captured in the threat narrative rather than as defendable components.)",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Voice and video channels that cannot verify the authenticity of received media accept AI-synthesized audio/video as genuine executive communication. The realized techniques are ATLAS deepfake generation and impersonation; the traditional CAPECs are not on-technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0088",
+                                            "AML.T0073"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_GENERATED_IMPERSONATION"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Workflows that accept voice or video instructions without independent secondary verification are bypassed by a clone of the approving authority. The identity-spoofing and fake-source CAPECs are on-technique and retained, with the ATLAS impersonation and deepfake-assisted-phishing techniques; MitM and web-shell CAPECs are excluded.",
+                                        "capecs_to_exclude": [
+                                            "22",
+                                            "57",
+                                            "94",
+                                            "593",
+                                            "633",
+                                            "650"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0073",
+                                            "AML.T0052.001"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_GENERATED_IMPERSONATION",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1390: Weak Authentication",
+                                        "cwe_mapping_reason": "Identity verification that relies on visual or auditory recognition alone is defeated because the synthetic media reproduces the very biometric markers the check depends on. The realized techniques are ATLAS deepfake generation and impersonation; this CWE has no CAPEC mappings.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0088",
+                                            "AML.T0073"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_GENERATED_IMPERSONATION"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Out-of-band Transaction Verification",
+                                "dynamic": false,
+                                "tags": "out_of_band_verification",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Wire-transfer and approval workflows that accept instructions verified only through the delivery channel \u2014 with no out-of-band confirmation through a separate verified channel \u2014 have no defense against deepfake authorization fraud. The realized techniques are ATLAS financial-harm impact and impersonation.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0048.000",
+                                            "AML.T0073"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_GENERATED_IMPERSONATION"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Financial systems without dual-control authorization \u2014 independent confirmation from multiple verified parties \u2014 are fully compromised by a single convincing deepfake of the approving authority. The realized technique is ATLAS financial-harm impact.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0048.000"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_GENERATED_IMPERSONATION"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Exploit Shadow AI Usage to Exfiltrate Data Through Unmonitored Channels",
+        "threat_description": "Adversaries observe or induce the well-documented organizational behavior of employees using unapproved consumer AI tools for work tasks \u2014 submitting proprietary source code, customer PII, legal strategies, financial projections, and confidential business documents to ChatGPT, Claude, Gemini, and similar services under consumer data terms. This creates data exfiltration channels with no DLP coverage, no audit trail, no contractual data protection, and no organizational visibility. The attacker does not need to compromise any system \u2014 the employees are the unwitting exfiltration vector.",
+        "motives": [
+            {
+                "motive": "Access proprietary organizational data submitted to consumer AI services with no contractual data protection or DLP controls",
+                "components": [
+                    {
+                        "name": "Consumer AI Service Data Ingestion",
+                        "description": "The data processing and potential training pipelines of consumer-grade AI services (ChatGPT, Gemini, Claude under consumer terms) that receive and may retain organizational data submitted by employees. Data submitted under consumer terms may lack enterprise-grade contractual protections.",
+                        "sub_components": [
+                            {
+                                "name": "Consumer AI Service Data Retention",
+                                "dynamic": false,
+                                "tags": "consumer_ai_data_retention",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-284: Improper Access Control",
+                                        "cwe_mapping_reason": "Without egress controls blocking unapproved AI endpoints, the organization has no technical means to stop employees submitting sensitive data to consumer AI services outside any data-processing agreement. This is a governance/exfiltration-channel weakness with no on-technique CAPEC or ATLAS technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_DATA_LEAKAGE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-778: Insufficient Logging",
+                                        "cwe_mapping_reason": "Absent endpoint DLP and network logging for AI-service usage, the organization has no visibility into what data employees submit, preventing detection and compliance demonstration. This CWE has no on-technique CAPEC, and shadow-AI use is not represented by an ATLAS technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_DATA_LEAKAGE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Organizational Data Loss Prevention Controls",
+                        "description": "The network, endpoint, and application-layer controls responsible for detecting and preventing transmission of sensitive organizational data to unauthorized external services. Absence of AI-aware DLP controls is the root enabler of shadow AI data exposure.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_mapping_reason": "DLP not updated to recognize and inspect AI-service traffic fails to detect submissions to consumer AI endpoints, rendering existing controls ineffective against this exfiltration vector. The traditional CAPECs for this CWE are not on-technique and shadow-AI use has no ATLAS technique.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_DATA_LEAKAGE"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "Access controls permitting broad internet egress without per-service or per-domain restrictions let employees reach any consumer AI service without policy enforcement. CAPEC-180 (Exploiting Incorrectly Configured Access Control Security Levels) is the on-technique pattern and is retained; the generic ACL CAPEC is excluded.",
+                                        "capecs_to_exclude": [
+                                            "1"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_DATA_LEAKAGE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
