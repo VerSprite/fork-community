@@ -1,0 +1,38 @@
+### AI assistants
+CLAUDE.md
+AGENTS.md
+.claude/*
+!.claude/skills/
+
+### IDEs and editors
+.idea/
+*.iml
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.history/
+*.sublime-workspace
+
+### System files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+### Backups, patches and logs
+*~
+*.bak
+*.orig
+*.rej
+*.tmp
+*.log
+*.patch
+*.diff
+
+### Local tooling scratch
+node_modules/
+__pycache__/
+.venv/
+venv/
