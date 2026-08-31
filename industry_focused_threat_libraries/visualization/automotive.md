@@ -326,8 +326,9 @@ flowchart LR
   T15M1C0 --> T15M1C0W1
   T15M1C0W2("CWE-940: Improper Verification of Source<br/>of a Communication Channel"):::cwe
   T15M1C0 --> T15M1C0W2
-  classDef threat fill: #7f1d1d, stroke: #450a0a;
-  classDef motive fill: #9a3412, stroke: #7c2d12;
-  classDef component fill: #1e3a8a, stroke: #172554;
-  classDef cwe fill: #065f46, stroke: #022c22;
+
+  classDef threat fill:darkred,stroke:maroon,color:white
+  classDef motive fill:chocolate,stroke:sienna,color:white
+  classDef component fill:navy,stroke:midnightblue,color:white
+  classDef cwe fill:darkgreen,stroke:darkslategrey,color:white
 ```
