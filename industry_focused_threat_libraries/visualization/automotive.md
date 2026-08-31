@@ -4,6 +4,8 @@
 ---
 config:
   layout: elk
+  flowchart:
+    curve: rounded
 ---
 flowchart LR
   T0("Steal Automotive Intellectual Property from<br/>Design and R&amp;D Systems"):::threat
@@ -325,10 +327,10 @@ flowchart LR
   T15M1C0W2("CWE-940: Improper Verification of Source<br/>of a Communication Channel"):::cwe
   T15M1C0 --> T15M1C0W2
 
-  classDef threat fill:darkred,stroke:maroon,color:white
-  classDef motive fill:chocolate,stroke:sienna,color:white
-  classDef component fill:navy,stroke:midnightblue,color:white
-  classDef cwe fill:darkgreen,stroke:darkslategrey,color:white
+  classDef threat fill:firebrick,stroke:gray,color:white
+  classDef motive fill:indianred,stroke:gray,color:white
+  classDef component fill:chocolate,stroke:gray,color:white
+  classDef cwe fill:steelblue,stroke:gray,color:white
 ```
 
 Flowchart generated from [`automotive.json`](../automotive.json)
