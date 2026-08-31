@@ -5,7 +5,7 @@
 config:
   layout: elk
   flowchart:
-    curve: rounded
+    curve: linear
 ---
 flowchart LR
   T0("Steal Automotive Intellectual Property from<br/>Design and R&amp;D Systems"):::threat
