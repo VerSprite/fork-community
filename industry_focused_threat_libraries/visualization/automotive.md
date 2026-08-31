@@ -1,7 +1,5 @@
 # Automotive Threat Library
 
-Flowchart generated from [`automotive.json`](../automotive.json).
-
 ```mermaid
 ---
 config:
@@ -332,3 +330,5 @@ flowchart LR
   classDef component fill:navy,stroke:midnightblue,color:white
   classDef cwe fill:darkgreen,stroke:darkslategrey,color:white
 ```
+
+Flowchart generated from [`automotive.json`](../automotive.json)
