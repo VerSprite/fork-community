@@ -22,37 +22,33 @@ not only serves the needs of security professionals but also evolves with the co
 designed with extensibility in mind, allowing the community to contribute and enhance various parts. Meanwhile, the enterprise edition aims to cater to
 organizations with more advanced functionalities and tailored features.
 
-## Comprehensive Threat Libraries
+## Threat Libraries
 
 Each threat library enumerates threats, the motives behind them, the components they target, and the CWEs that make them possible. From those CWEs, Fork
 computes the rest of the taxonomy mappings automatically (CAPEC, MITRE ATT&CK and ATLAS, D3FEND, CVE, OWASP ASVS, and NIST SP 800-53) so work here stays focused
 on the security analysis rather than on cross-referencing catalogs by hand.
 
-### Industry-focused threat libraries
+<pre>
+Industry-focused threat libraries
+  ├── Automotive              <a href="industry_focused_threat_libraries/automotive.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/automotive.md">[Mindmap]</a>
+  ├── Consumer Electronics    <a href="industry_focused_threat_libraries/consumer_electronics.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/consumer_electronics.pdf">[Mindmap]</a>
+  ├── Energy                  <a href="industry_focused_threat_libraries/energy.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/energy.pdf">[Mindmap]</a>
+  ├── Financial               <a href="industry_focused_threat_libraries/financial.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/financial.pdf">[Mindmap]</a>
+  ├── Fintech - Credit Cards  <a href="industry_focused_threat_libraries/fintech-credit-cards.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/fintech-credit-cards.pdf">[Mindmap]</a>
+  ├── Government              <a href="industry_focused_threat_libraries/government.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/government.pdf">[Mindmap]</a>
+  ├── Healthcare              <a href="industry_focused_threat_libraries/healthcare.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/healthcare.pdf">[Mindmap]</a>
+  ├── Higher Education        <a href="industry_focused_threat_libraries/higher-education.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/higher-education.md">[Mindmap]</a>
+  ├── Hospitality             <a href="industry_focused_threat_libraries/hospitality.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/hospitality.md">[Mindmap]</a>
+  ├── Insurance               <a href="industry_focused_threat_libraries/insurance.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/insurance.pdf">[Mindmap]</a>
+  ├── Manufacturing           <a href="industry_focused_threat_libraries/manufacturing.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/manufacturing.pdf">[Mindmap]</a>
+  ├── Retail                  <a href="industry_focused_threat_libraries/retail.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/retail.pdf">[Mindmap]</a>
+  ├── Shipping                <a href="industry_focused_threat_libraries/shipping.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/shipping.pdf">[Mindmap]</a>
+  ├── Telecommunication       <a href="industry_focused_threat_libraries/telecommunication.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/telecommunication.pdf">[Mindmap]</a>
+  └── Transportation          <a href="industry_focused_threat_libraries/transportation.json">[JSON]</a> <a href="industry_focused_threat_libraries/visualization/transportation.pdf">[Mindmap]</a>
 
-| Industry               | Threat Library                                                      | Visualization                                                                    |
-|------------------------|---------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| Automotive             | [View](industry_focused_threat_libraries/automotive.json)           | [View](industry_focused_threat_libraries/visualization/automotive.md)            |
-| Consumer Electronics   | [View](industry_focused_threat_libraries/consumer_electronics.json) | [View](industry_focused_threat_libraries/visualization/consumer_electronics.pdf) |
-| Energy                 | [View](industry_focused_threat_libraries/energy.json)               | [View](industry_focused_threat_libraries/visualization/energy.pdf)               |
-| Financial              | [View](industry_focused_threat_libraries/financial.json)            | [View](industry_focused_threat_libraries/visualization/financial.pdf)            |
-| Fintech - Credit Cards | [View](industry_focused_threat_libraries/fintech-credit-cards.json) | [View](industry_focused_threat_libraries/visualization/fintech-credit-cards.pdf) |
-| Government             | [View](industry_focused_threat_libraries/government.json)           | [View](industry_focused_threat_libraries/visualization/government.pdf)           |
-| Healthcare             | [View](industry_focused_threat_libraries/healthcare.json)           | [View](industry_focused_threat_libraries/visualization/healthcare.pdf)           |
-| Higher Education       | [View](industry_focused_threat_libraries/higher-education.json)     | [View](industry_focused_threat_libraries/visualization/higher-education.md)      |
-| Hospitality            | [View](industry_focused_threat_libraries/hospitality.json)          | [View](industry_focused_threat_libraries/visualization/hospitality.md)           |
-| Insurance              | [View](industry_focused_threat_libraries/insurance.json)            | [View](industry_focused_threat_libraries/visualization/insurance.pdf)            |
-| Manufacturing          | [View](industry_focused_threat_libraries/manufacturing.json)        | [View](industry_focused_threat_libraries/visualization/manufacturing.pdf)        |
-| Retail                 | [View](industry_focused_threat_libraries/retail.json)               | [View](industry_focused_threat_libraries/visualization/retail.pdf)               |
-| Shipping               | [View](industry_focused_threat_libraries/shipping.json)             | [View](industry_focused_threat_libraries/visualization/shipping.pdf)             |
-| Telecommunication      | [View](industry_focused_threat_libraries/telecommunication.json)    | [View](industry_focused_threat_libraries/visualization/telecommunication.pdf)    |
-| Transportation         | [View](industry_focused_threat_libraries/transportation.json)       | [View](industry_focused_threat_libraries/visualization/transportation.pdf)       |
-
-### Technology-focused threat libraries
-
-| Technology | Threat Library                                      | Visualization                                                    |
-|------------|-----------------------------------------------------|------------------------------------------------------------------|
-| AI         | [View](technology_focused_threat_libraries/ai.json) | [View](technology_focused_threat_libraries/visualization/ai.pdf) |
+Technology-focused threat libraries
+  └── AI                      <a href="technology_focused_threat_libraries/ai.json">[JSON]</a> <a href="technology_focused_threat_libraries/visualization/ai.pdf">[Mindmap]</a>
+</pre>
 
 ## Holistic Mapping of Taxonomies
 
