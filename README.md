@@ -1,9 +1,11 @@
 ![Fork logo](docs/assets/fork_illustration_header.webp)
 
-<center>
+<div align="center">
+
   [`Try for free`](https://app.forktm.com) •
   [`Help Center`](https://app.forktm.com/help-center)
-</center>
+
+</div>
 
 **Community-maintained, open-source threat libraries that power [Fork Community Edition](https://forktm.com) for building risk-centric threat models with the
 [PASTA]([PASTA](https://versprite.com/blog/what-is-pasta-threat-modeling/)) methodology.**
