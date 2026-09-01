@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  [`Try for free`](https://app.forktm.com) •
+  [`Try Fork`](https://app.forktm.com) •
   [`Help Center`](https://app.forktm.com/help-center)
 
 </div>
