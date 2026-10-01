@@ -1,0 +1,2335 @@
+[
+    {
+        "threat": "Take Over Workforce Accounts by Defeating Multi-Factor Authentication",
+        "threat_description": "Adversaries no longer break multi-factor authentication \u2014 they route around it. Reverse-proxy phishing pages relay a genuine sign-in to the real identity provider and capture the session the provider issues once the factor succeeds; device-code and consent flows complete on the provider's own domain, so nothing about the page looks wrong; repeated push prompts wear an employee down until one is approved. Enterprise single sign-on makes the payoff disproportionate to the effort, because one captured session is not access to one application but to every application behind that provider, and it stays valid until the token expires or someone revokes it deliberately. Resetting the password does not end it, and the help desk that would revoke it is itself a target.",
+        "motives": [
+            {
+                "motive": "Capture live authentication sessions to obtain valid enterprise tokens and operate as the employee across every federated application",
+                "components": [
+                    {
+                        "name": "Workforce Sign-In Portal",
+                        "description": "The browser-facing authentication interface where employees present credentials and factors to the identity provider \u2014 hosted sign-in pages, embedded login widgets, and the redirect flows that hand the authenticated session back to each application.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_mapping_reason": "A reverse proxy placed between the employee and the real sign-in page relays every step of the exchange and keeps the session artifact the provider returns, so the factor is satisfied by the genuine user while the resulting session is held by someone else - the credential was never guessed, it was borrowed in flight.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_mapping_reason": "One-time passcodes and push approvals are second factors only against an attacker who cannot see the sign-in in real time; against a relay they add a step and nothing else, which makes the whole flow single-factor in practice and puts every federated application behind one phishable exchange.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Session and Token Issuance Service",
+                        "description": "The service that mints, refreshes and revokes the artifacts representing an authenticated user \u2014 session cookies, ID and access tokens, and the refresh tokens that let a client obtain new ones without a fresh sign-in.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-384: Session Fixation",
+                                        "cwe_mapping_reason": "A session identifier that is not regenerated at the moment authentication succeeds lets an attacker fix a known value in the employee's browser beforehand and inherit the authenticated session the instant the sign-in completes, without ever seeing the credential or the factor.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_mapping_reason": "Sessions that outlive the conditions they were granted under - no absolute lifetime, no re-evaluation when the device posture or network changes - mean a single capture yields access measured in weeks. This mapping carries no attack patterns; it is retained for the control mapping, and the patterns for this surface come from the fixation weakness beside it.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Refresh Token Lifetime and Revocation Path",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Refresh tokens written to browser storage, a desktop client's profile directory or a local keychain without hardware binding are exactly what commodity infostealer malware collects, and because they are bearer artifacts the machine they are replayed from does not have to be the one they were issued to.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_mapping_reason": "A refresh token that carries no proof of possession can be presented by anyone holding the string, so a stolen one continues to mint fresh access tokens long after the password change that was supposed to close the incident - revocation has to be performed against the token, and most operators only reset the password.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Enroll an attacker-controlled authenticator on a targeted employee account to hold access independent of the original device",
+                "components": [
+                    {
+                        "name": "Authenticator Enrollment and Delivery Channel",
+                        "description": "The process that binds a factor to a workforce identity and the out-of-band paths that factor travels on \u2014 first-time registration, replacement devices, the recovery routes into enrollment, and the carrier and vendor channels that carry passcodes and approval prompts.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Adding a second authenticator to an account is a change of the account's security posture, but it frequently executes on the strength of the session already in hand rather than requiring a fresh proof from an existing factor - so a single captured session converts into an attacker-owned factor that survives the session's expiry.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_mapping_reason": "Enrollment recovery that re-establishes identity from an email address, employee number or date of birth is verifying facts the attacker already gathered before calling - the recovery path becomes the cheapest route to a working factor on someone else's account.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Authenticator Registration and Device Binding",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-330: Use of Insufficiently Random Values",
+                                        "cwe_mapping_reason": "Enrollment codes and temporary access passes generated from a predictable or low-entropy source can be derived rather than intercepted, so an attacker who knows when a colleague was issued one can register their own authenticator against that employee's identity.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Carrier Passcode Delivery and Subscriber Binding",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-319: Cleartext Transmission of Sensitive Information",
+                                        "cwe_mapping_reason": "A passcode delivered by SMS crosses carrier signalling infrastructure the enterprise neither controls nor can inspect, and arrives on a lock screen; the factor is protected by the confidentiality of a channel that was never designed to provide any.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "Binding a factor to a telephone number means the authenticator is whoever the carrier currently routes that number to, so a port-out arranged with the carrier's own retention staff transfers the second factor to the attacker without touching the identity platform at all.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "THIRD_PARTY_API_SECURITY"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Impersonate Any Enterprise User by Forging Federated Authentication Assertions",
+        "threat_description": "Federation asks every application to accept the identity provider's word about who the caller is. An adversary who obtains the key that signs that word, or who persuades the tenant to trust a provider they control, stops attacking accounts and starts issuing them. A forged assertion can name any user, carry any group membership, and state that multi-factor authentication was satisfied; the relying application has no way to contradict it and no record that anything unusual occurred. The consequences run past the incident: password resets, session revocation and factor re-enrollment all operate on things the attacker never used, so the standard containment playbook leaves the access intact. Recovery means re-keying the federation and re-establishing every trust that depended on it.",
+        "motives": [
+            {
+                "motive": "Steal the federation signing key to mint assertions for any user of any connected application without touching a password",
+                "components": [
+                    {
+                        "name": "Token Signing Key Custody",
+                        "description": "Where the private key that signs assertions and tokens lives and who can reach it \u2014 the federation server's certificate store, cloud key vaults, and hardware security modules, together with the export, backup and rotation paths around them.",
+                        "sub_components": [
+                            {
+                                "name": "Token Signing Certificate and Private Key Storage",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "A signing key held as an exportable object in a software certificate store is recoverable by anyone who reaches the host with sufficient rights, and unlike a password it cannot be invalidated by resetting it - the key has to be replaced and every relying party re-pointed before the forged assertions stop being accepted.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_mapping_reason": "Assertions signed with a weak algorithm, an undersized key, or a symmetric secret shared with the relying party can be forged by anyone who recovers or derives the secret rather than only by the holder of a private key, which removes the asymmetry the whole federation trust depends on.",
+                                        "capecs_to_exclude": [
+                                            "608",
+                                            "614"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Hardware Security Module Custody and Key Ceremony",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "A hardware module protects the key from extraction but not from use: if the signing operation itself is exposed to the federation host without an operator credential on the operation, an attacker on that host mints assertions at will and never needs to hold the key material.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Permissions on the key object that grant sign rights to a broad service or administrative group rather than to the federation service alone mean every account in that group is, in effect, an issuer of enterprise identity.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Federation Service",
+                        "description": "The component that authenticates users and issues signed assertions to relying applications \u2014 on-premises federation servers, cloud security token services, and the claim rules that decide what each assertion says.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "An assertion is accepted on the strength of its signature alone, so any party able to produce a correctly signed document is the identity provider as far as every relying application is concerned - there is no second signal that distinguishes an issuance the federation service performed from one it did not.",
+                                        "capecs_to_exclude": [
+                                            "667"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Assertion Issuance and Claim Transformation Rules",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-15: External Control of System or Configuration Setting",
+                                        "cwe_mapping_reason": "Claim rules decide which directory attribute becomes the subject, which groups become roles, and whether the assertion states that a second factor was used; an attacker who edits them changes who every downstream application believes the caller is, without touching a single account.",
+                                        "capecs_to_exclude": [
+                                            "203",
+                                            "270",
+                                            "579"
+                                        ],
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Relying Party Assertion Validation",
+                        "description": "The application-side code that consumes an assertion \u2014 the libraries that parse it, check its signature, audience, issuer and validity window, and map its claims onto a local session.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                                        "cwe_mapping_reason": "A consumer that checks that a signature is present and well-formed but not that it covers the element it is reading will accept a document carrying an authentic signature over one subject and an attacker-supplied subject elsewhere in the same message, which is a forged identity produced without any key at all.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-91: XML Injection (aka Blind XPath Injection)",
+                                        "cwe_mapping_reason": "Assertion documents are parsed before they are trusted, so a consumer that resolves references, entities or duplicate elements during parsing can be made to read attacker-controlled content as though it were the signed portion of the message.",
+                                        "security_incident_types": [
+                                            "WEB_APPLICATION_ATTACKS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Register an attacker-controlled identity provider in the tenant so that account linking survives every password reset",
+                "components": [
+                    {
+                        "name": "Identity Provider Trust Configuration",
+                        "description": "The tenant-level settings that declare which external providers may assert identity and how their subjects are matched to local accounts \u2014 provider registration, metadata endpoints, certificate rollover and automatic account linking rules.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Adding a federation trust is an operation of a different order from the day-to-day administration it usually sits beside, yet it is commonly reachable by any account holding a general tenant administrator role - so one compromised administrator converts into a permanent, credential-independent path into every identity in the tenant.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-302: Authentication Bypass by Assumed-Immutable Data",
+                                        "cwe_mapping_reason": "Automatic linking matches on an attribute the platform treats as a stable identifier - an email address, a user principal name, an employee number - but which an attacker controlling a trusted provider simply sets to the value of the account they want; the match is performed on data the caller supplied.",
+                                        "capecs_to_exclude": [
+                                            "10",
+                                            "45"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "External Provider Registration and Metadata Trust",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "Federation metadata that is fetched over an unauthenticated channel, or refreshed automatically without pinning the signing certificate, lets an attacker who can answer for that endpoint substitute their own keys and become a trusted issuer through the tenant's own routine rollover.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_mapping_reason": "Trusts established against a certificate chain that is accepted without pinning the expected issuer or subject let any certificate the platform's trust store happens to chain to stand in for the partner's, so the tenant cannot tell a genuine federation partner from one that merely obtained a valid certificate.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "THIRD_PARTY_API_SECURITY"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Seize Enterprise-Wide Administrative Control of the Identity Directory",
+        "threat_description": "The directory is the one system every other system defers to, which makes administrative control of it equivalent to administrative control of the estate. Adversaries reach that position through paths that look like ordinary use of the platform: service accounts whose passwords are requestable by any authenticated user, certificate templates that will issue a credential naming someone else, synchronisation accounts that hold write rights in both the on-premises forest and the cloud tenant, and role assignments that were granted for a project and never withdrawn. None of these requires an exploit. Once the position is held it is durable, because the attacker can issue themselves new credentials through the directory's own mechanisms faster than responders can revoke the old ones.",
+        "motives": [
+            {
+                "motive": "Convert a standard directory account into a domain administrator to reach every system the directory authenticates",
+                "components": [
+                    {
+                        "name": "Domain Controller",
+                        "description": "The servers holding the authoritative copy of the directory and its credential database \u2014 authenticating every domain-joined system, replicating between sites, and exposing the query, replication and administrative interfaces that ride on top of that role.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-309: Use of Password System for Primary Authentication",
+                                        "cwe_mapping_reason": "Where a password is the primary proof for a directory principal, any account whose credential material can be requested by an ordinary authenticated user becomes an offline cracking target - service principals with long-unchanged human-chosen passwords hand over an administrative identity to a machine that never touched the network again after the request.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-836: Use of Password Hash Instead of Password for Authentication",
+                                        "cwe_mapping_reason": "Protocols that accept the stored representation of a password in place of the password itself mean a credential recovered from one compromised workstation's memory authenticates directly to the directory, so containment that forces password changes without invalidating the cached material leaves the path open.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "OS_PLATFORM_ISSUES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Directory Replication and Credential Database Access",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Replication is a machine-to-machine right that is granted at the object level, so an account that has accumulated it - through a delegation, a nested group, or a product installation - can ask a controller for the entire credential database without ever holding an administrative role or logging on to the server.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Delegated rights on directory containers accumulate over years of reorganisations and product installations, and the effective set is never the set anyone intended; the practical result is that several ordinary accounts can write to objects that confer administrative control, and no one can name them without a graph query.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Enterprise Certificate Authority",
+                        "description": "The internal public key infrastructure that issues the certificates the directory accepts as authentication \u2014 enrollment services, certificate templates, and the web and RPC endpoints through which requests are submitted.",
+                        "sub_components": [
+                            {
+                                "name": "Certificate Template Enrollment and Subject Name Policy",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Enrollment rights on a template are an access control decision made once at installation and rarely revisited; a template that permits authentication use and lets the requester name the subject gives every principal in its enrollment group the ability to obtain a credential for any identity in the forest.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "A certificate the directory accepts as proof of identity is as good as the account it names, and unlike a password it cannot be reset away - it remains valid for its full lifetime unless someone knows to revoke that specific certificate, which requires first knowing it was issued.",
+                                        "capecs_to_exclude": [
+                                            "667"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Sell verified administrative access to the enterprise directory to ransomware and espionage operators",
+                "components": [
+                    {
+                        "name": "Cloud Directory Tenant",
+                        "description": "The cloud-hosted directory and its administrative surface \u2014 directory roles, application and service principal objects, conditional access policy, and the administrative portals and graph APIs through which all of it is managed.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Directory roles in a cloud tenant are frequently held permanently rather than activated for a task, so the number of standing administrators is far larger than the number of people administering anything - each one a complete tenant takeover that an access broker can verify and price.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "Built-in roles bundle rights that no single job needs together - reading every user's attributes, resetting credentials, and consenting to applications on the organisation's behalf - so a role granted for one of those capabilities delivers all of them, and the tenant has no finer instrument to grant instead.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Service principals carry their own permissions independent of any user, are excluded from the conditional access policy that governs people, and are rarely reviewed; an attacker who adds a credential to an existing privileged application object holds tenant access that no sign-in risk policy will ever evaluate.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Hybrid Directory Synchronization Connector",
+                        "description": "The service that keeps an on-premises forest and a cloud tenant in step \u2014 holding write credentials on both sides, running on a member server that is often managed as ordinary infrastructure rather than as a tier-zero asset.",
+                        "sub_components": [
+                            {
+                                "name": "On-Premises to Cloud Synchronization Service Identity",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_mapping_reason": "The synchronisation service runs with rights on both directories that exceed anything its host needs, so compromising a server that is patched and monitored like a file server yields an identity that can write to the cloud tenant and read from the forest.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "The connector must be able to reconstruct the credentials it presents to both directories, so they are stored in a form the host can reverse; recovering them from that host produces two standing administrative identities that are not tied to any person and appear in no leaver process.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Encrypt Enterprise Operations for Ransom Through Directory Compromise",
+        "threat_description": "Ransomware operators reach the directory before they encrypt anything, because the directory is what turns an intrusion on one machine into an intrusion on all of them. Domain-wide administrative rights supply both the distribution mechanism and the credentials to reach the backups, so the encryption step is a single scheduled action rather than a campaign. The identity platform is also the recovery path, which is what makes the leverage so complete: an organisation whose directory is encrypted cannot authenticate the administrators who would restore it, cannot reach the systems holding the restore media, and in many cases discovers that the directory backups were online and shared the fate of everything else. The negotiation happens while nobody can log in.",
+        "motives": [
+            {
+                "motive": "Use directory-wide administrative control to encrypt every domain-joined system at once and extort payment for restoration",
+                "components": [
+                    {
+                        "name": "Domain Controller",
+                        "description": "The directory's central policy and software distribution point \u2014 group policy objects, logon scripts and management agents that every joined machine collects and executes on a schedule.",
+                        "sub_components": [
+                            {
+                                "name": "Policy and Software Deployment Authorization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Policy objects are executed by every machine that links them, so write access to one is remote code execution across the estate; the authorisation check is on the policy object rather than on the act of deploying software, and the two are not the same decision.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_mapping_reason": "Management and deployment agents run on every endpoint with local system rights and accept work from a central console, so a console credential reaches further and faster than any malware would, using a channel the organisation's own change process expects traffic on.",
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Privileged Access Tier",
+                        "description": "The separation between administrative and ordinary computing \u2014 dedicated administrative workstations, jump hosts, and the rules about which credentials may be presented to which class of machine.",
+                        "sub_components": [
+                            {
+                                "name": "Administrative Tier Separation and Jump Host Scope",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-923: Improper Restriction of Communication Channel to Intended Endpoints",
+                                        "cwe_mapping_reason": "Administrative interfaces reachable from the general user network rather than only from a hardened administrative segment mean an attacker who lands anywhere can address the systems that control everything, and lateral movement is a routing question rather than an escalation one.",
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-272: Least Privilege Violation",
+                                        "cwe_mapping_reason": "Accounts used for routine maintenance carry rights across the whole estate rather than the subset their task needs, so the account an operator uses to restart a service is also sufficient to deploy to every machine that service runs on.",
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Directory Backup and Forest Recovery Store",
+                        "description": "The copies of the directory an organisation would rebuild from \u2014 system state backups, forest recovery media, and the documentation and credentials required to perform the restore.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_file_servers",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Backup shares writable by the same administrative identities that manage production are destroyed in the same action that encrypts it, which is why operators target them first - the permission model treats backup as an administrative resource rather than as the thing that survives administrative compromise.",
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "STORAGE_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Offline Directory Backup and Recovery Media",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "Directory backups contain the credential database in a form that can be reconstructed, so an unencrypted backup copy is simultaneously the recovery path and a complete set of enterprise credentials for whoever reaches the media first.",
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Forest recovery depends on break-glass credentials and documented procedures that are commonly stored in the systems being recovered; when the restore process itself requires an authentication the directory can no longer perform, the organisation has no path back that does not route through the attacker.",
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Exfiltrate Directory and Customer Identity Records from Identity Platforms",
+        "threat_description": "An identity platform holds the one dataset that describes an organisation completely: who works there, what they are called, who they report to, which groups they belong to, which applications they can reach, and how to contact them. For a consumer platform it holds the equivalent for the customer base. Adversaries take it because it is the map every subsequent operation is planned from, and because it resells well \u2014 a directory export is a phishing target list with accurate job titles. The second prize is the credential material itself: password representations, recovery answers, and seeds for one-time passcode generators, all of which are attacked offline at leisure once copied. The platform's own administrative and reporting interfaces are the natural export mechanism, and they are designed to return data in bulk.",
+        "motives": [
+            {
+                "motive": "Extract the complete user directory with attributes and group memberships to enable targeted intrusion and resale",
+                "components": [
+                    {
+                        "name": "Directory Data Store",
+                        "description": "The database holding identity objects and their attributes \u2014 users, groups, devices, organisational structure, and the query interfaces through which applications and administrators read them.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-90: Improper Neutralization of Special Elements used in an LDAP Query ('LDAP Injection')",
+                                        "cwe_mapping_reason": "Search filters assembled from user-supplied values without neutralising filter syntax let an attacker rewrite the query the application intended into one that returns every object and attribute the binding account can see, using an ordinary search box as a directory export tool.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "DATABASE_SECURITY_INCIDENTS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Directory reads are commonly authorised on the caller having any valid binding rather than on the subset of the tree their role justifies, so a low-privileged application account - a printer, a meeting room, a contractor's tool - enumerates the entire organisation.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Identity Management API",
+                        "description": "The programmatic surface over the identity platform \u2014 user and group management endpoints, reporting and export operations, and the tokens and application registrations that call them.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-302: Authentication Bypass by Assumed-Immutable Data",
+                                        "cwe_mapping_reason": "Export and reporting endpoints frequently scope their results from a tenant, organisational unit or filter identifier carried in the request, which the caller can edit; where the server does not re-derive that scope from the token it issued, one tenant's integration reads another tenant's directory.",
+                                        "capecs_to_exclude": [
+                                            "10",
+                                            "45"
+                                        ],
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                                        "cwe_mapping_reason": "Bulk read endpoints that page without a ceiling on volume or rate let an attacker holding one modest token walk the entire directory in an afternoon, and because every individual request is legitimate the extraction looks like an integration working normally.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Harvest stored credential material and recovery secrets from identity data stores for offline cracking and reuse",
+                "components": [
+                    {
+                        "name": "Credential and Secret Storage",
+                        "description": "How the platform stores the material that proves identity \u2014 password representations, one-time passcode seeds, recovery answers, and the backup and replication copies of all of it.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "One-time passcode seeds and recovery answers must be recoverable by the platform in order to be checked, so they are held in a reversible form rather than hashed; a copy of that store lets an attacker generate valid passcodes for every enrolled user without ever touching their device.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-916: Use of Password Hash With Insufficient Computational Effort",
+                                        "cwe_mapping_reason": "Password representations produced by a fast hash, with no work factor or a stale one, are cracked at a rate that makes a stolen store immediately useful rather than an academic risk - the organisation's password policy is only as strong as the time it takes to test a candidate.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Recovery Secret and Replication Copy Custody",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Credential material is replicated to secondary directories, read-only nodes, disaster recovery sites and vendor-hosted standby tenants, each a complete copy protected by whatever that location happens to enforce rather than by the controls on the primary.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Identity Platform Diagnostic Export",
+                        "description": "The files the platform produces for support and troubleshooting \u2014 diagnostic bundles, browser session captures attached to support cases, verbose authentication traces, and the shares and ticketing systems they accumulate in.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_file_servers",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-532: Insertion of Sensitive Information into Log File",
+                                        "cwe_mapping_reason": "Authentication traces captured at debug level record the artifacts they were meant to describe - session cookies, bearer tokens, assertion documents - and those files are then attached to tickets, copied to shares and retained far longer than the sessions they contain were valid for.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Diagnostic exports carry the personal attributes of every user the trace touched, and they are handled as engineering artifacts rather than as personal data, so they escape the retention, access and residency controls that govern the directory they were taken from.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Defraud Customers Through Mass Account Takeover of Consumer Identity Platforms",
+        "threat_description": "Consumer identity platforms are attacked in volume rather than in depth. Credentials breached elsewhere are replayed against sign-in endpoints at industrial scale on the assumption that a predictable fraction of people reuse passwords, and the accounts that fall carry stored payment methods, loyalty balances, order history and enough personal detail to open credit elsewhere. Where the login holds, the recovery flow is attacked instead, because it exists precisely to let someone in who cannot produce the credential, and it verifies identity from facts that are routinely purchasable. The commercial pressure runs against the defence: every additional check costs conversions on a registration funnel the business measures weekly, so recovery is designed to succeed.",
+        "motives": [
+            {
+                "motive": "Replay breached credential lists against consumer sign-in endpoints at scale to seize accounts holding stored value and payment methods",
+                "components": [
+                    {
+                        "name": "Consumer Sign-In Endpoint",
+                        "description": "The public authentication surface of a consumer product \u2014 web and mobile login, the API the mobile client calls, and the device, address and behavioural signals used to separate a customer from an automated client.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "Without a throttle that counts attempts across the whole endpoint rather than per account, a list of breached pairs can be replayed one attempt per account from a rotating address pool, which never trips a per-account lockout and is indistinguishable per-request from a distributed user base signing in.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-521: Weak Password Requirements",
+                                        "cwe_mapping_reason": "Where the platform permits short or previously breached passwords for the sake of registration completion rates, the population of accounts that will fall to a common-password list is set at sign-up time and cannot be recovered by any control applied later.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-601: URL Redirection to Untrusted Site ('Open Redirect')",
+                                        "cwe_mapping_reason": "Redirect handling on the consumer login domain that forwards to a caller-supplied destination turns the brand's own trusted address into the first hop of a credential harvesting page, which is what makes the phishing message survive the checks customers are told to perform.",
+                                        "security_incident_types": [
+                                            "WEB_APPLICATION_ATTACKS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Login Risk Scoring and Device Reputation Signals",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "Risk scoring that trusts client-reported device and telemetry values treats a fingerprint an attacker generates as evidence of a returning customer, so a credential stuffing run that replays plausible device data is scored as the legitimate population it is imitating.",
+                                        "capecs_to_exclude": [
+                                            "667"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-302: Authentication Bypass by Assumed-Immutable Data",
+                                        "cwe_mapping_reason": "Where the challenge decision is carried in a client-held artifact - a cookie, a header, a signed hint that the device is remembered - an attacker replays the value that means no challenge is needed and removes the control from every subsequent attempt.",
+                                        "capecs_to_exclude": [
+                                            "10",
+                                            "45"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Take over consumer accounts through self-service recovery without ever holding the original credential",
+                "components": [
+                    {
+                        "name": "Account Recovery Flow",
+                        "description": "The self-service path that returns access to a customer who cannot authenticate \u2014 reset links, recovery codes, knowledge questions, and the alternate contact details the flow delivers to.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_mapping_reason": "Recovery that establishes identity from a date of birth, a postcode, a last order or a security question is checking facts that are sold in bulk, so the flow admits precisely the attacker it exists to exclude, and it does so through the platform's supported path with no anomaly to detect.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Recovery Delivery Channel and Alternate Contact Binding",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Changing the address or number a recovery message is delivered to is the step that decides who owns the account, yet it commonly requires only the current session rather than a fresh proof - so a brief session obtained any way at all converts into permanent ownership.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Social Login and External Identity Broker",
+                        "description": "Sign-in delegated to a consumer identity provider \u2014 social and platform accounts accepted in place of a local credential, and the broker that maps the provider's subject onto a customer record.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "A broker that identifies the returning customer by an email address the external provider asserts, rather than by that provider's immutable subject identifier, links whoever currently controls an address at any accepted provider to the existing customer record and its stored payment methods.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "Where the broker accepts an assertion without verifying that it was issued for this application and this request, a token obtained legitimately from the same provider by an unrelated site is replayed here and signs the attacker in as its subject.",
+                                        "capecs_to_exclude": [
+                                            "667"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Extract Data From Connected Platforms by Abusing Delegated OAuth Authorization",
+        "threat_description": "Delegated authorization was designed so that an application could act for a user without holding their password, and adversaries use it exactly as designed. A consent screen approved once produces a grant that survives password changes, session revocation and factor re-enrollment, because none of those touch the grant; a refresh token held by an integration vendor is a standing key to every tenant that authorized that vendor. The attack leaves no failed sign-ins and no anomalous authentication, since there is no authentication \u2014 only an application making the API calls it was permitted to make. Detection depends on someone reviewing which applications hold which scopes in which tenants, which is work no monitoring product performs by default.",
+        "motives": [
+            {
+                "motive": "Obtain a durable consent grant from a user or administrator so that data access continues after every password and session reset",
+                "components": [
+                    {
+                        "name": "OAuth Authorization Server",
+                        "description": "The service that issues delegated access \u2014 authorization and token endpoints, the scope catalogue, the consent screen a user or administrator approves, and the grant records that result.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Consent is treated as a decision an ordinary user may take for their own data, but the scopes on offer frequently reach organisational resources - shared mailboxes, team repositories, tenant-wide search - so a decision the platform models as personal grants access the person was never authorised to delegate.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-267: Privilege Defined With Unsafe Actions",
+                                        "cwe_mapping_reason": "Scopes are defined coarsely enough that read access to one class of record implies read access to all of it, so an application that genuinely needs to see a calendar is granted a permission that also returns message bodies and attachments.",
+                                        "capecs_to_exclude": [
+                                            "634",
+                                            "637",
+                                            "648"
+                                        ],
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Consent Grant Persistence and Scope Policy",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_mapping_reason": "A grant has no natural end: it is not tied to the session that created it, it is not re-evaluated when the user's role changes, and it is not withdrawn when they leave. This mapping carries no attack patterns and is retained for its control mapping; the patterns for this surface come from the authorization weaknesses above it.",
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Application Registration and Consent Catalog",
+                        "description": "The inventory of applications a tenant will issue tokens to \u2014 registrations, their redirect destinations and credentials, publisher verification state, and the administrative consent decisions recorded against them.",
+                        "sub_components": [
+                            {
+                                "name": "Third-Party Application Registration and Consent Review",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "Redirect destinations registered with loose matching, or a registration whose publisher is unverified, let an application presented as a familiar productivity tool receive the authorization code for a completely different party - the user approves a name and an icon, neither of which the platform binds to anything.",
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "Tenants can permit or forbid user consent but cannot express the condition that actually matters - this publisher, these scopes, this data - so the choice is between blocking every integration and admitting applications on the strength of a display name.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "THIRD_PARTY_API_SECURITY"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Steal refresh tokens held by an integration vendor and query every tenant that authorized it",
+                "components": [
+                    {
+                        "name": "Integration Vendor Token Store",
+                        "description": "The store in which a software-as-a-service integrator keeps the delegated credentials its customers issued it \u2014 refresh tokens and client secrets for every connected tenant, held on the vendor's own infrastructure.",
+                        "sub_components": [
+                            {
+                                "name": "Vendor-Side Refresh Token Custody and Rotation",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "A vendor's token store is a single location holding standing access to hundreds of customer tenants, and the customer cannot see how it is protected, cannot require rotation, and learns it was reached only when the vendor discloses.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_mapping_reason": "Tokens without proof-of-possession binding are valid from any network position, so a set copied out of the vendor's environment is replayed directly against each customer's API from infrastructure that has no relationship to the integration at all.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Connected Platform Integration API",
+                        "description": "The interface an authorized integration calls into \u2014 query and bulk export operations exposed to third-party applications, and the per-application rate, scope and tenant controls applied to them.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-302: Authentication Bypass by Assumed-Immutable Data",
+                                        "cwe_mapping_reason": "Integration endpoints that resolve the tenant or object scope from a value in the request rather than from the grant the token represents let a token issued by one customer read another's records, which turns a single stolen credential into a breach of every tenant on the platform.",
+                                        "capecs_to_exclude": [
+                                            "10",
+                                            "45"
+                                        ],
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                                        "cwe_mapping_reason": "Applications are governed by availability-oriented rate limits rather than by any expectation of what the integration does, so an attacker running large structured queries across every object type stays inside the published limits while extracting the whole dataset.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Compromise Identity Platform Suppliers to Reach Every Downstream Tenant",
+        "threat_description": "An organisation that outsources identity has outsourced the decision about who its users are. Adversaries act on that directly, targeting the provider, the agents it installs inside the customer's network, the managed service partners that hold administrative roles across many tenants at once, and the support systems where customers deposit session captures and configuration exports while troubleshooting. Each of these is a channel the customer has deliberately trusted and cannot inspect: the agent authenticates outbound so no firewall rule constrains it, the partner's delegated role is invisible in the customer's own administrator list, and the support case is handled under the vendor's practices rather than the customer's. One compromise reaches every tenant the supplier serves.",
+        "motives": [
+            {
+                "motive": "Compromise an identity platform supplier to reach the authentication of every customer tenant through one trusted channel",
+                "components": [
+                    {
+                        "name": "Identity Platform Vendor Software and Update Channel",
+                        "description": "The provider's code and how it reaches the customer \u2014 directory synchronisation agents, password validation connectors and application proxies running inside the estate, together with the signing and distribution infrastructure that updates them.",
+                        "sub_components": [
+                            {
+                                "name": "Vendor Release Signing and Agent Update Distribution",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "Identity agents update themselves from the vendor on a schedule and install with the rights their role requires, so a release substituted at the distribution point is installed by every customer as routine maintenance, directly onto the hosts that broker authentication.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                                        "cwe_mapping_reason": "Where the installer accepts any signature that chains to a trusted root rather than pinning the vendor's own key, a certificate obtained or misissued in the vendor's name is sufficient to publish an update that every customer accepts as genuine.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Agents load extensions, rule packs and configuration from the provider at runtime, so what executes inside the customer's network on any given day is decided outside it, with no customer change control between the vendor's publication and its execution.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-506: Embedded Malicious Code",
+                                        "cwe_mapping_reason": "Code introduced into the provider's build reaches the customer under the vendor's own signature and reputation, executing with the standing directory rights the agent needs for its legitimate function and in a process the customer's tooling is configured to trust.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "ZERO_DAY_EXPLOITS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Managed Service Provider Delegated Administration",
+                        "description": "Cross-tenant administrative relationships granted to partners \u2014 delegated administration links, partner roles and the consoles through which one provider administers many customers.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Delegated partner relationships are granted at the level the partner's tooling expects rather than at the level the engagement requires, so a reseller engaged for licensing holds rights sufficient to reset credentials and read data across the whole tenant.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Cross-Tenant Delegated Administration Relationship",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Partner access is authorised by the relationship rather than per action, so nothing distinguishes a legitimate administrative operation from the same operation performed by an attacker inside the partner - and the customer's audit trail attributes both to the partner.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Vendor Support and Diagnostic Channel",
+                        "description": "The path by which customers hand the provider evidence \u2014 support cases, uploaded configuration exports and browser session captures, and the internal tooling the provider's staff use to reproduce a problem.",
+                        "sub_components": [
+                            {
+                                "name": "Support Case File and Session Capture Handling",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-532: Insertion of Sensitive Information into Log File",
+                                        "cwe_mapping_reason": "Troubleshooting routinely asks the customer to attach a browser session capture, which contains the live authentication artifacts for whoever recorded it; those files then rest in the vendor's case system under retention the customer never agreed to and cannot revoke.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Support tooling that lets provider staff impersonate a customer session, or read the configuration secrets of any tenant, concentrates access to every customer in the accounts of the people least likely to be covered by the customer's own privileged access controls.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Hijack Machine and Workload Identities to Reach Production Data and Compute",
+        "threat_description": "Most identities in a modern estate belong to software. Service accounts, client credentials, API keys, pipeline tokens and workload certificates authenticate to the systems that hold the data, and they do it without a second factor, without a conditional access policy, and usually without an owner who would notice a change in behaviour. The governance that surrounds human accounts stops at the boundary: there is no joiner-mover-leaver process for a service principal, no periodic recertification of an API key, and no lockout after a thousand failures. Adversaries therefore work the credential rather than the person \u2014 recovering a secret from a repository, a build log or a configuration file, and presenting it from anywhere, to anything that trusts it.",
+        "motives": [
+            {
+                "motive": "Recover long-lived service credentials from code, pipelines and configuration to authenticate to production data as a trusted workload",
+                "components": [
+                    {
+                        "name": "Secrets Manager and Credential Vault",
+                        "description": "The store that holds and issues non-human credentials \u2014 vault policies, dynamic credential issuance, and the authentication a workload performs in order to retrieve a secret in the first place.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "A vault removes secrets from source control but not from the systems that consume them: a credential retrieved at start-up sits in process memory, environment variables and crash dumps for the life of the workload, and the vault has no visibility into any of that once it has answered the request.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "The credential that lets a workload authenticate to the vault is itself a secret that had to be delivered some other way, so an attacker who obtains that bootstrap credential is authorised by the vault as the workload and reads everything that workload's policy permits.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Vault Policy and Credential Issuance Scope",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "Vault policies are written against path prefixes that group secrets by team or environment rather than by consumer, so a workload that needs one database password is authorised for every secret filed under the same prefix.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_mapping_reason": "Credentials issued with lifetimes chosen for operational convenience rather than for the task outlive the workload that requested them, so a secret recovered from a decommissioned host still authenticates. This mapping carries no attack patterns and is retained for its control mapping; the patterns here come from the scope weakness beside it.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Build Pipeline and Source Repository Identity",
+                        "description": "The identities that build and deploy software \u2014 pipeline service connections, deployment credentials and artifact signing identities, together with the repositories, variable stores and build logs they pass through.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Credentials committed into application code, infrastructure definitions and container images persist in history long after they are removed from the current revision, so rotating the secret matters far less than knowing it was ever written - and the commit that removed it is the one that tells an attacker where to look.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_mapping_reason": "Pipelines run with a single deployment identity that spans every environment the pipeline can target, so the ability to alter a build definition - which is granted to the developers of the application, not to its operators - is the ability to authenticate to production.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Build Log and Artifact Signing Credential Exposure",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "Secrets injected into a build appear in job output whenever a step echoes its environment, and build logs are retained for troubleshooting, readable by everyone with repository access, and outside the controls that govern the vault the secret came from.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Assume over-scoped workload roles to run attacker compute and reach data stores no human account could open",
+                "components": [
+                    {
+                        "name": "Workload Identity Federation",
+                        "description": "Trust that lets a workload exchange a platform-issued token for cloud credentials without a stored secret \u2014 trust policies, issuer and audience conditions, and the subject claims the cloud provider will accept.",
+                        "sub_components": [
+                            {
+                                "name": "Workload Identity Trust Policy and Audience Binding",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "A trust policy that names the issuer but constrains the subject loosely - a wildcard on a repository, a branch or an environment - will exchange a token minted for an unrelated workload of the same platform, so anyone who can run a job on that platform assumes the role.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_mapping_reason": "Where the exchange accepts a token without pinning the expected issuer's keys and audience, a token issued for a different relying party is presented here and honoured, and the resulting cloud credential is indistinguishable from one the real workload obtained.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Container and Service Mesh Identity",
+                        "description": "The identity a workload carries inside an orchestrated platform \u2014 service account tokens projected into pods, mesh-issued certificates, and the node and metadata endpoints that hand credentials to whatever asks.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_container_orchestration",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_container_orchestration",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-250: Execution with Unnecessary Privileges",
+                                        "cwe_mapping_reason": "Workloads scheduled with a default or broadly bound service account inherit rights over the cluster that the application itself never needed, so a single compromised container reads every secret in the namespace and schedules work of its own on the cluster's compute.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Node metadata and credential endpoints answer any process that can reach them, with no authentication on the request, so any code running in the workload - including a dependency it pulled in - obtains the platform credentials assigned to that node.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Mesh Certificate Identity and Peer Verification",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-295: Improper Certificate Validation",
+                                        "cwe_mapping_reason": "Mesh peers that accept any certificate issued by the mesh authority, without checking which workload the certificate names, let any admitted workload impersonate any other - the mesh proves membership but is relied on to prove identity.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Abuse Insider Identity Administration to Create Covert Standing Access",
+        "threat_description": "The people who administer identity can grant themselves anything, and the controls that would catch it are operated by the same team. Entitlements are added in the ordinary course of work, approved by a manager who cannot evaluate what the request confers, and then confirmed in a certification campaign the reviewer clears in bulk because it arrives quarterly and runs to hundreds of lines. Departure closes the obvious account and leaves the rest \u2014 the contractor identity in a partner tenant, the shared operations credential, the emergency account whose password is in a document, the personal token issued against a service. Each survives because the leaver process is driven by the payroll record, and none of these were ever attached to one.",
+        "motives": [
+            {
+                "motive": "Grant covert entitlements to attacker-controlled accounts and clear them through the reviewer's own authority",
+                "components": [
+                    {
+                        "name": "Identity Governance and Access Certification",
+                        "description": "The process by which entitlements are requested, approved and periodically confirmed \u2014 request workflows, approval routing, certification campaigns and the exception handling around them.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Governance platforms hold rights over every entitlement in the estate, so the administrator of the governance tool is the most privileged identity in the organisation while appearing in no application's own administrator list.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "Campaigns present entitlements as role names with no indication of what they permit, so the reviewer confirms a label rather than an access decision and a deliberately innocuous name survives every review it is put through.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Approval Routing and Certification Segregation",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Where the requester can influence who approves - by routing to a delegate, by holding the manager role themselves, or through an emergency path that bypasses approval entirely - the control is a record of an approval rather than an independent decision.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-267: Privilege Defined With Unsafe Actions",
+                                        "cwe_mapping_reason": "Administrative roles bundle the ability to grant access with the ability to clear the review of that access, so one role performs both halves of a control that only works when two people hold them.",
+                                        "capecs_to_exclude": [
+                                            "634",
+                                            "637",
+                                            "648"
+                                        ],
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Privileged Role Assignment",
+                        "description": "How elevated rights are held and activated \u2014 standing versus time-bound assignment, activation approval and justification, and the group nesting through which membership is actually conferred.",
+                        "sub_components": [
+                            {
+                                "name": "Standing Assignment and Nested Group Membership",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-276: Incorrect Default Permissions",
+                                        "cwe_mapping_reason": "Rights conferred through nested group membership are granted by editing a group several layers away from the one the application checks, so an assignment that confers administrative access is made without touching any object anybody reviews.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_mapping_reason": "Elevated rights held permanently rather than activated for a task mean the window in which an assignment can be abused is the whole time it exists, not the hour it was needed. This mapping carries no attack patterns and is retained for its control mapping; the patterns for this surface come from the permission weakness beside it.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Retain access after departure through accounts and entitlements the leaver process never removes",
+                "components": [
+                    {
+                        "name": "Joiner-Mover-Leaver Provisioning Workflow",
+                        "description": "The automation that creates, changes and removes access as people arrive, change role and leave \u2014 the authoritative source that triggers it, the connectors that carry it out, and the reconciliation that is supposed to catch what it missed.",
+                        "sub_components": [
+                            {
+                                "name": "Deprovisioning Trigger and Orphaned Account Reconciliation",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-613: Insufficient Session Expiration",
+                                        "cwe_mapping_reason": "Deprovisioning disables the account but does not invalidate what was issued from it, so refresh tokens, application passwords and consent grants created while it was live keep working after the identity is gone. This mapping carries no attack patterns and is retained for its control mapping; the patterns for this surface come from the credential weakness beside it.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-309: Use of Password System for Primary Authentication",
+                                        "cwe_mapping_reason": "Shared operational credentials - the rota account, the on-call login, the vendor's standing password - are held by people rather than assigned to them, so departure removes the individual and leaves the credential, which no one rotates because no one can enumerate who knows it.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Break-Glass Emergency Account",
+                        "description": "The accounts kept for the case where normal authentication is unavailable \u2014 excluded from conditional access and federation by design, credentialed out of band, and intended to be used almost never.",
+                        "sub_components": [
+                            {
+                                "name": "Emergency Account Custody and Post-Use Attestation",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Break-glass credentials are deliberately static, excluded from the factor and policy requirements applied to everyone else, and recorded somewhere a responder could reach under pressure - which is also somewhere an attacker inside the environment can reach at leisure.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Because they exist for the case where the usual checks cannot run, these accounts are exempted from approval and second-factor requirements on the operation itself, so their use is constrained by procedure alone and the procedure is only tested during an incident.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Erase Identity Audit Evidence to Defeat Investigation and Compliance Attestation",
+        "threat_description": "Authentication and administrative logs are the only record of who an organisation believed someone to be at a given moment, and an adversary who reaches administrative rights reaches the logs at the same time. Deleting them is one option; the more damaging one is editing them, because an investigation that finds nothing keeps looking while an investigation that finds a clean record stops. The loss is not only forensic. Identity logs are the evidence behind access recertification, regulatory reporting and breach notification decisions, so records that cannot be trusted mean attestations that cannot be signed and disclosure timelines that cannot be established \u2014 and the same administrative rights can turn the detection rules off before any of it is written.",
+        "motives": [
+            {
+                "motive": "Destroy and forge identity audit records so that the intrusion cannot be reconstructed or attested to regulators",
+                "components": [
+                    {
+                        "name": "Identity Audit Log Pipeline and Detection Configuration",
+                        "description": "The path identity events travel from the platform to wherever they are retained, and the rules that decide which of them raise an alert \u2014 diagnostic settings, forwarding agents, collectors, risk policies, detection rules and the exclusions maintained against them.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_sanitization",
+                                "dynamic": true,
+                                "tags": "match: validation_sanitization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-117: Improper Output Neutralization for Logs",
+                                        "cwe_mapping_reason": "Log records built by concatenating attacker-influenced values - a username, a user agent, an application display name - let the attacker write their own delimiters and inject whole synthetic events, so the record can be made to show a different actor performing the same action.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Log Forwarding Path and Retention Authority",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Where the retention store is administered by the same identities whose actions it records, the record is not independent evidence; the rights that let an attacker act also let them shorten retention, purge a window or delete the workspace.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Turning off a diagnostic setting or unlinking a forwarding destination is a configuration change rather than a privileged security operation, so it requires no separate authorisation and produces at most one event - in the stream that is being stopped.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Detection Rule and Alert Routing Configuration",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-15: External Control of System or Configuration Setting",
+                                        "cwe_mapping_reason": "Detection is governed by configuration - thresholds, named exclusions, trusted network ranges, disabled rules - and an attacker who edits it silences the alerting for their own account or address before acting, leaving a detection stack that reports healthy while covering nothing.",
+                                        "capecs_to_exclude": [
+                                            "203",
+                                            "270",
+                                            "579"
+                                        ],
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Sign-In and Administrative Event Store",
+                        "description": "The retained record of authentication and directory administration \u2014 sign-in and audit events, their retention period, and the query and export interfaces investigators and auditors work through.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Investigation and administration are frequently served by the same elevated role, so the account that reads the audit trail can also write to it, and no separation exists between the party under investigation and the party holding the evidence.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "DATABASE_CORRUPTION"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Records held in a store that permits update and delete rather than append-only writes can be altered rather than removed, and a modified entry leaves no gap for a completeness check to notice.",
+                                        "security_incident_types": [
+                                            "DATABASE_CORRUPTION",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Deny Authentication Services to Halt Every Dependent Business Application",
+        "threat_description": "Consolidating authentication concentrates the consequence of its failure. When the identity provider will not issue tokens, nothing behind it works, and the effect is indistinguishable from every one of those applications being down at once \u2014 including the ticketing, conferencing and administrative tools the response would be run through. The service can be denied by exhausting it, but it can also be denied through its own controls, because an attacker who can reach the sign-in endpoint can drive accounts into lockout at whatever rate the lockout policy permits. The destructive variant is worse than the disruptive one: deleting directory objects or federation trusts removes the state that authentication is computed from, and restoring it means a rebuild rather than a restart.",
+        "motives": [
+            {
+                "motive": "Exhaust authentication service capacity so that no user can sign in to any dependent application",
+                "components": [
+                    {
+                        "name": "Authentication Endpoint and Lockout Policy",
+                        "description": "The public entry point for authentication requests and the rule that suspends an account after repeated failures \u2014 sign-in and token endpoints, the tier that terminates them, and the lockout threshold, duration and unlock path applied behind them.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                                        "cwe_mapping_reason": "Authentication work is expensive by design - password derivation, signature generation, directory lookups - so each unauthenticated request costs the service far more than it costs the sender, and a flood that would be unremarkable against a static site saturates the token service.",
+                                        "security_incident_types": [
+                                            "DDOS_ATTACKS",
+                                            "CLOUD_SERVICE_OUTAGES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Lockout Threshold and Mass Lockout Exposure",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "A lockout threshold applied per account and reachable by an unauthenticated caller is a denial-of-service primitive rather than a defence: an attacker with a user list deliberately fails the threshold against every account and locks out the organisation, using the control exactly as configured.",
+                                        "security_incident_types": [
+                                            "DDOS_ATTACKS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Where the unlock path is a help desk call, the capacity that governs recovery is human rather than technical, so a mass lockout takes days to clear regardless of how quickly the cause is understood.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "SOFTWARE_APPLICATION_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Destroy directory objects and federation configuration so that access cannot be restored from the platform itself",
+                "components": [
+                    {
+                        "name": "Directory Object Lifecycle",
+                        "description": "Creation, modification and deletion of identity objects \u2014 bulk operations, scripted lifecycle jobs, the recycle bin and whatever restore window the platform provides.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Administrative roles carry bulk delete rights that routine administration never uses, so an account compromised for a read task already holds the ability to remove every user, group and application object in the tenant in a single scripted pass.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "DATABASE_CORRUPTION"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Deletion and hard-purge permissions are assigned together with ordinary object management, so nothing stands between modifying an object and destroying it beyond the recycle bin's retention window - which the same rights can shorten.",
+                                        "security_incident_types": [
+                                            "DATABASE_CORRUPTION",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Federation Trust Configuration",
+                        "description": "The stored relationships that make single sign-on work \u2014 relying party trusts, application registrations, certificates and the claim rules bound to each.",
+                        "sub_components": [
+                            {
+                                "name": "Relying Party Trust and Metadata Configuration Store",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-15: External Control of System or Configuration Setting",
+                                        "cwe_mapping_reason": "Deleting or re-pointing a relying party trust does not damage any application, but every user of that application stops being able to sign in; the change is small, reversible only by someone who knows what it was, and indistinguishable from an ordinary configuration error.",
+                                        "capecs_to_exclude": [
+                                            "203",
+                                            "270",
+                                            "579"
+                                        ],
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "SOFTWARE_APPLICATION_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-353: Missing Support for Integrity Check",
+                                        "cwe_mapping_reason": "Trust configuration is commonly held only in the running platform, with no signed export to compare against, so after a destructive change there is no authoritative record of what the correct configuration was and recovery proceeds by reconstruction.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Gain Unauthorized Physical Access by Subverting Converged Badge and Credential Issuance",
+        "threat_description": "Badge systems have been joined to the identity platform so that starting a job, changing a role and leaving all flow through to the doors. The convergence works in both directions: an adversary who reaches identity administration can issue themselves a physical credential without ever visiting the site, and a credential obtained at the reception desk grants access to areas the digital access review never examines. Card technologies compound it, because readers deployed for a twenty-year life accept credentials that can be copied in seconds by hardware bought openly. The revocation path is the weakest link \u2014 disabling an account is instantaneous and propagates everywhere, while withdrawing a badge depends on a synchronisation job, a controller that may be offline, and someone collecting a card.",
+        "motives": [
+            {
+                "motive": "Obtain a working physical credential through the identity platform's own badge issuance path to enter restricted facilities",
+                "components": [
+                    {
+                        "name": "Physical Access Control System",
+                        "description": "The infrastructure that produces physical credentials and decides which one opens which door \u2014 readers, door controllers, access group definitions, the head-end cardholder database, and the badge printer, encoder and blank stock at the issuing desk.",
+                        "sub_components": [
+                            {
+                                "name": "Badge Credential Encoding and Reader Trust",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_mapping_reason": "Readers that accept a credential's stored identifier without a challenge cannot distinguish a card presented at the door from a recording of one presented earlier, so a credential captured in a lift lobby opens the same doors as the original, indefinitely.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "Where the credential carries no proof that it was issued by this site's own encoder, a card written with the right facility and number is the genuine article as far as the controller is concerned, and the cardholder database will show a valid holder entering.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Access Group Assignment and Door Authorization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Access groups are assigned by building and shift rather than by the specific spaces a role requires, so a credential issued for an office floor also opens the communications room and the records store on it.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "Controllers express authorisation as membership in a group attached to a door schedule, with no finer condition available, so granting someone out-of-hours access to one room necessarily grants it to every room on that schedule.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Badge Printer, Encoder and Blank Credential Stock",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "An encoder that will write a working credential for anyone with physical access to the terminal, with no operator authentication on the encode operation itself, turns an unattended reception desk into a source of site access.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Where the encoder writes whatever cardholder record it is given without checking it against current employment and access state, a credential is produced for an identity that has been terminated or that never existed.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Identity to Physical Access Provisioning Bridge",
+                        "description": "The integration carrying identity lifecycle events into the badge system \u2014 the connector, its mapping of roles to access groups, and the timing and failure behaviour of the synchronisation.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-353: Missing Support for Integrity Check",
+                                        "cwe_mapping_reason": "Provisioning messages that carry no integrity binding let anything able to reach the bridge create a cardholder, add an access group or suppress a revocation, and the badge system records the change as having come from the identity platform.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Defeat Identity Proofing and Help Desk Verification With AI-Generated Personas",
+        "threat_description": "Every identity system has a point where a person is admitted for the first time, and another where someone who has lost their credentials is let back in. Both decide on evidence that generative tools now produce convincingly and cheaply: a document image, a face on a video call, a voice on the phone, and the personal details that make the story hold together. Injection is the sharper problem, because a synthetic stream fed to the application in place of the camera defeats liveness checks that assume they are watching a real capture. The consequence is not a bypassed control but a legitimate credential: the attacker is enrolled, appears in the directory, passes every subsequent check, and is reviewed by the same processes as any real employee or customer.",
+        "motives": [
+            {
+                "motive": "Pass identity proofing and help desk verification with synthetic personas to obtain a legitimate credential for a fabricated identity",
+                "components": [
+                    {
+                        "name": "Remote Identity Proofing and Biometric Capture",
+                        "description": "The service that establishes who a new person is before an identity is created, and the path a biometric sample takes to reach it \u2014 document capture and authentication, the client capture component, the transport to the matching service, and the decision returned to the enrolling application.",
+                        "sub_components": [
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Document and selfie images are accepted on the strength of their content rather than of any binding to a genuine capture event, so a rendered document and a matching generated face satisfy a check designed around the assumption that producing both was hard.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0088",
+                                            "AML.T0087"
+                                        ],
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "AI_GENERATED_IMPERSONATION"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Document Authenticity and Liveness Decision",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "Liveness reasons about whether the subject is physically present, not about whether the identity is the claimant's, so a genuinely live session conducted by a real person reading from a synthetic persona passes every check the control performs.",
+                                        "capecs_to_exclude": [
+                                            "667"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0088",
+                                            "AML.T0073"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_GENERATED_IMPERSONATION",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Camera Capture Path and Injection Resistance",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "The matching service sees frames, not a camera, so a virtual device or an instrumented client submits a generated stream through the application's own capture path and the service has no signal that would distinguish it from a genuine sensor.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0088"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_GENERATED_IMPERSONATION",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-353: Missing Support for Integrity Check",
+                                        "cwe_mapping_reason": "Where captured frames carry no attestation binding them to a device and a moment, a sample can be substituted anywhere between capture and matching, which moves the attack off the subject entirely and onto the transport.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0088"
+                                        ],
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Help Desk and IT Support",
+                        "description": "The human path back into an account \u2014 credential resets, factor re-enrolment and access restoration performed by support staff, under service level targets that reward speed.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Support establishes a caller's identity from an employee number, a manager's name and a recent ticket - facts that are gathered before the call rather than known only to the employee - so a convincing conversation produces a working reset on the organisation's supported path.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0052.001",
+                                            "AML.T0073"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "AI_GENERATED_IMPERSONATION"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Caller Verification Procedure and Reset Authority",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-640: Weak Password Recovery Mechanism for Forgotten Password",
+                                        "cwe_mapping_reason": "Callback and supervisor approval steps are written into the procedure and waived under pressure, because the agent is measured on resolution time and an urgent caller who is already frustrated is the case the exception was written for.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0073"
+                                        ],
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "AI_GENERATED_IMPERSONATION"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "A single agent can reset a credential and re-enrol a factor in one session with no second authorisation on the operation, so the whole of an account's protection rests on one person's judgement during one phone call.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Hijack AI Agent Delegated Authority to Act Across Enterprise Systems",
+        "threat_description": "An autonomous agent is given an identity and a set of tools so that it can act without a person present, which makes it the first identity in the estate that can be instructed by data it reads. Content placed where the agent will retrieve it \u2014 a document, a ticket, a page, a tool description \u2014 becomes an instruction it carries out with whatever authority it holds, and that authority is commonly the union of everything it might ever need rather than the intersection of the user's rights and the task at hand. The delegation chain is the exposure: the systems the agent calls see a valid token and a permitted scope, with nothing to indicate which human the action was taken for or whether they asked for it.",
+        "motives": [
+            {
+                "motive": "Redirect an autonomous agent's delegated authority through injected content to act against enterprise systems under a trusted identity",
+                "components": [
+                    {
+                        "name": "AI Agent Identity and Delegation Chain",
+                        "description": "How an agent's authority is constituted and carried \u2014 the agent's own identity, the user it acts for, the tokens that represent that delegation, and what downstream services can see of either.",
+                        "sub_components": [
+                            {
+                                "name": "Agent-to-User Delegation Binding and Permission Intersection",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-441: Unintended Proxy or Intermediary ('Confused Deputy')",
+                                        "cwe_mapping_reason": "The agent holds authority it did not earn and cannot judge the provenance of its own instructions, so content it retrieves directs it to act with the caller's rights against systems the caller never addressed - the agent is the deputy and the injected document is the instruction.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051.001",
+                                            "AML.T0053"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "AI_PROMPT_INJECTION"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Agents are provisioned with the union of every permission any of their tasks might require rather than the intersection of the user's rights and the current task, so hijacking one turn of one conversation yields the agent's entire standing authority.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053",
+                                            "AML.T0091.000"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Agent Tool and Connector Authorization",
+                        "description": "The permission layer between an agent and the systems it acts on \u2014 tool and connector registration, the scopes each carries, and whether a consequential call is gated before it executes.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Tool calls are authorised once, when the connector is registered, rather than per invocation against the requesting user's own rights, so every user of the agent inherits the access of the most privileged account the connector was configured with.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053",
+                                            "AML.T0110"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-267: Privilege Defined With Unsafe Actions",
+                                        "cwe_mapping_reason": "Tool definitions expose whole capabilities where the task needs one operation - send as any user, query any record, write to any repository - so an agent that was deployed to summarise is equipped to exfiltrate and to destroy.",
+                                        "capecs_to_exclude": [
+                                            "634",
+                                            "637",
+                                            "648"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0086",
+                                            "AML.T0101"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Tool Invocation Scope and Pre-Action Authorization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1427: Improper Neutralization of Input Used for LLM Prompting",
+                                        "cwe_mapping_reason": "Retrieved content and instructions arrive on the same channel, so text placed in a document, ticket or web page the agent reads is acted on as direction rather than read as data. This weakness maps to no attack patterns and no control catalogue entry; the adversary behaviour for this surface is supplied through the ATLAS techniques attached here.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051.001",
+                                            "AML.T0080",
+                                            "AML.T0086"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_PROMPT_INJECTION",
+                                            "AI_AGENT_COMPROMISE"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Agent Credential and Context Store",
+                        "description": "Where an agent's secrets and accumulated context live \u2014 configured connector credentials, tool definitions, conversation memory and the retrieval indexes the agent reads from.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Agent configurations hold the credentials for every system the agent reaches, in a store designed for orchestration rather than for secrets, so compromising the agent platform yields working credentials to each connected system directly - without the agent.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0083",
+                                            "AML.T0098"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-312: Cleartext Storage of Sensitive Information",
+                                        "cwe_mapping_reason": "Retrieval indexes and conversation memory accumulate whatever the agent has read on behalf of every user, so a store built for relevance ends up holding the most sensitive material in the organisation, flattened and searchable without the source systems' access controls.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0082",
+                                            "AML.T0085"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_DATA_LEAKAGE",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Agent Configuration and Memory Persistence",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-798: Use of Hard-coded Credentials",
+                                        "cwe_mapping_reason": "Connector credentials pasted into agent configuration are static, shared across every invocation and every user, and absent from the credential inventory entirely, so they are neither rotated nor revoked when the people who created them leave.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0055",
+                                            "AML.T0081"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Memory and context written during one conversation are re-applied to later sessions belonging to other users without any check on where the content came from, so an instruction injected once becomes a standing behaviour change the agent treats as its own configuration.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0080.000",
+                                            "AML.T0081"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "AI_KNOWLEDGE_BASE_POISONING"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Sell Customer Identity and Behavioral Data Beyond the Scope of Consent",
+        "threat_description": "A consumer identity platform collects far more than credentials. Every sign-in produces a device fingerprint, an address, a location inference, a timestamp and a behavioural sample, gathered under a security justification the customer accepted without expecting it to travel. The adversary in this case is frequently the operator: the same telemetry that scores a login for fraud is commercially valuable as an identity graph, and routing it to advertising and data broker partners is a product decision rather than an intrusion. Consent is the control, and it is the weakest part of the system \u2014 recorded as a single flag rather than a scope, rarely propagated to the partners the data already reached, and not enforced anywhere in the pipeline that moves it.",
+        "motives": [
+            {
+                "motive": "Monetize authentication telemetry and identity attributes beyond the consented purpose for advertising and data broker revenue",
+                "components": [
+                    {
+                        "name": "Consent and Preference Store",
+                        "description": "The record of what each customer agreed to \u2014 consent and preference records, their versions and scopes, and the interfaces through which withdrawal is registered and propagated.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Consent is stored as a boolean against an account rather than as a scope naming purposes, recipients and a duration, so the record cannot express the limit it exists to record and every downstream use reads it as blanket permission.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Analytics, marketing and partner-facing services read the customer profile through service accounts that are authorised against the store as a whole rather than against the purposes the customer agreed to, so consent constrains nothing at the point where data is actually accessed.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "402",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Consent Scope Record and Withdrawal Propagation",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Withdrawal is recorded in the platform but not proven to have reached the partners the data was already shared with, so the organisation asserts a state of consent it has no mechanism to verify and no way to reverse.",
+                                        "security_incident_types": [
+                                            "PROCESS_FAILURES",
+                                            "THIRD_PARTY_API_SECURITY"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Authentication Telemetry and Device Fingerprinting",
+                        "description": "The signals gathered during sign-in \u2014 device and browser fingerprints, network and location inference, behavioural biometrics and the persistent identifiers that tie sessions together over time.",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Fingerprinting deployed for fraud detection produces an identifier that survives cookie clearance, private browsing and sign-out, so a mechanism justified as a security control functions as cross-context tracking that the customer cannot see, refuse or reset.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Partner Data Sharing Interface",
+                        "description": "The paths by which identity data leaves the platform \u2014 partner APIs, advertising and analytics integrations, bulk exports and the data-sharing agreements that are supposed to bound them.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "Sharing interfaces expose the profile at the granularity the platform stores it rather than the granularity a partner's purpose requires, so an integration entitled to a segment membership receives the attributes the segment was derived from.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "THIRD_PARTY_API_SECURITY"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-302: Authentication Bypass by Assumed-Immutable Data",
+                                        "cwe_mapping_reason": "Export scope resolved from a partner-supplied audience or segment identifier, rather than from the agreement the credential represents, lets a partner widen its own extract to records the contract never covered.",
+                                        "capecs_to_exclude": [
+                                            "10",
+                                            "45"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Partner Export Destination and Purpose Limitation",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Export destinations are storage locations shared with the recipient and rarely re-permissioned after the engagement ends, so the copy of the customer base handed over for one campaign stays readable to that partner indefinitely.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "THIRD_PARTY_API_SECURITY"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
