@@ -1,0 +1,2014 @@
+[
+    {
+        "threat": "Forge Train Braking and Control Commands over the End-of-Train / Head-of-Train Radio Link",
+        "threat_description": "Freight trains across North America coordinate braking between the lead locomotive (Head-of-Train, HoT) and the Flashing Rear-End Device (End-of-Train, EoT) over a plain RF linking protocol that authenticates packets with a BCH checksum designed to catch accidental corruption, not forgery. An attacker within radio range using a low-cost software-defined radio can craft packets the EoT accepts as genuine and command an emergency brake application \u2014 or suppress one. CISA disclosed this as CVE-2025-1727 (ICSA-25-191-10) in July 2025, affecting all versions of the protocol across Wabtec TrainLink NGEOT/NG3/NG4/NG5, Siemens Trainguard EOT/HOT and DPS Electronics devices; the Association of American Railroads is replacing it, but replacement equipment is not expected before 2027. The adversary does not breach a network. They transmit on a frequency.",
+        "motives": [
+            {
+                "motive": "Trigger sudden unintended braking on a moving freight train to cause derailment, operational chaos, or physical damage",
+                "components": [
+                    {
+                        "name": "End-of-Train / Head-of-Train Device (EoT/HoT, 'FRED')",
+                        "description": "Battery-powered embedded RF telemetry and brake-control unit on the last car, linked to the locomotive over the AAR S-9152 remote linking protocol. CPE class: embedded OT device. Products: Wabtec TrainLink NGEOT / NG3 / NG4 / NG5 EOT, Siemens Trainguard EOT/HOT, DPS Electronics DPS 2020-He / 3030 series. Affected by CVE-2025-1727.",
+                        "sub_components": [
+                            {
+                                "name": "EoT/HoT RF command authentication",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-353: Missing Support for Integrity Check",
+                                        "cwe_mapping_reason": "The EoT/HoT remote linking protocol carries no cryptographic integrity support at all: brake-control packets are covered only by a BCH checksum designed to catch accidental corruption, so any party able to transmit on the link frequency can construct a packet the receiving device treats as authentic and issue an emergency brake command. A software-defined radio within RF range of the track is sufficient, with no network access and no credential. This is the weakness behind CVE-2025-1727 (CISA ICSA-25-191-10, July 2025), which CISA labelled CWE-1390 at the CVE level; the missing integrity primitive is the actionable design defect.",
+                                        "capecs_to_exclude": [
+                                            "13",
+                                            "14",
+                                            "75",
+                                            "389",
+                                            "665"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_mapping_reason": "Because the linking protocol carries no freshness or nonce, a brake or arming command captured once off the air can be replayed verbatim and is accepted again, letting an attacker reproduce a legitimate HoT command against the EoT without ever deriving the checksum scheme.",
+                                        "capecs_to_exclude": [
+                                            "102",
+                                            "509",
+                                            "555",
+                                            "561",
+                                            "644",
+                                            "645",
+                                            "652",
+                                            "701"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-346: Origin Validation Error",
+                                        "cwe_mapping_reason": "The EoT accepts a brake command on the basis of a well-formed packet alone and has no mechanism to verify it originated from the paired HoT on its own locomotive, so a transmitter impersonating the head unit is indistinguishable from the real one.",
+                                        "capecs_to_exclude": [
+                                            "59",
+                                            "60",
+                                            "75",
+                                            "76",
+                                            "89",
+                                            "111",
+                                            "142",
+                                            "160",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "510"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Locomotive Brake Control and Air Brake Interface",
+                        "description": "Embedded brake-control electronics (e.g. Wabtec/NYAB electronic air brake, locomotive event recorder interfaces) that act on HoT/EoT state. CPE class: embedded safety-critical controller.",
+                        "sub_components": [
+                            {
+                                "name": "Brake command plausibility and interlock",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Brake-state data arriving from the rear unit is consumed without independent plausibility checks against train speed, grade or recent command history, so a single forged telemetry value drives a real pneumatic action instead of being rejected as inconsistent with the train's physical state.",
+                                        "capecs_to_exclude": [
+                                            "111",
+                                            "142",
+                                            "148",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "665",
+                                            "701"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Suppress legitimate braking commands to defeat the train's safety response and endanger operations",
+                "components": [
+                    {
+                        "name": "End-of-Train / Head-of-Train Device (EoT/HoT, 'FRED')",
+                        "description": "Same embedded EoT/HoT RF unit, viewed from the denial-of-command direction. CPE class: embedded OT device.",
+                        "sub_components": [
+                            {
+                                "name": "EoT/HoT link availability and jamming resistance",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-940: Improper Verification of Source of a Communication Channel",
+                                        "cwe_mapping_reason": "With no authenticated channel binding between HoT and EoT, an attacker can inject a continuous stream of attacker-sourced link traffic or spoofed 'armed/communicating' status that masks the absence of a genuine command path, so a real emergency brake request from the locomotive is never acted on by the rear device.",
+                                        "capecs_to_exclude": [
+                                            "500"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-300: Channel Accessible by Non-Endpoint",
+                                        "cwe_mapping_reason": "The open RF link lets a third transmitter sit logically between the head and rear units, selectively overriding or drowning out the pairing so that genuine commands are preempted by the attacker's traffic \u2014 an adversary-in-the-middle created purely at the radio layer.",
+                                        "capecs_to_exclude": [
+                                            "57",
+                                            "589",
+                                            "590",
+                                            "612",
+                                            "613",
+                                            "615",
+                                            "662"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Halt Trains by Spoofing Analog Trackside and Cab Radio Emergency-Stop Signals",
+        "threat_description": "Many national networks still run voice-and-tone VHF radio (in Europe typically analog 150 MHz 'radio-stop', alongside or beneath GSM-R) in which a short unauthenticated tone sequence triggers an immediate emergency stop of every train monitoring that frequency. In August 2023 unknown actors halted more than 20 Polish trains by transmitting the three-tone radio-stop sequence with roughly $30 of equipment, interleaving it with recordings of the Russian anthem; the command requires no encryption, authentication or network access. GSM-R replaces the bearer but inherits GSM's weak A5 ciphers and lack of mutual network authentication, keeping the system exposed to spoofing, sniffing and wide-area jamming.",
+        "motives": [
+            {
+                "motive": "Cause nationwide service disruption and sow public fear by remotely forcing trains to emergency-stop with cheap radio equipment",
+                "components": [
+                    {
+                        "name": "Analog Train Radio and Radio-Stop System (VHF 150 MHz)",
+                        "description": "Legacy trackside/cab voice radio with a tone-triggered emergency-stop ('radio-stop') function, widely deployed where GSM-R/FRMCS migration is incomplete. CPE class: embedded RF communications. Implicated in the 2023 Polish rail radio-stop incidents.",
+                        "sub_components": [
+                            {
+                                "name": "Radio-stop tone command authentication",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "The radio-stop function executes a safety-critical emergency brake on receipt of a fixed tone sequence with no authentication whatsoever, so anyone transmitting the three tones on the published frequency halts every train in range \u2014 the 2023 Polish incident achieved exactly this with hobbyist radio gear.",
+                                        "capecs_to_exclude": [
+                                            "62"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "The receiving radios treat any source emitting the correct tones as a legitimate dispatcher, so a spoofed transmitter is accepted on identity grounds the system never actually checks.",
+                                        "capecs_to_exclude": [
+                                            "22",
+                                            "59",
+                                            "60",
+                                            "459",
+                                            "461",
+                                            "473",
+                                            "476",
+                                            "667"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "GSM-R Cab Radio and Bearer Network",
+                        "description": "GSM-Railway cab radio and base stations carrying voice, emergency calls and (at ETCS L2) EuroRadio train-control signalling. CPE class: embedded cellular + core network. Inherits GSM A5/1-A5/2 and lack of network authentication.",
+                        "sub_components": [
+                            {
+                                "name": "GSM-R air-interface confidentiality and authentication",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_mapping_reason": "GSM-R rides on GSM's A5-family ciphers, which are broken in practice, and offers no authentication of the network to the handset, so an attacker with a software radio and an IMSI-catcher-style rogue base station can sniff cab traffic, downgrade encryption and inject or block GSM-R calls across an area.",
+                                        "capecs_to_exclude": [
+                                            "459",
+                                            "473",
+                                            "475"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-940: Improper Verification of Source of a Communication Channel",
+                                        "cwe_mapping_reason": "Because GSM-R does not authenticate the base station to the train, a rogue cell can present itself as the legitimate network and become the path through which emergency and shunting commands are spoofed or suppressed over a wide area.",
+                                        "capecs_to_exclude": [
+                                            "500"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Spoof or Tamper with Trackside Signalling to Issue Unsafe Movement Authorities",
+        "threat_description": "ETCS/ERTMS and conventional interlockings derive a train's position and movement authority from trackside elements \u2014 EuroBalises transmitting fixed and switchable telegrams, and the EuroRadio safety layer over GSM-R. Academic analysis (Chothia et al.; the 2026 Fraunhofer AISEC ERTMS risk study) shows EuroBalises provide no authentication, so data from a subverted or newly placed balise is trusted, and the EuroRadio MAC is a modified ISO-9797-1 Algorithm 3 built on DES/3DES that is vulnerable to a collision attack permitting forged train-control messages. Compromise here translates directly into unsafe movement authorities, wrong-side signalling failures and potential collisions.",
+        "motives": [
+            {
+                "motive": "Feed false position or movement-authority data into train control to cause overspeed, collision, or wrong-route movement",
+                "components": [
+                    {
+                        "name": "EuroBalise / Trackside Spot-Transmission System",
+                        "description": "Passive/switchable transponders in the four-foot that send location and signalling telegrams to the passing train's Balise Transmission Module. CPE class: embedded trackside OT. Programmable with vendor tools (Alstom BEPT, Siemens TPG Eurobalise).",
+                        "sub_components": [
+                            {
+                                "name": "Balise telegram authenticity",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Balise telegrams carry error-detection coding but no cryptographic authentication, so the onboard system trusts data from a balise that an attacker has reprogrammed, physically substituted, or newly planted at a chosen location \u2014 the published ERTMS security assessments identify balise spoofing and tampering as the single largest source of very-high residual risk.",
+                                        "capecs_to_exclude": [
+                                            "111",
+                                            "142",
+                                            "148",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "665",
+                                            "701"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "A rogue balise or balise emulator placed on the track presents a valid-looking telegram and is accepted as a genuine infrastructure element, letting the attacker inject arbitrary location references or linking data the train acts on as authoritative.",
+                                        "capecs_to_exclude": [
+                                            "22",
+                                            "59",
+                                            "60",
+                                            "459",
+                                            "461",
+                                            "473",
+                                            "476",
+                                            "667"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "EuroRadio / ETCS Train-to-Trackside Messaging",
+                        "description": "Safety layer carrying movement authorities between the Radio Block Centre and the onboard ETCS over GSM-R (and FRMCS in future). CPE class: embedded safety protocol. Uses a 3DES-based MAC shown to be collision-vulnerable.",
+                        "sub_components": [
+                            {
+                                "name": "EuroRadio MAC strength",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-327: Use of a Broken or Risky Cryptographic Algorithm",
+                                        "cwe_mapping_reason": "The EuroRadio MAC is a custom ISO-9797-1 Algorithm 3 variant keyed with DES/3DES; published work demonstrates a feasible collision attack that, combined with application-layer design weaknesses, lets an attacker who observes a MAC collision forge train-control messages \u2014 the primitive is simply too weak for the data rates and lifetimes involved.",
+                                        "capecs_to_exclude": [
+                                            "459",
+                                            "608",
+                                            "614"
+                                        ],
+                                        "security_incident_types": [
+                                            "NETWORK_EQUIPMENT_FAILURES",
+                                            "ZERO_DAY_EXPLOITS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-294: Authentication Bypass by Capture-replay",
+                                        "cwe_mapping_reason": "Weaknesses in the key management and session establishment of the train-to-trackside exchange create opportunities to replay or splice previously valid authenticated messages into a new session, delivering a stale-but-accepted movement authority.",
+                                        "capecs_to_exclude": [
+                                            "102",
+                                            "509",
+                                            "555",
+                                            "561",
+                                            "644",
+                                            "645",
+                                            "652",
+                                            "701"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Interlocking and Signalling Control System",
+                        "description": "Vital logic (relay or computer-based interlocking, object controllers, RBC) that sets routes, points and signal aspects. CPE class: embedded vital OT / SCADA. Products include Siemens/Alstom/Hitachi interlockings and TeleControl-class servers.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Where engineering and maintenance access to interlocking logic or object controllers authenticates weakly or not at all, an attacker reaching the signalling network can alter route-setting or aspect logic \u2014 a wrong-side failure that commands conflicting movements. Siemens TeleControl Server Basic (used in rail among other sectors) has carried exactly such remotely exploitable flaws (e.g. CVE-2025-27495, CVE-2025-29931).",
+                                        "capecs_to_exclude": [
+                                            "650"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "ZERO_DAY_EXPLOITS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Vital logic input validation",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-20: Improper Input Validation",
+                                        "cwe_mapping_reason": "Signalling controllers that accept state updates from field elements or supervisory links without validating them against the vital safety model can be driven into an unsafe aspect or route by malformed or out-of-sequence inputs injected on the control network.",
+                                        "capecs_to_exclude": [
+                                            "3",
+                                            "7",
+                                            "13",
+                                            "14",
+                                            "22",
+                                            "23",
+                                            "31",
+                                            "42",
+                                            "63",
+                                            "64",
+                                            "71",
+                                            "72",
+                                            "73",
+                                            "78",
+                                            "79",
+                                            "80",
+                                            "81",
+                                            "83",
+                                            "85",
+                                            "88",
+                                            "101",
+                                            "104",
+                                            "108",
+                                            "109",
+                                            "110",
+                                            "120",
+                                            "136",
+                                            "182",
+                                            "209",
+                                            "250",
+                                            "267",
+                                            "473",
+                                            "588",
+                                            "664"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Compromise Onboard Train Networking and Gateway Devices to Pivot into Vehicle Systems",
+        "threat_description": "Modern rolling stock runs an onboard Ethernet/IP backbone (TCN/ECN) linking the Train Control & Monitoring System, passenger information, CCTV, Wi-Fi and condition-monitoring, bridged to the ground by cellular train routers and gateways. These embedded devices are reachable over the cellular interface and frequently ship with command-injection and weak-authentication flaws: Moxa's rail-grade TN-4900/TN-5900 train routers carried multiple critical RCE issues in 2023 (CVE-2023-34215 CVSS 9.8, CVE-2023-33239, CVE-2023-34213 among others). A foothold on the gateway is a bridgehead from the passenger/comfort domain toward control-adjacent networks.",
+        "motives": [
+            {
+                "motive": "Gain remote code execution on the onboard train router/gateway to establish persistence and move toward control-adjacent networks",
+                "components": [
+                    {
+                        "name": "Onboard Train Router / Cellular Gateway",
+                        "description": "Rail-certified (EN 50155) router/firewall bridging the onboard network to ground over multi-carrier cellular. CPE class: embedded network device. Products: Moxa TN-4900/TN-5900 series, Westermo, Siemens RUGGEDCOM, Lilee. Multiple CVE-2023 RCE issues.",
+                        "sub_components": [
+                            {
+                                "name": "Gateway command and input handling",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')",
+                                        "cwe_mapping_reason": "Rail train routers have shipped functions (certificate and key generation/management) that pass attacker-influenced input into shell context without neutralisation, yielding remote code execution as the device's privileged user \u2014 CVE-2023-34215 (CVSS 9.8), CVE-2023-33239 and CVE-2023-34213 on the Moxa TN-4900/TN-5900 are precisely this pattern on in-service rail hardware.",
+                                        "capecs_to_exclude": [
+                                            "108"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "CRITICAL_APPLICATION_BUGS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "Some of the same device functions combined insufficient input validation with improper authentication, so the command-injection path could be reached without valid credentials, turning a management interface exposed over cellular into an unauthenticated RCE surface.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "ZERO_DAY_EXPLOITS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1395: Dependency on Vulnerable Third-Party Component",
+                                        "cwe_mapping_reason": "Embedded rail gateways run long-lived Linux/RTOS images whose third-party libraries age in the field far past upstream support, so known-vulnerable components accumulate on a device that is difficult to patch and continuously reachable over the cellular bearer.",
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "The gateway image bundles upstream libraries, package feeds and vendor binaries pulled from control spheres the railway does not govern, and the device executes them with full privilege on a cellular-reachable host. Poisoning or substituting any one of those upstream artifacts puts attacker code inside the gateway's trust boundary without touching the railway's own build or network.",
+                                        "capecs_to_exclude": [
+                                            "201",
+                                            "228",
+                                            "252",
+                                            "660",
+                                            "698"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "ZERO_DAY_EXPLOITS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Train Control & Monitoring System (TCMS) Network",
+                        "description": "Onboard backbone (IEC 61375 TCN/ECN) carrying traction, braking, doors and diagnostics between vehicle controllers. CPE class: embedded OT network.",
+                        "sub_components": [
+                            {
+                                "name": "Onboard network segmentation between comfort and control domains",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-923: Improper Restriction of Communication Channel to Intended Endpoints",
+                                        "cwe_mapping_reason": "When the passenger/comfort VLANs (Wi-Fi, PIS, CCTV) and the control-adjacent TCMS share a backbone without strict, authenticated segmentation, an attacker who owns the gateway can route traffic toward vehicle controllers that were assumed unreachable from the internet-facing side.",
+                                        "capecs_to_exclude": [
+                                            "501"
+                                        ],
+                                        "security_incident_types": [
+                                            "NETWORK_EQUIPMENT_FAILURES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Intra-train control protocols frequently assume a trusted bus and expose diagnostic or command functions without device-to-device authentication, so a foothold anywhere on the backbone can invoke them directly.",
+                                        "capecs_to_exclude": [
+                                            "62"
+                                        ],
+                                        "security_incident_types": [
+                                            "NETWORK_EQUIPMENT_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Embed Hidden Lockout or Kill-Switch Logic in Rolling-Stock PLC Firmware",
+        "threat_description": "Rolling stock is controlled by embedded PLCs whose firmware is opaque to the operator. The 2023 Newag Impuls investigation by Dragon Sector demonstrated the concrete risk: reverse engineering of in-service Polish EMUs found PLC logic that deliberately bricked trains by GPS geofence (when parked at an independent workshop), after a number of idle days, or on a hardcoded calendar date, plus an undocumented cab key-combination to unlock and a GSM telemetry unit that could lock a train remotely. Whether inserted by a manufacturer for anti-competitive lock-in or by an attacker in the supply chain, undocumented firmware behaviour in a safety system is a latent denial-of-service and a trust failure.",
+        "motives": [
+            {
+                "motive": "Introduce covert conditional logic that disables rolling stock on a trigger (geofence, timer, date, or remote command)",
+                "components": [
+                    {
+                        "name": "Rolling-Stock PLC and Vehicle Control Unit Firmware",
+                        "description": "Embedded programmable controllers governing traction, doors and fault handling on EMUs/locomotives. CPE class: embedded firmware. Newag Impuls PLC logic is the documented real-world case.",
+                        "sub_components": [
+                            {
+                                "name": "Undocumented firmware behaviour and triggers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1242: Inclusion of Undocumented Features or Chicken Bits",
+                                        "cwe_mapping_reason": "The documented unlock key-combination and condition flags are undocumented control features in the shipped controller \u2014 exactly the class of hidden mode toggle that lets whoever knows the sequence change the machine's safety-relevant state outside any audited interface.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-506: Embedded Malicious Code",
+                                        "cwe_mapping_reason": "The Newag case established that production rolling-stock PLC firmware can contain trigger-activated disabling logic placed there deliberately: the device behaves normally until a geofence, idle timer or calendar date is met, then renders itself inoperable. Because the behaviour is hidden from the operator it survives acceptance testing and only manifests when the trigger fires - embedded malicious code by function, indistinguishable in effect from a supply-chain implant.",
+                                        "capecs_to_exclude": [
+                                            "448"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Remote lock/telemetry channel",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-912: Hidden Functionality",
+                                        "cwe_mapping_reason": "The onboard GSM telemetry unit observed broadcasting lock conditions and, in some cases, able to lock the train remotely is a hidden command channel into a safety system \u2014 an undocumented remote kill path whose existence the operator cannot audit or disable.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-923: Improper Restriction of Communication Channel to Intended Endpoints",
+                                        "cwe_mapping_reason": "The onboard GSM telemetry unit maintains a command path to the vehicle controller that is not restricted to the operator's own endpoints, so a party who reaches the cellular bearer - the vendor, or anyone who takes over the vendor's side - can transmit lock conditions into a safety system over a channel the operator cannot enumerate, filter or disable.",
+                                        "capecs_to_exclude": [
+                                            "501"
+                                        ],
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Firmware Update and Signing Pipeline",
+                        "description": "Build, sign and distribution process for rolling-stock controller firmware. CPE class: supply-chain / embedded.",
+                        "sub_components": [
+                            {
+                                "name": "Firmware signature verification",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-347: Improper Verification of Cryptographic Signature",
+                                        "cwe_mapping_reason": "Where vehicle controllers accept a firmware image without verifying a cryptographic signature chained to a trust anchor the operator controls, the device has no basis on which to reject a modified image. Both a malicious supplier and an attacker positioned in the maintenance chain can load firmware carrying lockout or backdoor logic, and the controller treats it as genuine.",
+                                        "capecs_to_exclude": [
+                                            "463"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "The update path itself transfers firmware to the controller without an end-to-end integrity check, so an image substituted anywhere between the supplier's build output and the vehicle - on a maintenance laptop, a depot server or the transfer medium - is installed as a routine update.",
+                                        "capecs_to_exclude": [
+                                            "538",
+                                            "662",
+                                            "691",
+                                            "693",
+                                            "695"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "ZERO_DAY_EXPLOITS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Tamper with Level-Crossing, Wayside and Protection Controllers to Create Hazardous States",
+        "threat_description": "Level crossings, hot-box/axle detectors, point machines and electrical protection relays are governed by field controllers and RTUs increasingly reachable over IP for remote diagnostics. CISA has repeatedly flagged rail-relevant OT device flaws \u2014 Hitachi Energy RTU500 denial-of-service and web/authentication issues, Asset Suite deserialization RCE (CVE-2025-10492, CVSS 9.8), Siemens TeleControl Server Basic SQL injection and length-handling flaws (CVE-2025-27495, CVE-2025-29931). Manipulating crossing or protection logic can suppress warnings to road users or trip/disable protection, turning a diagnostic convenience into a safety hazard.",
+        "motives": [
+            {
+                "motive": "Suppress level-crossing warnings or force unsafe wayside states to endanger road users and trains",
+                "components": [
+                    {
+                        "name": "Level-Crossing Controller and Wayside RTU",
+                        "description": "Embedded controllers/RTUs driving crossing barriers, lights and bells, and reporting wayside detector state. CPE class: embedded OT / RTU. Representative: Hitachi Energy RTU500-class devices used across transportation.",
+                        "sub_components": [
+                            {
+                                "name": "Wayside controller command authentication",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Crossing and wayside controllers that expose set/override functions over the maintenance network without strong authentication let an attacker who reaches that network command a crossing to show clear while a train approaches, or raise barriers early \u2014 a direct road-user hazard created without any safety interlock being formally defeated.",
+                                        "capecs_to_exclude": [
+                                            "62"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "RTU web and management interfaces in this class store and transport operator credentials weakly - CISA advisories on Hitachi Energy RTU500 report authentication-flow and web-interface weaknesses of exactly this kind - so an attacker who reaches the maintenance network can recover or reuse a credential and reach protection logic without defeating any safety interlock.",
+                                        "capecs_to_exclude": [
+                                            "509",
+                                            "551",
+                                            "561",
+                                            "644",
+                                            "645",
+                                            "652",
+                                            "653"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Electrical Protection and Traction Power SCADA",
+                        "description": "Protection relays and SCADA governing traction power (catenary/third rail) and substation protection. CPE class: OT / SCADA. Hitachi Energy Relion 670/650, RTU500; Siemens TeleControl.",
+                        "sub_components": [
+                            {
+                                "name": "Protection/SCADA message integrity",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Protection and traction-power controllers that act on IEC 60870/61850-class messages without authenticating their origin can be driven to trip (de-energising sections and stranding trains) or to inhibit protection by crafted or replayed messages on the control network.",
+                                        "capecs_to_exclude": [
+                                            "111",
+                                            "142",
+                                            "148",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "665",
+                                            "701"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_mapping_reason": "Rail asset/OT management software has shipped critical deserialization RCE (Hitachi Energy Asset Suite CVE-2025-10492, CVSS 9.8 via a Jasper/Java component), so a crafted object delivered to the management tier can execute code and reach the protection domain behind it.",
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "CRITICAL_APPLICATION_BUGS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Disrupt Operations Through a Compromised Railway SaaS or Third-Party Service Provider",
+        "threat_description": "Railways have pushed operationally critical functions to third-party SaaS and subcontractors: crew/driver mobile apps, enterprise asset management, maintenance scheduling, and station services. The failure mode is demonstrated: in 2022 a cyberattack on Danish supplier Supeo forced it to shut down the servers behind the 'Digital Backpack' driver app, and DSB had to halt all trains because drivers lost the operational information the app delivered \u2014 an attack that never touched DSB's own network yet stopped a national railway. The provider's availability and security posture become the operator's, usually without the operator's visibility or control.",
+        "motives": [
+            {
+                "motive": "Halt train operations by taking down a SaaS provider whose availability the railway silently depends on",
+                "components": [
+                    {
+                        "name": "Driver / Crew Operational Mobile Application (SaaS-backed)",
+                        "description": "Mobile app delivering speed restrictions, maintenance notices and operational orders to drivers, backed by a third-party cloud service. CPE class: SaaS + mobile/fat client. Supeo 'Digital Backpack' (DSB) is the documented case.",
+                        "sub_components": [
+                            {
+                                "name": "Provider availability dependency and offline fallback",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1357: Reliance on Insufficiently Trustworthy Component",
+                                        "cwe_mapping_reason": "When drivers cannot operate safely without live data from a single external service and there is no offline fallback, the railway has made its operational availability a function of a provider it does not control \u2014 the Supeo/DSB incident showed the provider pulling its own servers (to contain an attack) was sufficient to stop every train.",
+                                        "security_incident_types": [
+                                            "CLOUD_SERVICE_OUTAGES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "The crew application's operational functionality - schedules, orders, safety-critical instructions - is supplied at runtime from a provider's control sphere, so whoever controls that sphere controls what the driver is told. A compromise or unilateral action on the provider side propagates into the cab without passing any railway control, which is how the Supeo incident reached DSB's drivers.",
+                                        "capecs_to_exclude": [
+                                            "228",
+                                            "251",
+                                            "252",
+                                            "660"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "CLOUD_SERVICE_OUTAGES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Enterprise Asset Management / Maintenance SaaS",
+                        "description": "Cloud EAM and maintenance-scheduling platforms holding asset, work-order and safety-critical maintenance data. CPE class: SaaS. Supeo-class EAM; Hitachi Energy Asset Suite on-prem equivalent.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "A railway EAM/maintenance platform concentrates the data that governs when safety-critical assets are serviced; weak authentication on its accounts lets an adversary who takes over a login manipulate maintenance records or work orders, deferring or faking safety interventions.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-502: Deserialization of Untrusted Data",
+                                        "cwe_mapping_reason": "Rail asset-management platforms have shipped critical deserialization RCE via embedded reporting/third-party components (Hitachi Energy Asset Suite CVE-2025-10492, CVSS 9.8), so a crafted payload to the application tier can execute code inside the environment holding fleet-wide asset data.",
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "CRITICAL_APPLICATION_BUGS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Use a trusted subcontractor connection to reach railway networks that are not directly exposed",
+                "components": [
+                    {
+                        "name": "Third-Party / Subcontractor Network Integration",
+                        "description": "Site-to-site links, remote-access and API trust between the railway and maintenance/engineering contractors. CPE class: network trust relationship.",
+                        "sub_components": [
+                            {
+                                "name": "Subcontractor access scope and credential handling",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1357: Reliance on Insufficiently Trustworthy Component",
+                                        "cwe_mapping_reason": "Trusted contractor connections inherit into the railway environment whatever security failures exist on the contractor side; an attacker who compromises the smaller, less-defended supplier rides the established trust into networks the railway never exposed directly.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Contractor accounts provisioned with broader access than their task requires, and left standing after engagements end, give a supply-chain intruder a high-privilege path that routine review would otherwise have closed.",
+                                        "capecs_to_exclude": [
+                                            "58"
+                                        ],
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Encrypt Railway Enterprise and Operational IT for Ransom",
+        "threat_description": "Rail operators and manufacturers are prime ransomware targets: a single intrusion can both exfiltrate large volumes of employee/passenger PII and encrypt the IT that schedules crews, sells tickets and plans maintenance, forcing a fallback to manual operation. Wabtec, one of the largest rail/locomotive companies, disclosed a LockBit intrusion (initial access March 2022, data leaked August 2022) that exposed extensive employee PII after a multi-million-dollar ransom demand. The operational-safety systems may survive, but the enterprise and planning layer going dark still degrades the railway for days.",
+        "motives": [
+            {
+                "motive": "Encrypt crew, scheduling and planning systems to force manual operation and extort payment",
+                "components": [
+                    {
+                        "name": "Railway Enterprise IT and Operational Planning Systems",
+                        "description": "Crew management, timetabling, maintenance planning, ERP and file servers. CPE class: enterprise IT / on-prem + cloud.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_mapping_reason": "Ransomware affiliates overwhelmingly gain entry through single-factor remote access and VPN/RDP logins; without MFA on external-facing access a sprayed or phished password is enough to begin the intrusion that ends in network-wide encryption.",
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "Without lockout or rate limiting on remote authentication, credential-stuffing and password-spraying against the railway's external login surface proceed unimpeded until one account yields.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "RANSOMWARE_ATTACKS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: infrastructure_file_servers",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_file_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Over-broad share and file-server permissions let ransomware reach and encrypt crew, scheduling and backup data far beyond the initially compromised host, converting a single foothold into an operations-wide outage.",
+                                        "capecs_to_exclude": [
+                                            "60",
+                                            "61",
+                                            "62"
+                                        ],
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Backup isolation and recovery integrity",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_mapping_reason": "When backups are reachable with the same credentials and network paths as production, attackers encrypt or delete them before detonating, defeating the one control that would otherwise make recovery possible without paying.",
+                                        "capecs_to_exclude": [
+                                            "20",
+                                            "51",
+                                            "57",
+                                            "59",
+                                            "65",
+                                            "87",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "RANSOMWARE_ATTACKS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Exfiltrate employee and passenger PII for double-extortion leverage",
+                "components": [
+                    {
+                        "name": "HR, Payroll and Customer Record Stores",
+                        "description": "Databases holding employee PII (SSNs, passports, health, biometric) and passenger records. CPE class: database / enterprise IT. Wabtec LockBit leak exposed exactly this data set.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Employee and passenger PII stored without strong encryption at rest is immediately usable once exfiltrated, maximising double-extortion leverage \u2014 the Wabtec/LockBit leak published names, SSNs, passport numbers, health and biometric data precisely because it was readable on exfiltration.",
+                                        "capecs_to_exclude": [
+                                            "31",
+                                            "384",
+                                            "385",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "477",
+                                            "609"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "RANSOMWARE_ATTACKS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Weak authorisation boundaries around HR/customer datastores let a mid-privilege foothold read the whole PII corpus rather than a scoped slice, enlarging the breach that feeds the extortion.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "13",
+                                            "17",
+                                            "45",
+                                            "76",
+                                            "104",
+                                            "402",
+                                            "647",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Deploy Destructive Wiper Malware Against Railway Operational and Information Systems",
+        "threat_description": "State and state-aligned actors have used railways as a stage for destructive, message-bearing attacks. In July 2021 the group later tracked as Predatory Sparrow hit Iran's national railway and transport ministry with the 'Meteor' wiper, destroying backend systems while deliberately hostname-checking passenger-information servers (PIS-APP, PIS-MOB, WSUSPROXY, PIS-DB) so that taunting messages would show on departure boards. The intent is disruption and intimidation, not profit: data is destroyed, recovery is slowed by shadow-copy deletion, and the public-facing systems are co-opted for propaganda.",
+        "motives": [
+            {
+                "motive": "Destroy railway backend data and systems to cause prolonged, non-recoverable disruption",
+                "components": [
+                    {
+                        "name": "Railway Backend Servers and Workstations",
+                        "description": "Windows domain, scheduling, WSUS and operational backend servers. CPE class: enterprise IT. Meteor wiper used msapp.exe/msrun.bat chains and shadow-copy deletion on exactly this estate.",
+                        "sub_components": [
+                            {
+                                "name": "match: infrastructure_os",
+                                "dynamic": true,
+                                "tags": "match: infrastructure_os",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_mapping_reason": "The Meteor campaign disabled defences, deleted volume shadow copies with vssadmin/wmic and locked systems to prevent recovery; where endpoint protection, tamper protection and backup isolation are weak, a wiper proceeds from foothold to irrecoverable destruction with nothing to stop it.",
+                                        "capecs_to_exclude": [
+                                            "20",
+                                            "51",
+                                            "57",
+                                            "59",
+                                            "65",
+                                            "87",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "MALWARE_WIPERS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-306: Missing Authentication for Critical Function",
+                                        "cwe_mapping_reason": "Wiper deployment relied on reaching administrative execution paths (scripted distribution across hosts); unauthenticated or weakly controlled remote-execution and software-distribution functions let the payload fan out across the estate at machine speed.",
+                                        "capecs_to_exclude": [
+                                            "62"
+                                        ],
+                                        "security_incident_types": [
+                                            "MALWARE_WIPERS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Lateral software distribution controls",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Destructive operators abuse over-privileged service and admin accounts to push the wiper through domain and software-deployment tooling; tightly scoped privilege would confine the blast radius to the initially compromised hosts.",
+                                        "capecs_to_exclude": [
+                                            "58"
+                                        ],
+                                        "security_incident_types": [
+                                            "MALWARE_WIPERS",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Compromise the Rolling-Stock and Signalling Software Supply Chain",
+        "threat_description": "Trains and signalling run software built by a concentrated set of suppliers (Siemens, Alstom, Hitachi Rail, Wabtec, Stadler, CAF) and assembled from shared third-party libraries, build systems and update servers. A compromise upstream \u2014 in a supplier's firmware build environment, a signed-update pipeline, or a widely reused component \u2014 propagates to every operator that installs the resulting image, before any vehicle is even delivered. This is the automotive/manufacturing supply-chain problem applied to assets with 30-year lifespans and safety consequences, and it compounds the hidden-firmware risk seen in the Newag case.",
+        "motives": [
+            {
+                "motive": "Implant malicious or backdoored code upstream so it ships to many operators through trusted updates",
+                "components": [
+                    {
+                        "name": "Supplier Firmware Build and Signing Environment",
+                        "description": "Vendor CI/CD, code-signing and artifact repositories producing rolling-stock and signalling firmware. CPE class: supply-chain / build infrastructure.",
+                        "sub_components": [
+                            {
+                                "name": "Build pipeline integrity and signing-key protection",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "If operators and devices accept supplier updates without end-to-end integrity verification against a trust anchor they control, a build-system compromise at the vendor delivers attacker code to the whole installed base as a routine signed-looking update.",
+                                        "capecs_to_exclude": [
+                                            "662"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-321: Use of Hard-coded Cryptographic Key",
+                                        "cwe_mapping_reason": "Signing or device keys that are hard-coded or shared across a product line mean a single extraction lets an attacker sign malicious firmware that every device in the line will trust, collapsing the supply-chain trust boundary.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "ZERO_DAY_EXPLOITS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Third-Party and Open-Source Component Dependencies",
+                        "description": "Reused libraries, RTOS, protocol stacks and reporting components embedded across rail products. CPE class: software supply chain.",
+                        "sub_components": [
+                            {
+                                "name": "match: backend_technologies",
+                                "dynamic": true,
+                                "tags": "match: backend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1395: Dependency on Vulnerable Third-Party Component",
+                                        "cwe_mapping_reason": "Rail products inherit the vulnerabilities of their shared components \u2014 the Jaspersoft/Java deserialization flaw behind Hitachi Energy Asset Suite CVE-2025-10492 is a concrete example of a third-party library creating a critical RCE in rail software \u2014 and these ride into every product that bundles the component.",
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "ZERO_DAY_EXPLOITS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-829: Inclusion of Functionality from Untrusted Control Sphere",
+                                        "cwe_mapping_reason": "Pulling build-time and run-time functionality from external registries without provenance control lets an attacker who poisons an upstream package insert code that executes inside the rail product's trust boundary.",
+                                        "capecs_to_exclude": [
+                                            "228",
+                                            "252",
+                                            "660",
+                                            "698"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Breach Cloud-Hosted Rail Asset-Management and Analytics Platforms",
+        "threat_description": "Operators are consolidating fleet and infrastructure telemetry into vendor cloud platforms \u2014 Hitachi Rail HMAX (edge-to-cloud, NVIDIA-accelerated, to be fitted to all new Hitachi rolling stock from 2027), Siemens Railigent X, Alstom HealthHub. These aggregate continuous sensor data from trains, signalling and infrastructure into a single multi-tenant cloud and feed maintenance and, increasingly, operational decisions. The concentration is the risk: a tenant-isolation failure, exposed API, or stolen cloud credential exposes or manipulates the health picture for entire fleets across multiple operators at once.",
+        "motives": [
+            {
+                "motive": "Access or manipulate fleet-wide asset-health data in a multi-tenant rail cloud to enable espionage or induce unsafe maintenance decisions",
+                "components": [
+                    {
+                        "name": "Rail Asset-Management Cloud Platform (HMAX / Railigent X / HealthHub class)",
+                        "description": "Multi-tenant cloud aggregating rolling-stock, signalling and infrastructure telemetry for AI-driven maintenance and operations. CPE class: SaaS / cloud + edge.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "A multi-tenant rail platform that does not strictly scope access by operator and asset lets a compromised or over-broad identity read across tenant boundaries, exposing the maintenance and operational posture of fleets belonging to multiple railways from one foothold.",
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Where write paths to maintenance recommendations or asset-health state are not properly authorised, an attacker can alter the health picture a railway relies on \u2014 masking a developing fault so a safety intervention is deferred, or faking faults to force costly withdrawals.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "13",
+                                            "17",
+                                            "45",
+                                            "76",
+                                            "104",
+                                            "402",
+                                            "647",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Platform API authentication and token handling",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "The ingestion and query APIs that connect edge devices on trains to the cloud are a large external surface; weak API authentication or token validation lets an attacker impersonate an asset or an operator and read or inject telemetry at scale.",
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: countermeasures_cloud_audit_log",
+                                "dynamic": true,
+                                "tags": "match: countermeasures_cloud_audit_log",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-778: Insufficient Logging",
+                                        "cwe_mapping_reason": "Without comprehensive, tamper-resistant cloud audit logging, cross-tenant access and telemetry manipulation on the platform go undetected, and the operator cannot reconstruct what an intruder saw or changed about its fleet.",
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Cloud Tenant and Identity Configuration",
+                        "description": "Cloud IAM, tenancy and infrastructure configuration underpinning the rail platform. CPE class: cloud infrastructure (IaaS/PaaS).",
+                        "sub_components": [
+                            {
+                                "name": "Cloud credential and metadata exposure",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-522: Insufficiently Protected Credentials",
+                                        "cwe_mapping_reason": "Cloud access keys and service-account tokens left in code, images or edge devices give an attacker direct, authenticated entry to the rail platform's cloud back end, bypassing the application's own controls entirely.",
+                                        "capecs_to_exclude": [
+                                            "509",
+                                            "551",
+                                            "561",
+                                            "644",
+                                            "645",
+                                            "652",
+                                            "653"
+                                        ],
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-732: Incorrect Permission Assignment for Critical Resource",
+                                        "cwe_mapping_reason": "Storage buckets, databases and management endpoints provisioned with permissions broader than the tenant boundary requires - public read, over-scoped service-account bindings, world-listable prefixes - are a leading cause of cloud breaches; in a rail context they expose fleet telemetry and operational data that should never leave the operator's tenant.",
+                                        "capecs_to_exclude": [
+                                            "17",
+                                            "60",
+                                            "61",
+                                            "62",
+                                            "206",
+                                            "234",
+                                            "642"
+                                        ],
+                                        "security_incident_types": [
+                                            "CONFIGURATION_ERRORS",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Hijack Passenger-Facing Digital Services: Ticketing, PIS and Station Wi-Fi",
+        "threat_description": "The passenger-facing estate \u2014 online/app ticketing, passenger information systems (PIS) and departure boards, and station Wi-Fi \u2014 is the railway's most exposed and most outsourced layer, and attacks here produce immediate public impact even when trains keep running. Ukraine's Ukrzaliznytsia lost online ticketing for days to a large 2025 cyberattack (operations continued on backups); the UK's Network Rail station Wi-Fi at 19 major stations was defaced with extremist messaging in 2024 via a compromised administrator account at landing-page provider Global Reach. These are web, SaaS and third-party-identity problems with outsized reputational and public-order consequences.",
+        "motives": [
+            {
+                "motive": "Deny or degrade online ticketing to cause public disruption and reputational harm",
+                "components": [
+                    {
+                        "name": "Online / Mobile Ticketing Platform",
+                        "description": "Web and app ticketing, payment and reservation services, often cloud-hosted. CPE class: web application / SaaS. Ukrzaliznytsia 2025 is the reference incident.",
+                        "sub_components": [
+                            {
+                                "name": "match: frontend_technologies",
+                                "dynamic": true,
+                                "tags": "match: frontend_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1333: Inefficient Regular Expression Complexity",
+                                        "cwe_mapping_reason": "Application-layer denial-of-service against the ticketing front end \u2014 exhausting compute via pathological inputs \u2014 can take online sales offline without touching operations, matching the public-facing impact of the Ukrzaliznytsia incident where trains ran but ticketing was down for days.",
+                                        "security_incident_types": [
+                                            "DDOS_ATTACKS",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: backend_servers",
+                                "dynamic": true,
+                                "tags": "match: backend_servers",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-770: Allocation of Resources Without Limits or Throttling",
+                                        "cwe_mapping_reason": "Without rate limiting and resource caps the ticketing back end can be driven to exhaustion by volumetric or crafted requests, producing the days-long sales outage and station overcrowding seen when a national ticketing platform is targeted.",
+                                        "capecs_to_exclude": [
+                                            "147",
+                                            "486",
+                                            "487",
+                                            "493",
+                                            "494",
+                                            "495",
+                                            "496",
+                                            "528"
+                                        ],
+                                        "security_incident_types": [
+                                            "DDOS_ATTACKS",
+                                            "CLOUD_SERVICE_OUTAGES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Resilience and offline fallback",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1357: Reliance on Insufficiently Trustworthy Component",
+                                        "cwe_mapping_reason": "Where the railway has no manual or offline ticketing fallback, loss of the online platform directly strands passengers; Ukrzaliznytsia weathered its attack precisely because it had rehearsed backup protocols and kept selling at counters.",
+                                        "security_incident_types": [
+                                            "CLOUD_SERVICE_OUTAGES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-693: Protection Mechanism Failure",
+                                        "cwe_mapping_reason": "The manual and offline selling path is the protection mechanism that keeps passengers moving when the online platform is gone; where it is absent, untested or itself dependent on the same platform, loss of the online channel strands passengers outright. Ukrzaliznytsia weathered its attack precisely because the fallback existed and had been rehearsed.",
+                                        "capecs_to_exclude": [
+                                            "20",
+                                            "51",
+                                            "57",
+                                            "59",
+                                            "65",
+                                            "87",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "CLOUD_SERVICE_OUTAGES",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "motive": "Deface public information channels to spread propaganda or extremist messaging",
+                "components": [
+                    {
+                        "name": "Station Wi-Fi Landing Page and Passenger Information Displays",
+                        "description": "Public Wi-Fi captive portals and PIS/departure-board content, typically delivered by third-party providers. CPE class: SaaS + web + embedded display. Network Rail/Global Reach 2024 defacement; Iran PIS board takeover (2021).",
+                        "sub_components": [
+                            {
+                                "name": "Provider administrator access control",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-287: Improper Authentication",
+                                        "cwe_mapping_reason": "The Network Rail station Wi-Fi defacement was carried out through a legitimate administrator account at the landing-page provider; a single over-powerful, insufficiently protected admin identity at an outsourced provider lets its holder rewrite what millions of passengers see at login.",
+                                        "security_incident_types": [
+                                            "WEB_APPLICATION_ATTACKS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "When a provider administrator can change the landing page for every downstream customer without segregation or change control, the privilege concentration itself is the vulnerability \u2014 insider or stolen-credential abuse defaces many operators at once.",
+                                        "capecs_to_exclude": [
+                                            "58"
+                                        ],
+                                        "security_incident_types": [
+                                            "WEB_APPLICATION_ATTACKS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Displayed-content integrity",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "PIS and departure boards that render content without verifying its source or integrity can be made to show attacker-chosen messages \u2014 as Iran's station boards were in 2021 \u2014 turning the public information channel into a propaganda surface and eroding trust in real travel information.",
+                                        "capecs_to_exclude": [
+                                            "111",
+                                            "142",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "665",
+                                            "701"
+                                        ],
+                                        "security_incident_types": [
+                                            "WEB_APPLICATION_ATTACKS",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Poison or Evade AI Perception and Inspection Models Used in Rail Safety",
+        "threat_description": "Railways are deploying computer-vision and ML for safety-relevant perception: AI-powered level-crossing and trespasser detection, onboard obstacle/track inspection cameras, automated defect detection, and emerging autonomous/ATO perception. Hitachi Rail's HMAX (edge AI on NVIDIA IGX/Holoscan, to be fitted to all new rolling stock from 2027) and comparable platforms push model inference onto the train and trackside. An adversary who poisons training data, backdoors a deployed model, or crafts physical adversarial perturbations can make a safety model miss a real hazard or hallucinate a false one \u2014 a failure with direct physical consequences.",
+        "motives": [
+            {
+                "motive": "Cause AI perception/inspection models to miss real hazards or report false ones, degrading rail safety at scale",
+                "components": [
+                    {
+                        "name": "Onboard / Trackside AI Perception and Inspection Model",
+                        "description": "Edge-deployed CV/ML models for obstacle, trespasser, crossing and defect detection, and ATO perception. CPE class: embedded AI / edge inference. HMAX-class edge-to-cloud platforms.",
+                        "sub_components": [
+                            {
+                                "name": "Adversarial input robustness",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1039: Inadequate Detection or Handling of Adversarial Input Perturbations in Automated Recognition Mechanism",
+                                        "cwe_mapping_reason": "Rail perception models trained for normal conditions can be defeated by physical adversarial perturbations \u2014 markings, patterns or lighting engineered to make the model misclassify \u2014 so a real obstacle or trespasser is not detected, or a clear track is flagged as blocked, with the model offering no signal that it is being manipulated. The attack pattern is the ATLAS model-evasion technique, which no CAPEC represents.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0015",
+                                            "AML.T0043"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_POISONING",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Model artifact integrity and provenance",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "When model artifacts are delivered to trains and trackside edge devices without cryptographic integrity and provenance verification, a poisoned or backdoored model pushed over the update channel is accepted as authentic and the device begins making safety decisions on attacker-controlled perception logic \u2014 the on-vehicle model-delivery weakness the automotive library flags, applied to rail edge AI.",
+                                        "capecs_to_exclude": [
+                                            "538",
+                                            "662",
+                                            "691",
+                                            "693",
+                                            "695"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0010.003",
+                                            "AML.T0058"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AI_MODEL_POISONING"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-506: Embedded Malicious Code",
+                                        "cwe_mapping_reason": "A model backdoored during training or supply behaves correctly on ordinary inputs but misbehaves when a specific physical trigger appears in the scene, so a defect- or obstacle-detection model can be made to ignore exactly the hazard the attacker intends while passing all normal validation.",
+                                        "capecs_to_exclude": [
+                                            "448"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0018.000",
+                                            "AML.T0043.004"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "AI_MODEL_POISONING"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "AI Training Data and MLOps Pipeline",
+                        "description": "Data collection, labelling, training and deployment pipeline for rail ML models, typically cloud-hosted. CPE class: cloud / MLOps.",
+                        "sub_components": [
+                            {
+                                "name": "Training-data integrity",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-349: Acceptance of Extraneous Untrusted Data With Trusted Data",
+                                        "cwe_mapping_reason": "Rail perception models retrain on field-collected and third-party imagery; if the pipeline ingests this without provenance controls, an attacker who contributes or tampers with training data can poison the model so the degradation is baked in before deployment. The relevant technique is ATLAS training-data poisoning, outside CAPEC's scope.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0020",
+                                            "AML.T0019"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_MODEL_POISONING",
+                                            "SUPPLY_CHAIN_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Where authorization is not enforced on model-registry and deployment functions, a party who reaches the MLOps control plane can alter model parameters or promote a build to the fleet, changing how every equipped train perceives its environment.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "13",
+                                            "17",
+                                            "45",
+                                            "76",
+                                            "104",
+                                            "402",
+                                            "647",
+                                            "668"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0018",
+                                            "AML.T0031"
+                                        ],
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "AI_MODEL_POISONING"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Abuse LLM-Based Rail Assistants and Agentic Operational Tools",
+        "threat_description": "Rail operators are adopting LLM-based assistants for maintenance decision-support, crew/passenger chat, knowledge retrieval over engineering documentation, and increasingly agentic tools wired into asset-management back ends. These share the generative-AI attack surface catalogued in MITRE ATLAS: prompt injection (direct and indirect, via poisoned maintenance records or RAG content), jailbreaks past safety guardrails, system-prompt and data leakage, and \u2014 where the assistant can act \u2014 unsafe tool invocation. In an operational setting a manipulated assistant can surface wrong maintenance guidance or trigger back-end actions it was tricked into taking.",
+        "motives": [
+            {
+                "motive": "Manipulate an operational LLM assistant via prompt injection to leak data or drive unsafe actions and recommendations",
+                "components": [
+                    {
+                        "name": "LLM Operational Assistant / Maintenance Copilot",
+                        "description": "LLM assistant over engineering/maintenance knowledge and (when agentic) connected to asset-management tools. CPE class: SaaS / AI service.",
+                        "sub_components": [
+                            {
+                                "name": "Prompt/instruction separation",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1427: Improper Neutralization of Input Used for LLM Prompting",
+                                        "cwe_mapping_reason": "The assistant assembles user content and retrieved documents into the prompt without structurally separating them from operator instructions, so adversarial directives \u2014 typed directly or planted in a maintenance record or document the model retrieves \u2014 are interpreted with system authority, overriding its intended behaviour. This is the core prompt-injection weakness; its attack pattern is the ATLAS technique, not any CAPEC.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0051",
+                                            "AML.T0051.001"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_PROMPT_INJECTION",
+                                            "AI_SAFETY_GUARDRAIL_BYPASS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Generative output validation before action",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-1426: Improper Validation of Generative AI Output",
+                                        "cwe_mapping_reason": "When the assistant's output is trusted as maintenance guidance or passed to downstream tools without validation, a manipulated or hallucinated response becomes an unsafe recommendation or an unintended back-end action \u2014 the harm lands because nothing checks the generated output against operational ground truth before it is acted on.",
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0062",
+                                            "AML.T0048"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "System prompt and data leakage",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-200: Exposure of Sensitive Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Prompt-extraction and data-leakage techniques against the assistant can disclose the operator-confidential system prompt and any sensitive operational or personal data in its context or retrieval corpus, exposing both business logic and protected data through the model's output channel. The relevant techniques are ATLAS system-prompt extraction and LLM data leakage.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0056",
+                                            "AML.T0057"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_DATA_LEAKAGE",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Agentic Tool Connectors and RAG Corpus",
+                        "description": "Tool integrations and retrieval sources (maintenance DBs, document stores) the assistant can read or act through. CPE class: AI agent tooling / data.",
+                        "sub_components": [
+                            {
+                                "name": "RAG content provenance",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-349: Acceptance of Extraneous Untrusted Data With Trusted Data",
+                                        "cwe_mapping_reason": "If the retrieval corpus ingests content an attacker can influence, poisoned documents become indirect prompt-injection payloads the assistant treats as trusted context \u2014 the ATLAS RAG-poisoning / indirect-injection path \u2014 steering its answers and any actions it takes.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0070",
+                                            "AML.T0051.001"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_KNOWLEDGE_BASE_POISONING",
+                                            "AI_PROMPT_INJECTION"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Agent tool-invocation authorization",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "When the agent's connectors execute back-end actions with the agent's standing privileges rather than the requesting user's authorised scope, a successful injection makes the agent a confused deputy that performs operational changes the attacker could not have made directly.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "13",
+                                            "17",
+                                            "45",
+                                            "76",
+                                            "104",
+                                            "402",
+                                            "647",
+                                            "668"
+                                        ],
+                                        "mitre_atlas_techniques_to_include": [
+                                            "AML.T0053"
+                                        ],
+                                        "security_incident_types": [
+                                            "AI_AGENT_COMPROMISE",
+                                            "API_SECURITY_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Spoof or Jam GNSS Positioning Relied On by Train Location and Operations",
+        "threat_description": "Rail increasingly leans on GNSS for train positioning, ATO assistance, asset tracking and timing, and planned ERTMS evolutions and FRMCS lean further on satellite positioning to reduce trackside hardware. Civil GNSS is unauthenticated and low-power at the receiver, so it is spoofable and jammable with accessible equipment \u2014 a problem acute in conflict-adjacent regions where broad GNSS interference is routine. A train (or back-office) that trusts a spoofed position can compute wrong location, speed or timing, with consequences ranging from degraded operation to unsafe movement decisions where GNSS feeds safety logic.",
+        "motives": [
+            {
+                "motive": "Feed false position, speed or timing into train location systems by spoofing or jamming GNSS",
+                "components": [
+                    {
+                        "name": "Onboard GNSS Positioning Receiver",
+                        "description": "GNSS receiver feeding train location/speed to positioning, ATO and telematics. CPE class: embedded RF/positioning.",
+                        "sub_components": [
+                            {
+                                "name": "GNSS signal authenticity",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Civil GNSS signals carry no authentication, so a receiver that accepts them at face value can be driven to a false fix by a spoofer transmitting stronger counterfeit signals, making the train compute an incorrect position, speed or clock that downstream logic then trusts.",
+                                        "capecs_to_exclude": [
+                                            "111",
+                                            "142",
+                                            "148",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "665",
+                                            "701"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-290: Authentication Bypass by Spoofing",
+                                        "cwe_mapping_reason": "A GNSS spoofer impersonates the satellite constellation; because the receiver authenticates nothing, the counterfeit signal is accepted as genuine and the attacker chooses the position and time the train believes.",
+                                        "capecs_to_exclude": [
+                                            "22",
+                                            "59",
+                                            "60",
+                                            "459",
+                                            "461",
+                                            "473",
+                                            "476",
+                                            "667"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Positioning sensor fusion and plausibility",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-807: Reliance on Untrusted Inputs in a Security Decision",
+                                        "cwe_mapping_reason": "Where location or movement decisions rest on GNSS without cross-checking against odometry, balises, track maps and inertial sensors, a single spoofed input is decisive; robust multi-sensor plausibility is what prevents a counterfeit fix from becoming an operational or safety decision.",
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-349: Acceptance of Extraneous Untrusted Data With Trusted Data",
+                                        "cwe_mapping_reason": "The position solution merges unauthenticated GNSS observables with trusted odometry, balise and inertial inputs and carries the result forward as one trusted fix, with no per-source provenance surviving the fusion. A spoofed satellite signal is therefore laundered into the same trusted position the vital logic consumes, instead of being isolated and outvoted by the sources that cannot be spoofed from off the track.",
+                                        "capecs_to_exclude": [
+                                            "142"
+                                        ],
+                                        "security_incident_types": [
+                                            "ZERO_DAY_EXPLOITS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Harvest and Abuse Passenger Biometric, Location and Surveillance Data",
+        "threat_description": "Smart-station programmes concentrate sensitive passenger data: AI CCTV with facial/behavioural analysis, ticketing and travel histories, app telemetry and Wi-Fi tracking. The 2024 disclosure that Network Rail ran a covert multi-station trial piping ticket-barrier camera images to Amazon Rekognition to infer age, gender and emotion \u2014 with the data floated for advertising use \u2014 shows how quickly surveillance capability and data concentration outrun consent and governance. Whether the abuse is external theft, excessive collection, or unauthorised secondary use, the exposure is biometric and behavioural data on millions of travellers.",
+        "motives": [
+            {
+                "motive": "Exfiltrate or abuse concentrated passenger biometric, location and behavioural data for surveillance, profiling or resale",
+                "components": [
+                    {
+                        "name": "AI CCTV and Biometric Analytics Platform",
+                        "description": "Station camera networks with facial/behavioural/demographic analytics, often cloud-processed. CPE class: SaaS/cloud + embedded camera. Network Rail / Amazon Rekognition trial is the reference.",
+                        "sub_components": [
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Biometric and demographic inferences on passengers are highly sensitive; weak authorisation around the analytics platform lets an insider or intruder access facial templates, emotion/demographic records and the images behind them across every monitored station.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "13",
+                                            "17",
+                                            "45",
+                                            "76",
+                                            "104",
+                                            "402",
+                                            "647",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Purpose limitation and collection scope",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-359: Exposure of Private Personal Information to an Unauthorized Actor",
+                                        "cwe_mapping_reason": "Collecting and retaining biometric/emotion data beyond a lawful, disclosed purpose \u2014 the core criticism of the covert Network Rail trial, where data was even floated for advertising \u2014 is itself an exposure: the data exists, is linkable to individuals, and becomes available to secondary uses and breaches the passenger never consented to.",
+                                        "capecs_to_exclude": [
+                                            "all"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Passenger Travel-History and App Telemetry Store",
+                        "description": "Ticketing/account databases and app telemetry holding travel patterns and location. CPE class: database / cloud.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Travel histories and location telemetry stored without strong encryption at rest are directly usable for surveillance or stalking once exfiltrated, and reconstruct an individual's movements across the network.",
+                                        "capecs_to_exclude": [
+                                            "31",
+                                            "384",
+                                            "385",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "477",
+                                            "609"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1220: Insufficient Granularity of Access Control",
+                                        "cwe_mapping_reason": "Coarse access control over travel-pattern data lets a single authorised foothold query any passenger's movements rather than a justified, scoped subset, turning routine access into a surveillance capability.",
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "DATA_BREACHES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Abuse Insider and Remote-Maintenance Access to Rail Control and OT Networks",
+        "threat_description": "Rail OT is maintained by a mix of staff and vendors who hold powerful, often remote, access to signalling, SCADA and onboard systems \u2014 and that access is a recurring root cause. The Network Rail station Wi-Fi defacement was traced to a legitimate administrator at a supplier; CISA's standing guidance for the EoT/HoT and other rail OT flaws centres on restricting remote access and segmenting OT precisely because privileged maintenance paths are the practical way in. Whether malicious insider, negligent configuration, or hijacked vendor remote session, over-privileged maintenance access converts directly into control-system reach.",
+        "motives": [
+            {
+                "motive": "Leverage privileged maintenance or remote-vendor access to reach and manipulate rail control/OT systems",
+                "components": [
+                    {
+                        "name": "Remote Maintenance / Vendor Access to OT",
+                        "description": "Remote-access channels (VPN, jump hosts, vendor remote-support) into signalling, SCADA and onboard systems. CPE class: remote access / OT boundary.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_mapping_reason": "Remote maintenance paths into OT protected by a single factor are a direct line to control systems once a password is phished, reused or sprayed; CISA's rail OT mitigations repeatedly stress strong, MFA-gated remote access because single-factor vendor access is the common entry point.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "INSIDER_SECURITY_THREATS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-1391: Use of Weak Credentials",
+                                        "cwe_mapping_reason": "Default, shared or weak credentials on OT maintenance accounts and devices \u2014 common on long-lived rail equipment \u2014 let an attacker or insider authenticate to control-adjacent systems with minimal effort.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "OT network segmentation and access scope",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-923: Improper Restriction of Communication Channel to Intended Endpoints",
+                                        "cwe_mapping_reason": "Flat or weakly segmented OT networks let a maintenance foothold reach far beyond its task \u2014 from an engineering workstation into signalling or SCADA \u2014 which is why segmentation and firewalling of OT is the primary compensating control CISA prescribes for rail devices that cannot be quickly patched.",
+                                        "capecs_to_exclude": [
+                                            "501"
+                                        ],
+                                        "security_incident_types": [
+                                            "NETWORK_EQUIPMENT_FAILURES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-269: Improper Privilege Management",
+                                        "cwe_mapping_reason": "Standing high privilege on maintenance and vendor accounts, retained beyond need, gives an insider or whoever steals that identity control-system authority that least-privilege and just-in-time access would otherwise deny.",
+                                        "capecs_to_exclude": [
+                                            "58"
+                                        ],
+                                        "security_incident_types": [
+                                            "INSIDER_SECURITY_THREATS",
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Transient Cyber Assets and Removable Media",
+                        "description": "Maintenance laptops, diagnostic tools and USB media moved between IT and OT. CPE class: transient endpoint.",
+                        "sub_components": [
+                            {
+                                "name": "Transient asset and media control",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-494: Download of Code Without Integrity Check",
+                                        "cwe_mapping_reason": "Maintenance laptops and diagnostic tools that load or transfer software and firmware without integrity verification carry malware across the IT/OT boundary into signalling and vehicle systems, a classic transient-cyber-asset infection path into otherwise isolated networks.",
+                                        "capecs_to_exclude": [
+                                            "538",
+                                            "662",
+                                            "691",
+                                            "693",
+                                            "695"
+                                        ],
+                                        "security_incident_types": [
+                                            "SUPPLY_CHAIN_COMPROMISES",
+                                            "CONFIGURATION_ERRORS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "threat": "Commit Fraud and Account Takeover Against Ticketing and Loyalty Platforms",
+        "threat_description": "Rail ticketing, fare and loyalty systems move money and store payment and identity data at scale, making them a steady target for fraud and account takeover independent of any safety dimension. Web application flaws, credential-stuffing against reused passwords, weak session and recovery flows, and API abuse let attackers forge or resell tickets, drain loyalty balances, and harvest stored payment/identity data. The impact is financial and reputational, and the exposed data feeds onward fraud.",
+        "motives": [
+            {
+                "motive": "Take over passenger accounts and defraud ticketing/loyalty systems for financial gain",
+                "components": [
+                    {
+                        "name": "Ticketing / Fare / Loyalty Web and API Platform",
+                        "description": "Customer accounts, payments, fare and loyalty logic exposed over web and API. CPE class: web application / API / SaaS.",
+                        "sub_components": [
+                            {
+                                "name": "match: authentication_type",
+                                "dynamic": true,
+                                "tags": "match: authentication_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-308: Use of Single-factor Authentication",
+                                        "cwe_mapping_reason": "Passenger accounts protected by password alone fall to credential stuffing against reused passwords, giving attackers the stored payment methods, travel history and loyalty balances inside each compromised account.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    },
+                                    {
+                                        "cwe_id": "CWE-307: Improper Restriction of Excessive Authentication Attempts",
+                                        "cwe_mapping_reason": "Without lockout or rate limiting, high-volume credential-stuffing and brute-force against the ticketing login proceeds freely until a tranche of accounts is taken over.",
+                                        "security_incident_types": [
+                                            "AUTHENTICATION_SYSTEM_COMPROMISES"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: authorization_type",
+                                "dynamic": true,
+                                "tags": "match: authorization_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-285: Improper Authorization",
+                                        "cwe_mapping_reason": "Broken object/function-level authorisation in ticketing and fare APIs lets an attacker act on other passengers' bookings, issue or refund tickets they do not own, or manipulate fare logic, converting an authorisation gap directly into fraud.",
+                                        "capecs_to_exclude": [
+                                            "5",
+                                            "13",
+                                            "17",
+                                            "45",
+                                            "76",
+                                            "104",
+                                            "402",
+                                            "647",
+                                            "668"
+                                        ],
+                                        "security_incident_types": [
+                                            "API_SECURITY_BREACHES",
+                                            "WEB_APPLICATION_ATTACKS"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "match: validation_type",
+                                "dynamic": true,
+                                "tags": "match: validation_type",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-345: Insufficient Verification of Data Authenticity",
+                                        "cwe_mapping_reason": "Where ticket validity rests on client-side or weakly signed tokens/QR codes, attackers forge or duplicate tickets that barrier and inspection checks accept as genuine, enabling fare evasion and resale at scale.",
+                                        "capecs_to_exclude": [
+                                            "142",
+                                            "386",
+                                            "387",
+                                            "665"
+                                        ],
+                                        "security_incident_types": [
+                                            "WEB_APPLICATION_ATTACKS",
+                                            "PROCESS_FAILURES"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Stored Payment and Identity Data",
+                        "description": "Cardholder and identity data held by the ticketing platform. CPE class: database / PCI scope.",
+                        "sub_components": [
+                            {
+                                "name": "match: database_technologies",
+                                "dynamic": true,
+                                "tags": "match: database_technologies",
+                                "cwes": [
+                                    {
+                                        "cwe_id": "CWE-311: Missing Encryption of Sensitive Data",
+                                        "cwe_mapping_reason": "Payment and identity data stored without strong encryption is directly monetisable once a web or API flaw yields database access, turning an application breach into a payment-data and identity-fraud incident.",
+                                        "capecs_to_exclude": [
+                                            "31",
+                                            "384",
+                                            "385",
+                                            "386",
+                                            "387",
+                                            "388",
+                                            "477",
+                                            "609"
+                                        ],
+                                        "security_incident_types": [
+                                            "DATA_BREACHES",
+                                            "DATABASE_SECURITY_INCIDENTS"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
